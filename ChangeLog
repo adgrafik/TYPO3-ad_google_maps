@@ -1,0 +1,13 @@
+2009-09-14 Arno Dudek  <webmaster@adgrafik.at>
+
+	* initial code generated with kickstarter
+
+1.0.0	First release
+
+1.0.1	[BUGFIX] Some bugfixes in tca.php
+		[BUGFIX] Fix wrong sorting of InfoWindows in MapPluginAdapter.php
+
+1.0.2	[BUGFIX] Added post process function to clear the coordinates field when useMapDrawerForAddress is FALSE and address changed.
+		[BUGFIX] Added missing database field force_listing in ext_tables.sql.
+		[TASK] Behaviour for Tx_AdGoogleMaps_Service_MapPluginAdapter->getPropertyValue changed to accept overriding by database field.
+		[TASK] Complete documentation.
