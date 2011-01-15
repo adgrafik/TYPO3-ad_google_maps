@@ -1,0 +1,73 @@
+<?php
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2010 Arno Dudek <webmaster@adgrafik.at>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
+/**
+ * Controller.
+ *
+ * @version $Id:$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ */
+class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_Extbase_MVC_Controller_ActionController {
+
+	/**
+	 * @var Tx_AdGoogleMaps_Domain_Repository_MapRepository
+	 */
+	protected $mapRepository;
+
+	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	public function initializeAction() {
+		$this->mapRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_MapRepository');
+
+		// Merge TypoScript settings with FlexForm values. FlexForm values overrides TypoScript settings.
+		$this->settings = Tx_Extbase_Utility_Arrays::arrayMergeRecursiveOverrule($this->settings, $this->settings['flexform']);
+	}
+	
+	/**
+	 * Index action
+	 *
+	 * @return string The rendered view
+	 */
+	public function indexAction() {
+		if (!isset($this->settings['map'])) {
+			$this->flashMessageContainer->add('Add static TypoScript "ad: Google Maps" to your template');
+		}
+		// Create map.
+		$map = $this->mapRepository->findByUid($this->settings['map']['uid']);
+		$mapPluginAdapter = t3lib_div::makeInstance('Tx_AdGoogleMaps_Service_MapPluginAdapter', $map, $this->settings);
+		$mapPluginAdapter->buildMap();
+
+		$this->view->assign('mapPlugin', $mapPluginAdapter->getMapPlugin());
+		$this->view->assign('map', $mapPluginAdapter->getMap());
+	}
+
+}
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/ad_googlemaps/Classes/Controller/GoogleMapsController.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/ad_googlemaps/Classes/Controller/GoogleMapsController.php']);
+}
+?>
