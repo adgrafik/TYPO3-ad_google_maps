@@ -1,0 +1,21 @@
+
+# cat=ad: Google Maps API/basic/10; type=boolean; label= Use Map Drawer for tt_address: If set, you can set the geo position of an address in the Map Drawer, else the geo position will be get directly from the address.
+useMapDrawerForAddress = 0
+
+uploadDirectories {
+
+	# cat=ad: Google Maps API/file/10; type=string; label= Path to the category icons: All uploaded files will be stored in this folder.
+	categoryIcons = EXT:ad_google_maps/Resources/Public/Uploads/Category/
+
+	# cat=ad: Google Maps API/file/20; type=string; label= Path to the marker icons: All uploaded files will be stored in this folder.
+	markerIcons = EXT:ad_google_maps/Resources/Public/Uploads/Marker/
+
+	# cat=ad: Google Maps API/file/30; type=string; label= Path to the marker shadow icons: All uploaded files will be stored in this folder.
+	shadowIcons = EXT:ad_google_maps/Resources/Public/Uploads/Shadow/
+
+	# cat=ad: Google Maps API/file/40; type=string; label= Path to the mouse cursor: All uploaded files will be stored in this folder.
+	mouseCursor = EXT:ad_google_maps/Resources/Public/Uploads/MouseCursor/
+
+	# cat=ad: Google Maps API/file/50; type=string; label= Path to the KML files: All uploaded files will be stored in this folder.
+	kmlFiles = EXT:ad_google_maps/Resources/Public/Uploads/KML/
+}
