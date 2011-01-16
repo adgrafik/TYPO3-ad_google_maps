@@ -9,5 +9,6 @@
 
 1.0.2	[BUGFIX] Added post process function to clear the coordinates field when useMapDrawerForAddress is FALSE and address changed.
 		[BUGFIX] Added missing database field force_listing in ext_tables.sql.
+		[TASK] Language behaviour for flexform changed.
 		[TASK] Behaviour for Tx_AdGoogleMaps_Service_MapPluginAdapter->getPropertyValue changed to accept overriding by database field.
 		[TASK] Complete documentation.
