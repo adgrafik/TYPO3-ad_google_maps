@@ -130,6 +130,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				'foreign_table' => 'tx_adgooglemaps_domain_model_category',
 				'foreign_table_where' => 'AND tx_adgooglemaps_domain_model_category.sys_language_uid IN (-1, ###REC_FIELD_sys_language_uid###) ORDER BY tx_adgooglemaps_domain_model_category.sorting',
 				'MM' => 'tx_adgooglemaps_map_category_mm',
+/*
 				'renderMode' => 'tree',
 				'treeConfig' => array(
 					'parentField' => 'parent_category',
@@ -138,6 +139,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 						'showHeader' => true,
 					),
 				),
+*/
 			),
 		),
 		'map_type_id' => array(

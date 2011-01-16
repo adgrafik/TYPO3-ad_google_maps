@@ -255,7 +255,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 		switch ($coordinatesProvider) {
 			case Tx_AdGoogleMaps_Domain_Model_Layer::COODRINATES_PROVIDER_MAP_DRAWER:
 				$coordinates = t3lib_div::removeArrayEntryByValue(t3lib_div::trimExplode(LF, $this->getPropertyValue('coordinates', $layer, $this->settings['layer'])), '');
-				$dataProvider = $infoWindows['data'];
+				$dataProvider = array_key_exists('data', $infoWindows) ? $infoWindows['data'] : array();
 			break;
 
 			case Tx_AdGoogleMaps_Domain_Model_Layer::COODRINATES_PROVIDER_ADDRESS_GROUPS:
@@ -383,7 +383,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			$itemShadowObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('shadowObjectNumber', $layer, $this->settings['layer']), $countCoordinates);
 
 			$index = 0;
-			for ($index = 0; $index < $countCoordinates; $index++) { 
+			for ($index = 0; $index < $countCoordinates; $index++) {
 				$itemKey = $layerUid . '_' . intval($index);
 				$itemDataProvider = $this->getContentByObjectNumberConf($dataProvider, $infoWindowObjectNumberConf, $index, NULL, FALSE, array());
 				$position = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_LatLng', $coordinates[$index]);
@@ -414,7 +414,8 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				$this->mapPlugin->addLayer($marker);
 
 				$infoWindowOptions = $allInfoWindowOptions;
-				if ($layerType === 'tx_adgooglemapsapi_layers_marker' || $infoWindowPlacingType & Tx_AdGoogleMaps_Domain_Model_Layer::INFO_WINDOW_PLACING_TYPE_MARKERS) {
+				if (array_key_exists('content', $infoWindows)
+						&& ($layerType === 'tx_adgooglemapsapi_layers_marker' || $infoWindowPlacingType & Tx_AdGoogleMaps_Domain_Model_Layer::INFO_WINDOW_PLACING_TYPE_MARKERS)) {
 					$infoWindowOptions['key'] = $itemKey;
 					$infoWindowOptions['disableAutoPan'] = $infoWindowDisableAutoPan;
 					$infoWindowOptions['content'] = $this->getContentByObjectNumberConf($infoWindows['content'], $infoWindowObjectNumberConf, $index, $itemDataProvider, TRUE);
