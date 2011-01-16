@@ -69,6 +69,11 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	 */
 	protected $parentCategory;
 
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
+	 */
+	protected $subCategories;
+
 	/*
 	 * Initialize this category.
 	 * 
@@ -220,13 +225,22 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
+	 * Sets this subCategories.
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category> $parentCategory
+	 * @return void
+	 */
+	public function setSubCategory(Tx_Extbase_Persistence_ObjectStorage $subCategories) {
+		$this->subCategories = $subCategories;
+	}
+
+	/**
 	 * Returns the subCategories.
 	 *
-	 * @return array
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
 	 */
 	public function getSubCategories() {
-		$categoryRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_CategoryRepository');
-		return $categoryRepository->findSubCategories($this);
+		return $this->subCategories;
 	}
 
 }

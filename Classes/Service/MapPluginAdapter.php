@@ -56,11 +56,6 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 	protected $mapPlugin;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Domain_Repository_CategoryRepository
-	 */
-	protected $categoryRepository;
-
-	/**
 	 * @var Tx_AdGoogleMaps_Domain_Repository_AddressRepository
 	 */
 	protected $addressRepository;
@@ -82,7 +77,6 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 		$this->extensionConfiguration = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($this->extensionConfiguration);
 		$this->map = clone $map;
 		$this->settings = $settings;
-		$this->categoryRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_CategoryRepository');
 		$this->addressRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_AddressRepository');
 		$this->addressGroupRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_AddressGroupRepository');
 	}
@@ -202,7 +196,11 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 		foreach ($categories as $category) {
 			$this->buildLayers($category->getSubCategories());
 			foreach ($category->getLayers() as $layer) {
-				$this->buildItems($layer);
+				// Check if layer built allready. If there is a recursion of the categories witch contains 
+				// the same layers, than duplicates are added to the layer items.
+				if ($layer->getItems()->count() === 0) {
+					$this->buildItems($layer);
+				}
 			}
 		}
 	}

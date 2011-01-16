@@ -30,20 +30,6 @@
  */
 class Tx_AdGoogleMaps_Domain_Repository_CategoryRepository extends Tx_Extbase_Persistence_Repository {
 
-	/**
-	 * Returns the sub categories of a category.
-	 *
-	 * @param Tx_AdGoogleMaps_Domain_Model_Category $category
-	 * @return array
-	 */
-	public function findSubCategories(Tx_AdGoogleMaps_Domain_Model_Category $category) {
-		$query = $this->createQuery();
-		$subCategories = $query->matching($query->contains('parentCategory', $category))
-#			->setOrderings(array('lastName' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
-			->execute();
-
-		return $subCategories;
-	}
-
 }
+
 ?>

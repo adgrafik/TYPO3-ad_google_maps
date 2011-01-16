@@ -3,11 +3,11 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 $extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ad_google_maps']);
 
-$categoryIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['categoryIcons'] ? $extensionConfiguration['uploadDirectories.']['categoryIcons'] : 'EXT:ad_google_maps/Resources/Public/Uploads/Category/'));
-$markerIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['markerIcons'] ? $extensionConfiguration['uploadDirectories.']['markerIcons'] : 'EXT:ad_google_maps/Resources/Public/Uploads/Marker/'));
-$shadowIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['shadowIcons'] ? $extensionConfiguration['uploadDirectories.']['shadowIcons'] : 'EXT:ad_google_maps/Resources/Public/Uploads/Shadow/'));
-$mouseCursorUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['mouseCursor'] ? $extensionConfiguration['uploadDirectories.']['mouseCursor'] : 'EXT:ad_google_maps/Resources/Public/Uploads/MouseCursor/'));
-$kmlFilesUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['kmlFiles'] ? $extensionConfiguration['uploadDirectories.']['kmlFiles'] : 'EXT:ad_google_maps/Resources/Public/Uploads/KML/'));
+$categoryIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['categoryIcons'] ? $extensionConfiguration['uploadDirectories.']['categoryIcons'] : 'uploads/tx_adgooglemaps/'));
+$markerIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['markerIcons'] ? $extensionConfiguration['uploadDirectories.']['markerIcons'] : 'uploads/tx_adgooglemaps/'));
+$shadowIconsUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['shadowIcons'] ? $extensionConfiguration['uploadDirectories.']['shadowIcons'] : 'uploads/tx_adgooglemaps/'));
+$mouseCursorUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['mouseCursor'] ? $extensionConfiguration['uploadDirectories.']['mouseCursor'] : 'uploads/tx_adgooglemaps/'));
+$kmlFilesUploadDirectory = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories.']['kmlFiles'] ? $extensionConfiguration['uploadDirectories.']['kmlFiles'] : 'uploads/tx_adgooglemaps/'));
 
 $systemColumns = array(
 	't3ver_label' => array (
@@ -862,6 +862,17 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 				'foreign_table' => 'tx_adgooglemaps_domain_model_category',
 				'foreign_table_where' => 'AND tx_adgooglemaps_domain_model_category.uid!=###THIS_UID### AND tx_adgooglemaps_domain_model_category.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_adgooglemaps_domain_model_category.sorting',
 				'MM' => 'tx_adgooglemaps_category_category_mm',
+			),
+		),
+		'sub_categories' => array(
+			'config'  => array(
+				'type' => 'select',
+				'size' => 1,
+				'foreign_table' => 'tx_adgooglemaps_domain_model_category',
+				'foreign_table_where' => 'tx_adgooglemaps_domain_model_category.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_adgooglemaps_domain_model_category.sorting',
+				'MM' => 'tx_adgooglemaps_category_category_mm',
+				'MM_opposite_field' => 'parent_category',
+				'MM_table_where' => 'ORDER BY tx_adgooglemaps_category_category_mm.sorting',
 			),
 		),
 	),

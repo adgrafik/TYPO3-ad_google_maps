@@ -116,6 +116,7 @@ CREATE TABLE tx_adgooglemaps_domain_model_category (
 	rte_enabled tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	layers int(11) unsigned DEFAULT '0' NOT NULL,
 	parent_category int(11) unsigned DEFAULT '0' NOT NULL,
+	sub_categories int(11) unsigned DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
