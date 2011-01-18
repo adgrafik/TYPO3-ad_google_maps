@@ -16,9 +16,10 @@
 										{item.title}<f:if condition="{item.position.latitude}"> ({item.position.latitude}, {item.position.longitude})</f:if>
 									</f:else>
 								</f:if>
-								 <a href="#" onclick="javascript: {item.mapControllFunctions.panTo}; return false;">pan to</a>
-								 <a href="#" onclick="javascript: {item.mapControllFunctions.fitBounds}; return false;">fit bounds</a>
-								 <a href="#" onclick="javascript: {item.mapControllFunctions.userFunction}; return false;">user function</a>
+								<br />
+								[<a href="#" onclick="javascript: {item.mapControllFunctions.panTo}; return false;"><f:translate key="panTo" /></a>]
+								 [<a href="#" onclick="javascript: {item.mapControllFunctions.fitBounds}; return false;"><f:translate key="fitBounds" /></a>]
+								 [<a href="#" onclick="javascript: {item.mapControllFunctions.userFunction}; return false;"><f:translate key="userFunction" /></a>]
 							</li>
 						</f:for>
 				</f:for>

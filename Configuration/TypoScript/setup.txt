@@ -54,6 +54,14 @@ plugin.tx_adgooglemaps {
 		partialRootPath = {$plugin.tx_adgooglemaps.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_adgooglemaps.view.layoutRootPath}
 	}
+
+	_LOCAL_LANG {
+		default {
+			panTo = pan to
+			fitBounds = fit bounds
+			userFunction = user function
+		}
+	}
 }
 
 ###

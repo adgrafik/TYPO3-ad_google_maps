@@ -70,13 +70,13 @@
 			<label index="tx_adgooglemaps_domain_model_map.draggingCursorExtendedSettingsLabel">Extended dragging cursor settings:</label>
 			<label index="tx_adgooglemaps_domain_model_map.keyboardShortcuts">Keyboard shortcuts:</label>
 
-			<label index="tx_adgooglemaps_domain_model_map.controlPosition.top">Top</label>
+			<label index="tx_adgooglemaps_domain_model_map.controlPosition.topCenter">Top center</label>
 			<label index="tx_adgooglemaps_domain_model_map.controlPosition.topRight">Top right</label>
-			<label index="tx_adgooglemaps_domain_model_map.controlPosition.right">Right</label>
+			<label index="tx_adgooglemaps_domain_model_map.controlPosition.rightCenter">Right center</label>
 			<label index="tx_adgooglemaps_domain_model_map.controlPosition.bottomRight">Bottom right</label>
-			<label index="tx_adgooglemaps_domain_model_map.controlPosition.bottom">Bottom</label>
+			<label index="tx_adgooglemaps_domain_model_map.controlPosition.bottomCenter">Bottom center</label>
 			<label index="tx_adgooglemaps_domain_model_map.controlPosition.bottomLeft">Bottom left</label>
-			<label index="tx_adgooglemaps_domain_model_map.controlPosition.left">Left</label>
+			<label index="tx_adgooglemaps_domain_model_map.controlPosition.leftCenter">Left center</label>
 			<label index="tx_adgooglemaps_domain_model_map.controlPosition.topLeft">Top left</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.sheetInfoWindows">Info windows</label>
