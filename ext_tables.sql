@@ -116,7 +116,6 @@ CREATE TABLE tx_adgooglemaps_domain_model_category (
 	rte_enabled tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	layers int(11) unsigned DEFAULT '0' NOT NULL,
 	parent_category int(11) unsigned DEFAULT '0' NOT NULL,
-	sub_categories int(11) unsigned DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
@@ -255,20 +254,6 @@ CREATE TABLE tx_adgooglemaps_domain_model_layer (
 # Table structure for table 'tx_adgooglemaps_map_category_mm'
 #
 CREATE TABLE tx_adgooglemaps_map_category_mm (
-	uid_local int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting int(11) DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-
-#
-# Table structure for table 'tx_adgooglemaps_category_category_mm'
-#
-CREATE TABLE tx_adgooglemaps_category_category_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,

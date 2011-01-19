@@ -1,7 +1,8 @@
 <?php
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
-$extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ad_google_maps']);
+include_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Tools/BackEnd.php');
+$extensionConfiguration = Tx_AdGoogleMaps_Tools_BackEnd::getExtensionConfiguration();
 
 // Class used for constants.
 include_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Domain/Model/Map.php');
@@ -36,7 +37,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'requestUpdate' => 'center_type,map_type_control,navigation_control,scale_control,pan_control,zoom_control,street_view_control,draggable,info_window_behaviour',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/icon_map.gif',
+		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/iconMap.gif',
 		'dividers2tabs' => 2,
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
 		'copyAfterDuplFields' => 'title,sys_language_uid',
@@ -69,7 +70,7 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/icon_category.gif',
+		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/iconCategory.gif',
 		'dividers2tabs' => 2,
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
 		'copyAfterDuplFields' => 'sys_language_uid',
@@ -112,7 +113,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 			'tx_adgooglemapsapi_layers_kml' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/IconKml.gif',
 		),
 		'requestUpdate' => 'coordinates_provider,shape_type,place_markers,rte_enabled',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/icon_layer.gif',
+		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/iconLayer.gif',
 		'dividers2tabs' => 2,
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
 		'copyAfterDuplFields' => 'sys_language_uid',
