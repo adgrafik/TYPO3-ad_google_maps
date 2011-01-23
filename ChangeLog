@@ -18,6 +18,7 @@
 		[TASK] Changed control position constants name in tca.php.
 
 1.0.3	[BUGFIX] Fixed some issues in the TCA.
+		[TASK] Language improvments in the TCA.
 		[TASK] Added support for icons on shape layers in list view.
 		[TASK] Optimized category tree view for T3 4.5.
 		[TASK] Documentation updated.

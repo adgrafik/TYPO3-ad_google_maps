@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for flexform belonging to extension 'ad_googlemaps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="uploadDirectories.categoryIcons">Path to the category icons: All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.markerIcons">Path to the marker icons: All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.shadowIcons">Path to the marker shadow icons: All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.mouseCursor">Path to the mouse cursor: All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.kmlFiles">Path to the KML files: All uploaded files will be stored in this folder.</label>
+
+			<label index="l10n.prependTranslationInfo">Localization mode for text fields: By default, all text fields (title, description etc.) will be prepended with "[Translate to ...]". If this is not wanted you can disable it here. If "prefixLangTitle" is disabled the text "(Copy [#])" will be added to the titles of this records unless "prependAtCopy" is disabled (see "prependAtCopy").</label>
+			<label index="l10n.excludeFileTranslation">Localization mode for files: The image or file field is excluded by default (images or files are alwas taken from the record in the default language). If you need localized images or files (f.e. if the images show texts) you can enable this field by disable this option.</label>
+			<label index="l10n.excludeProperties">Localization mode for properties: Usually if you make a translation record, you mostly have to translate the text fields only. If it's necessary to set other values too, you can set this option. If it is set to "Only text fields" you can only edit the text fields like title or description. If set to "Text and file fields", the image and file fields can be edited. Or if you set it to "All", you can edit all fields.</label>
+			<label index="l10n.hideNewLocalizations">Hide new localizations: Here you choose if new localizations should be hidden or not. By default new localizations are visible. If this is not wanted set "hideNewLocalizations" to 1.</label>
+
+			<label index="useMapDrawerForAddress">Use Map Drawer for tt_address: If set, you can set the geo position of an address in the Map Drawer, else the geo position will be get directly from the address.</label>
+			<label index="prependAtCopy">Prepend at Copy: Here you can disable adding of the text "(Copy [#])" to titles of copied records.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+		</languageKey>
+	</data>
+</T3locallang>
