@@ -185,11 +185,11 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				'size' => 7,
 				'default' => '0',
 				'checkbox' => '0',
-				'services' =>array(
+				'wizards' =>array(
 					'colorpick' => array(
 						'type' => 'colorbox',
 						'title' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.colorPickerTitle',
-						'script' => 'service_colorpicker.php',
+						'script' => 'wizard_colorpicker.php',
 						'dim' => '20x20',
 						'tableStyle' => 'margin-left: 5px;',
 						'JSopenParams' => 'height=300,width=365,status=0,menubar=0,scrollbars=0',
@@ -794,7 +794,8 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 				'type' => 'text',
 				'cols' => '48',
 				'rows' => '5',
-				'services' => Array(
+				'softref' => 'typolink_tag,images,email[subst],url',
+				'wizards' => Array(
 					'_PADDING' => 4,
 					'_VALIGN' => 'middle',
 					'RTE' => Array(
@@ -802,31 +803,11 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 						'RTEonly' => 1,
 						'type' => 'script',
 						'title' => 'LLL:EXT:cms/locallang_ttc.php:bodytext.W.RTE',
-						'icon' => 'service_rte2.gif',
-						'script' => 'service_rte.php',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
 					),
-					'table' => Array(
-						'notNewRecords' => 1,
-						'enableByTypeConfig' => 1,
-						'type' => 'script',
-						'title' => 'Table service',
-						'icon' => 'service_table.gif',
-						'script' => 'service_table.php',
-						'params' => array('xmlOutput' => 0)
-					),
-					'forms' => Array(
-						'notNewRecords' => 1,
-						'enableByTypeConfig' => 1,
-						'type' => 'script',
-#						'hideParent' => array('rows' => 4),
-						'title' => 'Forms service',
-						'icon' => 'service_forms.gif',
-						'script' => 'service_forms.php?special=formtype_mail',
-						'params' => array('xmlOutput' => 0)
-					)
 				),
-				'softref' => 'typolink_tag,images,email[subst],url'
-			)
+			),
 		),
 		'rte_enabled' => Array (
 			'exclude' => 1,
@@ -874,10 +855,11 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 	'palettes' => array(
 		'1' => array('showitem' => 'hidden, sys_language_uid, l18n_parent'),
 		'2' => array('showitem' => 'icon_width, icon_height'),
+		'3' => array('showitem' => 'rte_enabled'),
 	),
 	'types' => array(
 		'1' => array(
-			'showitem' => 'title;;1;;1-1-1, icon;;2, description;;;richtext:rte_transform[flag=rte_enabled|mode=ts_css];3-3-3, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_category.descriptionExtendedSettingsLabel;2, parent_category, layers,
+			'showitem' => 'title;;1;;1-1-1, icon;;2, description;;;richtext:rte_transform[flag=rte_enabled|mode=ts_css];3-3-3, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_category.descriptionExtendedSettingsLabel;3, parent_category, layers,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access, 
 				starttime, endtime, fe_group', 
 		),
@@ -1127,7 +1109,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 			'config'  => array(
 				'type' => 'input',
 				'default' => '0',
-				'checkbox' => '',
+				'checkbox' => '0',
 				'size' => 30,
 				'eval' => 'trim',
 			),
@@ -1430,11 +1412,11 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'checkbox' => '0',
 				'size' => 7,
 				'eval' => 'required,trim',
-				'services' =>array(
+				'wizards' =>array(
 					'colorpick' => array(
 						'type' => 'colorbox',
 						'title' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.colorPickerTitle',
-						'script' => 'service_colorpicker.php',
+						'script' => 'wizard_colorpicker.php',
 						'dim' => '20x20',
 						'tableStyle' => 'margin-left: 5px;',
 						'JSopenParams' => 'height=300,width=365,status=0,menubar=0,scrollbars=0',
@@ -1477,11 +1459,11 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'checkbox' => '0',
 				'size' => 7,
 				'eval' => 'required,trim',
-				'services' =>array(
+				'wizards' =>array(
 					'colorpick' => array(
 						'type' => 'colorbox',
 						'title' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.colorPickerTitle',
-						'script' => 'service_colorpicker.php',
+						'script' => 'wizard_colorpicker.php',
 						'dim' => '20x20',
 						'tableStyle' => 'margin-left: 5px;',
 						'JSopenParams' => 'height=300,width=365,status=0,menubar=0,scrollbars=0',

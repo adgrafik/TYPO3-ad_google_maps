@@ -7,7 +7,7 @@
 				<f:for each="{category.layers}" as="layer">
 						<f:for each="{layer.items}" as="item">
 							<li>
-								<f:if condition="{item.itemOptions.icon.url}"><f:image src="{item.icon}" width="{item.iconWidth}" height="{item.iconHeight}" alt="{item.title}" /> </f:if>
+								<f:if condition="{item.icon}"><f:image src="{item.icon}" width="{item.iconWidth}" height="{item.iconHeight}" alt="{item.title}" /> </f:if>
 								<f:if condition="{item.infoWindowOptions.content}">
 									<f:then>
 										<a href="#" onclick="javascript: {item.mapControllFunctions.openInfoWindow}; return false;">{item.title}</a><f:if condition="{item.position.latitude}"> ({item.position.latitude}, {item.position.longitude})</f:if>

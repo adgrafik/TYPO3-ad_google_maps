@@ -347,6 +347,35 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			$itemTitlesObjectNumberConf = $this->getObjectNumberConf($itemTitlesObjectNumber, $countCoordinates);
 		}
 
+		// Set all over icon and shadow options.
+		$allIconOptions = array(
+			'url' => NULL,
+			'width' => $this->getPropertyValue('iconWidth', $layer, $this->settings['layer']),				'height' => $this->getPropertyValue('iconHeight', $layer, $this->settings['layer']),
+			'originX' => $this->getPropertyValue('iconOriginX', $layer, $this->settings['layer']),			'originY' => $this->getPropertyValue('iconOriginY', $layer, $this->settings['layer']),
+			'anchorX' => $this->getPropertyValue('iconAnchorX', $layer, $this->settings['layer']),			'anchorY' => $this->getPropertyValue('iconAnchorY', $layer, $this->settings['layer']),
+			'scaledWidth' => $this->getPropertyValue('iconScaledWidth', $layer, $this->settings['layer']),	'scaledWidth' => $this->getPropertyValue('iconScaledHeight', $layer, $this->settings['layer']),
+		);
+		$itemIcons = explode(',', $this->getPropertyValue('icon', $layer, $this->settings['layer']));
+		if (!$layerAddMarkers === TRUE || ($layerAddMarkers === TRUE && $layerForceListing === TRUE)) {
+			$itemIconObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('iconObjectNumber', $layer, $this->settings['layer']), $countCoordinatesInfoWindow);
+		} else {
+			$itemIconObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('iconObjectNumber', $layer, $this->settings['layer']), $countCoordinates);
+		}
+
+		$allShadowOptions = array(
+			'url' => NULL,
+			'width' => $this->getPropertyValue('shadowWidth', $layer, $this->settings['layer']),				'height' => $this->getPropertyValue('shadowHeight', $layer, $this->settings['layer']),
+			'originX' => $this->getPropertyValue('shadowOriginX', $layer, $this->settings['layer']),			'originY' => $this->getPropertyValue('shadowOriginY', $layer, $this->settings['layer']),
+			'anchorX' => $this->getPropertyValue('shadowAnchorX', $layer, $this->settings['layer']),			'anchorY' => $this->getPropertyValue('shadowAnchorY', $layer, $this->settings['layer']),
+			'scaledWidth' => $this->getPropertyValue('shadowScaledWidth', $layer, $this->settings['layer']),	'scaledWidth' => $this->getPropertyValue('shadowScaledHeight', $layer, $this->settings['layer']),
+		);
+		$itemShadows = explode(',', $this->getPropertyValue('shadow', $layer, $this->settings['layer']));
+		if (!$layerAddMarkers === TRUE || ($layerAddMarkers === TRUE && $layerForceListing === TRUE)) {
+			$itemShadowObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('shadowObjectNumber', $layer, $this->settings['layer']), $countCoordinatesInfoWindow);
+		} else {
+			$itemShadowObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('shadowObjectNumber', $layer, $this->settings['layer']), $countCoordinates);
+		}
+
 		// Do only if markers set.
 		if ($layerAddMarkers === TRUE || $layerType === 'tx_adgooglemapsapi_layers_marker') {
 			// Get overall options.
@@ -361,26 +390,6 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				'flat' => $this->getPropertyValue('flat', $layer, $this->settings['layer']),
 				'cursor' => $this->getPropertyValue('mouseCursor', $layer, $this->settings['layer']),
 			);
-
-			$allIconOptions = array(
-				'url' => NULL,
-				'width' => $this->getPropertyValue('iconWidth', $layer, $this->settings['layer']),				'height' => $this->getPropertyValue('iconHeight', $layer, $this->settings['layer']),
-				'originX' => $this->getPropertyValue('iconOriginX', $layer, $this->settings['layer']),			'originY' => $this->getPropertyValue('iconOriginY', $layer, $this->settings['layer']),
-				'anchorX' => $this->getPropertyValue('iconAnchorX', $layer, $this->settings['layer']),			'anchorY' => $this->getPropertyValue('iconAnchorY', $layer, $this->settings['layer']),
-				'scaledWidth' => $this->getPropertyValue('iconScaledWidth', $layer, $this->settings['layer']),	'scaledWidth' => $this->getPropertyValue('iconScaledHeight', $layer, $this->settings['layer']),
-			);
-			$itemIcons = explode(',', $this->getPropertyValue('icon', $layer, $this->settings['layer']));
-			$itemIconObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('iconObjectNumber', $layer, $this->settings['layer']), $countCoordinates);
-
-			$allShadowOptions = array(
-				'url' => NULL,
-				'width' => $this->getPropertyValue('shadowWidth', $layer, $this->settings['layer']),				'height' => $this->getPropertyValue('shadowHeight', $layer, $this->settings['layer']),
-				'originX' => $this->getPropertyValue('shadowOriginX', $layer, $this->settings['layer']),			'originY' => $this->getPropertyValue('shadowOriginY', $layer, $this->settings['layer']),
-				'anchorX' => $this->getPropertyValue('shadowAnchorX', $layer, $this->settings['layer']),			'anchorY' => $this->getPropertyValue('shadowAnchorY', $layer, $this->settings['layer']),
-				'scaledWidth' => $this->getPropertyValue('shadowScaledWidth', $layer, $this->settings['layer']),	'scaledWidth' => $this->getPropertyValue('shadowScaledHeight', $layer, $this->settings['layer']),
-			);
-			$itemShadows = explode(',', $this->getPropertyValue('shadow', $layer, $this->settings['layer']));
-			$itemShadowObjectNumberConf = $this->getObjectNumberConf($this->getPropertyValue('shadowObjectNumber', $layer, $this->settings['layer']), $countCoordinates);
 
 			$index = 0;
 			for ($index = 0; $index < $countCoordinates; $index++) {
@@ -475,6 +484,11 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 
 			$itemOptions['paths'] = $itemOptions['path'] = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_LatLngArray', $coordinates);
 
+			if (($iconUrl = $this->getContentByObjectNumberConf($itemIcons, $itemIconObjectNumberConf, $index, NULL, TRUE))) {
+				$iconOptions = $allIconOptions;
+				$iconOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('markerIcons', $iconUrl);
+			}
+
 			switch ($layerType) {
 				case 'tx_adgooglemapsapi_layers_polyline':
 					$shape = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Service_MapPlugin_ExtendedApi_Layers_Polyline', $itemOptions);
@@ -528,6 +542,9 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			if (!$layerAddMarkers === TRUE || ($layerAddMarkers === TRUE && $layer->isForceListing() === TRUE)) {
 				$layerItem = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Model_Item');
 				$layerItem->setTitle($itemOptions['title']);
+				$layerItem->setIcon($iconOptions['url']);
+				$layerItem->setIconWidth($iconOptions['width']);
+				$layerItem->setIconHeight($iconOptions['height']);
 				$layerItem->setPosition($itemOptions['position']);
 				$layerItem->setMapControllFunctions($mapControllFunctions);
 				$layerItem->setItemOptions($itemOptions);
