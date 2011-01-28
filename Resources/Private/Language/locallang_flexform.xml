@@ -10,6 +10,8 @@
 			<label index="settings.map">Map:</label>
 		</languageKey>
 		<languageKey index="de" type="array">
+			<label index="sheetGoogleMap">Google Map</label>
+			<label index="settings.map">Karte:</label>
 		</languageKey>
 	</data>
 </T3locallang>

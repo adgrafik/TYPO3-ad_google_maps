@@ -81,6 +81,21 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * @var integer
 	 */
+	protected $minZoom;
+
+	/**
+	 * @var integer
+	 */
+	protected $maxZoom;
+
+	/**
+	 * @var boolean
+	 */
+	protected $noClear;
+
+	/**
+	 * @var integer
+	 */
 	protected $centerType;
 
 	/**
@@ -94,19 +109,9 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	protected $zoom;
 
 	/**
-	 * @var integer
-	 */
-	protected $minZoom;
-
-	/**
-	 * @var integer
-	 */
-	protected $maxZoom;
-
-	/**
 	 * @var boolean
 	 */
-	protected $noClear;
+	protected $useMarkerCluster;
 
 	/**
 	 * @var boolean
@@ -418,6 +423,63 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	}
 
 	/**
+	 * Sets this minZoom.
+	 *
+	 * @param integer $minZoom
+	 * @return void
+	 */
+	public function setMinZoom($minZoom) {
+		$this->minZoom = (integer) $minZoom;
+	}
+
+	/**
+	 * Returns this minZoom.
+	 *
+	 * @return integer
+	 */
+	public function getMinZoom() {
+		return (integer) $this->minZoom;
+	}
+
+	/**
+	 * Sets this maxZoom.
+	 *
+	 * @param integer $maxZoom
+	 * @return void
+	 */
+	public function setMaxZoom($maxZoom) {
+		$this->maxZoom = (integer) $maxZoom;
+	}
+
+	/**
+	 * Returns this maxZoom.
+	 *
+	 * @return integer
+	 */
+	public function getMaxZoom() {
+		return (integer) $this->maxZoom;
+	}
+
+	/**
+	 * Sets this noClear
+	 *
+	 * @param boolean $noClear
+	 * @return void
+	 */
+	public function setNoClear($noClear) {
+		$this->noClear = (boolean) $noClear;
+	}
+
+	/**
+	 * Returns this noClear
+	 *
+	 * @return boolean
+	 */
+	public function isNoClear() {
+		return (boolean) $this->noClear;
+	}
+
+	/**
 	 * Sets this centerType
 	 *
 	 * @param integer $centerType
@@ -475,60 +537,22 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	}
 
 	/**
-	 * Sets this minZoom.
+	 * Sets this useMarkerCluster.
 	 *
-	 * @param integer $minZoom
+	 * @param boolean $useMarkerCluster
 	 * @return void
 	 */
-	public function setMinZoom($minZoom) {
-		$this->minZoom = (integer) $minZoom;
+	public function setUseMarkerCluster($useMarkerCluster) {
+		$this->useMarkerCluster = (boolean) $useMarkerCluster;
 	}
 
 	/**
-	 * Returns this minZoom.
-	 *
-	 * @return integer
-	 */
-	public function getMinZoom() {
-		return (integer) $this->minZoom;
-	}
-
-	/**
-	 * Sets this maxZoom.
-	 *
-	 * @param integer $maxZoom
-	 * @return void
-	 */
-	public function setMaxZoom($maxZoom) {
-		$this->maxZoom = (integer) $maxZoom;
-	}
-
-	/**
-	 * Returns this maxZoom.
-	 *
-	 * @return integer
-	 */
-	public function getMaxZoom() {
-		return (integer) $this->maxZoom;
-	}
-
-	/**
-	 * Sets this noClear
-	 *
-	 * @param boolean $noClear
-	 * @return void
-	 */
-	public function setNoClear($noClear) {
-		$this->noClear = (boolean) $noClear;
-	}
-
-	/**
-	 * Returns this noClear
+	 * Returns this useMarkerCluster.
 	 *
 	 * @return boolean
 	 */
-	public function isNoClear() {
-		return (boolean) $this->noClear;
+	public function isUseMarkerCluster() {
+		return (boolean) $this->useMarkerCluster;
 	}
 
 	/**

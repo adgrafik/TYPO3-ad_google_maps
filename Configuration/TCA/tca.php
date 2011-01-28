@@ -9,6 +9,7 @@ $uploadDirectories = array(
 	'shadowIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['shadowIcons'] ? $extensionConfiguration['uploadDirectories']['shadowIcons'] : 'uploads/tx_adgooglemaps/')),
 	'mouseCursor' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['mouseCursor'] ? $extensionConfiguration['uploadDirectories']['mouseCursor'] : 'uploads/tx_adgooglemaps/')),
 	'kmlFiles' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['kmlFiles'] ? $extensionConfiguration['uploadDirectories']['kmlFiles'] : 'uploads/tx_adgooglemaps/')),
+	'markerCluster' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['markerCluster'] ? $extensionConfiguration['uploadDirectories']['markerCluster'] : 'uploads/tx_adgooglemaps/')),
 );
 
 // l10n_mode for text fields.
@@ -219,34 +220,6 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				),
 			),
 		),
-		'center_type' => array(
-			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType',
-			'exclude' => true,
-			'l10n_mode' => $excludeProperties,
-			'config' => array(
-				'type' => 'select',
-				'items' => array (
-					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType.default', Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT),
-					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType.bounds', Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS),
-				),
-			),
-		),
-		'zoom' => array(
-			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.zoom',
-			'exclude' => true,
-			'l10n_mode' => $excludeProperties,
-			'displayCond' => 'FIELD:center_type:=:' . Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT,
-			'config' => array(
-				'type' => 'input',
-				'size' => 2,
-				'range' => array(
-					'lower' => 0,
-					'upper' => 20,
-				),
-				'eval' => 'int',
-				'default' => '11',
-			),
-		),
 		'min_zoom' => array(
 			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.minZoom',
 			'exclude' => true,
@@ -281,6 +254,42 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 		),
 		'no_clear' => array(
 			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.noClear',
+			'exclude' => true,
+			'l10n_mode' => $excludeProperties,
+			'config' => array(
+				'type' => 'check',
+			),
+		),
+		'center_type' => array(
+			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType',
+			'exclude' => true,
+			'l10n_mode' => $excludeProperties,
+			'config' => array(
+				'type' => 'select',
+				'items' => array (
+					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType.default', Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT),
+					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.centerType.bounds', Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS),
+				),
+			),
+		),
+		'zoom' => array(
+			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.zoom',
+			'exclude' => true,
+			'l10n_mode' => $excludeProperties,
+			'displayCond' => 'FIELD:center_type:=:' . Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT,
+			'config' => array(
+				'type' => 'input',
+				'size' => 2,
+				'range' => array(
+					'lower' => 0,
+					'upper' => 20,
+				),
+				'eval' => 'int',
+				'default' => '11',
+			),
+		),
+		'use_marker_cluster' => array(
+			'label' => 'LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.useMarkerCluster',
 			'exclude' => true,
 			'l10n_mode' => $excludeProperties,
 			'config' => array(
@@ -745,37 +754,38 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 		'1' => array('showitem' => 'hidden, sys_language_uid, l18n_parent'),
 		// Can't be in one line with linebreak option. Gives error.
 		// @see: http://bugs.typo3.org/view.php?id=16498 
-		'2' => array('showitem' => 'width, height, background_color'),
-		'3' => array('showitem' => 'min_zoom, max_zoom, no_clear'),
-		'4' => array('canNotCollapse' => true, 'showitem' => 'zoom'),
+		'2a' => array('showitem' => 'width, height, background_color'),
+		'2b' => array('showitem' => 'min_zoom, max_zoom, no_clear'),
+		'3' => array('canNotCollapse' => true, 'showitem' => 'zoom'),
 		// Can't be in one line with linebreak option. Gives error.
 		// @see: http://bugs.typo3.org/view.php?id=16498 
-		'5' => array('canNotCollapse' => true, 'showitem' => 'map_type_control_options_map_type_ids'),
-		'6' => array('canNotCollapse' => true, 'showitem' => 'map_type_control_options_position, map_type_control_options_style'),
-		'7' => array('canNotCollapse' => true, 'showitem' => 'navigation_control_options_position, navigation_control_options_style'),
-		'8' => array('canNotCollapse' => true, 'showitem' => 'scale_control_options_position, scale_control_options_style'),
-		'9' => array('canNotCollapse' => true, 'showitem' => 'pan_control_options_position'),
-		'10' => array('canNotCollapse' => true, 'showitem' => 'zoom_control_options_position, zoom_control_options_style'),
-		'11' => array('canNotCollapse' => true, 'showitem' => 'street_view_control_options_position'),
+		'4a' => array('canNotCollapse' => true, 'showitem' => 'map_type_control_options_map_type_ids'),
+		'4b' => array('canNotCollapse' => true, 'showitem' => 'map_type_control_options_position, map_type_control_options_style'),
+		'5' => array('canNotCollapse' => true, 'showitem' => 'navigation_control_options_position, navigation_control_options_style'),
+		'6' => array('canNotCollapse' => true, 'showitem' => 'scale_control_options_position, scale_control_options_style'),
+		'7' => array('canNotCollapse' => true, 'showitem' => 'pan_control_options_position'),
+		'8' => array('canNotCollapse' => true, 'showitem' => 'zoom_control_options_position, zoom_control_options_style'),
+		'9' => array('canNotCollapse' => true, 'showitem' => 'street_view_control_options_position'),
 		// Can't be in one line with linebreak option. Gives error.
 		// @see: http://bugs.typo3.org/view.php?id=16498 
-		'12' => array('canNotCollapse' => true, 'showitem' => 'draggable_cursor'),
-		'13' => array('canNotCollapse' => true, 'showitem' => 'dragging_cursor'),
-		'14' => array('canNotCollapse' => true, 'showitem' => 'info_window_keep_open, info_window_close_on_click, info_window_disable_auto_pan'),
-		'15' => array('canNotCollapse' => true, 'showitem' => 'info_window_max_width, info_window_pixel_offset_width, info_window_pixel_offset_height'),
-		'16' => array('canNotCollapse' => true, 'showitem' => 'info_window_placing_type, info_window_position, info_window_object_number'),
+		'10a' => array('canNotCollapse' => true, 'showitem' => 'draggable_cursor'),
+		'10b' => array('canNotCollapse' => true, 'showitem' => 'dragging_cursor'),
+		'11a' => array('canNotCollapse' => true, 'showitem' => 'info_window_keep_open, info_window_close_on_click, info_window_disable_auto_pan'),
+		'11b' => array('canNotCollapse' => true, 'showitem' => 'info_window_max_width, info_window_pixel_offset_width, info_window_pixel_offset_height'),
+		'11c' => array('canNotCollapse' => true, 'showitem' => 'info_window_position, info_window_object_number'),
+		'11d' => array('canNotCollapse' => true, 'showitem' => 'info_window_placing_type'),
 	),
 	'types' => array(
 		'1' => array(
 			'showitem' => 'title;;1, categories;;;;1-1-1, 
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.sheetInitial, 
-				map_type_id;;2, --palette--;;3, center_type;;4;;1-1-1,
+				map_type_id;;2a, --palette--;;2b, center_type;;3;;1-1-1, use_marker_cluster,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.sheetControllers, 
-				disable_default_ui, map_type_control;;5, --palette--;;6, navigation_control;;7, scale_control;;8, pan_control;;9, zoom_control;;10, street_view_control;;11,
+				disable_default_ui, map_type_control;;4a, --palette--;;4b, navigation_control;;5, scale_control;;6, pan_control;;7, zoom_control;;8, street_view_control;;9,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.sheetInteraction, 
-				disable_double_click_zoom, scrollwheel, draggable;;12, --palette--;;13, keyboard_shortcuts,
+				disable_double_click_zoom, scrollwheel, draggable;;10a, --palette--;;10b, keyboard_shortcuts,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_map.sheetInfoWindows, 
-				info_window_close_all_on_map_click, info_window_behaviour, --palette--;;14, --palette--;;15, --palette--;;16,
+				info_window_close_all_on_map_click, info_window_behaviour, --palette--;;11a, --palette--;;11b, --palette--;;11c, --palette--;;11d,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access, 
 				starttime, endtime, fe_group'
 		),
@@ -1772,7 +1782,8 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 		'8' => array('canNotCollapse' => true, 'showitem' => 'fill_color, fill_opacity'),
 		'9a' => array('showitem' => 'info_window_keep_open, info_window_close_on_click, info_window_disable_auto_pan'),
 		'9b' => array('showitem' => 'info_window_max_width, info_window_zindex, info_window_pixel_offset_width, info_window_pixel_offset_height'),
-		'9c' => array('showitem' => 'info_window_placing_type, info_window_position, info_window_object_number'),
+		'9c' => array('showitem' => 'info_window_position, info_window_object_number'),
+		'9d' => array('showitem' => 'info_window_placing_type'),
 		'10' => array('showitem' => 'force_listing'),
 		'11a' => array('showitem' => 'kml_url'),
 		'11b' => array('showitem' => 'kml_suppress_info_windows'),
@@ -1783,7 +1794,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetMarkers, 
 				item_titles, --palette--;;2a, --palette--;;2b, icon, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.iconExtendedSettingsLabel;4a, --palette--;;4b, --palette--;;4c, shadow, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.shadowExtendedSettingsLabel;5a, --palette--;;5b, --palette--;;5c, --palette--;;5d, shape_type;;6, mouse_cursor;;;;1-1-1,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetInfoWindow, 
-				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c,
+				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c, --palette--;;9d,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access, 
 				starttime, endtime, fe_group'
 		),
@@ -1794,7 +1805,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetMarkers, 
 				add_markers;;10, item_titles, --palette--;;2, icon, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.iconExtendedSettingsLabel;4a, --palette--;;4b, --palette--;;4c, shadow, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.shadowExtendedSettingsLabel;5a, --palette--;;5b, --palette--;;5c, --palette--;;5d, shape_type;;6, mouse_cursor;;;;1-1-1,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetInfoWindow, 
-				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c,
+				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c, --palette--;;9d,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access, 
 				starttime, endtime, fe_group', 
 		),
@@ -1805,7 +1816,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetMarkers, 
 				add_markers;;10, item_titles, --palette--;;2, icon, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.iconExtendedSettingsLabel;4a, --palette--;;4b, --palette--;;4c, shadow, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.shadowExtendedSettingsLabel;5a, --palette--;;5b, --palette--;;5c, --palette--;;5d, shape_type;;6, mouse_cursor;;;;1-1-1,
 				--div--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.sheetInfoWindow, 
-				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c,
+				info_window, --palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel;9a, --palette--;;9b, --palette--;;9c, --palette--;;9d,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access, 
 				starttime, endtime, fe_group'
 		),

@@ -110,6 +110,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			->setMapId($this->getPropertyValue('uid', $this->map, $this->settings['map']))
 			->setWidth($this->getPropertyValue('width', $this->map, $this->settings['map']))
 			->setHeight($this->getPropertyValue('height', $this->map, $this->settings['map']))
+			->setUseMarkerCluster($this->getPropertyValue('useMarkerCluster', $this->map, $this->settings['map']))
 			->setInfoWindowCloseAllOnMapClick($this->getPropertyValue('infoWindowCloseAllOnMapClick', $this->map, $this->settings['map']));
 
 		$mapApi = $this->mapPlugin->getMap();
@@ -746,7 +747,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			$currentValue = $object->$propertyName;
 		}
 
-		// Get settings value only if set and current value is false, empty or "0".
+		// Get settings value only if set and current value is "false", "0" or empty.
 		if (array_key_exists($propertyName, $settings) === TRUE && !$currentValue) {
 			if (is_callable(array($object, 'is' . ucfirst($propertyName))) || is_callable(array($object, 'has' . ucfirst($propertyName)))) {
 				return (boolean) $settings[$propertyName];

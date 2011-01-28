@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for flexform belonging to extension 'ad_googlemaps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="settings.map.height">Height: The initial height of the map. Required.</label>
+			<label index="persistence.storagePid">Storage PID: Default storage PID</label>
+			<label index="view.templateRootPath">Template path: Path to the templates (FE)</label>
+			<label index="view.partialRootPath">Partials path: Path to the partials (FE)</label>
+			<label index="view.layoutRootPath">Layouts path: Path to the layouts (FE)</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="settings.map.height">Höhe: Die Anfängliche Höhe der Karte. Erforderlich.</label>
+			<label index="persistence.storagePid">Datensatzsammlungs-PID: Standard Datensatzsammlungs-PID</label>
+			<label index="view.templateRootPath">Template-Verzeichnis: Pfad zu den Templates (FE)</label>
+			<label index="view.partialRootPath">Partials-Verzeichnis: Pfad zu den Partials (FE)</label>
+			<label index="view.layoutRootPath">Layouts-Verzeichnis: Pfad zu den Layouts (FE)</label>
+		</languageKey>
+	</data>
+</T3locallang>
