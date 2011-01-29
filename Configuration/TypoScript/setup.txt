@@ -12,6 +12,12 @@ plugin.tx_adgooglemaps {
 			height = {$plugin.tx_adgooglemaps.settings.map.height}
 		}
 
+		category {
+			mapControllFunctions {
+				userFunction = alert('Category Item Keys: ' + ###ITEM_KEYS###)
+			}
+		}
+
 		# Configuration for layer record. Values will be override the record values if set. 
 		layer {
 

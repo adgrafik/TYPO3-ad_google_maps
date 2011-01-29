@@ -200,7 +200,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				// Check if layer built allready. If there is a recursion of the categories witch contains 
 				// the same layers, than duplicates are added to the layer items.
 				if ($layer->getItems()->count() === 0) {
-					$this->buildItems($layer);
+					$this->buildItems($category, $layer);
 				}
 			}
 		}
@@ -209,13 +209,15 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 	/**
 	 * Returns the Google Maps API object.
 	 *
+	 * @param Tx_AdGoogleMaps_Domain_Model_Category $category
 	 * @param Tx_AdGoogleMaps_Domain_Model_Layer $layer
 	 * @return Tx_AdGoogleMapsApi_Map
 	 */
-	protected function buildItems(Tx_AdGoogleMaps_Domain_Model_Layer $layer) {
+	protected function buildItems(Tx_AdGoogleMaps_Domain_Model_Category $category, Tx_AdGoogleMaps_Domain_Model_Layer $layer) {
 		$mapCenterType = (integer) $this->getPropertyValue('centerType', $this->map, $this->settings['map']);
+		$categoryItemKeys = array();
 		if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-			$bounds = $this->mapPlugin->getBounds();
+			$itemBounds = $this->mapPlugin->getBounds();
 		}
 		$layerUid = $layer->getUid();
 		$layerType = $this->getPropertyValue('type', $layer, $this->settings['layer']);
@@ -235,7 +237,8 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 
 			$kml = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Service_MapPlugin_ExtendedApi_Layers_Kml', $itemOptions);
 
-			$mapControllFunctions = $this->getMapControllFunctions($itemKey);
+			$categoryItemKeys[] = $itemKey;
+			$mapControllFunctions = $this->getItemMapControllFunctions($itemKey);
 
 			$this->mapPlugin->addLayer($kml);
 
@@ -418,7 +421,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				$marker = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Service_MapPlugin_ExtendedApi_Layers_Marker', $itemOptions);
 
 				if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-					$bounds->extend($itemOptions['position']);
+					$itemBounds->extend($itemOptions['position']);
 				}
 
 				$this->mapPlugin->addLayer($marker);
@@ -443,7 +446,8 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 					}
 				}
 
-				$mapControllFunctions = $this->getMapControllFunctions($itemKey, (boolean) $infoWindowOptions['content']);
+				$categoryItemKeys[] = $itemKey;
+				$mapControllFunctions = $this->getItemMapControllFunctions($itemKey, (boolean) $infoWindowOptions['content']);
 
 				$layerItem = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Model_Item');
 				$layerItem->setTitle($itemOptions['title']);
@@ -501,7 +505,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			}
 
 			if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-				$bounds->extendArray($itemOptions['path']);
+				$itemBounds->extendArray($itemOptions['path']);
 			}
 
 			$this->mapPlugin->addLayer($shape);
@@ -538,7 +542,8 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				}
 			}
 
-			$mapControllFunctions = $this->getMapControllFunctions($itemKey, (boolean) $infoWindowOptions['content']);
+			$categoryItemKeys[] = $itemKey;
+			$mapControllFunctions = $this->getItemMapControllFunctions($itemKey, (boolean) $infoWindowOptions['content']);
 
 			if (!$layerAddMarkers === TRUE || ($layerAddMarkers === TRUE && $layer->isForceListing() === TRUE)) {
 				$layerItem = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Model_Item');
@@ -558,6 +563,9 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 				$layer->addItem($layerItem);
 			}
 		}
+
+		// Do category stuff.
+		$category->setMapControllFunctions($this->getCategoryMapControllFunctions($categoryItemKeys));
 	}
 
 	/**
@@ -656,7 +664,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 	 * @param boolean $setInfoWindowFunction
 	 * @return array
 	 */
-	protected function getMapControllFunctions($itemKey, $setInfoWindowFunction = FALSE) {
+	protected function getItemMapControllFunctions($itemKey, $setInfoWindowFunction = FALSE) {
 		$mapControllFunctions = array(
 			'openInfoWindow' => ($setInfoWindowFunction === TRUE ? $this->mapPlugin->getPluginMapObjectIdentifier() . '.openInfoWindow(\'' . $itemKey . '\')' : 'void(0)'),
 			'panTo' => $this->mapPlugin->getPluginMapObjectIdentifier() . '.panTo(\'' . $itemKey . '\')',
@@ -665,6 +673,25 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 		if (array_key_exists('mapControllFunctions', $this->settings['layer'])) {
 			$mapControllFunctions = t3lib_div::array_merge_recursive_overrule($mapControllFunctions, $this->settings['layer']['mapControllFunctions']);
 			$mapControllFunctions = str_replace('###ITEM_KEY###', $itemKey, $mapControllFunctions);
+		}
+		return $mapControllFunctions;
+	}
+
+	/**
+	 * Returns the map controll functions as an array.
+	 *
+	 * @param array $categoryItemKeys
+	 * @return array
+	 */
+	protected function getCategoryMapControllFunctions($categoryItemKeys) {
+		$javaScriptArray = (count($categoryItemKeys) > 0 ? '[\'' . implode('\', \'', $categoryItemKeys) . '\']' : 'null');
+		$mapControllFunctions = array(
+			'panTo' => $this->mapPlugin->getPluginMapObjectIdentifier() . '.panTo(' . $javaScriptArray . ')',
+			'fitBounds' => $this->mapPlugin->getPluginMapObjectIdentifier() . '.fitBounds(' . $javaScriptArray . ')',
+		);
+		if (array_key_exists('mapControllFunctions', $this->settings['category'])) {
+			$mapControllFunctions = t3lib_div::array_merge_recursive_overrule($mapControllFunctions, $this->settings['category']['mapControllFunctions']);
+			$mapControllFunctions = str_replace('###ITEM_KEYS###', $javaScriptArray, $mapControllFunctions);
 		}
 		return $mapControllFunctions;
 	}

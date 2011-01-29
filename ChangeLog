@@ -1,7 +1,5 @@
 2009-09-14 Arno Dudek  <webmaster@adgrafik.at>
 
-	* initial code generated with kickstarter
-
 1.0.0	First release
 
 1.0.1	[BUGFIX] Some bugfixes in tca.php
@@ -24,3 +22,5 @@
 		[TASK] Optimized category tree view for T3 4.5.
 		[TASK] Added german language.
 		[TASK] Documentation updated.
+
+1.0.4	[FEATURE] Added map controll functions to category.

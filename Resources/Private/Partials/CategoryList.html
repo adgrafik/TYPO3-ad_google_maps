@@ -2,6 +2,11 @@
 	<ul>
 		<li>
 			<h3><f:if condition="{category.icon}"><f:image src="{category.icon}" width="{category.iconWidth}" height="{category.iconHeight}" alt="{category.title}" /> </f:if>{category.title}</h3>
+			<p>
+				[<a href="#" onclick="javascript: {category.mapControllFunctions.panTo}; return false;"><f:translate key="panTo" /></a>] 
+				[<a href="#" onclick="javascript: {category.mapControllFunctions.fitBounds}; return false;"><f:translate key="fitBounds" /></a>] 
+				[<a href="#" onclick="javascript: {category.mapControllFunctions.userFunction}; return false;"><f:translate key="userFunction" /></a>]
+			</p>
 			<f:format.html>{category.description}</f:format.html>
 			<ul>
 				<f:for each="{category.layers}" as="layer">
@@ -17,9 +22,9 @@
 									</f:else>
 								</f:if>
 								<br />
-								[<a href="#" onclick="javascript: {item.mapControllFunctions.panTo}; return false;"><f:translate key="panTo" /></a>]
-								 [<a href="#" onclick="javascript: {item.mapControllFunctions.fitBounds}; return false;"><f:translate key="fitBounds" /></a>]
-								 [<a href="#" onclick="javascript: {item.mapControllFunctions.userFunction}; return false;"><f:translate key="userFunction" /></a>]
+								[<a href="#" onclick="javascript: {item.mapControllFunctions.panTo}; return false;"><f:translate key="panTo" /></a>] 
+								[<a href="#" onclick="javascript: {item.mapControllFunctions.fitBounds}; return false;"><f:translate key="fitBounds" /></a>] 
+								[<a href="#" onclick="javascript: {item.mapControllFunctions.userFunction}; return false;"><f:translate key="userFunction" /></a>]
 							</li>
 						</f:for>
 				</f:for>

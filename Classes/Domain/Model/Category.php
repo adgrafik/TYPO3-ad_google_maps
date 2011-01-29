@@ -70,9 +70,9 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	protected $parentCategory;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
+	 * @var array
 	 */
-	protected $subCategories;
+	protected $mapControllFunctions;
 
 	/*
 	 * Initialize this category.
@@ -136,7 +136,7 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	 * @return void
 	 */
 	public function setIconWidth($iconWidth) {
-		$this->iconWidth = $iconWidth;
+		$this->iconWidth = (integer) $iconWidth;
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	 * @return void
 	 */
 	public function setIconHeight($iconHeight) {
-		$this->iconHeight = $iconHeight;
+		$this->iconHeight = (integer) $iconHeight;
 	}
 
 	/**
@@ -235,6 +235,25 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	public function getSubCategories() {
 		$categoryRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_CategoryRepository');
 		return $categoryRepository->findSubCategories($this);
+	}
+
+	/**
+	 * Sets this mapControllFunctions
+	 *
+	 * @param array $mapControllFunctions
+	 * @return void
+	 */
+	public function setMapControllFunctions($mapControllFunctions) {
+		$this->mapControllFunctions = $mapControllFunctions;
+	}
+
+	/**
+	 * Returns this mapControllFunctions
+	 *
+	 * @return array
+	 */
+	public function getMapControllFunctions() {
+		return $this->mapControllFunctions;
 	}
 
 }
