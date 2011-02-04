@@ -1,0 +1,18 @@
+<f:renderFlashMessages class="csc-frame-frame1" style="color: #ff0000;" />
+<!--
+	Use {googleMapsApi.apiNotLoaded} and {googleMapsApi.pluginNotLoaded} if there are more than one map one the page. 
+-->
+<f:if condition="{mapPlugin.apiNotLoaded}"><script type="text/javascript" src="{mapPlugin.printApiUrl}"></script></f:if>
+<f:if condition="{mapPlugin.pluginNotLoaded}"><script type="text/javascript" src="{mapPlugin.printPluginUrl}"></script></f:if>
+<f:if condition="{mapPlugin.markerClusterNotLoaded}"><script type="text/javascript" src="{mapPlugin.printMarkerClusterUrl}"></script></f:if>
+<!--
+	Use f:escape to prevent HTML formatting. 
+-->
+<f:escape type="" value="{mapPlugin.printCanvas}" />
+<script type="text/javascript"><!--
+<f:escape type="" value="{mapPlugin}" />
+--></script>
+<f:if condition="{map.categories}">
+	<h2>{map.title}</h2>
+	<f:render partial="CategoryList" arguments="{categories: map.categories}" />
+</f:if>
