@@ -1,8 +1,0 @@
-2009-09-14 Arno Dudek  <webmaster@adgrafik.at>
-
-	* initial code generated with kickstarter
-
-1.0.0	First release
-
-1.0.1	[BUGFIX] Some bugfixes in tca.php
-		[BUGFIX] Fix wrong sorting of InfoWindows MapPluginAdapter.php
