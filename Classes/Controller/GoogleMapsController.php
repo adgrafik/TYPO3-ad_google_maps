@@ -34,13 +34,13 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_Extbase_MVC_Con
 	 * @var Tx_AdGoogleMaps_Domain_Repository_MapRepository
 	 */
 	protected $mapRepository;
-
+	
 	/**
-	 * Initializes the current action
+	 * Index action
 	 *
-	 * @return void
+	 * @return string The rendered view
 	 */
-	public function initializeAction() {
+	public function indexAction() {
 		if (!array_key_exists('map', $this->settings)) {
 			$this->flashMessageContainer->add('Add static TypoScript "ad: Google Maps" to your template.');
 			return;
@@ -52,14 +52,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_Extbase_MVC_Con
 		if (array_key_exists('flexform', $this->settings)) {
 			$this->settings = Tx_Extbase_Utility_Arrays::arrayMergeRecursiveOverrule($this->settings, $this->settings['flexform']);
 		}
-	}
-	
-	/**
-	 * Index action
-	 *
-	 * @return string The rendered view
-	 */
-	public function indexAction() {
+
 		if (!array_key_exists('uid', $this->settings['map'])) {
 			$this->flashMessageContainer->add('No map defined.');
 			return;

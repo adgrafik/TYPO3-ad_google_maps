@@ -2,24 +2,36 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 $extensionConfiguration = Tx_AdGoogleMaps_Tools_BackEnd::getExtensionConfiguration();
-// Get upload directories.
+// Get upload directories. Checks also if extension configuration is set, else get an error at installation.
 $uploadDirectories = array(
-	'categoryIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['categoryIcons'] ? $extensionConfiguration['uploadDirectories']['categoryIcons'] : 'uploads/tx_adgooglemaps/')),
-	'markerIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['markerIcons'] ? $extensionConfiguration['uploadDirectories']['markerIcons'] : 'uploads/tx_adgooglemaps/')),
-	'shadowIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['shadowIcons'] ? $extensionConfiguration['uploadDirectories']['shadowIcons'] : 'uploads/tx_adgooglemaps/')),
-	'mouseCursor' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['mouseCursor'] ? $extensionConfiguration['uploadDirectories']['mouseCursor'] : 'uploads/tx_adgooglemaps/')),
-	'kmlFiles' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['kmlFiles'] ? $extensionConfiguration['uploadDirectories']['kmlFiles'] : 'uploads/tx_adgooglemaps/')),
-	'markerCluster' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($extensionConfiguration['uploadDirectories']['markerCluster'] ? $extensionConfiguration['uploadDirectories']['markerCluster'] : 'uploads/tx_adgooglemaps/')),
+	'categoryIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['categoryIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['categoryIcons'] : 'uploads/tx_adgooglemaps/')
+	),
+	'markerIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['markerIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['markerIcons'] : 'uploads/tx_adgooglemaps/')
+	),
+	'shadowIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['shadowIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['shadowIcons'] : 'uploads/tx_adgooglemaps/')
+	),
+	'mouseCursor' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['mouseCursor'] !== '') ? $extensionConfiguration['uploadDirectories']['mouseCursor'] : 'uploads/tx_adgooglemaps/')
+	),
+	'kmlFiles' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['kmlFiles'] !== '') ? $extensionConfiguration['uploadDirectories']['kmlFiles'] : 'uploads/tx_adgooglemaps/')
+	),
+	'markerCluster' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
+		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['markerCluster'] !== '') ? $extensionConfiguration['uploadDirectories']['markerCluster'] : 'uploads/tx_adgooglemaps/')
+	),
 );
 
 // l10n_mode for text fields.
-$prependTranslationInfo = ($extensionConfiguration['l10n']['prependTranslationInfo'] ? 'prefixLangTitle' : '');
+$prependTranslationInfo = (($extensionConfiguration !== FALSE && $extensionConfiguration['l10n']['prependTranslationInfo'] === '1') ? 'prefixLangTitle' : '');
 // l10n_mode for the image or file field.
-$excludeFileTranslation = ($extensionConfiguration['l10n']['excludeProperties'] === 'all' ? 'exclude' : '');
+$excludeFileTranslation = (($extensionConfiguration !== FALSE && $extensionConfiguration['l10n']['excludeProperties'] === 'all') ? 'exclude' : '');
 // l10n_mode for property fields.
-$excludeProperties = ($extensionConfiguration['l10n']['excludeProperties'] !== 'none' ? 'exclude' : '');
+$excludeProperties = (($extensionConfiguration !== FALSE && $extensionConfiguration['l10n']['excludeProperties'] !== 'none') ? 'exclude' : '');
 // hide new localizations.
-$hideNewLocalizations = ($extensionConfiguration['l10n']['hideNewLocalizations'] ? 'mergeIfNotBlank' : '');
+$hideNewLocalizations = (($extensionConfiguration !== FALSE && $extensionConfiguration['l10n']['hideNewLocalizations'] === '1') ? 'mergeIfNotBlank' : '');
 
 $systemColumns = array(
 	't3ver_label' => array (

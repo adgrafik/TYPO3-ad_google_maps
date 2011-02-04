@@ -53,10 +53,13 @@ class Tx_AdGoogleMaps_Tools_BackEnd {
 	/**
 	 * Returns the TCA settings.
 	 *
-	 * @return array
+	 * @return mixed
 	 */
 	public static function getExtensionConfiguration() {
 		if (self::$extensionConfiguration === NULL) {
+			if (array_key_exists('ad_google_maps', $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']) === FALSE) {
+				return FALSE;
+			}
 			self::$extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ad_google_maps']);
 			self::$extensionConfiguration = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray(self::$extensionConfiguration);
 		}
