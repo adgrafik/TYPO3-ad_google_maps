@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>CSH</type>
+		<description>CSH labels for FlexForm fields</description>
+		<csh_table>tx_adgooglemaps_pi1</csh_table>
+		<fileId>EXT:ad_google_maps/Resources/Private/Language/locallang_tca_csh_layer.xml</fileId>
+		<labelContext type="array"></labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="title.description">Title of the category.</label>
+			<label index="icon.description">Icon for this category.</label>
+			<label index="icon_width.description">Icon width.</label>
+			<label index="icon_height.description">Icon height.</label>
+			<label index="description.description">Description of the category.</label>
+			<label index="rte_enabled.description">Disables the RTE.</label>
+			<label index="parent_category.description">Parent Category.</label>
+			<label index="layers.description">Record storage for layers to display on the map.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="title.description">Titel der Kategorie.</label>
+			<label index="icon.description">Icon dieser Kategorie.</label>
+			<label index="icon_width.description">Breite des Icons.</label>
+			<label index="icon_height.description">Höhe des Icons.</label>
+			<label index="description.description">Beschreibung der Kategorie.</label>
+			<label index="rte_enabled.description">Deaktiviert den RTE.</label>
+			<label index="parent_category.description">Die übergeordnete Kategorie.</label>
+			<label index="layers.description">Datensatzsammlung für Ebenen die auf der Karte angezeigt werden.</label>
+		</languageKey>
+	</data>
+</T3locallang>
