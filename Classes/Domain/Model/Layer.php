@@ -1220,7 +1220,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_Extbase_DomainObject_Abstrac
 	 * @return string
 	 */
 	public function getKmlFile() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('kmlFiles', $this->kmlFile);
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('kmlFiles', $this->kmlFile);
 	}
 
 	/**
@@ -1315,7 +1315,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_Extbase_DomainObject_Abstrac
 	 * @return string
 	 */
 	public function getMouseCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('mouseCursor', $this->mouseCursor);
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('mouseCursor', $this->mouseCursor);
 	}
 
 	/**

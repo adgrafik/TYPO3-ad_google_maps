@@ -970,7 +970,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 * @return string
 	 */
 	public function getDraggableCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('mouseCursor', $this->draggableCursor);
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('mouseCursor', $this->draggableCursor);
 	}
 
 	/**
@@ -989,7 +989,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 * @return string
 	 */
 	public function getDraggingCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('mouseCursor', $this->draggingCursor);
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('mouseCursor', $this->draggingCursor);
 	}
 
 	/**

@@ -3,7 +3,7 @@
 	Use {googleMapsApi.apiNotLoaded} and {googleMapsApi.pluginNotLoaded} if there are more than one map one the page. 
 -->
 <f:if condition="{mapPlugin.apiNotLoaded}"><script type="text/javascript" src="{mapPlugin.printApiUrl}"></script></f:if>
-<f:if condition="{mapPlugin.pluginNotLoaded}"><script type="text/javascript" src="{mapPlugin.printPluginUrl}"></script></f:if>
+<f:if condition="{mapPlugin.pluginNotLoaded}"><script type="text/javascript" src="{mapPlugin.printPluginFile}"></script></f:if>
 <f:if condition="{mapPlugin.markerClusterNotLoaded}"><script type="text/javascript" src="{mapPlugin.printMarkerClusterUrl}"></script></f:if>
 <!--
 	Use f:escape to prevent HTML formatting. 

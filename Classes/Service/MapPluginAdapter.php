@@ -408,13 +408,13 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 
 				if (($iconUrl = $this->getContentByObjectNumberConf($itemIcons, $itemIconObjectNumberConf, $index, NULL, TRUE))) {
 					$iconOptions = $allIconOptions;
-					$iconOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('markerIcons', $iconUrl);
+					$iconOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('markerIcons', $iconUrl);
 					$itemOptions['icon'] = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_MarkerImage', $iconOptions);
 				}
 
 				if (($shadowUrl = $this->getContentByObjectNumberConf($itemShadows, $itemShadowObjectNumberConf, $index, NULL, TRUE))) {
 					$shadowOptions = $allShadowOptions;
-					$shadowOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('shadowIcons', $shadowUrl);
+					$shadowOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('shadowIcons', $shadowUrl);
 					$itemOptions['shadow'] = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_MarkerImage', $shadowOptions);
 				}
 
@@ -491,7 +491,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 
 			if (($iconUrl = $this->getContentByObjectNumberConf($itemIcons, $itemIconObjectNumberConf, $index, NULL, TRUE))) {
 				$iconOptions = $allIconOptions;
-				$iconOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('markerIcons', $iconUrl);
+				$iconOptions['url'] = Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('markerIcons', $iconUrl);
 			}
 
 			switch ($layerType) {

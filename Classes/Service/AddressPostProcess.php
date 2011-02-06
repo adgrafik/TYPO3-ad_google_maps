@@ -31,7 +31,7 @@
 class tx_AdGoogleMaps_Service_AddressPostProcess {
 
 	/**
-	 * Constructor.
+	 * Post process funtion for a address record.
 	 * 
 	 * @param string $status
 	 * @param string $table

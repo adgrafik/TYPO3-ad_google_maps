@@ -126,7 +126,7 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	 * @return string
 	 */
 	public function getIcon() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName('categoryIcons', $this->icon);
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('categoryIcons', $this->icon);
 	}
 
 	/**

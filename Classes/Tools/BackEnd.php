@@ -36,18 +36,32 @@ class Tx_AdGoogleMaps_Tools_BackEnd {
 	protected static $extensionConfiguration;
 
 	/**
-	 * Returns given file name with relative path.
+	 * Returns relative path by given directory and file name.
 	 *
 	 * @param string $uploadDirectory
 	 * @param string $fileName
 	 * @return string
 	 */
-	public static function getFileRelativeFileName($uploadDirectory, $fileName) {
+	public static function getRelativeUploadPathAndFileName($uploadDirectory, $fileName) {
+		if (!$fileName) return; // Nothing to do if file name is empty or NULL.
+		return self::getAbsoluteUploadPath($uploadDirectory) . $fileName;
+	}
+
+	/**
+	 * Returns absolute path by given directory name.
+	 *
+	 * @param string $uploadDirectory
+	 * @param string $defaultDirectory
+	 * @return string
+	 */
+	public static function getAbsoluteUploadPath($uploadDirectory, $defaultDirectory = 'uploads/tx_adgooglemaps/') {
 		$extensionConfiguration = self::getExtensionConfiguration();
-		if (array_key_exists($uploadDirectory, $extensionConfiguration['uploadDirectories']) === TRUE && strlen($fileName) > 0) {
-			$filePathAndName = $extensionConfiguration['uploadDirectories'][$uploadDirectory] . $fileName;
-			return str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($filePathAndName));
+		$path = $defaultDirectory;
+		if ($extensionConfiguration !== FALSE && array_key_exists($uploadDirectory, $extensionConfiguration['uploadDirectories']) === TRUE) {
+			$path = $extensionConfiguration['uploadDirectories'][$uploadDirectory];
 		}
+		$path = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($path));
+		return $path . ((strrpos($path, '/') === strlen($path) - 1) ? '' : '/');
 	}
 
 	/**
@@ -57,6 +71,7 @@ class Tx_AdGoogleMaps_Tools_BackEnd {
 	 */
 	public static function getExtensionConfiguration() {
 		if (self::$extensionConfiguration === NULL) {
+			// Check if the extension configurations are set.
 			if (array_key_exists('ad_google_maps', $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']) === FALSE) {
 				return FALSE;
 			}

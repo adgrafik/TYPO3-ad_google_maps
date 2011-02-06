@@ -25,3 +25,9 @@
 
 1.0.4	[FEATURE] Added map controll functions to category.
 		[BUGFIX] Fixed some issue #12772.
+
+1.0.5	[TASK] Changed function name Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName to getRelativeUploadPathAndFileName.
+		[TASK] Optimized TCA.
+		[TASK] Renamed property pluginUrl to pluginFile (hope for the last time).
+		[TASK] Documentation updated.
+		[TASK] Added correction of lib.stdheader.

@@ -2,28 +2,6 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 $extensionConfiguration = Tx_AdGoogleMaps_Tools_BackEnd::getExtensionConfiguration();
-// Get upload directories. Checks also if extension configuration is set, else get an error at installation.
-$uploadDirectories = array(
-	'categoryIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['categoryIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['categoryIcons'] : 'uploads/tx_adgooglemaps/')
-	),
-	'markerIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['markerIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['markerIcons'] : 'uploads/tx_adgooglemaps/')
-	),
-	'shadowIcons' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['shadowIcons'] !== '') ? $extensionConfiguration['uploadDirectories']['shadowIcons'] : 'uploads/tx_adgooglemaps/')
-	),
-	'mouseCursor' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['mouseCursor'] !== '') ? $extensionConfiguration['uploadDirectories']['mouseCursor'] : 'uploads/tx_adgooglemaps/')
-	),
-	'kmlFiles' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['kmlFiles'] !== '') ? $extensionConfiguration['uploadDirectories']['kmlFiles'] : 'uploads/tx_adgooglemaps/')
-	),
-	'markerCluster' => str_replace(PATH_site, '', t3lib_div::getFileAbsFileName(
-		($extensionConfiguration !== FALSE && $extensionConfiguration['uploadDirectories']['markerCluster'] !== '') ? $extensionConfiguration['uploadDirectories']['markerCluster'] : 'uploads/tx_adgooglemaps/')
-	),
-);
-
 // l10n_mode for text fields.
 $prependTranslationInfo = (($extensionConfiguration !== FALSE && $extensionConfiguration['l10n']['prependTranslationInfo'] === '1') ? 'prefixLangTitle' : '');
 // l10n_mode for the image or file field.
@@ -115,7 +93,7 @@ $systemColumns = array(
 		'l10n_mode' => $hideNewLocalizations,
 		'l10n_display' => 'hideDiff',
 		'config' => array(
-			'type' => 'check'
+			'type' => 'check',
 		),
 	),
 );
@@ -598,7 +576,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['mouseCursor'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('mouseCursor'),
 				'show_thumbs'   => 1,
 				'size'          => 1,
 				'minitems'      => 0,
@@ -615,7 +593,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['mouseCursor'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('mouseCursor'),
 				'show_thumbs'   => 1,
 				'size'          => 1,
 				'minitems'      => 0,
@@ -846,7 +824,7 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['categoryIcons'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('categoryIcons'),
 				'show_thumbs'   => 1,
 				'size'          => 1,
 				'minitems'      => 0,
@@ -1212,7 +1190,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['markerIcons'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('markerIcons'),
 				'show_thumbs'   => 1,
 				'size'          => 3,
 				'autoSizeMax'	=> 15,
@@ -1337,7 +1315,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['shadowIcons'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('shadowIcons'),
 				'show_thumbs'   => 1,
 				'size'          => 3,
 				'autoSizeMax'	=> 15,
@@ -1470,7 +1448,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'internal_type' => 'file',
 				'allowed'       => 'kml,kmz',
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['kmlFiles'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('kmlFiles'),
 				'show_thumbs'   => 1,
 				'size'          => 1,
 				'minitems'      => 0,
@@ -1531,7 +1509,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 				'internal_type' => 'file',
 				'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size'      => 3000,
-				'uploadfolder'  => $uploadDirectories['mouseCursor'],
+				'uploadfolder'  => Tx_AdGoogleMaps_Tools_BackEnd::getAbsoluteUploadPath('mouseCursor'),
 				'show_thumbs'   => 1,
 				'size'          => 1,
 				'minitems'      => 0,
