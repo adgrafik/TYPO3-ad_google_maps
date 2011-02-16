@@ -31,3 +31,5 @@
 		[TASK] Renamed property pluginUrl to pluginFile (hope for the last time).
 		[TASK] Documentation updated.
 		[TASK] Added correction of lib.stdheader.
+
+1.0.6	[BUGFIX] Fixed "PHP Warning: array_key_exists()" in MapPluginAdapter.php line 625
