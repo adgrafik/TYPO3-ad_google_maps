@@ -511,7 +511,7 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			$this->mapPlugin->addLayer($shape);
 
 			$infoWindowOptions = $allInfoWindowOptions;
-			if ($infoWindowPlacingType & Tx_AdGoogleMaps_Domain_Model_Layer::INFO_WINDOW_PLACING_TYPE_SHAPE) {
+			if (array_key_exists('content', $infoWindows) && $infoWindowPlacingType & Tx_AdGoogleMaps_Domain_Model_Layer::INFO_WINDOW_PLACING_TYPE_SHAPE) {
 				$infoWindowOptions['key'] = $itemKey;
 				$infoWindowOptions['disableAutoPan'] = $infoWindowDisableAutoPan;
 
