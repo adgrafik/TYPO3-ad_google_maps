@@ -10,6 +10,11 @@ plugin.tx_adgooglemaps {
 
 			# The initial height. Required.
 			height = {$plugin.tx_adgooglemaps.settings.map.height}
+
+			searchMarkerWidth = 9
+			searchMarkerHeight = 9
+			searchMarkerAnchorX = 4
+			searchMarkerAnchorY = 5
 		}
 
 		category {
@@ -63,6 +68,9 @@ plugin.tx_adgooglemaps {
 
 	_LOCAL_LANG {
 		default {
+			searchLegend = Search
+			searchLabel = Search for Address
+			searchButton = Search
 			panTo = pan to
 			fitBounds = fit bounds
 			userFunction = user function

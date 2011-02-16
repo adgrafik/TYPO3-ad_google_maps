@@ -32,4 +32,7 @@
 		[TASK] Documentation updated.
 		[TASK] Added correction of lib.stdheader.
 
-1.0.6	[BUGFIX] Fixed "PHP Warning: array_key_exists()" in MapPluginAdapter.php line 625
+1.0.6	[FEATURE] Added map search.
+		[BUGFIX] Fixed "PHP Warning: array_key_exists()" in MapPluginAdapter.php line 625
+		[TASK] Added initial coordinates field to map.
+		[TASK] Added correction of lib.stdheader.

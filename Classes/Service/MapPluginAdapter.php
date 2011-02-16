@@ -111,7 +111,26 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			->setWidth($this->getPropertyValue('width', $this->map, $this->settings['map']))
 			->setHeight($this->getPropertyValue('height', $this->map, $this->settings['map']))
 			->setUseMarkerCluster($this->getPropertyValue('useMarkerCluster', $this->map, $this->settings['map']))
+			->setSearchControl($this->getPropertyValue('searchControl', $this->map, $this->settings['map']))
 			->setInfoWindowCloseAllOnMapClick($this->getPropertyValue('infoWindowCloseAllOnMapClick', $this->map, $this->settings['map']));
+		// Set search control.
+		if ($this->getPropertyValue('searchControl', $this->map, $this->settings['map']) === TRUE) {
+			if (($searchMarkerUrl = Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('markerIcons', $this->getPropertyValue('searchMarker', $this->map, $this->settings['map']))) === NULL) {
+				$searchMarkerUrl = 'typo3conf/ext/ad_google_maps_api/Resources/Public/Icons/Service/MapDrawer/searchMarker.gif';
+			} 
+			$searchMarker = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_MarkerImage', array(
+				'url' => $searchMarkerUrl,
+				'width' => $this->getPropertyValue('searchMarkerWidth', $this->map, $this->settings['map']),
+				'height' => $this->getPropertyValue('searchMarkerHeight', $this->map, $this->settings['map']),
+				'originX' => $this->getPropertyValue('searchMarkerOriginX', $this->map, $this->settings['map']),
+				'originY' => $this->getPropertyValue('searchMarkerOriginY', $this->map, $this->settings['map']),
+				'anchorX' => $this->getPropertyValue('searchMarkerAnchorX', $this->map, $this->settings['map']),
+				'anchorY' => $this->getPropertyValue('searchMarkerAnchorY', $this->map, $this->settings['map']),
+				'scaledWidth' => $this->getPropertyValue('searchMarkerScaledWidth', $this->map, $this->settings['map']),
+				'scaledHeight' => $this->getPropertyValue('searchMarkerScaledHeight', $this->map, $this->settings['map']),
+			));
+			$this->mapPlugin->setSearchMarker($searchMarker);
+		}
 
 		$mapApi = $this->mapPlugin->getMap();
 
@@ -125,6 +144,9 @@ class Tx_AdGoogleMaps_Service_MapPluginAdapter {
 			->setMaxZoom($this->getPropertyValue('maxZoom', $this->map, $this->settings['map']));
 		if ((integer) $this->getPropertyValue('centerType', $this->map, $this->settings['map']) === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT 
 				&& ($zoom = $this->getPropertyValue('zoom', $this->map, $this->settings['map']))) {
+			if (($center = $this->getPropertyValue('center', $this->map, $this->settings['map']))) {
+				$mapApi->setCenter(new Tx_AdGoogleMapsApi_LatLng($center));
+			}
 			$mapApi->setZoom($zoom);
 		}
 		// Set controll options.

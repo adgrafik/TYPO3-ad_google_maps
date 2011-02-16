@@ -24,8 +24,9 @@
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. zoom:</label>
 			<label index="tx_adgooglemaps_domain_model_map.noClear">No clear:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType">Center:</label>
-			<label index="tx_adgooglemaps_domain_model_map.centerType.default">Default center</label>
+			<label index="tx_adgooglemaps_domain_model_map.centerType.default">By coordinates</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType.bounds">Fit all layers</label>
+			<label index="tx_adgooglemaps_domain_model_map.center">Coordinates:</label>
 			<label index="tx_adgooglemaps_domain_model_map.zoom">Zoom:</label>
 			<label index="tx_adgooglemaps_domain_model_map.useMarkerCluster">Use marker cluster:</label>
 
@@ -60,6 +61,16 @@
 			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.large">Large</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControl">Street view control:</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchControl">Search control:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarker">Search marker:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerWidth">Width:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerHeight">Height:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerOriginX">Origin X:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerOriginY">Origin Y:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerAnchorX">Anchor X:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerAnchorY">Anchor Y:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerScaledWidth">Scaled width:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerScaledHeight">Scaled height:</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.sheetInteraction">Interaction</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDoubleClickZoom">Disable double click zoom:</label>
@@ -222,8 +233,9 @@
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. Zoomstufe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.noClear">Nicht löschen:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType">Kartenzentrum:</label>
-			<label index="tx_adgooglemaps_domain_model_map.centerType.default">Standard-Kartenzentrum</label>
+			<label index="tx_adgooglemaps_domain_model_map.centerType.default">Koordinaten</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType.bounds">Allen Ebenen anpassen</label>
+			<label index="tx_adgooglemaps_domain_model_map.center">Koordinaten:</label>
 			<label index="tx_adgooglemaps_domain_model_map.zoom">Zoomstufe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.useMarkerCluster">Verwende Markierungs-Cluster:</label>
 
@@ -258,6 +270,16 @@
 			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.large">Groß</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControl">Street View-Steuerung:</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchControl">Suchsteuerung:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarker">Suchmarkierung:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerWidth">Breite:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerHeight">Höhe:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerOriginX">Ursprung X:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerOriginY">Ursprung Y:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerAnchorX">Anker X:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerAnchorY">Anker Y:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerScaledWidth">Skalierte Breite:</label>
+			<label index="tx_adgooglemaps_domain_model_map.searchMarkerScaledHeight">Skalierte Höhe:</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.sheetInteraction">Interaktion</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDoubleClickZoom">Deaktiviere Zoomen durch Doppelklick:</label>

@@ -206,6 +206,56 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * @var boolean
 	 */
+	protected $searchControl;
+
+	/**
+	 * @var string
+	 */
+	protected $searchMarker;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerWidth;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerHeight;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerOriginX;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerOriginY;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerAnchorX;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerAnchorY;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerScaledWidth;
+
+	/**
+	 * @var integer
+	 */
+	protected $searchMarkerScaledHeight;
+
+	/**
+	 * @var boolean
+	 */
 	protected $disableDoubleClickZoom;
 
 	/**
@@ -895,6 +945,196 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function getStreetViewControlOptionsPosition() {
 		return $this->streetViewControlOptionsPosition;
+	}
+
+	/**
+	 * Sets this searchControl
+	 *
+	 * @param boolean $searchControl
+	 * @return void
+	 */
+	public function setSearchControl($searchControl) {
+		$this->searchControl = (boolean) $searchControl;
+	}
+
+	/**
+	 * Returns this searchControl
+	 *
+	 * @return boolean
+	 */
+	public function hasSearchControl() {
+		return (boolean) $this->searchControl;
+	}
+
+	/**
+	 * Sets this searchMarker
+	 *
+	 * @param string $searchMarker
+	 * @return void
+	 */
+	public function setSearchMarker($searchMarker) {
+		$this->searchMarker = $searchMarker;
+	}
+
+	/**
+	 * Returns this searchMarker
+	 *
+	 * @return string
+	 */
+	public function getSearchMarker() {
+		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('markerIcons', $this->searchMarker);
+	}
+
+	/**
+	 * Sets this searchMarkerWidth
+	 *
+	 * @param integer $searchMarkerWidth
+	 * @return void
+	 */
+	public function setSearchMarkerWidth($searchMarkerWidth) {
+		$this->searchMarkerWidth = $searchMarkerWidth;
+	}
+
+	/**
+	 * Returns this searchMarkerWidth
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerWidth() {
+		return (integer) $this->searchMarkerWidth;
+	}
+
+	/**
+	 * Sets this searchMarkerHeight
+	 *
+	 * @param integer $searchMarkerHeight
+	 * @return void
+	 */
+	public function setSearchMarkerHeight($searchMarkerHeight) {
+		$this->searchMarkerHeight = $searchMarkerHeight;
+	}
+
+	/**
+	 * Returns this searchMarkerHeight
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerHeight() {
+		return (integer) $this->searchMarkerHeight;
+	}
+
+	/**
+	 * Sets this searchMarkerOriginX
+	 *
+	 * @param integer $searchMarkerOriginX
+	 * @return void
+	 */
+	public function setSearchMarkerOriginX($searchMarkerOriginX) {
+		$this->searchMarkerOriginX = $searchMarkerOriginX;
+	}
+
+	/**
+	 * Returns this searchMarkerOriginX
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerOriginX() {
+		return (integer) $this->searchMarkerOriginX;
+	}
+
+	/**
+	 * Sets this searchMarkerOriginY
+	 *
+	 * @param integer $searchMarkerOriginY
+	 * @return void
+	 */
+	public function setSearchMarkerOriginY($searchMarkerOriginY) {
+		$this->searchMarkerOriginY = $searchMarkerOriginY;
+	}
+
+	/**
+	 * Returns this searchMarkerOriginY
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerOriginY() {
+		return (integer) $this->searchMarkerOriginY;
+	}
+
+	/**
+	 * Sets this searchMarkerAnchorX
+	 *
+	 * @param integer $searchMarkerAnchorX
+	 * @return void
+	 */
+	public function setSearchMarkerAnchorX($searchMarkerAnchorX) {
+		$this->searchMarkerAnchorX = $searchMarkerAnchorX;
+	}
+
+	/**
+	 * Returns this searchMarkerAnchorX
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerAnchorX() {
+		return (integer) $this->searchMarkerAnchorX;
+	}
+
+	/**
+	 * Sets this searchMarkerAnchorY
+	 *
+	 * @param integer $searchMarkerAnchorY
+	 * @return void
+	 */
+	public function setSearchMarkerAnchorY($searchMarkerAnchorY) {
+		$this->searchMarkerAnchorY = $searchMarkerAnchorY;
+	}
+
+	/**
+	 * Returns this searchMarkerAnchorY
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerAnchorY() {
+		return (integer) $this->searchMarkerAnchorY;
+	}
+
+	/**
+	 * Sets this searchMarkerScaledWidth
+	 *
+	 * @param integer $searchMarkerScaledWidth
+	 * @return void
+	 */
+	public function setSearchMarkerScaledWidth($searchMarkerScaledWidth) {
+		$this->searchMarkerScaledWidth = $searchMarkerScaledWidth;
+	}
+
+	/**
+	 * Returns this searchMarkerScaledWidth
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerScaledWidth() {
+		return (integer) $this->searchMarkerScaledWidth;
+	}
+
+	/**
+	 * Sets this searchMarkerScaledHeight
+	 *
+	 * @param integer $searchMarkerScaledHeight
+	 * @return void
+	 */
+	public function setSearchMarkerScaledHeight($searchMarkerScaledHeight) {
+		$this->searchMarkerScaledHeight = $searchMarkerScaledHeight;
+	}
+
+	/**
+	 * Returns this searchMarkerScaledHeight
+	 *
+	 * @return integer
+	 */
+	public function getSearchMarkerScaledHeight() {
+		return (integer) $this->searchMarkerScaledHeight;
 	}
 
 	/**

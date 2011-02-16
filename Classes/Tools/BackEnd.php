@@ -43,7 +43,7 @@ class Tx_AdGoogleMaps_Tools_BackEnd {
 	 * @return string
 	 */
 	public static function getRelativeUploadPathAndFileName($uploadDirectory, $fileName) {
-		if (!$fileName) return; // Nothing to do if file name is empty or NULL.
+		if (!$fileName) return NULL; // Nothing to do if file name is empty or NULL.
 		return self::getAbsoluteUploadPath($uploadDirectory) . $fileName;
 	}
 

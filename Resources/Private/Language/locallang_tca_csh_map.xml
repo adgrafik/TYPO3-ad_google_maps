@@ -20,8 +20,8 @@
 			<label index="min_zoom.description">The minimum zoom level which will be displayed on the map. If omitted, or set to null, the minimum zoom from the current map type is used instead.</label>
 			<label index="max_zoom.description">The maximum zoom level which will be displayed on the map. If omitted, or set to null, the maximum zoom from the current map type is used instead.</label>
 			<label index="no_clear.description">If true, do not clear the contents of the Map div.</label>
-			<label index="center_type.description">The initial Map center.</label>
-			<label index="center.description">Record storge to display all listed layers on the map.</label>
+			<label index="center_type.description">The initial map center.</label>
+			<label index="center.description">Coordinate of the map center.</label>
 			<label index="zoom.description">The initial Map zoom level. Required.</label>
 			<label index="use_marker_cluster.description">This option creates and manages per-zoom-level clusters for large amounts of markers.</label>
 
@@ -43,6 +43,8 @@
 			<label index="street_view_control.description">The initial enabled/disabled state of the Street View pegman control. The Street View pegman control is enabled by default.</label>
 			<label index="street_view_control_options_position.description">Position id. Used to specify the position of the control on the map. Klick for details.</label>
 			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControlOptions, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
+			<label index="search_control.description">Activates the simple map search.</label>
+			<label index="search_marker.description">If user search is used you can define an own marker here. At default the search marker of the MapDrawer is used.</label>
 
 			<label index="disable_double_click_zoom.description">Enables/disables zoom and center on double click. Enabled by default.</label>
 			<label index="scrollwheel.description">If false, disables scrollwheel zooming on the map. The scrollwheel is enabled by default.</label>
@@ -80,7 +82,7 @@
 			<label index="max_zoom.description">Die max. Zoomstufe welche auf der Karte dargestellt werden soll. Wenn der Wert nicht gesetzt ist, wird die max. Zoomstufe des aktuellen Kartentyps verwendet.</label>
 			<label index="no_clear.description">Falls wahr, den Inhalt der Karten-div nicht löschen.</label>
 			<label index="center_type.description">Anfängliches Kartenzentrum. Erforderlich.</label>
-			<label index="center.description">Datensatzsammlung für alle Ebenen, die auf der Karte dargestellt werden sollen.</label>
+			<label index="center.description">Koordinaten des Kartenzentrum.</label>
 			<label index="zoom.description">Anfängliche Zoomstufe der Karte. Erforderlich.</label>
 			<label index="use_marker_cluster.description">Diese Option erstellt und managed die Pro-Zoom-Level-Cluster für eine große Anzahl an Markierungen.</label>
 
@@ -103,6 +105,8 @@
 			<label index="street_view_control.description">Der anfängliche Status (aktiviert/deaktiviert) des Street View-Männchen-Steuerelements.</label>
 			<label index="street_view_control_options_position.description">Position id. Used to specify the position of the control on the map. Klick for details.</label>
 			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControlOptions, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
+			<label index="search_control.description">Aktivier die einfache Kartensuche.</label>
+			<label index="search_marker.description">Wenn die Benutzersuche verwendet wird, kann hier eine eigene Markierung definieren werden. Standardmäßig wird die Markierung des MapDrawer verwendet.</label>
 
 			<label index="disable_double_click_zoom.description">Aktiviert/deaktiviert das Zoomen und Zentrieren durch Doppelklick. Standardmäßig aktiviert.</label>
 			<label index="scrollwheel.description">Falls falsch, ist das Zoomen der Karte mit dem Scrollrad inaktiviert. Das Scrollrad ist standardmäßig aktiviert.</label>
