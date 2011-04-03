@@ -218,7 +218,7 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 		// Set search control.
 		if ($this->getPropertyValue('searchControl', $this->map, $this->settings['map']) === TRUE) {
 			if (($searchMarkerUrl = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $this->getPropertyValue('searchMarker', $this->map, $this->settings['map']))) === NULL) {
-				$searchMarkerUrl = 'typo3conf/ext/ad_google_maps_api/Resources/Public/Icons/MapDrawer/searchMarker.gif';
+				$searchMarkerUrl = 'typo3conf/ext/ad_google_maps/Resources/Public/Icons/MapDrawer/searchMarker.gif';
 			}
 			$searchMarker = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_MarkerImage',
 				$searchMarkerUrl,

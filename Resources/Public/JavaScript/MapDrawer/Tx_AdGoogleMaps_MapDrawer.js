@@ -34,7 +34,7 @@ TYPO3.Tx_AdGoogleMaps_MapDrawer_AbstractLayer = Ext.extend(Object, {
 
 	markerIcon: {
 		'address': new google.maps.MarkerImage(
-			'../typo3conf/ext/ad_google_maps_api/Resources/Public/Icons/MapDrawer/searchMarker.gif', 
+			'../typo3conf/ext/ad_google_maps/Resources/Public/Icons/MapDrawer/searchMarker.gif', 
 			new google.maps.Size(9, 9), 
 			new google.maps.Point(0, 0), 
 			new google.maps.Point(4, 5)
