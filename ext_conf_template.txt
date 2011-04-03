@@ -31,8 +31,5 @@ l10n {
 	hideNewLocalizations = 0
 }
 
-# cat=ad: Google Maps API/basic/310; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:useMapDrawerForAddress
-useMapDrawerForAddress = 0
-
 # cat=ad: Google Maps API/basic/320; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:prependAtCopy
 prependAtCopy = 1

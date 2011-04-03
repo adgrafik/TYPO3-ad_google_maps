@@ -23,16 +23,20 @@
 		[TASK] Added german language.
 		[TASK] Documentation updated.
 
-1.0.4	[FEATURE] Added map controll functions to category.
+1.0.4	[FEATURE] Added map control functions to category.
 		[BUGFIX] Fixed some issue #12772.
 
-1.0.5	[TASK] Changed function name Tx_AdGoogleMaps_Tools_BackEnd::getFileRelativeFileName to getRelativeUploadPathAndFileName.
+1.0.5	[TASK] Changed function name Tx_AdGoogleMaps_Utility_BackEnd::getFileRelativeFileName to getRelativeUploadPathAndFileName.
 		[TASK] Optimized TCA.
 		[TASK] Renamed property pluginUrl to pluginFile (hope for the last time).
 		[TASK] Documentation updated.
 		[TASK] Added correction of lib.stdheader.
 
 1.0.6	[FEATURE] Added map search.
+		[FEATURE] Made more OOP, fexible and extendable. Now it's possible to extend this extension with own extensions. Every layer got its own model-class resloving per record type (defined in TypoScript).
 		[BUGFIX] Fixed "PHP Warning: array_key_exists()" in PluginAdapter.php line 625
+		[BUGFIX] Fixed issue #14027. Static template must not include in root template any more.
 		[TASK] Added initial coordinates field to map.
-		[TASK] Made more OOP. Now it's possible to extend this extension with own extensions. Every layer got its own model-class resloving per record type (defined in TypoScript).
+		[TASK] Renamed directory Tools to Utility.
+		[TASK] Moved MapDrawer to ad_google_maps.
+		[TASK] Moved Tx_AdGoogleMapsApi_Utility_BackEnd::getRelativePathAndFileName to Tx_AdGoogleMaps_Utility_BackEnd::getRelativePathAndFileName.

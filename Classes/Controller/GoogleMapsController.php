@@ -46,18 +46,18 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_Extbase_MVC_Con
 			return;
 		}
 
-		$this->mapRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_MapRepository');
-
 		// Merge TypoScript settings with FlexForm values. FlexForm values overrides TypoScript settings.
-		if (array_key_exists('flexform', $this->settings)) {
+		if (array_key_exists('flexform', $this->settings) === TRUE) {
 			$this->settings = Tx_Extbase_Utility_Arrays::arrayMergeRecursiveOverrule($this->settings, $this->settings['flexform']);
 		}
 
-		if (!array_key_exists('uid', $this->settings['map'])) {
+		if (array_key_exists('uid', $this->settings['map']) === FALSE) {
 			$this->flashMessageContainer->add('No map defined.');
 			return;
 		}
+
 		// Create map.
+		$this->mapRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_MapRepository');
 		$map = $this->mapRepository->findByUid($this->settings['map']['uid']);
 		if ($map instanceof Tx_AdGoogleMaps_Domain_Model_Map === FALSE) {
 			$this->flashMessageContainer->add('No map found. Define Storage PID (plugin.tx_adgooglemaps.persistence.storagePid) in the constant editor.');
@@ -72,7 +72,4 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_Extbase_MVC_Con
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/ad_googlemaps/Classes/Controller/GoogleMapsController.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/ad_googlemaps/Classes/Controller/GoogleMapsController.php']);
-}
 ?>

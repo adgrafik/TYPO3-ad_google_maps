@@ -33,20 +33,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_Model_Layer_AbstractLayer {
-
-	/**
-	 * Provider of the coordinates.
-	 */
-	const COODRINATES_PROVIDER_MAP_DRAWER = 0;
-	const COODRINATES_PROVIDER_ADDRESSES = 1;
-	const COODRINATES_PROVIDER_ADDRESS_GROUPS = 2;
-
-	/**
-	 * Placing type of info windows.
-	 */
-	const INFO_WINDOW_PLACING_TYPE_MARKERS = 1;
-	const INFO_WINDOW_PLACING_TYPE_SHAPE = 2;
+class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_Model_Layer {
 
 	/**
 	 * @var boolean
@@ -54,31 +41,9 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	protected $visible;
 
 	/**
-	 * @var string
-	 */
-	protected $dataProvider;
-
-	/**
-	 * @var string
-	 */
-	protected $coordinates;
-
-	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Address>
-	 * @lazy
-	 */
-	protected $addresses;
-
-	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_AddressGroup>
-	 * @lazy
-	 */
-	protected $addressGroups;
-
-	/**
 	 * @var boolean
 	 */
-	protected $markerClickable;
+	protected $clickable;
 
 	/**
 	 * @var boolean
@@ -91,14 +56,9 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	protected $raiseOnDrag;
 
 	/**
-	 * @var boolean
-	 */
-	protected $geodesic;
-
-	/**
 	 * @var integer
 	 */
-	protected $markerZindex;
+	protected $zindex;
 
 	/**
 	 * @var string
@@ -223,7 +183,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	/**
 	 * @var string
 	 */
-	protected $shape;
+	protected $shapeCoords;
 
 	/**
 	 * @var string
@@ -234,16 +194,6 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	 * @var integer
 	 */
 	protected $infoWindow;
-
-	/**
-	 * @var integer
-	 */
-	protected $infoWindowPlacingType;
-
-	/**
-	 * @var string
-	 */
-	protected $infoWindowPosition;
 
 	/**
 	 * @var string
@@ -302,9 +252,6 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	 */
 	public function initializeObject() {
 		parent::initializeObject();
-		// Set default values.
-		$this->addresses = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->addressGroups = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 	/*
@@ -372,184 +319,22 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	}
 
 	/**
-	 * Sets this dataProvider
+	 * Sets this clickable
 	 *
-	 * @param string $dataProvider
+	 * @param boolean $clickable
 	 * @return void
 	 */
-	public function setDataProvider($dataProvider) {
-		$this->dataProvider = $dataProvider;
+	public function setClickable($clickable) {
+		$this->clickable = (boolean) $clickable;
 	}
 
 	/**
-	 * Returns this dataProvider
-	 *
-	 * @return string
-	 */
-	public function getDataProvider() {
-		return $this->dataProvider;
-	}
-
-	/**
-	 * Sets this coordinates
-	 *
-	 * @param string $coordinates
-	 * @return void
-	 */
-	public function setCoordinates($coordinates) {
-		$this->coordinates = $coordinates;
-	}
-
-	/**
-	 * Returns this coordinates
-	 *
-	 * @return string
-	 */
-	public function getCoordinates() {
-		return $this->coordinates;
-	}
-
-	/**
-	 * Sets this items
-	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
-	 * @return void
-	 */
-	public function setItems(SplObjectStorage $items) {
-		$this->items = $items;
-	}
-
-	/**
-	 * Adds an item to this items.
-	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
-	 * @return void
-	 */
-	public function addItem(Tx_AdGoogleMaps_Domain_Model_Item $item) {
-		$this->items->attach($item);
-	}
-
-	/**
-	 * Adds items to this items.
-	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
-	 * @return void
-	 */
-	public function addItems(SplObjectStorage $items) {
-		$this->items->addAll($items);
-	}
-
-	/**
-	 * Returns this items
-	 *
-	 * @return SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item>
-	 */
-	public function getItems() {
-		return $this->items;
-	}
-
-	/**
-	 * Sets this addresses
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Address> $addresses
-	 * @return void
-	 */
-	public function setAddresses(Tx_AdGoogleMaps_Domain_Model_Address $addresses) {
-		$this->addresses = $addresses;
-	}
-
-	/**
-	 * Returns this addresses
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Address>
-	 */
-	public function getAddresses() {
-		if ($this->addresses instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->addresses->_loadRealInstance();
-		}
-		return $this->addresses;
-	}
-
-	/**
-	 * Sets this addressGroups
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_AddressGroup> $addressGroups
-	 * @return void
-	 */
-	public function setAddressGroups(Tx_AdGoogleMaps_Domain_Model_AddressGroup $addressGroups) {
-		$this->addressGroups = $addressGroups;
-	}
-
-	/**
-	 * Returns this addressGroups
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_AddressGroup>
-	 */
-	public function getAddressGroups() {
-		if ($this->addressGroups instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->addressGroups->_loadRealInstance();
-		}
-		return $this->addressGroups;
-	}
-
-	/**
-	 * Sets this categories
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category> $categories
-	 * @return void
-	 */
-	public function setCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
-		$this->categories = $categories;
-	}
-
-	/**
-	 * Returns this categories
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
-	 */
-	public function getCategories() {
-		if ($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->categories->_loadRealInstance();
-		}
-		return $this->categories;
-	}
-
-	/**
-	 * Sets this markerClickable
-	 *
-	 * @param boolean $markerClickable
-	 * @return void
-	 */
-	public function setMarkerClickable($markerClickable) {
-		$this->markerClickable = (boolean) $markerClickable;
-	}
-
-	/**
-	 * Returns this markerClickable
+	 * Returns this clickable
 	 *
 	 * @return boolean
 	 */
-	public function isMarkerClickable() {
-		return (boolean) $this->markerClickable;
-	}
-
-	/**
-	 * Sets this shapeClickable
-	 *
-	 * @param boolean $shapeClickable
-	 * @return void
-	 */
-	public function setShapeClickable($shapeClickable) {
-		$this->shapeClickable = (boolean) $shapeClickable;
-	}
-
-	/**
-	 * Returns this shapeClickable
-	 *
-	 * @return boolean
-	 */
-	public function isShapeClickable() {
-		return (boolean) $this->shapeClickable;
+	public function isClickable() {
+		return (boolean) $this->clickable;
 	}
 
 	/**
@@ -591,98 +376,22 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	}
 
 	/**
-	 * Sets this geodesic
+	 * Sets this zindex
 	 *
-	 * @param boolean $geodesic
+	 * @param integer $zindex
 	 * @return void
 	 */
-	public function setGeodesic($geodesic) {
-		$this->geodesic = (boolean) $geodesic;
+	public function setZindex($zindex) {
+		$this->zindex = $zindex;
 	}
 
 	/**
-	 * Returns this geodesic
-	 *
-	 * @return boolean
-	 */
-	public function isGeodesic() {
-		return (boolean) $this->geodesic;
-	}
-
-	/**
-	 * Sets this markerZindex
-	 *
-	 * @param integer $markerZindex
-	 * @return void
-	 */
-	public function setMarkerZindex($markerZindex) {
-		$this->markerZindex = $markerZindex;
-	}
-
-	/**
-	 * Returns this markerZindex
+	 * Returns this zindex
 	 *
 	 * @return integer
 	 */
-	public function getMarkerZindex() {
-		return (integer) $this->markerZindex;
-	}
-
-	/**
-	 * Sets this shapeZindex
-	 *
-	 * @param integer $shapeZindex
-	 * @return void
-	 */
-	public function setShapeZindex($shapeZindex) {
-		$this->shapeZindex = $shapeZindex;
-	}
-
-	/**
-	 * Returns this shapeZindex
-	 *
-	 * @return integer
-	 */
-	public function getShapeZindex() {
-		return (integer) $this->shapeZindex;
-	}
-
-	/**
-	 * Sets this addMarkers
-	 *
-	 * @param boolean $addMarkers
-	 * @return void
-	 */
-	public function setAddMarkers($addMarkers) {
-		$this->addMarkers = (boolean) $addMarkers;
-	}
-
-	/**
-	 * Returns this addMarkers
-	 *
-	 * @return boolean
-	 */
-	public function isAddMarkers() {
-		return (boolean) $this->addMarkers;
-	}
-
-	/**
-	 * Sets this forceListing
-	 *
-	 * @param boolean $forceListing
-	 * @return void
-	 */
-	public function setForceListing($forceListing) {
-		$this->forceListing = (boolean) $forceListing;
-	}
-
-	/**
-	 * Returns this forceListing
-	 *
-	 * @return boolean
-	 */
-	public function isForceListing() {
-		return (boolean) ($this->isAddMarkers() === FALSE || ($this->isAddMarkers() === TRUE && (boolean) $this->forceListing === TRUE));
+	public function getZindex() {
+		return (integer) $this->zindex;
 	}
 
 	/**
@@ -1142,22 +851,22 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	}
 
 	/**
-	 * Sets this shape
+	 * Sets this shapeCoords
 	 *
-	 * @param string $shape
+	 * @param string $shapeCoords
 	 * @return void
 	 */
-	public function setShape($shape) {
-		$this->shape = $shape;
+	public function setShapeCoords($shapeCoords) {
+		$this->shapeCoords = $shapeCoords;
 	}
 
 	/**
-	 * Returns this shape
+	 * Returns this shapeCoords
 	 *
 	 * @return string
 	 */
-	public function getShape() {
-		return $this->shape;
+	public function getShapeCoords() {
+		return $this->shapeCoords;
 	}
 
 	/**
@@ -1176,102 +885,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	 * @return string
 	 */
 	public function getMouseCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->mouseCursor);
-	}
-
-	/**
-	 * Sets this strokeColor
-	 *
-	 * @param string $strokeColor
-	 * @return void
-	 */
-	public function setStrokeColor($strokeColor) {
-		$this->strokeColor = $strokeColor;
-	}
-
-	/**
-	 * Returns this strokeColor
-	 *
-	 * @return string
-	 */
-	public function getStrokeColor() {
-		return $this->strokeColor;
-	}
-
-	/**
-	 * Sets this strokeOpacity
-	 *
-	 * @param integer $strokeOpacity
-	 * @return void
-	 */
-	public function setStrokeOpacity($strokeOpacity) {
-		$this->strokeOpacity = $strokeOpacity;
-	}
-
-	/**
-	 * Returns this strokeOpacity
-	 *
-	 * @return integer
-	 */
-	public function getStrokeOpacity() {
-		return (integer) $this->strokeOpacity;
-	}
-
-	/**
-	 * Sets this strokeWeight
-	 *
-	 * @param integer $strokeWeight
-	 * @return void
-	 */
-	public function setStrokeWeight($strokeWeight) {
-		$this->strokeWeight = $strokeWeight;
-	}
-
-	/**
-	 * Returns this strokeWeight
-	 *
-	 * @return integer
-	 */
-	public function getStrokeWeight() {
-		return (integer) $this->strokeWeight;
-	}
-
-	/**
-	 * Sets this fillColor
-	 *
-	 * @param string $fillColor
-	 * @return void
-	 */
-	public function setFillColor($fillColor) {
-		$this->fillColor = $fillColor;
-	}
-
-	/**
-	 * Returns this fillColor
-	 *
-	 * @return string
-	 */
-	public function getFillColor() {
-		return $this->fillColor;
-	}
-
-	/**
-	 * Sets this fillOpacity
-	 *
-	 * @param integer $fillOpacity
-	 * @return void
-	 */
-	public function setFillOpacity($fillOpacity) {
-		$this->fillOpacity = $fillOpacity;
-	}
-
-	/**
-	 * Returns this fillOpacity
-	 *
-	 * @return integer
-	 */
-	public function getFillOpacity() {
-		return (integer) $this->fillOpacity;
+		return Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->mouseCursor);
 	}
 
 	/**
@@ -1291,44 +905,6 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	 */
 	public function getInfoWindow() {
 		return $this->infoWindow;
-	}
-
-	/**
-	 * Sets this infoWindowPlacingType
-	 *
-	 * @param integer $infoWindowPlacingType
-	 * @return void
-	 */
-	public function setInfoWindowPlacingType($infoWindowPlacingType) {
-		$this->infoWindowPlacingType = (integer) $infoWindowPlacingType;
-	}
-
-	/**
-	 * Returns this infoWindowPlacingType
-	 *
-	 * @return integer
-	 */
-	public function getInfoWindowPlacingType() {
-		return (integer) $this->infoWindowPlacingType;
-	}
-
-	/**
-	 * Sets this infoWindowPosition
-	 *
-	 * @param string $infoWindowPosition
-	 * @return void
-	 */
-	public function setInfoWindowPosition($infoWindowPosition) {
-		$this->infoWindowPosition = $infoWindowPosition;
-	}
-
-	/**
-	 * Returns this infoWindowPosition
-	 *
-	 * @return string
-	 */
-	public function getInfoWindowPosition() {
-		return $this->infoWindowPosition;
 	}
 
 	/**

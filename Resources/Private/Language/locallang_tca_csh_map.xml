@@ -51,16 +51,10 @@
 			<label index="draggable.description">If false, prevents the map from being dragged. Dragging is enabled by default.</label>
 			<label index="draggable_cursor.description">The name or url of the cursor to display on a draggable object.</label>
 			<label index="dragging_cursor.description">The name or url of the cursor to display when an object is dragging.</label>
-			<label index="keyboard_shortcuts.description">If false, prevents the map from being controlled by the keyboard. Keyboard shortcuts are enabled by default.</label>
+			<label index="keyboard_shortcuts.description">If false, prevents the map from being controled by the keyboard. Keyboard shortcuts are enabled by default.</label>
 
 			<label index="info_window_keep_open.description">If set, info windows keep open if an other get open.</label>
 			<label index="info_window_behaviour.description">Set the behaviour for all info windows.</label>
-			<label index="info_window_placing_type.description">If markers set on shapes (polylines or polygons) this options set the behaviour of the placing.</label>
-			<label index="info_window_position.description">Position of the info window if type is a polyline or polygon. Klick for details.</label>
-			<label index="info_window_position.details">There are three value types:
-				- Leave empty to place it on the point of mouse click.
-				- Set the number of the shape point (beginning with "1")
-				- Set a coordinate like "48.475742,16.438696"</label>
 			<label index="info_window_object_number.description">This option is a optionSplit configuaration. This settings have only effects on layers with the type marker or if "Add marker" is set. To parse more then one object in an info window seperate objects with an comma.</label>
 			<label index="info_window_close_on_click.description">If set info window will be closed by clicking the object again.</label>
 			<label index="info_window_close_all_on_map_click.description">If set all info windows will be closed if map is clicked.</label>
@@ -117,12 +111,6 @@
 
 			<label index="info_window_keep_open.description">Wenn gesetzt, bleiben Infofenster offen sobald man ein anderes öffnet.</label>
 			<label index="info_window_behaviour.description">Setzt das Verhalten für alle Infofenster.</label>
-			<label index="info_window_placing_type.description">Wenn Markierungen auf Formen (Polygone oder Polylinien) gesetzt bestimmt diese Option das Verhalten der Plazierung.</label>
-			<label index="info_window_position.description">Position des Infofenster bei Polygone oder Polylinien. Klicke für Details.</label>
-			<label index="info_window_position.details">Es gibt drei Werttypen:
-				- Wird kein Wert angegeben, erscheint das Infofenster wo geklickt wurde.
-				- Setze die Nummer eines Formpunktes (beginnend mit "1")
-				- Setze eine Koordinate, z.B. "48.475742,16.438696"</label>
 			<label index="info_window_object_number.description">Diese Option ist eine optionSplit-Konfiguration. Diese Einstellung betrifft nur Ebenen mit dem Typ Markierung oder wenn "Markierung hinzufügen" gesetzt ist. Um mehrere Seiteninhalte in einem Infofenster darzustellen, trenne die Objekte mit einem Komma.</label>
 			<label index="info_window_close_on_click.description">Wenn gesetzt wird das Infofenster geschlossen sobald man erneut auf das Objekt klickt.</label>
 			<label index="info_window_close_all_on_map_click.description">Wenn gesetzt werden alle Infofenster geschlossen sobald man auf die Karte klickt.</label>

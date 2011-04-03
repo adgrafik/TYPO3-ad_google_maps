@@ -68,8 +68,6 @@ CREATE TABLE tx_adgooglemaps_domain_model_map (
 
 	info_window_close_all_on_map_click tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	info_window_behaviour tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	info_window_placing_type tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	info_window_position varchar(64) DEFAULT '' NOT NULL,
 	info_window_object_number varchar(64) DEFAULT '' NOT NULL,
 	info_window_keep_open tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	info_window_close_on_click tinyint(4) unsigned DEFAULT '0' NOT NULL,
@@ -171,22 +169,15 @@ CREATE TABLE tx_adgooglemaps_domain_model_layer (
 
 	title varchar(64) DEFAULT '0' NOT NULL,
 	visible tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	data_provider varchar(128) DEFAULT '0' NOT NULL,
+	coordinates_provider varchar(128) DEFAULT '0' NOT NULL,
 	coordinates text,
-	addresses int(11) unsigned DEFAULT '0' NOT NULL,
-	address_groups int(11) unsigned DEFAULT '0' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 
-	marker_clickable tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	shape_clickable tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	clickable tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	draggable tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	raise_on_drag tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	geodesic tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	marker_zindex mediumint(11) unsigned DEFAULT '0' NOT NULL,
-	shape_zindex mediumint(11) unsigned DEFAULT '0' NOT NULL,
+	zindex mediumint(11) unsigned DEFAULT '0' NOT NULL,
 
-	add_markers tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	force_listing tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	item_titles text,
 	item_titles_object_number varchar(64) DEFAULT '' NOT NULL,
 	icon text,
@@ -212,24 +203,12 @@ CREATE TABLE tx_adgooglemaps_domain_model_layer (
 	shadow_scaled_height mediumint(11) unsigned DEFAULT '0' NOT NULL,
 	flat tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
-	kml_file text,
-	kml_url text,
-	kml_suppress_info_windows tinyint(4) unsigned DEFAULT '0' NOT NULL,
-
 	shape_type varchar(255) DEFAULT '' NOT NULL,
-	shape text,
+	shape_coords text,
 
 	mouse_cursor text,
 
-	stroke_color varchar(7) DEFAULT '' NOT NULL,
-	stroke_opacity tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	stroke_weight tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	fill_color varchar(7) DEFAULT '' NOT NULL,
-	fill_opacity tinyint(4) unsigned DEFAULT '0' NOT NULL,
-
 	info_window int(11) DEFAULT '0' NOT NULL,
-	info_window_placing_type tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	info_window_position varchar(64) DEFAULT '' NOT NULL,
 	info_window_object_number varchar(64) DEFAULT '' NOT NULL,
 	info_window_keep_open tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	info_window_close_on_click tinyint(4) unsigned DEFAULT '0' NOT NULL,
@@ -299,38 +278,4 @@ CREATE TABLE tx_adgooglemaps_layer_ttcontent_mm (
 
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
-);
-
-
-#
-# Table structure for table 'tx_adgooglemaps_layer_ttaddress_mm'
-#
-CREATE TABLE tx_adgooglemaps_layer_ttaddress_mm (
-	uid_local int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting int(11) DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-
-#
-# Table structure for table 'tx_adgooglemaps_layer_ttaddressgroup_mm'
-#
-CREATE TABLE tx_adgooglemaps_layer_ttaddressgroup_mm (
-	uid_local int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting int(11) DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-
-#
-# Table structure for table 'tt_address'
-#
-CREATE TABLE tt_address (
-	tx_adgooglemaps_coordinates text
 );

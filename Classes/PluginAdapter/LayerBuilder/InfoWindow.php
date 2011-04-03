@@ -81,32 +81,23 @@ class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_InfoWindow extends Tx_AdGoogleM
 	public function __construct() {
 		parent::__construct();
 		$this->contentObject = t3lib_div::makeInstance('tslib_cObj');
-		$this->useDataProvider = TRUE;
-		$this->dataProviderIterateProperty = 'coordinates';
+		$this->useCoordinatesProvider = TRUE;
+		$this->coordinatesProviderIterateProperty = 'coordinates';
 
 		$this->infoWindowData = array();
 		$this->layerOptions = array();
 	}
 
 	/**
-	 * Pre processor to set options e.g. for all markers in the data provider. 
+	 * Pre processor to set options e.g. for all markers in the coordinates provider. 
 	 *
 	 * @return void
 	 */
 	public function buildItemPreProcessing() {
 		// Set info window properties.
-		$this->infoWindowKeepOpen = $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-			$this->mapBuilder->getPropertyValue('infoWindowKeepOpen', $this->layer, $this->settings['layer']), 
-			$this->mapBuilder->getPropertyValue('infoWindowKeepOpen', $this->map, $this->settings['map'])
-		);
-		$this->infoWindowCloseOnClick = $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-			$this->mapBuilder->getPropertyValue('infoWindowCloseOnClick', $this->layer, $this->settings['layer']), 
-			$this->mapBuilder->getPropertyValue('infoWindowCloseOnClick', $this->map, $this->settings['map'])
-		);
-		$this->infoWindowObjectNumber = $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-			$this->mapBuilder->getPropertyValue('infoWindowObjectNumber', $this->layer, $this->settings['layer']), 
-			$this->mapBuilder->getPropertyValue('infoWindowObjectNumber', $this->map, $this->settings['map'])
-		);
+		$this->infoWindowKeepOpen = $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowKeepOpen');
+		$this->infoWindowCloseOnClick = $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowCloseOnClick');
+		$this->infoWindowObjectNumber = $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowObjectNumber');
 		$this->infoWindowObjectNumberConf = $this->getObjectNumberConf($this->infoWindowObjectNumber, $this->getCountCoordinates());
 		$this->infoWindowRenderConfiguration = $this->settings['layer']['infoWindowRenderConfiguration'];
 		$this->infoWindowRenderConfigurationTypoScriptNodeValue = $this->infoWindowRenderConfiguration['_typoScriptNodeValue'];
@@ -114,21 +105,11 @@ class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_InfoWindow extends Tx_AdGoogleM
 
 		// Set info window options.
 		$this->layerOptions = array(
-			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-				$this->mapBuilder->getPropertyValue('infoWindowDisableAutoPan', $this->layer, $this->settings['layer']), 
-				$this->mapBuilder->getPropertyValue('infoWindowDisableAutoPan', $this->map, $this->settings['map'])
-			),
-			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-				$this->mapBuilder->getPropertyValue('infoWindowMaxWidth', $this->layer, $this->settings['layer']), 
-				$this->mapBuilder->getPropertyValue('infoWindowMaxWidth', $this->map, $this->settings['map'])
-			),
-			'pixelOffsetWidth' => $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-				$this->mapBuilder->getPropertyValue('infoWindowPixelOffsetWidth', $this->layer, $this->settings['layer']), 
-				$this->mapBuilder->getPropertyValue('infoWindowPixelOffsetWidth', $this->map, $this->settings['map'])
-			),
-			'pixelOffsetHeight' => $this->getInfoWindowOptionValueByInfoWindowBehaviour(
-				$this->mapBuilder->getPropertyValue('infoWindowPixelOffsetHeight', $this->layer, $this->settings['layer']), 
-				$this->mapBuilder->getPropertyValue('infoWindowPixelOffsetHeight', $this->map, $this->settings['map'])
+			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowDisableAutoPan'),
+			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowMaxWidth'),
+			'pixelOffsetWidth' => t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Size', 
+				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetWidth'), 
+				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetHeight')
 			),
 			'zindex' => $this->layer->getInfoWindowZindex(),
 		);
@@ -151,47 +132,49 @@ class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_InfoWindow extends Tx_AdGoogleM
 	 *
 	 * @param integer $index
 	 * @param string $coordinates
-	 * @return Tx_AdGoogleMapsApi_Layer_LayerInterface
+	 * @return Tx_AdGoogleMapsApi_Plugin_Options_Layer_LayerInterface
 	 */
 	public function buildItem($index, $coordinates) {
-		$itemKey = $this->layer->getUid() . '_' . intval($index);
-		$itemData = $this->getContentByObjectNumberConf($this->dataProvider->getData(), $this->infoWindowObjectNumberConf, $index, NULL, TRUE, NULL, TRUE);
-		$infoWindowContent = $this->getContentByObjectNumberConf($this->infoWindowData, $this->infoWindowObjectNumberConf, $index, $itemData, TRUE, NULL);
+		$layerUid = sprintf('InfoWindow_%d_%d', $this->layer->getUid(), $index);
+		$itemData = $this->getContentByObjectNumberConf($this->coordinatesProvider->getData(), $this->infoWindowObjectNumberConf, $index, NULL, TRUE);
+		$infoWindowContent = $this->getContentByObjectNumberConf($this->infoWindowData, $this->infoWindowObjectNumberConf, $index, $itemData, TRUE);
 
 		// If there is no info window content, nothing else to do.
 		if ($infoWindowContent === NULL)
 			return NULL;
 
 		$layerOptions = $this->layerOptions;
-		$layerOptions['key'] = $itemKey;
 		$layerOptions['disableAutoPan'] = $this->infoWindowDisableAutoPan;
 		$layerOptions['content'] = $infoWindowContent;
 		if ($coordinates !== NULL) {
-			$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_LatLng', $coordinates);
+			$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_LatLng', $coordinates);
 		}
 
-		$layer = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Plugin_Layer_InfoWindow', $layerOptions);
-		$this->googleMapsPlugin->addInfoWindow($layer);
+		// Create marker.
+		$layer = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Layer_InfoWindow', $layerOptions);
 
-		if ($this->infoWindowKeepOpen) {
-			$this->googleMapsPlugin->addInfoWindowKeepOpen($itemKey);
-		}
-		if ($this->infoWindowCloseOnClick) {
-			$this->googleMapsPlugin->addInfoWindowCloseOnClick($itemKey);
-		}
+		// Create option object.
+		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Plugin_Options_Layer_InfoWindow');
+		$layerOptionsObject->setUid($layerUid);
+		$layerOptionsObject->setDrawFunctionName('drawInfoWindow');
+		$layerOptionsObject->setOptions($layer);
+		$layerOptionsObject->setInfoWindowKeepOpen($this->infoWindowKeepOpen);
+		$layerOptionsObject->setInfoWindowCloseOnClick($this->infoWindowCloseOnClick);
+
+		// Add layer options object to layer options.
+		$pluginOptions = $this->googleMapsPlugin->getPluginOptions();
+		$pluginOptions->addLayerOptions($layerOptionsObject);
 
 		// If is set, nothing else to do.
 		if ($this->preventAddListItems === TRUE)
-			return $layer;
+			return $layerOptionsObject;
 
 		// Get item titles.
 		$itemTitle = $this->getItemTitle($index, $itemData);
 
-		$mapControllFunctions = $this->getItemMapControllFunctions($itemKey, TRUE);
+		$this->categoryItemKeys[] = $layerUid;
 
-		$this->categoryItemKeys[] = $itemKey;
-
-		return $layer;
+		return $layerOptionsObject;
 	}
 
 }

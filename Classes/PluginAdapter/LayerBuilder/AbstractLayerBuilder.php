@@ -86,23 +86,23 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	/**
 	 * @var boolean
 	 */
-	protected $useDataProvider;
+	protected $useCoordinatesProvider;
 
 	/**
 	 * @var string
 	 */
-	protected $dataProviderIterateProperty;
+	protected $coordinatesProviderIterateProperty;
 
 	/**
-	 * @var Tx_AdGoogleMaps_PluginAdapter_DataProvider_DataProviderInterface
+	 * @var Tx_AdGoogleMaps_PluginAdapter_CoordinatesProvider_CoordinatesProviderInterface
 	 */
-	protected $dataProvider;
+	protected $coordinatesProvider;
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->useDataProvider = FALSE;
+		$this->useCoordinatesProvider = FALSE;
 		$this->addCountCoordinates = FALSE;
 		$this->preventAddListItems = FALSE;
 		$this->categoryItemKeys = array();
@@ -171,11 +171,11 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	/**
 	 * Injects this layer.
 	 *
-	 * @param Tx_AdGoogleMaps_PluginAdapter_DataProvider_DataProviderInterface $dataProvider
+	 * @param Tx_AdGoogleMaps_PluginAdapter_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider
 	 * @return void
 	 */
-	public function injectDataProvider(Tx_AdGoogleMaps_PluginAdapter_DataProvider_DataProviderInterface $dataProvider) {
-		$this->dataProvider = $dataProvider;
+	public function injectCoordinatesProvider(Tx_AdGoogleMaps_PluginAdapter_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider) {
+		$this->coordinatesProvider = $coordinatesProvider;
 	}
 
 	/**
@@ -251,7 +251,16 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	 * @return integer
 	 */
 	public function getCountCoordinates($addCount = TRUE) {
-		return count($this->dataProvider->getCoordinates()) + (($addCount === TRUE && $this->addCountCoordinates === TRUE) ? 1 : 0);
+		return count($this->coordinatesProvider->getCoordinates()) + (($addCount === TRUE && $this->addCountCoordinates === TRUE) ? 1 : 0);
+	}
+
+	/**
+	 * Returns this categoryItemKeys.
+	 *
+	 * @return array
+	 */
+	public function getCategoryItemKeys() {
+		return $this->categoryItemKeys;
 	}
 
 	/**
@@ -274,25 +283,25 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	}
 
 	/**
-	 * Loads the data provider.
+	 * Loads the coordinates provider.
 	 *
 	 * @return void
-	 * @throw Tx_AdGoogleMaps_Exception
+	 * @throw Tx_AdGoogleMaps_PluginAdapter_Exception
 	 */
-	public function loadDataProvider() {
-		if ($this->useDataProvider === FALSE) return;
+	public function loadCoordinatesProvider() {
+		if ($this->useCoordinatesProvider === FALSE) return;
 
-		$dataProviderClassName = $this->mapBuilder->getPropertyValue('dataProvider', $this->layer, $this->settings['layer']);
-		if (class_exists($dataProviderClassName) === FALSE) {
-			throw new Tx_AdGoogleMaps_Exception('Given coordinates provider class "' . $dataProviderClassName . '" doesn\'t exists.', 1297889105);
+		$coordinatesProviderClassName = $this->mapBuilder->getPropertyValue('coordinatesProvider', $this->layer, $this->settings['layer']);
+		if (class_exists($coordinatesProviderClassName) === FALSE) {
+			throw new Tx_AdGoogleMaps_PluginAdapter_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889105);
 		}
-		$this->dataProvider = t3lib_div::makeInstance($dataProviderClassName);
-		$this->dataProvider->injectLayerBuilder($this);
-		$this->dataProvider->load();
+		$this->coordinatesProvider = t3lib_div::makeInstance($coordinatesProviderClassName);
+		$this->coordinatesProvider->injectLayerBuilder($this);
+		$this->coordinatesProvider->load();
 	}
 
 	/**
-	 * Pre processor to set options e.g. for all markers in the data provider. 
+	 * Pre processor to set options e.g. for all markers in the coordinates provider. 
 	 *
 	 * @return void
 	 */
@@ -302,18 +311,18 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	 * Builds the layer items.
 	 *
 	 * @return void
-	 * @throw Tx_AdGoogleMaps_Exception
+	 * @throw Tx_AdGoogleMaps_PluginAdapter_Exception
 	 */
 	public function buildItems() {
-		if ($this->useDataProvider === TRUE) {
-			$this->loadDataProvider();
+		if ($this->useCoordinatesProvider === TRUE) {
+			$this->loadCoordinatesProvider();
 			$this->buildItemPreProcessing();
-			if ($this->dataProviderIterateProperty !== NULL) {
-				$getterName = 'get' . ucfirst($this->dataProviderIterateProperty);
-				if (is_callable(array($this->dataProvider, $getterName)) === FALSE) {
-					throw new Tx_AdGoogleMaps_Exception('Given property name to iterate data provider "' . $this->dataProviderIterateProperty . '" doesn\'t exists.', 1297889107);
+			if ($this->coordinatesProviderIterateProperty !== NULL) {
+				$getterName = 'get' . ucfirst($this->coordinatesProviderIterateProperty);
+				if (is_callable(array($this->coordinatesProvider, $getterName)) === FALSE) {
+					throw new Tx_AdGoogleMaps_PluginAdapter_Exception('Given property name to iterate coordinates provider "' . $this->coordinatesProviderIterateProperty . '" doesn\'t exists.', 1297889107);
 				}
-				foreach ($this->dataProvider->$getterName() as $index => $value) {
+				foreach ($this->coordinatesProvider->$getterName() as $index => $value) {
 					$this->buildItem($index, $value);
 				}
 			} else {
@@ -323,8 +332,6 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 			$this->buildItemPreProcessing();
 			$this->buildItem(NULL, NULL);
 		}
-		// Do category stuff.
-		$this->category->setMapControllFunctions($this->getCategoryMapControllFunctions($this->categoryItemKeys));
 	}
 
 	/**
@@ -332,9 +339,9 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	 *
 	 * @param integer $index
 	 * @param mixed $value
-	 * @return Tx_AdGoogleMapsApi_Layer_LayerInterface
+	 * @return Tx_AdGoogleMapsApi_Api_Layer_LayerInterface
 	 */
-	public function buildItem($index, $value) {}
+	abstract public function buildItem($index, $value);
 
 	/**
 	 * Returns the layer item title.
@@ -348,57 +355,40 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 		$itemTitles = $this->mapBuilder->getPropertyValue('itemTitles', $this->layer, $this->settings['layer']);
 		$itemTitles = ($itemTitles !== '') ? t3lib_div::trimExplode(LF, $itemTitles) : array();
 		$itemTitlesObjectNumber = $this->mapBuilder->getPropertyValue('itemTitlesObjectNumber', $this->layer, $this->settings['layer']);
-		$itemTitlesObjectNumberConf = $this->getObjectNumberConf($itemTitlesObjectNumber, $this->getCountCoordinates());
-		return $this->getContentByObjectNumberConf($itemTitles, $itemTitlesObjectNumberConf, $index, $itemData, $defaultLast, $this->layer->getTitle());
+		$itemTitlesObjectNumber = $this->getObjectNumberConf($itemTitlesObjectNumber, $this->getCountCoordinates());
+		return $this->getContentByObjectNumberConf($itemTitles, $itemTitlesObjectNumber, $index, $itemData, $defaultLast, $this->layer->getTitle());
 	}
 
 	/**
-	 * Returns the map controll functions as an array.
+	 * Returns the map control functions as an array.
 	 *
-	 * @param string $itemKey
+	 * @param string $layerUid
 	 * @param boolean $setInfoWindowFunction
 	 * @return array
 	 */
-	protected function getItemMapControllFunctions($itemKey, $setInfoWindowFunction = FALSE) {
-		$mapControllFunctions = array(
-			'openInfoWindow' => ($setInfoWindowFunction === TRUE ? $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.openInfoWindow(\'' . $itemKey . '\')' : 'void(0)'),
-			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(\'' . $itemKey . '\')',
-			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(\'' . $itemKey . '\')',
+	protected function getItemMapControlFunctions($layerUid, $infoWindowUid = NULL) {
+		$mapControlFunctions = array(
+			'openInfoWindow' => ($infoWindowUid !== NULL ? $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.openInfoWindow(\'' . $infoWindowUid . '\')' : 'void(0)'),
+			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(\'' . $layerUid . '\')',
+			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(\'' . $layerUid . '\')',
 		);
-		if (array_key_exists('mapControllFunctions', $this->settings['layer'])) {
-			$mapControllFunctions = t3lib_div::array_merge_recursive_overrule($mapControllFunctions, $this->settings['layer']['mapControllFunctions']);
-			$mapControllFunctions = str_replace('###ITEM_KEY###', $itemKey, $mapControllFunctions);
+		if (array_key_exists('mapControlFunctions', $this->settings['layer'])) {
+			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['layer']['mapControlFunctions']);
+			$mapControlFunctions = str_replace('###ITEM_KEY###', $layerUid, $mapControlFunctions);
 		}
-		return $mapControllFunctions;
-	}
-
-	/**
-	 * Returns the map controll functions as an array.
-	 *
-	 * @return array
-	 */
-	protected function getCategoryMapControllFunctions() {
-		$javaScriptArray = (count($this->categoryItemKeys) > 0 ? '[\'' . implode('\', \'', $this->categoryItemKeys) . '\']' : 'null');
-		$mapControllFunctions = array(
-			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(' . $javaScriptArray . ')',
-			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(' . $javaScriptArray . ')',
-		);
-		if (array_key_exists('mapControllFunctions', $this->settings['category'])) {
-			$mapControllFunctions = t3lib_div::array_merge_recursive_overrule($mapControllFunctions, $this->settings['category']['mapControllFunctions']);
-			$mapControllFunctions = str_replace('###ITEM_KEYS###', $javaScriptArray, $mapControllFunctions);
-		}
-		return $mapControllFunctions;
+		return $mapControlFunctions;
 	}
 
 	/**
 	 * Get overall info windows options. Override only if map behaviour contains "by layer" 
 	 * and layer property is true ("0" are false also), OR map behaviour contains "only layer":
 	 *
-	 * @param mixed $layerValue
-	 * @param mixed $mapValue
+	 * @param string $propertyName
 	 * @return mixed
 	 */
-	protected function getInfoWindowOptionValueByInfoWindowBehaviour($layerValue, $mapValue) {
+	protected function getInfoWindowOptionValueByInfoWindowBehaviour($propertyName) {
+		$layerValue = $this->mapBuilder->getPropertyValue($propertyName, $this->layer, $this->settings['layer']);
+		$mapValue = $this->mapBuilder->getPropertyValue($propertyName, $this->map, $this->settings['map']);
 		$infoWindowBehaviour = (integer) $this->mapBuilder->getPropertyValue('infoWindowBehaviour', $this->map, $this->settings['map']);
 		if ($infoWindowBehaviour === (Tx_AdGoogleMaps_Domain_Model_Map::INFO_WINDOW_BEHAVIOUR_BY_MAP | Tx_AdGoogleMaps_Domain_Model_Map::INFO_WINDOW_BEHAVIOUR_BY_LAYER)) {
 			$value = $layerValue ? $layerValue : $mapValue;
@@ -424,7 +414,8 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 	/**
 	 * Returns the content by object number configuration. If $dataProvider is set, the content will be redered.
 	 *
-	 * @param Pluginparam array $itemTitlesObjectNumberConf
+	 * @param array $contentProvider
+	 * @param array $objectNumberConf
 	 * @param integer $index
 	 * @param array $dataProvider
 	 * @param boolean $defaultLast
@@ -450,14 +441,16 @@ abstract class Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_AbstractLayerBuilder i
 		}
 		if ($dataProvider !== NULL && $result !== NULL) {
 			if (is_array($result)) {
+				$renderedResult = '';
 				foreach ($result as $resultIndex => $resultValue) {
 					if (array_key_exists($resultIndex, $dataProvider)) {
-						$result .= $this->renderTemplate($resultValue, $dataProvider[$resultIndex]);
+						$renderedResult .= $this->renderTemplate($resultValue, $dataProvider[$resultIndex]);
 					}
 				}
 			} else {
-				$result = $this->renderTemplate($result, $dataProvider);
+				$renderedResult = $this->renderTemplate($result, $dataProvider);
 			}
+			return $renderedResult;
 		}
 		return $result;
 	}

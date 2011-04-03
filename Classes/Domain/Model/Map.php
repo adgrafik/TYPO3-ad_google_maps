@@ -982,7 +982,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 * @return string
 	 */
 	public function getSearchMarker() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $this->searchMarker);
+		return Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $this->searchMarker);
 	}
 
 	/**
@@ -1210,7 +1210,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 * @return string
 	 */
 	public function getDraggableCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->draggableCursor);
+		return Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->draggableCursor);
 	}
 
 	/**
@@ -1229,7 +1229,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_Extbase_DomainObject_AbstractE
 	 * @return string
 	 */
 	public function getDraggingCursor() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->draggingCursor);
+		return Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'mouseCursor', $this->draggingCursor);
 	}
 
 	/**

@@ -5,6 +5,65 @@
 plugin.tx_adgooglemaps {
 	settings {
 
+		mapDrawer {
+
+			# Google Maps API URL: The URL to the Google Maps API.
+			apiUrl = {$plugin.tx_adgooglemapsapi.settings.plugin.apiUrl}
+
+			# Path to the Google Maps MapDrawer. Required.
+			apiJavaScriptFile = EXT:ad_google_maps/Resources/Public/JavaScript/MapDrawer/Tx_AdGoogleMaps_MapDrawer.js
+
+			tables {
+				tx_adgooglemaps_domain_model_layer {
+
+					# Field name of the record type.
+					typeField = type
+
+					recordTypes {
+						Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Marker {
+
+							# Class name of the type processor.
+							className = Tx_AdGoogleMaps_MapDrawer_Layer_Marker
+
+							# Array for additional JavaScript files.
+							javaScriptFiles.1 = EXT:ad_google_maps/Resources/Public/JavaScript/MapDrawer/Tx_AdGoogleMaps_MapDrawer_Layer_Marker.js
+
+							templateFile = EXT:ad_google_maps/Resources/Private/Templates/MapDrawer/index.html
+
+							# The default map width (style value). Default 90%.
+							canvasWidth = 90%
+
+							# The default map height (style value). Default 400px.
+							canvasHeight = 400px
+
+							# The default mapTypeId. Default google.maps.MapTypeId.ROADMAP.
+							mapTypeId = {$plugin.tx_adgooglemapsapi.settings.api.mapTypeId}
+
+							# The default latitude and longitude where the map should start. Default 48.209206,16.372778.
+							center = {$plugin.tx_adgooglemapsapi.settings.api.center}
+
+							# The default zoom. Default 11.
+							zoom = {$plugin.tx_adgooglemapsapi.settings.api.zoom}
+
+							# The min. zoom.
+							minZoom = {$plugin.tx_adgooglemapsapi.settings.api.minZoom}
+
+							# The max. zoom.
+							maxZoom = {$plugin.tx_adgooglemapsapi.settings.api.maxZoom}
+
+							# Fit bounds on load.
+							fitBoundsOnLoad = 1
+
+							# Columns mapping. Also usefull to see the color e.g. of shapes in the MapDrawer.
+							columnsMapping {
+								coordinates = coordinates
+							}
+						}
+					}
+				}
+			}
+		}
+
 		# Configuration for map record. Values will be override the record values if set. 
 		map {
 
@@ -18,7 +77,7 @@ plugin.tx_adgooglemaps {
 		}
 
 		category {
-			mapControllFunctions {
+			mapControlFunctions {
 				userFunction = alert('Category Item Keys: ' + ###ITEM_KEYS###)
 			}
 		}
@@ -30,9 +89,9 @@ plugin.tx_adgooglemaps {
 			shadowAnchorY = 30
 
 			# To set a user defined function, set a key and the value. The function can be insert 
-			# with the key in the template as "item.mapControllFunctions.userFunction".
+			# with the key in the template as "item.mapControlFunctions.userFunction".
 			# You can also override existing functions like "openInfoWindow", "panTo" or "fitBounds".
-			mapControllFunctions {
+			mapControlFunctions {
 				userFunction = alert('Layer Item Key: ###ITEM_KEY###')
 			}
 
@@ -52,8 +111,6 @@ plugin.tx_adgooglemaps {
 				}
 				subclasses {
 					Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Marker = Tx_AdGoogleMaps_Domain_Model_Layer_Marker
-					Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Polyline = Tx_AdGoogleMaps_Domain_Model_Layer_Polyline
-					Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Polygon = Tx_AdGoogleMaps_Domain_Model_Layer_Polygon
 				}
 			}
 
@@ -61,36 +118,6 @@ plugin.tx_adgooglemaps {
 				mapping {
 					recordType = Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Marker
 					tableName = tx_adgooglemaps_domain_model_layer
-				}
-			}
-
-			Tx_AdGoogleMaps_Domain_Model_Layer_Polyline {
-				mapping {
-					recordType = Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Polyline
-					tableName = tx_adgooglemaps_domain_model_layer
-				}
-			}
-
-			Tx_AdGoogleMaps_Domain_Model_Layer_Polygon {
-				mapping {
-					recordType = Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Polygon
-					tableName = tx_adgooglemaps_domain_model_layer
-				}
-			}
-
-			Tx_AdGoogleMaps_Domain_Model_Address {
-				mapping {
-					tableName = tt_address
-					recordType = Tx_AdGoogleMaps_Domain_Model_Address
-					columns {
-						addressgroup.foreignClass = Tx_AdGoogleMaps_Domain_Model_AddressGroup
-					}
-				}
-			}
-
-			Tx_AdGoogleMaps_Domain_Model_AddressGroup {
-				mapping {
-					tableName = tt_address_group
 				}
 			}
 		}
@@ -116,49 +143,18 @@ plugin.tx_adgooglemaps {
 
 ###
 # Override plugin.tx_adgooglemapsapi settings.
-##
-
+#
 plugin.tx_adgooglemapsapi {
 	settings {
-		googleMapsPlugin {
+		api {
 			canvas = tx_adgooglemaps_canvas_uid###UID###
-		}
-
-		mapDrawer {
-			mapping {
-				tx_adgooglemaps_domain_model_layer {
-					fieldNames {
-						type = type
-						coordinates = coordinates
-					}
-
-					optionsFieldMapping {
-						geodesic = geodesic
-						strokeColor = stroke_color
-						strokeWeight = stroke_weight
-						strokeOpacity = stroke_opacity
-						fillColor = fill_color
-						fillOpacity = fill_opacity
-					}
-				}
-
-				tt_address {
-					fieldNames {
-						type = Tx_AdGoogleMaps_PluginAdapter_LayerBuilder_Marker
-						coordinates = tx_adgooglemaps_coordinates
-					}
-
-					onlyOneMarker = 1
-				}
-			}
 		}
 	}
 }
 
 ###
-# Replace stdheaders insertData. insertData replace Fluid variables also.
+# Replace stdheaders insertData with dataWrap. insertData replace Fluid variables of the info windows for tt_address.
 ##
-
 lib.stdheader.10 {
 	1 = TEXT
 	1.current = 1

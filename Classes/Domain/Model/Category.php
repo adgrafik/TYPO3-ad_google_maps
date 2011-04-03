@@ -72,7 +72,7 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * @var array
 	 */
-	protected $mapControllFunctions;
+	protected $mapControlFunctions;
 
 	/*
 	 * Initialize this category.
@@ -126,7 +126,7 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	 * @return string
 	 */
 	public function getIcon() {
-		return Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'categoryIcons', $this->icon);
+		return Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'categoryIcons', $this->icon);
 	}
 
 	/**
@@ -238,22 +238,22 @@ class Tx_AdGoogleMaps_Domain_Model_Category extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
-	 * Sets this mapControllFunctions
+	 * Sets this mapControlFunctions
 	 *
-	 * @param array $mapControllFunctions
+	 * @param array $mapControlFunctions
 	 * @return void
 	 */
-	public function setMapControllFunctions($mapControllFunctions) {
-		$this->mapControllFunctions = $mapControllFunctions;
+	public function setMapControlFunctions($mapControlFunctions) {
+		$this->mapControlFunctions = $mapControlFunctions;
 	}
 
 	/**
-	 * Returns this mapControllFunctions
+	 * Returns this mapControlFunctions
 	 *
 	 * @return array
 	 */
-	public function getMapControllFunctions() {
-		return $this->mapControllFunctions;
+	public function getMapControlFunctions() {
+		return $this->mapControlFunctions;
 	}
 
 }

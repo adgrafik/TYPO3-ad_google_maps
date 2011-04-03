@@ -46,16 +46,6 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 	protected $googleMapsPlugin;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Domain_Repository_AddressRepository
-	 */
-	protected $addressRepository;
-
-	/**
-	 * @var Tx_AdGoogleMaps_Domain_Repository_AddressGroupRepository
-	 */
-	protected $addressGroupRepository;
-
-	/**
 	 * Constructor.
 	 * 
 	 * @param Tx_AdGoogleMaps_Domain_Model_Map $map
@@ -64,8 +54,6 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 	public function __construct(Tx_AdGoogleMaps_Domain_Model_Map $map, $settings) {
 		$this->map = clone $map;
 		$this->settings = $settings;
-		$this->addressRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_AddressRepository');
-		$this->addressGroupRepository = t3lib_div::makeInstance('Tx_AdGoogleMaps_Domain_Repository_AddressGroupRepository');
 	}
 
 	/**
@@ -129,101 +117,130 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 			->setMapId($this->getPropertyValue('uid', $this->map, $this->settings['map']))
 			->setWidth($this->getPropertyValue('width', $this->map, $this->settings['map']))
 			->setHeight($this->getPropertyValue('height', $this->map, $this->settings['map']))
-			->setUseMarkerCluster($this->getPropertyValue('useMarkerCluster', $this->map, $this->settings['map']))
-			->setSearchControl($this->getPropertyValue('searchControl', $this->map, $this->settings['map']))
-			->setInfoWindowCloseAllOnMapClick($this->getPropertyValue('infoWindowCloseAllOnMapClick', $this->map, $this->settings['map']));
-		// Set search control.
-		if ($this->getPropertyValue('searchControl', $this->map, $this->settings['map']) === TRUE) {
-			if (($searchMarkerUrl = Tx_AdGoogleMaps_Tools_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $this->getPropertyValue('searchMarker', $this->map, $this->settings['map']))) === NULL) {
-				$searchMarkerUrl = 'typo3conf/ext/ad_google_maps_api/Resources/Public/Icons/Service/MapDrawer/searchMarker.gif';
-			} 
-			$searchMarker = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_MarkerImage', array(
-				'url' => $searchMarkerUrl,
-				'width' => $this->getPropertyValue('searchMarkerWidth', $this->map, $this->settings['map']),
-				'height' => $this->getPropertyValue('searchMarkerHeight', $this->map, $this->settings['map']),
-				'originX' => $this->getPropertyValue('searchMarkerOriginX', $this->map, $this->settings['map']),
-				'originY' => $this->getPropertyValue('searchMarkerOriginY', $this->map, $this->settings['map']),
-				'anchorX' => $this->getPropertyValue('searchMarkerAnchorX', $this->map, $this->settings['map']),
-				'anchorY' => $this->getPropertyValue('searchMarkerAnchorY', $this->map, $this->settings['map']),
-				'scaledWidth' => $this->getPropertyValue('searchMarkerScaledWidth', $this->map, $this->settings['map']),
-				'scaledHeight' => $this->getPropertyValue('searchMarkerScaledHeight', $this->map, $this->settings['map']),
-			));
-			$this->googleMapsPlugin->setSearchMarker($searchMarker);
-		}
+			->setSearchControl($this->getPropertyValue('searchControl', $this->map, $this->settings['map']));
 
-		$mapApi = $this->googleMapsPlugin->getMap();
+		// Set plugin options.
+		$apiSettings = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_adgooglemapsapi.']['settings.']['api.'];
+		$pluginOptions = $this->googleMapsPlugin->getPluginOptions();
+		if ($canvas = $this->getPropertyValue('canvas', $this->map, $this->settings['map']) === NULL) {
+			$canvas = $apiSettings['canvas'];
+		}
+		$canvas = $apiSettings['canvas'];
+		$pluginOptions
+			->setCanvasId(str_replace('###UID###', $this->map->getUid(), $canvas));
 
 		// Set initial map options.
-		$mapApi
+		$mapCenterType = (integer) $this->getPropertyValue('centerType', $this->map, $this->settings['map']);
+		$mapCenter = $this->getPropertyValue('center', $this->map, $this->settings['map']);
+		$mapZoom = (integer) $this->getPropertyValue('zoom', $this->map, $this->settings['map']);
+		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom']; 
+		if (Tx_AdGoogleMapsApi_Api_LatLng::isValidCoordinate($mapCenter) === TRUE) {
+			$center = $mapCenter;
+		} else if (Tx_AdGoogleMapsApi_Api_LatLng::isValidCoordinate($apiSettings['center']) === TRUE) {
+			$center = $apiSettings['center'];
+		} else {
+			$center = '48.209206,16.372778';
+		}
+		$pluginMapOption = $pluginOptions->getMapOptions();
+		$pluginMapOption
 			->setMapTypeId($this->getPropertyValue('mapTypeId', $this->map, $this->settings['map']))
+			->setCenter(new Tx_AdGoogleMapsApi_Api_LatLng($center))
 			->setBackgroundColor($this->getPropertyValue('backgroundColor', $this->map, $this->settings['map']))
 			->setNoClear($this->getPropertyValue('noClear', $this->map, $this->settings['map']))
 			->setDisableDefaultUi($this->getPropertyValue('disableDefaultUi', $this->map, $this->settings['map']))
+			->setZoom($mapZoom)
 			->setMinZoom($this->getPropertyValue('minZoom', $this->map, $this->settings['map']))
 			->setMaxZoom($this->getPropertyValue('maxZoom', $this->map, $this->settings['map']));
-		if ((integer) $this->getPropertyValue('centerType', $this->map, $this->settings['map']) === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_DEFAULT 
-				&& ($zoom = $this->getPropertyValue('zoom', $this->map, $this->settings['map']))) {
-			if (($center = $this->getPropertyValue('center', $this->map, $this->settings['map']))) {
-				$mapApi->setCenter(new Tx_AdGoogleMapsApi_LatLng($center));
-			}
-			$mapApi->setZoom($zoom);
-		}
-		// Set controll options.
+		// Set control options.
 		if ($this->getPropertyValue('mapTypeControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setMapTypeControl(TRUE)
-				->setMapTypeControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_MapType', 
+				->setMapTypeControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_MapType', 
 					$this->getPropertyValue('mapTypeControlOptionsMapTypeIds', $this->map, $this->settings['map']),
 					$this->getPropertyValue('mapTypeControlOptionsPosition', $this->map, $this->settings['map']),
 					$this->getPropertyValue('mapTypeControlOptionsStyle', $this->map, $this->settings['map'])
 				));
 		}
 		if ($this->getPropertyValue('navigationControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setNavigationControl(TRUE)
-				->setNavigationControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_Navigation', 
+				->setNavigationControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_Navigation', 
 					$this->getPropertyValue('navigationControlOptionsPosition', $this->map, $this->settings['map']),
 					$this->getPropertyValue('navigationControlOptionsStyle', $this->map, $this->settings['map'])
 				));
 		}
 		if ($this->getPropertyValue('scaleControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setScaleControl(TRUE)
-				->setScaleControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_Scale', 
+				->setScaleControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_Scale', 
 					$this->getPropertyValue('scaleControlOptionsPosition', $this->map, $this->settings['map']),
 					$this->getPropertyValue('scaleControlOptionsStyle', $this->map, $this->settings['map'])
 				));
 		}
 		if ($this->getPropertyValue('panControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setPanControl(TRUE)
-				->setPanControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_Pan', 
+				->setPanControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_Pan', 
 					$this->getPropertyValue('panControlOptionsPosition', $this->map, $this->settings['map'])
 				));
 		}
 		if ($this->getPropertyValue('zoomControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setZoomControl(TRUE)
-				->setZoomControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_Zoom', 
+				->setZoomControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_Zoom', 
 					$this->getPropertyValue('zoomControlOptionsPosition', $this->map, $this->settings['map']),
 					$this->getPropertyValue('zoomControlOptionsStyle', $this->map, $this->settings['map'])
 				));
 		}
 		if ($this->getPropertyValue('streetViewControl', $this->map, $this->settings['map']) === TRUE) {
-			$mapApi
+			$pluginMapOption
 				->setStreetViewControl(TRUE)
-				->setStreetViewControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_ControlOptions_StreetView', 
+				->setStreetViewControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_ControlOptions_StreetView', 
 					$this->getPropertyValue('streetViewControlOptionsPosition', $this->map, $this->settings['map'])
 				));
 		}
 		// Set interaction options.
-		$mapApi
+		$pluginMapOption
 			->setDisableDoubleClickZoom($this->getPropertyValue('disableDoubleClickZoom', $this->map, $this->settings['map']))
 			->setScrollwheel($this->getPropertyValue('scrollwheel', $this->map, $this->settings['map']))
 			->setDraggable($this->getPropertyValue('draggable', $this->map, $this->settings['map']))
 			->setKeyboardShortcuts($this->getPropertyValue('keyboardShortcuts', $this->map, $this->settings['map']))
 			->setDraggableCursor($this->getPropertyValue('draggableCursor', $this->map, $this->settings['map']))
 			->setDraggingCursor($this->getPropertyValue('draggingCursor', $this->map, $this->settings['map']));
+
+		// Set map control options.
+		$pluginMapControl = $pluginOptions->getMapControl();
+		$pluginMapControl
+			->setFitBoundsOnLoad($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS)
+			->setUseMarkerCluster($this->getPropertyValue('useMarkerCluster', $this->map, $this->settings['map']))
+			->setInfoWindowCloseAllOnMapClick($this->getPropertyValue('infoWindowCloseAllOnMapClick', $this->map, $this->settings['map']));
+
+		// Set search control.
+		if ($this->getPropertyValue('searchControl', $this->map, $this->settings['map']) === TRUE) {
+			if (($searchMarkerUrl = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $this->getPropertyValue('searchMarker', $this->map, $this->settings['map']))) === NULL) {
+				$searchMarkerUrl = 'typo3conf/ext/ad_google_maps_api/Resources/Public/Icons/MapDrawer/searchMarker.gif';
+			}
+			$searchMarker = t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_MarkerImage',
+				$searchMarkerUrl,
+				t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Size', 
+					$this->getPropertyValue('searchMarkerWidth', $this->map, $this->settings['map']),
+					$this->getPropertyValue('searchMarkerHeight', $this->map, $this->settings['map'])
+				),
+				t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Point', 
+					$this->getPropertyValue('searchMarkerOriginX', $this->map, $this->settings['map']),
+					$this->getPropertyValue('searchMarkerOriginY', $this->map, $this->settings['map'])
+				),
+				t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Point', 
+					$this->getPropertyValue('searchMarkerAnchorX', $this->map, $this->settings['map']),
+					$this->getPropertyValue('searchMarkerAnchorY', $this->map, $this->settings['map'])
+				),
+				t3lib_div::makeInstance('Tx_AdGoogleMapsApi_Api_Size', 
+					$this->getPropertyValue('searchMarkerScaledWidth', $this->map, $this->settings['map']),
+					$this->getPropertyValue('searchMarkerScaledHeight', $this->map, $this->settings['map'])
+				)
+			);
+			$pluginMapControl->setSearchMarker($searchMarker);
+		}
 
 		$this->buildLayers($this->map->getCategories());
 	}
@@ -232,11 +249,13 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 	 * Returns the Google Maps API object.
 	 *
 	 * @param mixed $categories
-	 * @return Tx_AdGoogleMapsApi_Map
-	 * @throw Tx_AdGoogleMaps_Exception
+	 * @return Tx_AdGoogleMapsApi_Api_Map
+	 * @throw Tx_AdGoogleMaps_PluginAdapter_Exception
 	 */
 	protected function buildLayers($categories) {
 		foreach ($categories as $category) {
+			$categoryItemKeys = array();
+			$layerBuilder = NULL;
 			$this->buildLayers($category->getSubCategories());
 			foreach ($category->getLayers() as $layer) {
 				// Check if layer built allready. If there is a recursion of the categories witch contains 
@@ -244,7 +263,7 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 				if ($layer->getItems()->count() === 0) {
 					$layerBuilderClassName = $this->getPropertyValue('type', $layer, $this->settings['layer']);
 					if (class_exists($layerBuilderClassName) === FALSE) {
-						throw new Tx_AdGoogleMaps_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889103);
+						throw new Tx_AdGoogleMaps_PluginAdapter_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889103);
 					}
 					$layerBuilder = t3lib_div::makeInstance($layerBuilderClassName);
 					$layerBuilder->injectSettings($this->settings);
@@ -255,38 +274,37 @@ class Tx_AdGoogleMaps_PluginAdapter_MapBuilder {
 					$layerBuilder->injectLayer($layer);
 
 					$layerBuilder->buildItems();
+
+					// Get category map Control functions.
+					$categoryItemKeys = array_merge($categoryItemKeys, $layerBuilder->getCategoryItemKeys());
 				}
+			}
+			// Set category map control functions.
+			if ($layerBuilder !== NULL) {
+				$layerBuilder->getCategory()->setMapControlFunctions(
+					$this->getCategoryMapControlFunctions($categoryItemKeys)
+				);
 			}
 		}
 	}
 
 	/**
-	 * Returns the Google Maps API object.
+	 * Returns the map control functions as an array.
 	 *
-	 * @param Tx_AdGoogleMaps_Domain_Model_Category $category
-	 * @param Tx_AdGoogleMaps_Domain_Model_Layer_LayerInterface $layer
-	 * @return Tx_AdGoogleMapsApi_Map
+	 * @param array $categoryItemKeys
+	 * @return array
 	 */
-	protected function buildItems(Tx_AdGoogleMaps_Domain_Model_Category $category, Tx_AdGoogleMaps_Domain_Model_Layer_LayerInterface $layer) {
-		$mapCenterType = (integer) $this->getPropertyValue('centerType', $this->map, $this->settings['map']);
-		if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-			$itemBounds = $this->googleMapsPlugin->getBounds();
+	protected function getCategoryMapControlFunctions($categoryItemKeys) {
+		$javaScriptArray = (count($categoryItemKeys) > 0 ? '[\'' . implode('\', \'', $categoryItemKeys) . '\']' : 'null');
+		$mapControlFunctions = array(
+			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(' . $javaScriptArray . ')',
+			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(' . $javaScriptArray . ')',
+		);
+		if (array_key_exists('mapControlFunctions', $this->settings['category'])) {
+			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['category']['mapControlFunctions']);
+			$mapControlFunctions = str_replace('###ITEM_KEYS###', $javaScriptArray, $mapControlFunctions);
 		}
-
-		// Do only if markers set.
-		if ($layerAddMarkers === TRUE || $layerType === 'tx_adgooglemapsapi_layers_marker') {
-			for ($index = 0; $index < $countCoordinates; $index++) {
-				if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-					$itemBounds->extend($itemOptions['position']);
-				}
-			}
-		}
-		// Do if type is a shape.
-		if ($layerType === 'tx_adgooglemapsapi_layers_polyline' || $layerType === 'tx_adgooglemapsapi_layers_polygon') {
-			if ($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS) {
-				$itemBounds->extendArray($itemOptions['path']);
-			}
-		}
+		return $mapControlFunctions;
 	}
 
 }

@@ -12,6 +12,4 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	)
 );
 
-$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['processDatamap_postProcessFieldArray'] = 'EXT:ad_google_maps/Classes/Service/AddressPostProcess.php:tx_AdGoogleMaps_Service_AddressPostProcess';
-
 ?>

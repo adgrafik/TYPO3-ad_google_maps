@@ -61,7 +61,7 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	/**
 	 * @var array
 	 */
-	protected $mapControllFunctions;
+	protected $mapControlFunctions;
 
 	/**
 	 * @var array
@@ -174,22 +174,33 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	}
 
 	/**
-	 * Sets this mapControllFunctions
+	 * Sets this mapControlFunctions
 	 *
-	 * @param array $mapControllFunctions
+	 * @param array $mapControlFunctions
 	 * @return void
 	 */
-	public function setMapControllFunctions($mapControllFunctions) {
-		$this->mapControllFunctions = $mapControllFunctions;
+	public function setMapControlFunctions($mapControlFunctions) {
+		$this->mapControlFunctions = $mapControlFunctions;
 	}
 
 	/**
-	 * Returns this mapControllFunctions
+	 * Adds a function to this mapControlFunctions
+	 *
+	 * @param string $key
+	 * @param string $functionString
+	 * @return void
+	 */
+	public function addMapControlFunction($key, $functionString) {
+		$this->mapControlFunctions[$key] = $functionString;
+	}
+
+	/**
+	 * Returns this mapControlFunctions
 	 *
 	 * @return array
 	 */
-	public function getMapControllFunctions() {
-		return $this->mapControllFunctions;
+	public function getMapControlFunctions() {
+		return $this->mapControlFunctions;
 	}
 
 	/**
@@ -241,7 +252,7 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	}
 
 	/**
-	 * Returns this visible
+	 * Returns this dataProvider
 	 *
 	 * @return array
 	 */

@@ -97,11 +97,6 @@
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byMapAndLayer">For all and allow override by layer</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byMap">For all and disallow override by layer</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byLayer">Set only by layer</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType">Placingtype:</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.both">on both</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.markers">only on markers</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.shape">only on shape</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPosition">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowObjectNumber">Info window object number:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowKeepOpen">Keep info window open:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowCloseOnClick">Close on click layer again:</label>
@@ -128,40 +123,19 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.type">Layer type:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markers</label>
-			<label index="tx_adgooglemaps_domain_model_layer.type.polyline">Polyline</label>
-			<label index="tx_adgooglemaps_domain_model_layer.type.polygon">Polygon</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Title:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.visible">Visible:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.markerClickable">Clickable:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shapeClickable">Clickable:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.clickable">Clickable:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.draggable">Draggable:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.raiseOnDrag">Raise on drag:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.geodesic">Geodesic:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.markerZindex">Z-Index:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shapeZindex">Z-Index:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider">Coordinates provider:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.mapDrawer">MapDrawer</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.addresses">Addresses</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.addressGroups">Address groups</label>
-			<label index="tx_adgooglemaps_domain_model_layer.coordinates">Coordinates:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addresses">Addresses:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addressGroups">Address groups:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.zindex">Z-Index:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Coordinates provider:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer">MapDrawer</label>
 			<label index="tx_adgooglemaps_domain_model_layer.categories">Categories:</label>
-
-			<label index="tx_adgooglemaps_domain_model_layer.sheetAppearance">Appearance</label>
-			<label index="tx_adgooglemaps_domain_model_layer.colorPickerTitle">Color Picker:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeColor">Stroke color:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeOpacity">Stroke opacity:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeWeight">Stroke weight:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.fillColor">Fill color:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.fillOpacity">Fill opacity:</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetMarkers">Markers</label>
 			<label index="tx_adgooglemaps_domain_model_layer.itemTitles">Marker Titles:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.itemTitlesObjectNumber">Marker titles object number:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addMarkers">Add markers:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.forceListing">Force listing:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.iconExtendedSettingsLabel">Extended icon settings:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.iconObjectNumber">Icon object number:</label>
@@ -190,17 +164,12 @@
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.circle">Circle</label>
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.poly">Polygon</label>
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.rect">Rectangle</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shape">Shape Coordinates:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.shapeCoords">Shape Coordinates:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.mouseCursor">Mouse cursor:</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetInfoWindow">Info window</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindow">Info window content elements:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel">Extended info window settings:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType">Placingtype:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.both">on both</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.markers">only on Markers</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.shape">only on Shape</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPosition">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowObjectNumber">Info window object number:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowKeepOpen">Keep info window open:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowCloseOnClick">Close on click layer again:</label>
@@ -302,11 +271,6 @@
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byMapAndLayer">Für alle und erlaube Überschreiben durch die Ebene</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byMap">Für alle und verbiete Überschreiben durch die Ebene</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowBehaviour.byLayer">Wir nur durch Ebene gesetzt</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType">Plazierungstyp:</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.both">auf beiden</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.markers">nur auf den Markierungen</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPlacingType.shape">nur auf Formen</label>
-			<label index="tx_adgooglemaps_domain_model_map.infoWindowPosition">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowObjectNumber">Infofenster-Objektnummer:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowKeepOpen">Infofenster bleiben offen:</label>
 			<label index="tx_adgooglemaps_domain_model_map.infoWindowCloseOnClick">Schließe Fenster bei erneutem Klick:</label>
@@ -332,40 +296,20 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.type">Ebenentyp:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markierung</label>
-			<label index="tx_adgooglemaps_domain_model_layer.type.polyline">Polylinie</label>
-			<label index="tx_adgooglemaps_domain_model_layer.type.polygon">Polygon</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Titel:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.visible">Sichtbar:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.markerClickable">Kickbar:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shapeClickable">Kickbar:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.clickable">Kickbar:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.draggable">Verschiebbar:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.raiseOnDrag">Heben beim Verschieben:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.geodesic">Geodäte:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.markerZindex">Z-Index:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shapeZindex">Z-Index:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider">Koordinaten-Provider:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.mapDrawer">MapDrawer</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.addresses">Adressen</label>
-			<label index="tx_adgooglemaps_domain_model_layer.dataProvider.addressGroups">Adressgruppen</label>
-			<label index="tx_adgooglemaps_domain_model_layer.coordinates">Koordinaten:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addresses">Adressen:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addressGroups">Adressgruppen:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.zindex">Z-Index:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Koordinaten-Provider:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer">MapDrawer</label>
 			<label index="tx_adgooglemaps_domain_model_layer.categories">Kategorien:</label>
-
-			<label index="tx_adgooglemaps_domain_model_layer.sheetAppearance">Erscheinungsbild</label>
-			<label index="tx_adgooglemaps_domain_model_layer.colorPickerTitle">Farbwähler:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeColor">Linienfarbe:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeOpacity">Linienopazität:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.strokeWeight">Linienstärke:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.fillColor">Füllfarbe:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.fillOpacity">Füllopazität:</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetMarkers">Markierungen</label>
 			<label index="tx_adgooglemaps_domain_model_layer.itemTitles">Markierungstitel:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.itemTitlesObjectNumber">Markierungstitel-Objektnummer:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.addMarkers">Markierung hinzufügen:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.forceListing">Erzwinge Auflistung:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.iconExtendedSettingsLabel">Erweiterte Icon-Einstellungen:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.iconObjectNumber">Icon-Objektnummer:</label>
@@ -394,17 +338,12 @@
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.circle">Kreis</label>
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.poly">Polygon</label>
 			<label index="tx_adgooglemaps_domain_model_layer.shapeType.rect">Viereck</label>
-			<label index="tx_adgooglemaps_domain_model_layer.shape">Bildbereich-Koordinaten:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.shapeCoords">Bildbereich-Koordinaten:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.mouseCursor">Maus-Cursor:</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetInfoWindow">Infofenster</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindow">Infofenster-Seiteninhalt:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowExtendedSettingsLabel">Erweiterte Infofenster-Einstellungen:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType">Plazierungstyp:</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.both">auf beiden</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.markers">nur auf den Markierungen</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPlacingType.shape">nur auf Formen</label>
-			<label index="tx_adgooglemaps_domain_model_layer.infoWindowPosition">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowObjectNumber">Infofenster-Objektnummer:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowKeepOpen">Infofenster bleiben offen:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.infoWindowCloseOnClick">Schließe Fenster bei erneutem Klick:</label>
