@@ -1,0 +1,22 @@
+<f:renderFlashMessages class="csc-frame-frame1" style="color: #ff0000;" />
+<!--
+	Use f:escape to prevent HTML formatting. 
+-->
+<f:escape type="" value="{googleMapsPlugin.printCanvas}" />
+<script type="text/javascript"><!--
+<f:escape type="" value="{googleMapsPlugin}" />
+--></script>
+<f:if condition="{googleMapsPlugin.searchControl}">
+	<form action="#" methode="GET" onsubmit="{googleMapsPlugin.pluginMapObjectIdentifier}.searchByAddress(this.searchAddressField.value); return false;">
+		<fieldset>
+			<legend><f:translate key="searchLegend" /></legend>
+			<label for="searchAddressField"><f:translate key="searchLabel" /></label>
+			<input id="searchAddressField" name="searchAddressField" type="text"></input>
+			<input id="searchAddressSubmit" name="searchAddressSubmit" type="submit" value="{f:translate(key: 'searchButton')}"></input>
+		</fieldset>
+	</form>
+</f:if>
+<f:if condition="{map.categories}">
+	<h2>{map.title}</h2>
+	<f:render partial="CategoryList" arguments="{categories: map.categories}" />
+</f:if>

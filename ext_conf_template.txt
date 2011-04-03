@@ -1,0 +1,35 @@
+
+uploadDirectories {
+
+	# cat=ad: Google Maps API/file/110; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.categoryIcons
+	categoryIcons = uploads/tx_adgooglemaps/
+
+	# cat=ad: Google Maps API/file/120; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.markerIcons
+	markerIcons = uploads/tx_adgooglemaps/
+
+	# cat=ad: Google Maps API/file/130; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.shadowIcons
+	shadowIcons = uploads/tx_adgooglemaps/
+
+	# cat=ad: Google Maps API/file/140; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.mouseCursor
+	mouseCursor = uploads/tx_adgooglemaps/
+
+	# cat=ad: Google Maps API/file/150; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.kmlFiles
+	kmlFiles = uploads/tx_adgooglemaps/
+
+	# cat=ad: Google Maps API/file/160; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:uploadDirectories.markerCluster
+	markerCluster = uploads/tx_adgooglemaps/
+}
+
+l10n {
+	# cat=ad: Google Maps API/language/230; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.prependTranslationInfo
+	prependTranslationInfo = 1
+
+	# cat=ad: Google Maps API/language/240; type=options[LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.excludeProperties.all=all,LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.excludeProperties.file=file,LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.excludeProperties.none=none]; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.excludeProperties
+	excludeProperties = all
+
+	# cat=ad: Google Maps API/language/250; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:l10n.hideNewLocalizations
+	hideNewLocalizations = 0
+}
+
+# cat=ad: Google Maps API/basic/320; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:prependAtCopy
+prependAtCopy = 1
