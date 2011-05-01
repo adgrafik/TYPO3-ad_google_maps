@@ -1,0 +1,67 @@
+###
+# This are the default TS-constants
+##
+
+plugin.tx_adgooglemaps {
+	settings {
+
+		# Default configuration for map record. Values will be overridden by record fields. 
+		map {
+
+			# cat=ad: Google Maps/enable/100; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.map.height
+			height = 400
+		}
+
+		api {
+
+			# cat=ad: Google Maps/enable/200; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.canvas
+			canvas = tx_adgooglemaps_canvas_###UID###
+
+			# cat=ad: Google Maps/enable/210; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.mapTypeId
+			mapTypeId = google.maps.MapTypeId.ROADMAP
+
+			# cat=ad: Google Maps/enable/220; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.center
+			center = 48.209206,16.372778
+
+			# cat=ad: Google Maps/enable/230; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.zoom
+			zoom = 11
+
+			# cat=ad: Google Maps/enable/250; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.minZoom
+			minZoom = 1
+
+			# cat=ad: Google Maps/enable/240; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.maxZoom
+			maxZoom = 17
+		}
+
+		plugin {
+
+			# cat=ad: Google Maps/enable/310; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.apiUrl
+			apiUrl = http://maps.google.com/maps/api/js?sensor=false
+
+			# cat=ad: Google Maps/enable/350; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.pluginFile
+			pluginFile = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_Plugin.js
+
+			# cat=ad: Google Maps/enable/360; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.markerClusterUrl
+			markerClusterUrl = http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer_compiled.js
+
+			# cat=ad: Google Maps/enable/340; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.geocodeUrl
+			geocodeUrl = http://maps.google.com/maps/api/geocode/json
+		}
+	}
+
+	persistence {
+		 # cat=ad: Google Maps/enable/410; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:persistence.storagePid
+		storagePid = 
+	}
+
+	view {
+		 # cat=ad: Google Maps/file/510; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:view.templateRootPath
+		templateRootPath = EXT:ad_google_maps/Resources/Private/Templates/
+
+		 # cat=ad: Google Maps/file/520; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:view.partialRootPath
+		partialRootPath = EXT:ad_google_maps/Resources/Private/Partials/
+
+		 # cat=ad: Google Maps/file/530; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:view.layoutRootPath
+		layoutRootPath = EXT:ad_google_maps/Resources/Private/Layouts/
+	}
+}
