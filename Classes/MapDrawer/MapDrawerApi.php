@@ -46,10 +46,10 @@ class tx_AdGoogleMaps_MapDrawer_MapDrawerApi {
 	 * @return void
 	 */
 	public function tx_draw($currentField, $formObject) {
-		$TSCpid = current($formObject->getTSCpid('tx_adgooglemaps_domain_model_layer', $currentField['row']['uid'], $currentField['row']['pid']));
 		// Load this settings and check if TypoScript setup is set.
-		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($TSCpid, 'tx_adgooglemaps')) === FALSE || array_key_exists('mapDrawer', $settings) === FALSE) {
-			return Tx_AdGoogleMaps_Utility_BackEnd::addFlashMessage('Add static TypoScript "ad: Google Maps Api" to your template.');
+		$pid = current($formObject->getTSCpid($currentField['table'], $currentField['row']['uid'], $currentField['row']['pid']));
+		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($pid, 'tx_adgooglemaps')) === FALSE || array_key_exists('mapDrawer', $settings) === FALSE) {
+			return Tx_AdGoogleMaps_Utility_BackEnd::addFlashMessage('Add static Template "ad: Google Maps (ad_google_maps)" to your template.');
 		}
 		$this->settings = $settings['mapDrawer'];
 

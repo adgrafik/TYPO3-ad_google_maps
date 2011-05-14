@@ -45,8 +45,6 @@ TYPO3.Tx_AdGoogleMaps_MapDrawer_Layer_Marker = Ext.extend(TYPO3.Tx_AdGoogleMaps_
 		// Call parent constructor to initialize the map.
 		TYPO3.Tx_AdGoogleMaps_MapDrawer_Layer_Marker.superclass.constructor.call(this, options);
 
-		var _this = this;
-
 		if (this.fitBoundsOnLoad === true){
 			var bounds = new google.maps.LatLngBounds();
 			this.latlngs.forEach(function(latlng, index){
@@ -59,10 +57,12 @@ TYPO3.Tx_AdGoogleMaps_MapDrawer_Layer_Marker = Ext.extend(TYPO3.Tx_AdGoogleMaps_
 		this.searchMarkerCallback = this.addMarker;
 
 		// Add click listener to the map.
-		google.maps.event.addListener(this.map, 'click', function(event){
+		var _this = this;
+		var onClick = function(event){
 			_this.addMarker(event.latLng);
 			_this.updateCoordinatesField();
-		});
+		}
+		google.maps.event.addListener(this.map, 'click', onClick);
 	},
 
 	/**
@@ -73,7 +73,6 @@ TYPO3.Tx_AdGoogleMaps_MapDrawer_Layer_Marker = Ext.extend(TYPO3.Tx_AdGoogleMaps_
 	 */
 	drawLayer: function(resetMap){
 		if (resetMap){
-			var _this = this;
 			this.markers.forEach(function(marker, index){
 				marker.setMap(null);
 			});

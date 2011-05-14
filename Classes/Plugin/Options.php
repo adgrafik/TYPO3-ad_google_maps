@@ -49,7 +49,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	protected $mapControl;
 
 	/**
-	 * @var SplObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
 	 * @javaScriptHelper 
 	 */
 	protected $layerOptions;
@@ -60,7 +60,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	public function __construct() {
 		$this->mapOptions = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Map', NULL);
 		$this->mapControl = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_MapControl');
-		$this->layerOptions = t3lib_div::makeInstance('SplObjectStorage');
+		$this->layerOptions = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -126,7 +126,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Sets this layers.
 	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface> $layers
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface> $layers
 	 * @return Tx_AdGoogleMaps_Plugin_Options
 	 */
 	public function setLayerOptions($layers) {
@@ -148,7 +148,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Returns this layerOptions.
 	 *
-	 * @return SplObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
 	 */
 	public function getLayerOptions() {
 		return $this->layerOptions;

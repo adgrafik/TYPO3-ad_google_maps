@@ -43,18 +43,15 @@
 		[TASK] Moved MapDrawer from ad_google_maps_api to ad_google_maps.
 		[TASK] Moved Tx_AdGoogleMaps_Utility_BackEnd::getRelativePathAndFileName to Tx_AdGoogleMaps_Utility_BackEnd::getRelativePathAndFileName.
 		[TASK] Changed the name PluginAdapter to MapBuilder and LayerBuilder to Layer.
-		
-
-
-
-[FEATURE] Added map search.
-		[BUGFIX] Fixed issue #14027. Static template must not include in root template any more.
-		[TASK] Made more OOP, fexible and extendable. Now it's possible to extend this extension with own extensions.
 		[TASK] MarkerShape.coord renamed to MarkerShape.coords http://code.google.com/p/gmaps-api-issues/source/detail?r=385&path=/wiki/JavascriptMapsAPIv3Changelog.wiki
-		[TASK] Moved directory from Classes/Service/MapPlugin/ to Classes/Plugin/
-		[TASK] Moved classes from Classes/Service/MapPlugin/ExtendedApi/Layers/ to Classes/Service/Plugin/Layer/
 		[TASK] Moved Resources/Public/JavaScript/Tx_AdGoogleMaps_Plugin.js to Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_Plugin.js
-		[TASK] Moved Google Maps Api files to Api/
+		[TASK] Moved Google Maps Api files from . to Api/
 		[TASK] Renamed MapPlugin.php to GoogleMaps.php
-		[TASK] Renamed directory Utility to Utility.
 		[TASK] Moved MapDrawer to ad_google_maps.
+		[TASK] Moved ad_google_maps_api completly to ad_google_maps.
+
+1.1.1	[BUGFIX] Changed SplObjectStorage to Tx_Extbase_Persistence_ObjectStorage to work also with PHP 5.2.x.
+		[BUGFIX] Fixed info windows content in JavaScript. Removes LF and CR and escapes single quotes.
+		[BUGFIX] Fixed error if you create a new record with a MapDrawer and klick on "Save and Create".
+		[TASK] Added getMap to Tx_AdGoogleMaps_Plugin in Tx_AdGoogleMaps_Plugin.js.
+		[TASK] Changed some strings.

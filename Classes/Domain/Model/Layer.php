@@ -62,7 +62,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_AdGoogleMaps_Domain_Model_Ab
 	protected $categories;
 
 	/**
-	 * @var SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item>
 	 */
 	protected $items;
 
@@ -104,7 +104,7 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_AdGoogleMaps_Domain_Model_Ab
 	public function initializeObject() {
 		parent::initializeObject();
 		// Set default values.
-		$this->items = new SplObjectStorage();
+		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
@@ -209,17 +209,17 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_AdGoogleMaps_Domain_Model_Ab
 	/**
 	 * Sets this items
 	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
 	 * @return void
 	 */
-	public function setItems(SplObjectStorage $items) {
+	public function setItems(Tx_Extbase_Persistence_ObjectStorage $items) {
 		$this->items = $items;
 	}
 
 	/**
 	 * Adds an item to this items.
 	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
 	 * @return void
 	 */
 	public function addItem(Tx_AdGoogleMaps_Domain_Model_Item $item) {
@@ -229,17 +229,17 @@ class Tx_AdGoogleMaps_Domain_Model_Layer extends Tx_AdGoogleMaps_Domain_Model_Ab
 	/**
 	 * Adds items to this items.
 	 *
-	 * @param SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item> $items
 	 * @return void
 	 */
-	public function addItems(SplObjectStorage $items) {
+	public function addItems(Tx_Extbase_Persistence_ObjectStorage $items) {
 		$this->items->addAll($items);
 	}
 
 	/**
 	 * Returns this items
 	 *
-	 * @return SplObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Item>
 	 */
 	public function getItems() {
 		return $this->items;

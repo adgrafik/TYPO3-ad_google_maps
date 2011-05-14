@@ -38,14 +38,14 @@
 class Tx_AdGoogleMaps_Api_LatLngArray {
 
 	/**
-	 * @var SplObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
 	 */
 	protected $latLngArray;
 
 	/*
 	 * Constructor.
 	 * $latLngArray can be 
-	 * - a SplObjectStorage of Tx_AdGoogleMaps_Api_LatLng objects, 
+	 * - a Tx_Extbase_Persistence_ObjectStorage of Tx_AdGoogleMaps_Api_LatLng objects, 
 	 * - or an array like "array('48.209206,16.372778', '48.209206,16.372778')". 
 	 * 
 	 * @param mixed $latLngArray
@@ -62,10 +62,10 @@ class Tx_AdGoogleMaps_Api_LatLngArray {
 	 * @return void
 	 */
 	public function setLatLngArray($latLngArray) {
-		if ($latLngArray instanceof SplObjectStorage) {
+		if ($latLngArray instanceof Tx_Extbase_Persistence_ObjectStorage) {
 			$this->latLngArray = $latLngArray;
 		} else if (is_array($latLngArray)) {
-			$this->latLngArray = new SplObjectStorage();
+			$this->latLngArray = new Tx_Extbase_Persistence_ObjectStorage();
 			foreach ($latLngArray as $latLng) {
 				$this->addLatLng($latLng);
 			}
@@ -77,7 +77,7 @@ class Tx_AdGoogleMaps_Api_LatLngArray {
 	/**
 	 * Returns this latLngArray.
 	 *
-	 * @return SplObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
 	 */
 	public function getLatLngArray() {
 		return $this->latLngArray;

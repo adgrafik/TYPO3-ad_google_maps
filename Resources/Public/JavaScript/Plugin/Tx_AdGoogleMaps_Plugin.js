@@ -71,6 +71,10 @@ Tx_AdGoogleMaps_Plugin.prototype = {
 		}
 	},
 
+	getMap: function(){
+		return this.map;
+	},
+
 	getLayerOptions: function(layerIndex){
 		return (this.layerOptions[layerIndex] !== undefined ? this.layerOptions[layerIndex] : null);
 	},
