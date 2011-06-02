@@ -367,6 +367,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 			$infoWindowOptionsObject = $this->infoWindows->buildItem($index, NULL); // Set no coordinates for marker info windows, cause info window sets position automatically on click.
 			if ($infoWindowOptionsObject !== NULL) {
 				$infoWindowOptionsObject->setLinkToLayerUid($layerUid);
+				$this->addCategoryItemKey($this->infoWindows->getCategoryItemKeys());
 			}
 		}
 
@@ -393,7 +394,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 			$this->layer->addItem($item);
 		}
 
-		$this->categoryItemKeys[] = $layerUid;
+		$this->addCategoryItemKey($layerUid);
 
 		return $layerOptionsObject;
 	}

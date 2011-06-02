@@ -55,3 +55,9 @@
 		[BUGFIX] Fixed error if you create a new record with a MapDrawer and klick on "Save and Create".
 		[TASK] Added getMap to Tx_AdGoogleMaps_Plugin in Tx_AdGoogleMaps_Plugin.js.
 		[TASK] Changed some strings.
+
+1.1.2	[FEATURE] Added show/hide/toggle function.
+		[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
+		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?".
+		[TASK] Changed getBoundsOfLatLngArray to getBoundsByLatLngArray and getCenterOfLatLngArray to getCenterByLatLngArray.
+		[TASK] Added all items of a category to categoryItemKeys in MapBuilder Layers like info windows.

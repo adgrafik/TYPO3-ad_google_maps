@@ -168,14 +168,15 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		$pluginOptions = $this->googleMapsPlugin->getPluginOptions();
 		$pluginOptions->addLayerOptions($layerOptionsObject);
 
+		$this->addCategoryItemKey($layerUid);
+
 		// If is set, nothing else to do.
 		if ($this->preventAddListItems === TRUE)
 			return $layerOptionsObject;
 
 		// Get item titles.
-		$itemTitle = $this->getItemTitle($index, $itemData);
-
-		$this->categoryItemKeys[] = $layerUid;
+		// TODO: Make own layer type with info windows.
+#		$itemTitle = $this->getItemTitle($index, $itemData);
 
 		return $layerOptionsObject;
 	}

@@ -260,12 +260,36 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	}
 
 	/**
+	 * Sets this categoryItemKeys.
+	 *
+	 * @param array $categoryItemKeys
+	 * @return void
+	 */
+	public function setCategoryItemKeys($categoryItemKeys) {
+		$this->categoryItemKeys = $categoryItemKeys;
+	}
+
+	/**
+	 * Sets this categoryItemKeys.
+	 *
+	 * @param mixed $categoryItemKey
+	 * @return void
+	 */
+	public function addCategoryItemKey($categoryItemKey) {
+		if (is_array($categoryItemKey) === TRUE) {
+			$this->categoryItemKeys = array_merge($this->categoryItemKeys, $categoryItemKey);
+		} else {
+			$this->categoryItemKeys[] = $categoryItemKey;
+		}
+	}
+
+	/**
 	 * Returns this categoryItemKeys.
 	 *
 	 * @return array
 	 */
 	public function getCategoryItemKeys() {
-		return $this->categoryItemKeys;
+		return array_flip(array_flip($this->categoryItemKeys));
 	}
 
 	/**
@@ -360,6 +384,9 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 			'openInfoWindow' => ($infoWindowUid !== NULL ? $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.openInfoWindow(\'' . $infoWindowUid . '\')' : 'void(0)'),
 			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(\'' . $layerUid . '\')',
 			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(\'' . $layerUid . '\')',
+			'show' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.show(\'' . $layerUid . '\')',
+			'hide' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.hide(\'' . $layerUid . '\')',
+			'toggle' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.toggle(\'' . $layerUid . '\')',
 		);
 		if (array_key_exists('mapControlFunctions', $this->settings['layer'])) {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['layer']['mapControlFunctions']);

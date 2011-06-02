@@ -174,7 +174,7 @@ plugin.tx_adgooglemaps {
 
 	persistence {
 
-		storagePid = {$plugin.tx_adgooglemaps.persistence.storagePid}
+		storagePid = {$plugin.tx_adgooglemaps.persistence.storagePid},75
 
 		classes {
 			Tx_AdGoogleMaps_Domain_Model_Layer {
@@ -208,6 +208,9 @@ plugin.tx_adgooglemaps {
 			searchButton = Search
 			panTo = pan to
 			fitBounds = fit bounds
+			show = show
+			hide = hide
+			toggle = toggle
 			userFunction = user function
 		}
 	}

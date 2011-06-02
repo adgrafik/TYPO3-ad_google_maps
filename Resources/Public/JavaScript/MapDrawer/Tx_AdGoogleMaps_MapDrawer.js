@@ -143,7 +143,7 @@ TYPO3.Tx_AdGoogleMaps_MapDrawer_AbstractLayer = Ext.extend(Object, {
 					'<strong>Search:</strong> ' + address + '<br />' +
 					'<strong>Latitude:</strong> ' + results[0].geometry.location.lat() + '<br />' +
 					'<strong>Longitude:</strong> ' + results[0].geometry.location.lng() + '<br /><br />' +
-					'<input type="button" onclick="javascript: ' + _this.objectId + '.addMarker(new google.maps.LatLng(' + results[0].geometry.location.toUrlValue() + ')); ' + _this.objectId + '.updateCoordinatesField(); return false;" value="Set Marker" /">';
+					'<input type="button" onclick="javascript: ' + _this.objectId + '.searchMarkerCallback(new google.maps.LatLng(' + results[0].geometry.location.toUrlValue() + ')); ' + _this.objectId + '.updateCoordinatesField(); return false;" value="Set Marker" /">';
 				if (_this.searchMarker){
 					_this.searchMarker.setPosition(results[0].geometry.location);
 					_this.searchMarkerInfo.setContent(searchMarkerInfoContent);

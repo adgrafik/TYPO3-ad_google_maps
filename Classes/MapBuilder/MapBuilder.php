@@ -91,11 +91,13 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		$mapCenterType = $this->map->getCenterType();
 		$mapCenter = $this->map->getCenter();
 		$mapZoom = $this->map->getZoom();
-		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom']; 
-		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE && Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($apiSettings['center']) === TRUE) {
-			$mapCenter = $apiSettings['center'];
-		} else {
-			$mapCenter = '48.209206,16.372778';
+		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom'];
+		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
+			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($apiSettings['center']) === TRUE) {
+				$mapCenter = $apiSettings['center'];
+			} else {
+				$mapCenter = '48.209206,16.372778';
+			}
 		}
 		$pluginMapOption = $pluginOptions->getMapOptions();
 		$pluginMapOption
@@ -230,6 +232,9 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		$mapControlFunctions = array(
 			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(' . $javaScriptArray . ')',
 			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(' . $javaScriptArray . ')',
+			'show' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.show(' . $javaScriptArray . ')',
+			'hide' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.hide(' . $javaScriptArray . ')',
+			'toggle' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.toggle(' . $javaScriptArray . ')',
 		);
 		if (array_key_exists('mapControlFunctions', $this->settings['category'])) {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['category']['mapControlFunctions']);
