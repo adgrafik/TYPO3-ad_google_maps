@@ -351,7 +351,8 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 				if (is_callable(array($this->coordinatesProvider, $getterName)) === FALSE) {
 					throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given property name to iterate coordinates provider "' . $this->coordinatesProviderIterateProperty . '" doesn\'t exists.', 1297889107);
 				}
-				foreach ($this->coordinatesProvider->$getterName() as $index => $value) {
+				$coordinates = call_user_func(array($this->coordinatesProvider, $getterName));
+				foreach ($coordinates as $index => $value) {
 					$this->buildItem($index, $value);
 				}
 			} else {
@@ -380,17 +381,23 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @return array
 	 */
 	protected function getItemMapControlFunctions($layerUid, $infoWindowUid = NULL) {
+		$pluginMapObjectIdentifier = $this->googleMapsPlugin->getPluginMapObjectIdentifier();
 		$mapControlFunctions = array(
-			'openInfoWindow' => ($infoWindowUid !== NULL ? $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.openInfoWindow(\'' . $infoWindowUid . '\')' : 'void(0)'),
-			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(\'' . $layerUid . '\')',
-			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(\'' . $layerUid . '\')',
-			'show' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.show(\'' . $layerUid . '\')',
-			'hide' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.hide(\'' . $layerUid . '\')',
-			'toggle' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.toggle(\'' . $layerUid . '\')',
+			'openInfoWindow' => ($infoWindowUid !== NULL ? sprintf('%s.openInfoWindow(\'%s\')', $pluginMapObjectIdentifier, $infoWindowUid) : 'void(0)'),
+			'panTo' => sprintf('%s.panTo(\'%s\')', $pluginMapObjectIdentifier, $layerUid),
+			'fitBounds' => sprintf('%s.fitBounds(\'%s\')', $pluginMapObjectIdentifier, $layerUid),
+			'show' => sprintf('%s.show(\'%s\')', $pluginMapObjectIdentifier, $layerUid),
+			'hide' => sprintf('%s.hide(\'%s\')', $pluginMapObjectIdentifier, $layerUid),
+			'toggle' => sprintf('%s.toggle(\'%s\')', $pluginMapObjectIdentifier, $layerUid),
 		);
-		if (array_key_exists('mapControlFunctions', $this->settings['layer'])) {
+		if (array_key_exists('mapControlFunctions', $this->settings['layer']) === TRUE) {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['layer']['mapControlFunctions']);
-			$mapControlFunctions = str_replace('###ITEM_KEY###', $layerUid, $mapControlFunctions);
+			// @deprecated: ###ITEM_KEY### is deprecated. Use ###LAYER_UID### instead.
+			$mapControlFunctions = str_replace(
+				array('###ITEM_KEY###', '###LAYER_UID###', '###INFOWINDOW_UID###', '###PLUGIN_MAPOBJECT_IDENTIFIER###'),
+				array($layerUid, $layerUid, $infoWindowUid, $pluginMapObjectIdentifier),
+				$mapControlFunctions
+			);
 		}
 		return $mapControlFunctions;
 	}

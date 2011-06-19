@@ -31,16 +31,111 @@
 abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @var integer
 	 */
-	protected $mapBuilder;
+	protected static $mapUid;
 
 	/**
-	 * @param Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder
-	 * @return void
+	 * @var Tx_AdGoogleMaps_Domain_Model_Map
 	 */
-	public function injectMapBuilder(Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder) {
-		$this->mapBuilder = $mapBuilder;
+	protected static $map;
+
+	/**
+	 * @var Tx_Extbase_Persistence_QueryResultInterface
+	 */
+	protected static $categories;
+
+	/**
+	 * @var Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 */
+	protected static $mapBuilder;
+
+	/**
+	 * Returns the map uid of the tt_content plugin form.
+	 *
+	 * @return integer
+	 */
+	protected function initializeIndexAction() {
+		$error = NULL;
+
+		if (array_key_exists('flexform', $this->settings) === FALSE) {
+			$error = Tx_Extbase_Utility_Localization::translate('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang.xml:Tx_AdGoogleMaps_Controller.error.settingsNotFound', 'ad_google_maps', array('ad: Google Maps'));
+		}
+
+		// Get map.
+		self::$mapUid = (integer) $this->settings['flexform']['mapUid'];
+		$mapRepository = $this->objectManager->get('Tx_AdGoogleMaps_Domain_Repository_MapRepository');
+		self::$map = $mapRepository->findByUid(self::$mapUid);
+		if (self::$map instanceof Tx_AdGoogleMaps_Domain_Model_Map === FALSE) {
+			$this->flashMessageContainer->add(
+				$error = Tx_Extbase_Utility_Localization::translate('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang.xml:Tx_AdGoogleMaps_Controller.error.mapNotFound', 'ad_google_maps', array($this->mapUid))
+			);
+		}
+
+		if ($error !== NULL) {
+			$this->actionMethodName = 'rejectAction';
+			$this->flashMessageContainer->add($error);
+			return;
+		}
+
+		// Use categoriesCpsTcaTree field if the extension cps_tcatree is loaded.
+		if (t3lib_extMgm::isLoaded('cps_tcatree') === TRUE) {
+			$this->settings['flexform']['categories'] = $this->settings['flexform']['categoriesCpsTcaTree'];
+		}
+
+		// Get categories.
+		$uids = explode(',', $this->settings['flexform']['categories']);
+		$categoryRepository = $this->objectManager->get('Tx_AdGoogleMaps_Domain_Repository_CategoryRepository');
+		self::$categories = $categoryRepository->findByUids($uids);
+
+		// Build map plugin.
+		self::$mapBuilder = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_MapBuilder');
+		self::$mapBuilder->build($this->getMap(), $this->getCategories(), $this->settings);
+	}
+
+	/**
+	 * Rejects the action if an error occurred.
+	 *
+	 * @return integer
+	 */
+	protected function rejectAction() {
+		return;
+	}
+
+	/**
+	 * Returns this mapUid
+	 *
+	 * @return integer
+	 */
+	protected function getMapUid() {
+		return self::$mapUid;
+	}
+
+	/**
+	 * Returns this map
+	 *
+	 * @return Tx_AdGoogleMaps_Domain_Model_Map
+	 */
+	protected function getMap() {
+		return clone self::$map;
+	}
+
+	/**
+	 * Returns this categories
+	 *
+	 * @return Tx_Extbase_Persistence_QueryResultInterface
+	 */
+	protected function getCategories() {
+		return clone self::$categories;
+	}
+
+	/**
+	 * Returns this mapBuilder
+	 *
+	 * @return Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 */
+	protected function getMapBuilder() {
+		return self::$mapBuilder;
 	}
 
 }

@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Adapter for the Tx_AdGoogleMaps_Plugin_GoogleMaps class.
+ * Coordinates Provider interface.
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2

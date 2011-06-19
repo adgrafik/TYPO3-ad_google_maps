@@ -31,6 +31,23 @@
 class Tx_AdGoogleMaps_Domain_Repository_CategoryRepository extends Tx_Extbase_Persistence_Repository {
 
 	/**
+	 * Returns the categories.
+	 *
+	 * @param array $uids
+	 * @return array
+	 */
+	public function findByUids(array $uids) {
+		$query = $this->createQuery();
+		$categories = $query
+			->matching(
+				$query->in('uid', $uids)
+			)
+			->execute();
+
+		return $categories;
+	}
+
+	/**
 	 * Returns the sub categories of a category.
 	 *
 	 * @param Tx_AdGoogleMaps_Domain_Model_Category $category
@@ -38,9 +55,8 @@ class Tx_AdGoogleMaps_Domain_Repository_CategoryRepository extends Tx_Extbase_Pe
 	 */
 	public function findSubCategories(Tx_AdGoogleMaps_Domain_Model_Category $category) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		$subCategories = $query->matching($query->equals('parentCategory', $category->getUid()))
-#			->setOrderings(array('lastName' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+#			->setOrderings(array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 
 		return $subCategories;

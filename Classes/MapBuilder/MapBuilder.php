@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Adapter for the Tx_AdGoogleMaps_Plugin_GoogleMaps class.
+ * MapBuilder class.
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -67,34 +67,31 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 * Returns the Google Maps API object.
 	 *
 	 * @param Tx_AdGoogleMaps_Domain_Model_Map $map
+	 * @param Tx_Extbase_Persistence_QueryResultInterface $categories
 	 * @param array $settings
 	 * @return Tx_AdGoogleMaps_MapBuilder_MapBuilder
 	 */
-	public function build(Tx_AdGoogleMaps_Domain_Model_Map $map, $settings) {
+	public function build(Tx_AdGoogleMaps_Domain_Model_Map $map, Tx_Extbase_Persistence_QueryResultInterface $categories, $settings) {
 		$this->map = $map;
 		$this->settings = $settings;
 
 		// Create Google Maps API plugin.
 		$this->googleMapsPlugin = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_GoogleMaps')
 			->setMapId($this->map->getPropertyValue('uid', 'map'))
-			->setWidth($this->map->getWidth())
-			->setHeight($this->map->getHeight());
+			->setWidth($this->settings['flexform']['width'] ? $this->settings['flexform']['width'] : $this->settings['plugin']['width'])
+			->setHeight($this->settings['flexform']['height'] ? $this->settings['flexform']['height'] : $this->settings['plugin']['height']);
 
 		// Set plugin options.
-		$apiSettings = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_adgooglemaps.']['settings.']['api.'];
 		$pluginOptions = $this->googleMapsPlugin->getPluginOptions();
-		$canvas = $apiSettings['canvas'];
+		$canvas = $this->settings['plugin']['canvas'];
 		$pluginOptions
 			->setCanvasId(str_replace('###UID###', $this->map->getPropertyValue('uid', 'map'), $canvas));
 
 		// Set initial map options.
-		$mapCenterType = $this->map->getCenterType();
 		$mapCenter = $this->map->getCenter();
-		$mapZoom = $this->map->getZoom();
-		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom'];
 		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
-			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($apiSettings['center']) === TRUE) {
-				$mapCenter = $apiSettings['center'];
+			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($this->settings['models']['map']['center']) === TRUE) {
+				$mapCenter = $this->settings['models']['map']['center'];
 			} else {
 				$mapCenter = '48.209206,16.372778';
 			}
@@ -106,7 +103,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 			->setBackgroundColor($this->map->getBackgroundColor())
 			->setNoClear($this->map->isNoClear())
 			->setDisableDefaultUi($this->map->isDisableDefaultUi())
-			->setZoom($mapZoom)
+			->setZoom($this->map->getZoom())
 			->setMinZoom($this->map->getMinZoom())
 			->setMaxZoom($this->map->getMaxZoom());
 		// Set control options.
@@ -169,20 +166,20 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		// Set map control options.
 		$pluginMapControl = $pluginOptions->getMapControl();
 		$pluginMapControl
-			->setFitBoundsOnLoad($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS)
+			->setFitBoundsOnLoad($this->map->getCenterType() === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS)
 			->setUseMarkerCluster($this->map->isUseMarkerCluster())
 			->setInfoWindowCloseAllOnMapClick($this->map->isInfoWindowCloseAllOnMapClick());
 
-		$this->buildLayers($this->map->getCategories());
+		$this->buildLayers($categories);
 
 		return $this;
 	}
 
 	/**
-	 * Returns the Google Maps API object.
+	 * Builds the Google Maps layers.
 	 *
 	 * @param mixed $categories
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return void
 	 * @throw Tx_AdGoogleMaps_MapBuilder_Exception
 	 */
 	protected function buildLayers($categories) {
@@ -228,17 +225,23 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 * @return array
 	 */
 	protected function getCategoryMapControlFunctions($categoryItemKeys) {
-		$javaScriptArray = (count($categoryItemKeys) > 0 ? '[\'' . implode('\', \'', $categoryItemKeys) . '\']' : 'null');
+		$pluginMapObjectIdentifier = $this->googleMapsPlugin->getPluginMapObjectIdentifier();
+		$layerUids = (count($categoryItemKeys) > 0 ? '[\'' . implode('\', \'', $categoryItemKeys) . '\']' : 'null');
 		$mapControlFunctions = array(
-			'panTo' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.panTo(' . $javaScriptArray . ')',
-			'fitBounds' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.fitBounds(' . $javaScriptArray . ')',
-			'show' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.show(' . $javaScriptArray . ')',
-			'hide' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.hide(' . $javaScriptArray . ')',
-			'toggle' => $this->googleMapsPlugin->getPluginMapObjectIdentifier() . '.toggle(' . $javaScriptArray . ')',
+			'panTo' => sprintf('%s.panTo(%s)', $pluginMapObjectIdentifier, $layerUids),
+			'fitBounds' => sprintf('%s.fitBounds(%s)', $pluginMapObjectIdentifier, $layerUids),
+			'show' => sprintf('%s.show(%s)', $pluginMapObjectIdentifier, $layerUids),
+			'hide' => sprintf('%s.hide(%s)', $pluginMapObjectIdentifier, $layerUids),
+			'toggle' => sprintf('%s.toggle(%s)', $pluginMapObjectIdentifier, $layerUids),
 		);
-		if (array_key_exists('mapControlFunctions', $this->settings['category'])) {
-			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['category']['mapControlFunctions']);
-			$mapControlFunctions = str_replace('###ITEM_KEYS###', $javaScriptArray, $mapControlFunctions);
+		if (array_key_exists('mapControlFunctions', $this->settings['models']['category'])) {
+			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['models']['category']['mapControlFunctions']);
+			// @deprecated: ###ITEM_KEYS### is deprecated. Use ###LAYER_UIDS### instead.
+			$mapControlFunctions = str_replace(
+				array('###ITEM_KEYS###', '###LAYER_UIDS###', '###PLUGIN_MAPOBJECT_IDENTIFIER###'),
+				array($layerUids, $layerUids, $pluginMapObjectIdentifier),
+				$mapControlFunctions
+			);
 		}
 		return $mapControlFunctions;
 	}

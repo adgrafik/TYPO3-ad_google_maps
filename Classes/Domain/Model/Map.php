@@ -55,28 +55,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $templates;
-
-	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
-	 * @lazy
-	 */
-	protected $categories;
-
-	/**
-	 * @var string
-	 */
 	protected $mapTypeId;
-
-	/**
-	 * @var integer
-	 */
-	protected $width;
-
-	/**
-	 * @var integer
-	 */
-	protected $height;
 
 	/**
 	 * @var string
@@ -338,17 +317,6 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	 */
 	protected $searchMarkerScaledHeight;
 
-	/*
-	 * Initialize this map.
-	 * 
-	 * @return void
-	 */
-	public function initializeObject() {
-		parent::initializeObject();
-		// Set default values.
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
 	/**
 	 * Sets this title
 	 *
@@ -369,47 +337,6 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this templates
-	 *
-	 * @param string $templates
-	 * @return void
-	 */
-	public function setTemplates($templates) {
-		$this->templates = $templates;
-	}
-
-	/**
-	 * Returns this templates
-	 *
-	 * @return string
-	 */
-	public function getTemplates() {
-		return $this->getPropertyValue('templates', 'map');
-	}
-
-	/**
-	 * Sets this categories
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category> $categories
-	 * @return void
-	 */
-	public function setCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
-		$this->categories = $categories;
-	}
-
-	/**
-	 * Returns this categories
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Domain_Model_Category>
-	 */
-	public function getCategories() {
-		if ($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->categories->_loadRealInstance();
-		}
-		return $this->categories;
-	}
-
-	/**
 	 * Sets this mapTypeId
 	 *
 	 * @param string $mapTypeId
@@ -426,44 +353,6 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	 */
 	public function getMapTypeId() {
 		return $this->getPropertyValue('mapTypeId', 'map');
-	}
-
-	/**
-	 * Sets this width
-	 *
-	 * @param integer $width
-	 * @return void
-	 */
-	public function setWidth($width) {
-		$this->width = (integer) $width;
-	}
-
-	/**
-	 * Returns this width
-	 *
-	 * @return integer
-	 */
-	public function getWidth() {
-		return (integer) $this->getPropertyValue('width', 'map');
-	}
-
-	/**
-	 * Sets this height
-	 *
-	 * @param integer $height
-	 * @return void
-	 */
-	public function setHeight($height) {
-		$this->height = (integer) $height;
-	}
-
-	/**
-	 * Returns this height
-	 *
-	 * @return integer
-	 */
-	public function getHeight() {
-		return (integer) $this->getPropertyValue('height', 'map');
 	}
 
 	/**

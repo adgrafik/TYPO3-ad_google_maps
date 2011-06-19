@@ -41,7 +41,7 @@ abstract class Tx_AdGoogleMaps_Domain_Model_AbstractEntity extends Tx_Extbase_Do
 	protected static $typoScriptCache;
 
 	/**
-	 * Returns the setting value instead of property value if is set. 
+	 * Returns the settings value only if set and current value is "false", "0" or empty. 
 	 *
 	 * @param string $propertyName
 	 * @param mixed $this
@@ -49,17 +49,16 @@ abstract class Tx_AdGoogleMaps_Domain_Model_AbstractEntity extends Tx_Extbase_Do
 	 * @return mixed
 	 */
 	public function getPropertyValue($propertyName, $settingsKey) {
-		// Load settings.
-		if (self::$typoScriptCache === NULL) {
-			$typoScriptCache = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($this->getPid(), 'tx_adgooglemaps');
-		}
-		$settings = $typoScriptCache[$settingsKey];
-
 		$currentValue = NULL;
 		if (array_key_exists($propertyName, get_object_vars($this))) {
 			$currentValue = $this->$propertyName;
 		}
-		
+
+		// Load settings.
+		if (self::$typoScriptCache === NULL) {
+			self::$typoScriptCache = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($this->getPid(), 'tx_adgooglemaps');
+		}
+		$settings = self::$typoScriptCache['models'][$settingsKey];
 		// Get settings value only if set and current value is "false", "0" or empty.
 		if (array_key_exists($propertyName, $settings) === TRUE && !$currentValue) {
 			$currentValue = $settings[$propertyName];

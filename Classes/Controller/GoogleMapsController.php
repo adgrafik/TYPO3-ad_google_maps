@@ -36,47 +36,22 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 	 * @return string The rendered view
 	 */
 	public function indexAction() {
-		if (!array_key_exists('mapDrawer', $this->settings)) {
-			return $this->flashMessageContainer->add('Add static TypoScript "ad: Google Maps" to your template.');
-		}
-
-		// Merge TypoScript settings with FlexForm values. FlexForm values overrides TypoScript settings.
-		if (array_key_exists('flexform', $this->settings) === TRUE) {
-			$this->settings = Tx_Extbase_Utility_Arrays::arrayMergeRecursiveOverrule($this->settings, $this->settings['flexform']);
-		}
-
-		if (array_key_exists('uid', $this->settings['map']) === FALSE) {
-			return $this->flashMessageContainer->add('No map defined.');
-		}
-
-		// Create map.
-		$mapRepository = $this->objectManager->get('Tx_AdGoogleMaps_Domain_Repository_MapRepository');
-		$map = $mapRepository->findByUid($this->settings['map']['uid']);
-		if ($map instanceof Tx_AdGoogleMaps_Domain_Model_Map === FALSE) {
-			return $this->flashMessageContainer->add('No map found. Add a map in the Google Maps Plugin.');
-		}
-
-		// Build map plugin.
-		$mapBuilder = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_MapBuilder');
-		$mapBuilder->build(clone $map, $this->settings);
-
 		// Execute template controllers.
-		$templateControllerClassNames = t3lib_div::removeArrayEntryByValue(explode(',', $map->getTemplates()), '');
-		foreach ($templateControllerClassNames as $templateControllerClassName) {
-			// Get class and action name
-			@list($templateControllerClassName, $templateControllerActionName) = explode('::', $templateControllerClassName);
-			if (class_exists($templateControllerClassName) === FALSE) {
-				$this->flashMessageContainer->add('Template controller class "' . $templateControllerClassName . '" not exists.');
+		$templateController = t3lib_div::removeArrayEntryByValue(explode(',', $this->settings['flexform']['templates']), '');
+		foreach ($templateController as $templateId) {
+			// Check if template ID exists in the TS-Setup.
+			if (array_key_exists($templateId, $this->settings['flexform']['templateController']) === FALSE) {
+				$this->flashMessageContainer->add('The template ID "' . $templateId . '" is not valid.');
 				continue;
 			}
+			$templateConfiguration = $this->settings['flexform']['templateController'][$templateId];
 
-			$templateController = $this->objectManager->create($templateControllerClassName);
-			$templateController->injectMapBuilder($mapBuilder);
-			$templateRequest = $this->objectManager->create('Tx_Extbase_MVC_Web_Request');
-			$templateRequest->setControllerObjectName($templateControllerClassName);
-			$templateRequest->setControllerActionName($templateControllerActionName);
-			$templateController->processRequest($templateRequest, $this->response);
+			$bootstrap = $this->objectManager->get('Tx_Extbase_Core_Bootstrap');
+			$templateContent .= $bootstrap->run($templateContent, $templateConfiguration);
 		}
+
+		$this->view->assign('templateContent', $templateContent);
+		$this->view->assign('googleMapsPlugin', $this->getMapBuilder()->getGoogleMapsPlugin());
 	}
 
 	/**
@@ -85,8 +60,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 	 * @return void
 	 */
 	public function googleMapsAction() {
-		$this->view->assign('googleMapsPlugin', $this->mapBuilder->getGoogleMapsPlugin());
-		$this->view->assign('map', $this->mapBuilder->getMap());
+		$this->view->assign('googleMapsPlugin', $this->getMapBuilder()->getGoogleMapsPlugin());
 	}
 
 	/**
@@ -95,7 +69,8 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 	 * @return void
 	 */
 	public function listViewAction() {
-		$this->view->assign('map', $this->mapBuilder->getMap());
+		$this->view->assign('map', $this->getMap());
+		$this->view->assign('categories', $this->getCategories());
 	}
 
 	/**
@@ -107,15 +82,13 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		// Include JavaScript file.
 		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_Controller_GoogleMapsController');
 
-		$map = $this->mapBuilder->getMap();
-		$mapControl = $this->mapBuilder->getGoogleMapsPlugin()->getPluginOptions()->getMapControl();
+		$map = $this->getMap();
+		$googleMapsPlugin = $this->getMapBuilder()->getGoogleMapsPlugin();
+		$mapControl = $googleMapsPlugin->getPluginOptions()->getMapControl();
 
 		// Set search marker.
-		if (($searchMarkerUrl = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $map->getSearchMarker())) === NULL) {
-			$searchMarkerUrl = 'typo3conf/ext/ad_google_maps/Resources/Public/Icons/MapDrawer/searchMarker.gif';
-		}
 		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_MarkerImage',
-			$searchMarkerUrl,
+			$map->getSearchMarker(),
 			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
 				$map->getSearchMarkerWidth(),
 				$map->getSearchMarkerHeight()
@@ -135,7 +108,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		);
 		$mapControl->setSearchMarker($searchMarker);
 
-		$this->view->assign('googleMapsPlugin', $this->mapBuilder->getGoogleMapsPlugin());
+		$this->view->assign('googleMapsPlugin', $googleMapsPlugin);
 		$this->view->assign('map', $map);
 	}
 
