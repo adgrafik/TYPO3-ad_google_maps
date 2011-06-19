@@ -59,5 +59,15 @@
 1.1.2	[FEATURE] Added show/hide/toggle function.
 		[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
 		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?".
+		[BUGFIX] Fixed issue #27509 "API - MAP missig sign". Thanks to soee.
+		[TASK] Changed flexform property "settings.flexform.mapId". Update of the content element necessary!
+		[TASK] Changed template handling from Map to content plugin. It's now better extendable and corresponse to the Tx_Extbase_Core_Bootstrap->run() function. Update of the content element necessary!
+		[TASK] Changed plugin.tx_adgooglemaps.settings.api.canvas from tx_adgooglemaps_canvas_###UID### to tx_adgooglemaps_canvas_uid###UID### to correspond naming.
 		[TASK] Changed getBoundsOfLatLngArray to getBoundsByLatLngArray and getCenterOfLatLngArray to getCenterByLatLngArray.
+		[TASK] Set the replace marker ###ITEM_KEYS### of the category userFunction to deprecated. Use ###LAYER_UIDS### instead.
+		[TASK] Set the replace marker ###ITEM_KEY### of the layer userFunction to deprecated. Use ###LAYER_UID### instead.
+		[TASK] Added replace marker ###INFOWINDOW_UID### to layer user function. (Works only if set.)
+		[TASK] Added replace marker ###PLUGIN_MAPOBJECT_IDENTIFIER### to category and layer user function.
+		[TASK] Added TS-constant "disableInsertDataAtHeaders" to allow user to decide if "lib.stdheader" should be changed.
 		[TASK] Added all items of a category to categoryItemKeys in MapBuilder Layers like info windows.
+		[TASK] Added support for the extension "Record tree for TCA (cps_tcatree)" for TCA tree view.

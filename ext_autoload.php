@@ -22,5 +22,6 @@ return array(
 	'tx_adgooglemaps_mapdrawer_exception' => $extensionClassesPath . 'MapDrawer/Exception.php',
 	'tx_adgooglemaps_mapdrawer_layer_abstractlayer' => $extensionClassesPath . 'MapDrawer/Layer/AbstractLayer.php',
 	'tx_adgooglemaps_mapdrawer_layer_marker' => $extensionClassesPath . 'MapDrawer/Layer/Marker.php',
+	'tx_adgooglemaps_service_flexformtemplateselection' => $extensionClassesPath . 'Service/FlexFormTemplateSelection.php',
 );
 ?>

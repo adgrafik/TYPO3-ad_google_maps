@@ -5,7 +5,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'GoogleMaps' => 'index',
+		'GoogleMaps' => 'index,googleMaps,listView,simpleSearch',
 	),
 	array( // don't cache some actions
 		'GoogleMaps' => '',
