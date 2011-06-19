@@ -7,11 +7,25 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="sheetGoogleMap">Google Map</label>
-			<label index="settings.map">Map:</label>
+			<label index="settings.flexform.mapUid">Map:</label>
+			<label index="settings.flexform.width">Width:</label>
+			<label index="settings.flexform.height">Height:</label>
+			<label index="settings.flexform.templates">Templates:</label>
+			<label index="settings.flexform.templates.googleMaps">Google Maps</label>
+			<label index="settings.flexform.templates.listView">List view</label>
+			<label index="settings.flexform.templates.simpleSearch">Simple search</label>
+			<label index="settings.flexform.categories">Categories:</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="sheetGoogleMap">Google Map</label>
-			<label index="settings.map">Karte:</label>
+			<label index="settings.flexform.mapUid">Karte:</label>
+			<label index="settings.flexform.width">Breite:</label>
+			<label index="settings.flexform.height">Höhe:</label>
+			<label index="settings.flexform.templates">Vorlagen:</label>
+			<label index="settings.flexform.templates.googleMaps">Google Maps</label>
+			<label index="settings.flexform.templates.listView">Listenansicht</label>
+			<label index="settings.flexform.templates.simpleSearch">Einfache Suche</label>
+			<label index="settings.flexform.categories">Kategorien:</label>
 		</languageKey>
 	</data>
 </T3locallang>

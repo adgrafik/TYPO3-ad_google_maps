@@ -9,10 +9,20 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="settings.flexform.map.uid.description">Select a Map.</label>
+			<label index="settings.flexform.mapUid.description">Select a Map.</label>
+			<label index="settings.flexform.width.description">The initial width of the map.</label>
+			<label index="settings.flexform.height.description">The initial height of the map.</label>
+			<label index="settings.flexform.templates.description">Set here the templates for the FrontEnd.</label>
+			<label index="settings.flexform.categories.description">Record storge for categories to display on the map.</label>
+			<label index="settings.flexform.categoriesCpsTcaTree.description">Record storge for categories to display on the map.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="settings.flexform.map.uid.description">Wähle eine Karte.</label>
+			<label index="settings.flexform.mapUid.description">Wähle eine Karte.</label>
+			<label index="settings.flexform.width.description">Anfängliche Breite der Karte.</label>
+			<label index="settings.flexform.height.description">Anfängliche Höhe der Karte.</label>
+			<label index="settings.flexform.templates.description">Vorlagen für das FrontEnd.</label>
+			<label index="settings.flexform.categories.description">Datensatzsammlung für Kategorien die auf der Karte angezeigt werden.</label>
+			<label index="settings.flexform.categoriesCpsTcaTree.description">Datensatzsammlung für Kategorien die auf der Karte angezeigt werden.</label>
 		</languageKey>
 	</data>
 </T3locallang>

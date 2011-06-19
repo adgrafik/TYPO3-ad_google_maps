@@ -11,12 +11,8 @@
 		<languageKey index="default" type="array">
 			<label index="title.description">The map title.</label>
 			<label index="hidden.description">Check this box if you wish to hide the content element from being displayed.</label>
-			<label index="templates.description">Set here the templates for the FrontEnd.</label>
-			<label index="categories.description">Record storge for categories to display on the map.</label>
 
 			<label index="map_type_id.description">The initial Map mapTypeId. Required.</label>
-			<label index="width.description">The initial width of the map.</label>
-			<label index="height.description">The initial height of the map.</label>
 			<label index="background_color.description">Color used for the background of the Map div. This color will be visible when tiles have not yet loaded as the user pans. This option can only be set when the map is initialized.</label>
 			<label index="min_zoom.description">The minimum zoom level which will be displayed on the map. If omitted, or set to null, the minimum zoom from the current map type is used instead.</label>
 			<label index="max_zoom.description">The maximum zoom level which will be displayed on the map. If omitted, or set to null, the maximum zoom from the current map type is used instead.</label>
@@ -67,12 +63,8 @@
 		<languageKey index="de" type="array">
 			<label index="title.description">Titel der Karte.</label>
 			<label index="hidden.description">Ist diese Option aktiviert, wird das Element nicht auf der Seite angezeigt.</label>
-			<label index="templates.description">Vorlagen für das FrontEnd.</label>
-			<label index="categories.description">Datensatzsammlung für Kategorien die auf der Karte angezeigt werden.</label>
 
 			<label index="map_type_id.description">Anfängliche mapTypeId der Karte. Erforderlich.</label>
-			<label index="width.description">Anfängliche Breite der Karte.</label>
-			<label index="height.description">Anfängliche Höhe der Karte.</label>
 			<label index="background_color.description">Für den Hintergrund der Karten-div verwendete Farbe. Diese Farbe wird angezeigt, wenn noch keine Kacheln geladen wurden und der Nutzer die Karte schwenkt. Diese Option kann nur festgelegt werden, wenn die Karte initiiert ist.</label>
 			<label index="min_zoom.description">Die min. Zoomstufe welche auf der Karte dargestellt werden soll. Wenn der Wert nicht gesetzt ist, wird die min. Zoomstufe des aktuellen Kartentyps verwendet.</label>
 			<label index="max_zoom.description">Die max. Zoomstufe welche auf der Karte dargestellt werden soll. Wenn der Wert nicht gesetzt ist, wird die max. Zoomstufe des aktuellen Kartentyps verwendet.</label>

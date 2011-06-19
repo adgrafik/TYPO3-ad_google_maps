@@ -20,6 +20,7 @@
 			<label index="l10n.hideNewLocalizations">Hide new localizations: Here you choose if new localizations should be hidden or not. By default new localizations are visible.</label>
 
 			<label index="prependAtCopy">Prepend at Copy: Here you can disable adding of the text "(Copy [#])" to titles of copied records.</label>
+			<label index="useCpsTcaTree">Use "Record tree for TCA (cps_tcatree)": This option have no effect. Is the extension "Record tree for TCA (cps_tcatree)" installed the tree view for the categories in the content element will use the extension "Record tree for TCA (cps_tcatree)" for rendering. You must install this extension by your own. ATTENTION! These are two diffrent data fields. If categories set in the one variant and this option changed, then the values of a diffrent field will be used!</label>
 
 			<label index="update">Update: Update information will disappear if update done.</label>
 			<label index="update.updateHeader">Important!</label>
@@ -40,6 +41,7 @@
 			<label index="l10n.hideNewLocalizations">Verstecke neue Lokalisierungen: Hier kann man wählen, ob eine neu angelegte Lokalisierung versteckt sein soll oder nicht. Standardmäßig sind sie sichtbar.</label>
 
 			<label index="prependAtCopy">Beim Kopieren hinzufügen: Hier kann der Text "(Kopie [#])" deaktiviert werden, der beim Kopieren eines Datensatz im Titel hinzugefügt wird.</label>
+			<label index="useCpsTcaTree">Verwende "Record tree for TCA (cps_tcatree)": Diese Option hat keine direkte Auswirkung. Ist die Extension "Record tree for TCA (cps_tcatree)" installiert wird für die Baumdarstellung der Kategorien im Seiteninhalt die Extension "Record tree for TCA (cps_tcatree)" verwendet. Du musst diese Extension selbst installieren. ACHTUNG! Dabei handelt es sich um zwei unterschiedliche Daten-Felder. Sind Kategorien in der einen Variante gesetzt und wird diese geändert, werden die Werte aus einem anderen Feld gelesen!</label>
 
 			<label index="update">Update: Update-Information wird ausgeblendet, wenn das Update durchgeführt wurde.</label>
 			<label index="update.updateHeader">Wichtig!</label>

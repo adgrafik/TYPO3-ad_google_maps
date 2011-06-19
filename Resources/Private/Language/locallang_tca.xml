@@ -10,22 +10,13 @@
 			<label index="tx_adgooglemaps_domain_model_map.label">Map</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.title">Title:</label>
-			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">System settings</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates">Templates:</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.googleMaps">Google Maps</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.listView">List view</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.simpleSearch">Simple search</label>
-			<label index="tx_adgooglemaps_domain_model_map.categories">Categories:</label>
-
-			<label index="tx_adgooglemaps_domain_model_map.sheetInitial">Initial</label>
+			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">Map</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId">Initial Map type:</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.hybrid">Hybrid</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.roadmap">Roadmap</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.satellite">Satellite</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.terrain">Terrain</label>
 			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.map">Map properties</label>
-			<label index="tx_adgooglemaps_domain_model_map.width">Width:</label>
-			<label index="tx_adgooglemaps_domain_model_map.height">Height:</label>
 			<label index="tx_adgooglemaps_domain_model_map.backgroundColor">Background color:</label>
 			<label index="tx_adgooglemaps_domain_model_map.minZoom">Min. zoom:</label>
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. zoom:</label>
@@ -123,7 +114,7 @@
 			<label index="tx_adgooglemaps_domain_model_category.label">Category</label>
 
 			<label index="tx_adgooglemaps_domain_model_category.title">Title:</label>
-			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">System settings</label>
+			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">Category</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon.none">None</label>
 			<label index="tx_adgooglemaps_domain_model_category.iconWidth">Width:</label>
@@ -138,12 +129,12 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.type">Layer type:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markers</label>
-			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">System settings</label>
+			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">Layer</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Title:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Coordinates provider:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer">MapDrawer</label>
-			<label index="tx_adgooglemaps_domain_model_layer.categories">Categories:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.categories">Categories</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetMarkers">Markers</label>
 			<label index="tx_adgooglemaps_domain_model_layer.markerTitle">Title:</label>
@@ -219,22 +210,13 @@
 			<label index="tx_adgooglemaps_domain_model_map.label">Karte</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.title">Titel:</label>
-			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">Systemeinstellungen</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates">Vorlagen:</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.googleMaps">Google Maps</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.listView">Listenansicht</label>
-			<label index="tx_adgooglemaps_domain_model_map.templates.simpleSearch">Einfache Suche</label>
-			<label index="tx_adgooglemaps_domain_model_map.categories">Kategorie:</label>
-
-			<label index="tx_adgooglemaps_domain_model_map.sheetInitial">Initial</label>
+			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">Karte</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId">Initial Kartentyp:</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.hybrid">Hybrid</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.roadmap">Roadmap</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.satellite">Satellite</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeId.terrain">Terrain</label>
 			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.map">Karteneinstellungen</label>
-			<label index="tx_adgooglemaps_domain_model_map.width">Breite:</label>
-			<label index="tx_adgooglemaps_domain_model_map.height">Höhe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.backgroundColor">Hintergrundfarbe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.minZoom">Min. Zoomstufe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. Zoomstufe:</label>
@@ -332,7 +314,7 @@
 			<label index="tx_adgooglemaps_domain_model_category.label">Kategorie</label>
 
 			<label index="tx_adgooglemaps_domain_model_category.title">Titel:</label>
-			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">Systemeinstellungen</label>
+			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">Kategorie</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.iconDimensions">Dimensionen</label>
 			<label index="tx_adgooglemaps_domain_model_category.iconWidth">Breite:</label>
@@ -346,12 +328,12 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.type">Ebenentyp:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markierung</label>
-			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">Systemeinstellungen</label>
+			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">Ebene</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Titel:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Koordinaten-Provider:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer">MapDrawer</label>
-			<label index="tx_adgooglemaps_domain_model_layer.categories">Kategorien:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.categories">Kategorien</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.sheetMarkers">Markierungen</label>
 			<label index="tx_adgooglemaps_domain_model_layer.markerTitle">Titel:</label>
