@@ -770,7 +770,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * @return string
 	 */
 	public function getPrint() {
-		return sprintf('new google.maps.Map(document.getElementById(\'%s\', %s)', $this->canvas, Tx_AdGoogleMaps_Utility_FrontEnd::getClassAsJsonObject($this));
+		return sprintf('new google.maps.Map(document.getElementById(\'%s\'), %s)', $this->canvas, Tx_AdGoogleMaps_Utility_FrontEnd::getClassAsJsonObject($this));
 	}
 
 	/**
