@@ -128,7 +128,10 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 * @param integer $severity
 	 * @return void
 	 */
-	public static function addFlashMessage($message, $title = 'tx_adgooglemaps: Invalid extension configuration', $severity = t3lib_FlashMessage::ERROR) {
+	public static function addFlashMessage($message, $title = NULL, $severity = t3lib_FlashMessage::ERROR) {
+		if ($title === NULL) {
+			$title = Tx_Extbase_Utility_Localization::translate('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang.xml:Tx_AdGoogleMaps_Controller.error.title', 'ad_google_maps');
+		}
 		$flashMessages = t3lib_div::makeInstance('t3lib_FlashMessage', $message, $title, $severity);
 		t3lib_FlashMessageQueue::addMessage($flashMessages);
 	}
@@ -141,7 +144,10 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 * @param integer $severity
 	 * @return void
 	 */
-	public static function getFlashMessage($message, $title = 'tx_adgooglemaps: Invalid extension configuration', $severity = t3lib_FlashMessage::ERROR) {
+	public static function getFlashMessage($message, $title = NULL, $severity = t3lib_FlashMessage::ERROR) {
+		if ($title === NULL) {
+			$title = Tx_Extbase_Utility_Localization::translate('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang.xml:Tx_AdGoogleMaps_Controller.error.title', 'ad_google_maps');
+		}
 		$flashMessages = t3lib_div::makeInstance('t3lib_FlashMessage', $message, $title, $severity);
 		return $flashMessages->render();
 	}
@@ -188,7 +194,12 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 */
 	public static function getRelativeUploadPathAndFileName($extensionKey, $uploadDirectory, $fileName) {
 		if (!$fileName) return NULL; // Nothing to do if file name is empty or NULL.
-		return self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . $fileName;
+		if (strpos('/', $fileName) === 0) { // If there is a slash in the filename, the file must be an uploaded file, else it must be an user defined file.
+			$fileAndPathName = self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . $fileName;
+		} else {
+			$fileAndPathName = Tx_AdGoogleMaps_Utility_BackEnd::getRelativePathAndFileName($fileName);
+		}
+		return $fileAndPathName;
 	}
 
 	/**
