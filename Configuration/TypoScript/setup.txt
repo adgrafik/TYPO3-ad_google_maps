@@ -5,16 +5,16 @@
 plugin.tx_adgooglemaps {
 	settings {
 
-		plugin {
+		mapBuilder {
 
 			# Google Maps API URL grocode: URL for getting geocode per JSON. Required.
-			geocodeUrl = {$plugin.tx_adgooglemaps.settings.plugin.geocodeUrl}
+			geocodeUrl = {$plugin.tx_adgooglemaps.settings.mapBuilder.geocodeUrl}
 
 			# The DIV container where the map is shown. Required.
-			canvas = {$plugin.tx_adgooglemaps.settings.plugin.canvas}
+			canvas = {$plugin.tx_adgooglemaps.settings.mapBuilder.canvas}
 
 			# The initial height. Required.
-			height = {$plugin.tx_adgooglemaps.settings.plugin.height}
+			height = {$plugin.tx_adgooglemaps.settings.mapBuilder.height}
 
 			# Debug: If set the Google Maps options will printed in a readable format.
 			debug = 0
@@ -24,19 +24,19 @@ plugin.tx_adgooglemaps {
 			includeFrontEndResources {
 
 				# Use classname where they loaded as unique configuration key.
-				Tx_AdGoogleMaps_Plugin_GoogleMaps {
+				Tx_AdGoogleMaps_MapBuilder_GoogleMaps {
 					includeJSlibs {
-						Tx_AdGoogleMaps_ApiUrl = {$plugin.tx_adgooglemaps.settings.plugin.apiUrl}
+						Tx_AdGoogleMaps_ApiUrl = {$plugin.tx_adgooglemaps.settings.mapBuilder.apiUrl}
 						Tx_AdGoogleMaps_ApiUrl.external = 1
 					}
 
 					includeJS {
-						Tx_AdGoogleMaps_PluginFile = {$plugin.tx_adgooglemaps.settings.plugin.pluginFile}
+						Tx_AdGoogleMaps_MapBuilderFile = {$plugin.tx_adgooglemaps.settings.mapBuilder.mapBuilderFile}
 					}
 				}
-				Tx_AdGoogleMaps_Plugin_Options {
+				Tx_AdGoogleMaps_MapBuilder_Options {
 					includeJS {
-						Tx_AdGoogleMaps_MarkerClusterUrl = {$plugin.tx_adgooglemaps.settings.plugin.markerClusterUrl}
+						Tx_AdGoogleMaps_MarkerClusterUrl = {$plugin.tx_adgooglemaps.settings.mapBuilder.markerClusterUrl}
 						Tx_AdGoogleMaps_MarkerClusterUrl.external = 1
 					}
 				}
@@ -44,19 +44,19 @@ plugin.tx_adgooglemaps {
 				# Use classname where they loaded as unique configuration key.
 				Tx_AdGoogleMaps_Controller_GoogleMapsController {
 					includeJS {
-						Tx_AdGoogleMaps_SimpleSearch = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_SimpleSearch.js
+						Tx_AdGoogleMaps_SimpleSearch = EXT:ad_google_maps/Resources/Public/JavaScript/MapBuilder/Tx_AdGoogleMaps_SimpleSearch.js
 					}
 				}
 
 				# Use classname where they loaded as unique configuration key.
 				Tx_AdGoogleMaps_MapManager_Layer_InfoWindow {
 					includeJS {
-						Tx_AdGoogleMaps_InfoWindow = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_InfoWindow.js
+						Tx_AdGoogleMaps_InfoWindow = EXT:ad_google_maps/Resources/Public/JavaScript/MapBuilder/Tx_AdGoogleMaps_InfoWindow.js
 					}
 				}
 				Tx_AdGoogleMaps_MapManager_Layer_Marker {
 					includeJS {
-						Tx_AdGoogleMaps_Marker = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_Marker.js
+						Tx_AdGoogleMaps_Marker = EXT:ad_google_maps/Resources/Public/JavaScript/MapBuilder/Tx_AdGoogleMaps_Marker.js
 					}
 				}
 			}
@@ -65,7 +65,7 @@ plugin.tx_adgooglemaps {
 		mapDrawer {
 
 			# Google Maps API URL: The URL to the Google Maps API.
-			apiUrl = {$plugin.tx_adgooglemaps.settings.plugin.apiUrl}
+			apiUrl = {$plugin.tx_adgooglemaps.settings.mapBuilder.apiUrl}
 
 			# Path to the Google Maps MapDrawer. Required.
 			apiJavaScriptFile = EXT:ad_google_maps/Resources/Public/JavaScript/MapDrawer/Tx_AdGoogleMaps_MapDrawer.js
@@ -252,7 +252,7 @@ plugin.tx_adgooglemaps {
 ###
 # Replace stdheaders insertData with dataWrap. insertData replace Fluid variables of the info windows for tt_address.
 ##
-[globalVar = LIT:1 = {$plugin.tx_adgooglemaps.settings.plugin.disableInsertDataAtHeaders}]
+[globalVar = LIT:1 = {$plugin.tx_adgooglemaps.settings.mapBuilder.disableInsertDataAtHeaders}]
 lib.stdheader.10 {
 	1 = TEXT
 	1.current = 1

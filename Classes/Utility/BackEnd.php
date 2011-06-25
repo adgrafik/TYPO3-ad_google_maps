@@ -126,8 +126,8 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 			$TSObj->runThroughTemplates($rootline);
 			$TSObj->generateConfig();
 
-			if (array_key_exists($extensionKey . '.', $TSObj->setup['plugin.']) === TRUE && array_key_exists('settings.', $TSObj->setup['plugin.'][$extensionKey . '.']) === TRUE) {
-				self::$typoScriptCache[$pageId][$extensionKey] = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($TSObj->setup['plugin.'][$extensionKey . '.']['settings.']);
+			if (array_key_exists($extensionKey . '.', $TSObj->setup['mapBuilder.']) === TRUE && array_key_exists('settings.', $TSObj->setup['mapBuilder.'][$extensionKey . '.']) === TRUE) {
+				self::$typoScriptCache[$pageId][$extensionKey] = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($TSObj->setup['mapBuilder.'][$extensionKey . '.']['settings.']);
 			} else {
 				self::$typoScriptCache[$pageId][$extensionKey] = NULL;
 			}
@@ -142,8 +142,8 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 		} else if (method_exists($configurationManager, 'getTypoScriptSetup')) { // extbase >= 1.3.0beta1
 			$typoScriptSetup = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($configurationManager->getTypoScriptSetup());
 		}
-		if (array_key_exists($extensionKey, $typoScriptSetup['plugin']) === TRUE && array_key_exists('settings', $typoScriptSetup['plugin'][$extensionKey]) === TRUE) {
-			return $typoScriptSetup['plugin'][$extensionKey]['settings'];
+		if (array_key_exists($extensionKey, $typoScriptSetup['mapBuilder']) === TRUE && array_key_exists('settings', $typoScriptSetup['mapBuilder'][$extensionKey]) === TRUE) {
+			return $typoScriptSetup['mapBuilder'][$extensionKey]['settings'];
 		}
 		return FALSE;*/
 	}

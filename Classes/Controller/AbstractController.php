@@ -88,14 +88,14 @@ abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_
 		$categoryRepository = $this->objectManager->get('Tx_AdGoogleMaps_Domain_Repository_CategoryRepository');
 		self::$categories = $categoryRepository->findByUids($uids);
 
-		// Build map plugin.
+		// Build map.
 		self::$mapManager = $this->objectManager->create('Tx_AdGoogleMaps_MapManager_Manager');
 		self::$mapManager->build($this->getMap(), $this->getCategories(), $this->settings);
 /*
 		// Load this settings and get debug mode.
 		$debug = false;
 		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
-			$debug = (boolean) $settings['plugin']['debug'];
+			$debug = (boolean) $settings['mapBuilder']['debug'];
 		}
 		$jsonClassEncoder = $this->objectManager->get('Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder');
 		$result = $jsonClassEncoder->setDebug($debug);

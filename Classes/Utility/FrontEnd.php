@@ -52,11 +52,11 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 	 */
 	public static function includeFrontEndResources($configurationKey) {
 		if (array_key_exists($configurationKey, self::$loadedFrontEndResources) === FALSE && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
-			if (array_key_exists($configurationKey, $settings['plugin']['includeFrontEndResources']) !== FALSE) {
+			if (array_key_exists($configurationKey, $settings['mapBuilder']['includeFrontEndResources']) !== FALSE) {
 				if (self::$compressor === NULL) {
 					self::$compressor = t3lib_div::makeInstance('t3lib_Compressor');
 				}
-				$resources = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($settings['plugin']['includeFrontEndResources'][$configurationKey]);
+				$resources = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($settings['mapBuilder']['includeFrontEndResources'][$configurationKey]);
 				foreach ($resources as $type => $value) {
 					if (in_array($type, array('includeCSS.', 'cssInline.', 'includeJSlibs.', 'includeJSFooterlibs.', 'includeJS.', 'includeJSFooter.', 'jsInline.', 'jsFooterInline.')) === TRUE) {
 						foreach ($value as $key => $configuration) {
@@ -190,7 +190,7 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 
 		// Load this settings and get debug mode.
 		if (self::$debugMode === NULL && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
-			self::$debugMode = (boolean) $settings['plugin']['debugMode'];
+			self::$debugMode = (boolean) $settings['mapBuilder']['debug'];
 		}
 
 		if (self::$debugMode === TRUE) {
