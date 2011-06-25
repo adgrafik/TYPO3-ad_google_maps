@@ -32,19 +32,18 @@ class Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow extends Tx_AdGoogleMaps_Pl
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $linkToLayerUid;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $infoWindowKeepOpen;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $infoWindowCloseOnClick;
 

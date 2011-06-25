@@ -36,79 +36,79 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_Map
-	 * @javaScriptHelper dontSetValue = TRUE
+	 * @jsonClassEncoder ignoreProperty
 	 */
 	protected $map;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetIfValueIs = ''
+	 * @jsonClassEncoder ignorePropertyIfValueIs = ''
 	 */
 	protected $title;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_LatLng
-	 * @javaScriptHelper getFunction = __toString
+	 * @jsonClassEncoder useGetterMethod = getPrint
 	 */
 	protected $position;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $visible;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $clickable;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $draggable;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $raiseOnDrag;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $zindex;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_MarkerImage
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $icon;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_MarkerImage
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $shadow;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $flat;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_MarkerShape
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $shape;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetIfValueIs = ''
+	 * @jsonClassEncoder ignorePropertyIfValueIs = ''
 	 */
 	protected $cursor;
 

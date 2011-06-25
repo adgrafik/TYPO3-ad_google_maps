@@ -16,8 +16,8 @@ plugin.tx_adgooglemaps {
 			# The initial height. Required.
 			height = {$plugin.tx_adgooglemaps.settings.plugin.height}
 
-			# Debug mode: If set the Google Maps options will printed in a readable format.
-			debugMode = 0
+			# Debug: If set the Google Maps options will printed in a readable format.
+			debug = 0
 
 			# Use includeCSS, cssInline, includeJSlibs, includeJSFooterlibs, includeJS, includeJSFooter, jsInline or jsFooterInline.
 			# This extends the page configuration. Use unique keys!
@@ -49,12 +49,12 @@ plugin.tx_adgooglemaps {
 				}
 
 				# Use classname where they loaded as unique configuration key.
-				Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow {
+				Tx_AdGoogleMaps_MapManager_Layer_InfoWindow {
 					includeJS {
 						Tx_AdGoogleMaps_InfoWindow = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_InfoWindow.js
 					}
 				}
-				Tx_AdGoogleMaps_MapBuilder_Layer_Marker {
+				Tx_AdGoogleMaps_MapManager_Layer_Marker {
 					includeJS {
 						Tx_AdGoogleMaps_Marker = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_Marker.js
 					}
@@ -77,7 +77,7 @@ plugin.tx_adgooglemaps {
 					typeField = type
 
 					recordTypes {
-						Tx_AdGoogleMaps_MapBuilder_Layer_Marker {
+						Tx_AdGoogleMaps_MapManager_Layer_Marker {
 
 							# Class name of the type processor.
 							className = Tx_AdGoogleMaps_MapDrawer_Layer_Marker
@@ -215,13 +215,13 @@ plugin.tx_adgooglemaps {
 					tableName = tx_adgooglemaps_domain_model_layer
 				}
 				subclasses {
-					Tx_AdGoogleMaps_MapBuilder_Layer_Marker = Tx_AdGoogleMaps_Domain_Model_Layer_Marker
+					Tx_AdGoogleMaps_MapManager_Layer_Marker = Tx_AdGoogleMaps_Domain_Model_Layer_Marker
 				}
 			}
 
 			Tx_AdGoogleMaps_Domain_Model_Layer_Marker {
 				mapping {
-					recordType = Tx_AdGoogleMaps_MapBuilder_Layer_Marker
+					recordType = Tx_AdGoogleMaps_MapManager_Layer_Marker
 					tableName = tx_adgooglemaps_domain_model_layer
 				}
 			}

@@ -30,73 +30,36 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\MapType
+ * @subpackage GoogleMapsAPI\ControlOptions\Navigation
  * @scope prototype
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_MapType extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_ControlOptions_Navigation extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
 
 	/**
-	 * MapTypeId
+	 * NavigationControlStyle
 	 */
-	const MAPTYPEID_HYBRID = 'google.maps.MapTypeId.HYBRID';
-	const MAPTYPEID_ROADMAP = 'google.maps.MapTypeId.ROADMAP';
-	const MAPTYPEID_SATELLITE = 'google.maps.MapTypeId.SATELLITE';
-	const MAPTYPEID_TERRAIN = 'google.maps.MapTypeId.TERRAIN';
-
-	/**
-	 * MapTypeControlStyle
-	 */
-	const STYLE_DEFAULT = 'google.maps.MapTypeControlStyle.DEFAULT';
-	const STYLE_DROPDOWN_MENU = 'google.maps.MapTypeControlStyle.DROPDOWN_MENU';
-	const STYLE_HORIZONTAL_BAR = 'google.maps.MapTypeControlStyle.HORIZONTAL_BAR';
-
-	/**
-	 * @var array
-	 * @javaScriptHelper quoteValue = FALSE; quoteArrayValuesRecursively = FALSE
-	 */
-	protected $mapTypeIds;
+	const STYLE_DEFAULT = 'google.maps.NavigationControlStyle.DEFAULT';
+	const STYLE_ANDROID = 'google.maps.NavigationControlStyle.ANDROID';
+	const STYLE_SMALL = 'google.maps.NavigationControlStyle.SMALL';
+	const STYLE_ZOOM_PAN = 'google.maps.NavigationControlStyle.ZOOM_PAN';
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $style;
 
 	/*
 	 * Constructor.
 	 * 
-	 * @param string $mapTypeIds
 	 * @param string $position
 	 * @param string $style
 	 */
-	public function __construct($mapTypeIds = NULL, $position = NULL, $style = NULL) {
-		$this->setMapTypeIds($mapTypeIds === NULL ? self::STYLE_DEFAULT : $mapTypeIds);
-		$this->setPosition($position === NULL ? self::POSITION_TOP_RIGHT : $position);
+	public function __construct($position = NULL, $style = NULL) {
+		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
 		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
-	}
-
-	/**
-	 * Sets this mapTypeIds.
-	 *
-	 * @param mixed $mapTypeIds
-	 * @return void
-	 */
-	public function setMapTypeIds($mapTypeIds) {
-		if (is_array($mapTypeIds) === FALSE) {
-			$mapTypeIds = t3lib_div::trimExplode(',', $mapTypeIds);
-		}
-		$this->mapTypeIds = $mapTypeIds;
-	}
-
-	/**
-	 * Returns this mapTypeIds.
-	 *
-	 * @return array
-	 */
-	public function getMapTypeIds() {
-		return $this->mapTypeIds;
 	}
 
 	/**
@@ -124,7 +87,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_MapType extends Tx_AdGoogleMaps_Api_Con
 	 * @return string
 	 */
 	public function hasOptions() {
-		return (count($this->mapTypeIds) || $this->position !== self::POSITION_TOP_RIGHT || $this->style !== self::STYLE_DEFAULT);
+		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
 	}
 
 }

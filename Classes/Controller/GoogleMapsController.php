@@ -51,7 +51,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		}
 
 		$this->view->assign('templateContent', $templateContent);
-		$this->view->assign('googleMapsPlugin', $this->getMapBuilder()->getGoogleMapsPlugin());
+		$this->view->assign('googleMapsPlugin', $this->getMapManager()->getGoogleMapsPlugin());
 	}
 
 	/**
@@ -60,7 +60,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 	 * @return void
 	 */
 	public function googleMapsAction() {
-		$this->view->assign('googleMapsPlugin', $this->getMapBuilder()->getGoogleMapsPlugin());
+		$this->view->assign('googleMapsPlugin', $this->getMapManager()->getGoogleMapsPlugin());
 	}
 
 	/**
@@ -83,7 +83,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_Controller_GoogleMapsController');
 
 		$map = $this->getMap();
-		$googleMapsPlugin = $this->getMapBuilder()->getGoogleMapsPlugin();
+		$googleMapsPlugin = $this->getMapManager()->getGoogleMapsPlugin();
 		$mapControl = $googleMapsPlugin->getPluginOptions()->getMapControl();
 
 		// Set search marker.

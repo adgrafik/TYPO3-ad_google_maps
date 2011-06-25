@@ -46,9 +46,9 @@ abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_
 	protected static $categories;
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @var Tx_AdGoogleMaps_MapManager_Manager
 	 */
-	protected static $mapBuilder;
+	protected static $mapManager;
 
 	/**
 	 * Returns the map uid of the tt_content plugin form.
@@ -89,8 +89,21 @@ abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_
 		self::$categories = $categoryRepository->findByUids($uids);
 
 		// Build map plugin.
-		self::$mapBuilder = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_MapBuilder');
-		self::$mapBuilder->build($this->getMap(), $this->getCategories(), $this->settings);
+		self::$mapManager = $this->objectManager->create('Tx_AdGoogleMaps_MapManager_Manager');
+		self::$mapManager->build($this->getMap(), $this->getCategories(), $this->settings);
+/*
+		// Load this settings and get debug mode.
+		$debug = false;
+		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
+			$debug = (boolean) $settings['plugin']['debug'];
+		}
+		$jsonClassEncoder = $this->objectManager->get('Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder');
+		$result = $jsonClassEncoder->setDebug($debug);
+		$result = $jsonClassEncoder->encode(self::$mapManager->getGoogleMapsPlugin()->getPluginOptions());
+
+print_r($result);
+exit;
+*/
 	}
 
 	/**
@@ -130,12 +143,12 @@ abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_
 	}
 
 	/**
-	 * Returns this mapBuilder
+	 * Returns this mapManager
 	 *
-	 * @return Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @return Tx_AdGoogleMaps_MapManager_Manager
 	 */
-	protected function getMapBuilder() {
-		return self::$mapBuilder;
+	protected function getMapManager() {
+		return self::$mapManager;
 	}
 
 }

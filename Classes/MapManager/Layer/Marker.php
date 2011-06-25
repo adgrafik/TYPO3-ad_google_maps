@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer {
 
 	/**
 	 * @var array
@@ -81,7 +81,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 	protected $preventAddInfoWindows;
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow
+	 * @var Tx_AdGoogleMaps_MapManager_Layer_InfoWindow
 	 */
 	protected $infoWindows;
 
@@ -126,7 +126,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 	public function __construct() {
 		parent::__construct();
 
-		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_MapBuilder_Layer_Marker');
+		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_MapManager_Layer_Marker');
 
 		$this->useCoordinatesProvider = TRUE;
 		$this->coordinatesProviderIterateProperty = 'coordinates';
@@ -137,17 +137,17 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 	/**
 	 * Sets this infoWindows.
 	 *
-	 * @param Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow $infoWindows
+	 * @param Tx_AdGoogleMaps_MapManager_Layer_InfoWindow $infoWindows
 	 * @return void
 	 */
-	public function setInfoWindows(Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow $infoWindows) {
+	public function setInfoWindows(Tx_AdGoogleMaps_MapManager_Layer_InfoWindow $infoWindows) {
 		$this->infoWindows = $infoWindows;
 	}
 
 	/**
 	 * Returns this infoWindows.
 	 *
-	 * @return Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapManager_Layer_InfoWindow
 	 */
 	public function getInfoWindows() {
 		return $this->infoWindows;
@@ -301,9 +301,9 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder
 
 		// Build info windows.
 		if ($this->preventAddInfoWindows === FALSE) {
-			$this->infoWindows = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow');
+			$this->infoWindows = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapManager_Layer_InfoWindow');
 			$this->infoWindows->injectSettings($this->settings);
-			$this->infoWindows->injectMapBuilder($this->mapBuilder);
+			$this->infoWindows->injectMapManager($this->mapManager);
 			$this->infoWindows->injectGoogleMapsPlugin($this->googleMapsPlugin);
 			$this->infoWindows->injectMap($this->map);
 			$this->infoWindows->injectCategory($this->category);

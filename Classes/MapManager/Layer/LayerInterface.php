@@ -23,39 +23,12 @@
  ***************************************************************/
 
 /**
- * Coordinates provider for the MapDrawer.
+ * Layer interface.
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_MapDrawer extends Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinatesProvider {
-
-	/**
-	 * Loads the data and the coordinates.
-	 *
-	 * @return void
-	 */
-	public function load() {
-		$settings = $this->layerBuilder->getSettings();
-		$mapBuilder = $this->layerBuilder->getMap();
-		$layer = $this->layerBuilder->getLayer();
-
-		// Get info window data.
-		$loadDB = t3lib_div::makeInstance('FE_loadDBGroup');
-		$loadDB->start($layer->getInfoWindow(), 'tt_content', 'tx_adgooglemaps_layer_ttcontent_mm');
-		$loadDB->readMM('tx_adgooglemaps_layer_ttcontent_mm', $layer->getUid());
-		$loadDB->getFromDB();
-
-		foreach ($loadDB->itemArray as $itemArray) {
-			$contentData = $loadDB->results['tt_content'][$itemArray['id']];
-			$this->data[] = $contentData;
-		}
-
-		// Set coordinates.
-		$coordinates = $layer->getCoordinates();
-		$this->coordinates = t3lib_div::removeArrayEntryByValue(t3lib_div::trimExplode(LF, $coordinates), '');
-	}
-
+interface Tx_AdGoogleMaps_MapManager_Layer_LayerInterface {
 }
 
 ?>

@@ -51,7 +51,7 @@ abstract class Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $position;
 

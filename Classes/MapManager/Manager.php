@@ -23,12 +23,12 @@
  ***************************************************************/
 
 /**
- * MapBuilder class.
+ * MapManager class.
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
+class Tx_AdGoogleMaps_MapManager_Manager {
 
 	/**
 	 * @var Tx_AdGoogleMaps_Domain_Model_Map
@@ -69,7 +69,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 * @param Tx_AdGoogleMaps_Domain_Model_Map $map
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $categories
 	 * @param array $settings
-	 * @return Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @return Tx_AdGoogleMaps_MapManager_Manager
 	 */
 	public function build(Tx_AdGoogleMaps_Domain_Model_Map $map, Tx_Extbase_Persistence_QueryResultInterface $categories, $settings) {
 		$this->map = $map;
@@ -180,7 +180,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 *
 	 * @param mixed $categories
 	 * @return void
-	 * @throw Tx_AdGoogleMaps_MapBuilder_Exception
+	 * @throw Tx_AdGoogleMaps_MapManager_Exception
 	 */
 	protected function buildLayers($categories) {
 		foreach ($categories as $category) {
@@ -193,11 +193,11 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 				if ($layer->getItems()->count() === 0) {
 					$layerBuilderClassName = $layer->getType();
 					if (class_exists($layerBuilderClassName) === FALSE) {
-						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889103);
+						throw new Tx_AdGoogleMaps_MapManager_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889103);
 					}
 					$layerBuilder = t3lib_div::makeInstance($layerBuilderClassName);
 					$layerBuilder->injectSettings($this->settings);
-					$layerBuilder->injectMapBuilder($this);
+					$layerBuilder->injectMapManager($this);
 					$layerBuilder->injectGoogleMapsPlugin($this->googleMapsPlugin);
 					$layerBuilder->injectMap($this->map);
 					$layerBuilder->injectCategory($category);

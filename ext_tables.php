@@ -112,7 +112,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array(
-			'Tx_AdGoogleMaps_MapBuilder_Layer_Marker' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/IconMarkers.gif',
+			'Tx_AdGoogleMaps_MapManager_Layer_Marker' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/IconMarkers.gif',
 		),
 		'requestUpdate' => 'coordinates_provider,shape_type,place_markers,rte_enabled',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/iconLayer.gif',

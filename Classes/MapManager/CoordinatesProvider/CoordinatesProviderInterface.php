@@ -28,15 +28,15 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface {
+interface Tx_AdGoogleMaps_MapManager_CoordinatesProvider_CoordinatesProviderInterface {
 
 	/**
-	 * Injects this mapBuilder
+	 * Injects this mapManager
 	 *
-	 * @param Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $mapBuilder
+	 * @param Tx_AdGoogleMaps_MapManager_Layer_LayerInterface $mapManager
 	 * @return void
 	 */
-	public function injectLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder);
+	public function injectLayer(Tx_AdGoogleMaps_MapManager_Layer_LayerInterface $layerBuilder);
 
 	/**
 	 * Loads the data and the coordinates.

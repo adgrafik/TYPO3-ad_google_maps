@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface {
+abstract class Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer implements Tx_AdGoogleMaps_MapManager_Layer_LayerInterface {
 
 	/**
 	 * @var tslib_cObj
@@ -41,9 +41,9 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	protected $settings;
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @var Tx_AdGoogleMaps_MapManager_Manager
 	 */
-	protected $mapBuilder;
+	protected $mapManager;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Plugin_GoogleMaps
@@ -94,7 +94,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	protected $coordinatesProviderIterateProperty;
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface
+	 * @var Tx_AdGoogleMaps_MapManager_CoordinatesProvider_CoordinatesProviderInterface
 	 */
 	protected $coordinatesProvider;
 
@@ -119,13 +119,13 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	}
 
 	/**
-	 * Injects this mapBuilder
+	 * Injects this mapManager
 	 *
-	 * @param Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder
+	 * @param Tx_AdGoogleMaps_MapManager_Manager $mapManager
 	 * @return void
 	 */
-	public function injectMapBuilder(Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder) {
-		$this->mapBuilder = $mapBuilder;
+	public function injectMapManager(Tx_AdGoogleMaps_MapManager_Manager $mapManager) {
+		$this->mapManager = $mapManager;
 	}
 
 	/**
@@ -171,10 +171,10 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	/**
 	 * Injects this layer.
 	 *
-	 * @param Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider
+	 * @param Tx_AdGoogleMaps_MapManager_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider
 	 * @return void
 	 */
-	public function injectCoordinatesProvider(Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider) {
+	public function injectCoordinatesProvider(Tx_AdGoogleMaps_MapManager_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider) {
 		$this->coordinatesProvider = $coordinatesProvider;
 	}
 
@@ -188,18 +188,18 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	}
 
 	/**
-	 * Returns this mapBuilder
+	 * Returns this mapManager
 	 *
-	 * @return Tx_AdGoogleMaps_MapBuilder_MapBuilder
+	 * @return Tx_AdGoogleMaps_MapManager_Manager
 	 */
-	public function getMapBuilder() {
-		return $this->mapBuilder;
+	public function getMapManager() {
+		return $this->mapManager;
 	}
 
 	/**
 	 * Returns this googleMapsPlugin
 	 *
-	 * @return Tx_AdGoogleMaps_MapBuilder_Plugin_GoogleMaps
+	 * @return Tx_AdGoogleMaps_MapManager_Plugin_GoogleMaps
 	 */
 	public function getGoogleMapsPlugin() {
 		return $this->googleMapsPlugin;
@@ -315,14 +315,14 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * Loads the coordinates provider.
 	 *
 	 * @return void
-	 * @throw Tx_AdGoogleMaps_MapBuilder_Exception
+	 * @throw Tx_AdGoogleMaps_MapManager_Exception
 	 */
 	public function loadCoordinatesProvider() {
 		if ($this->useCoordinatesProvider === FALSE) return;
 
 		$coordinatesProviderClassName = $this->layer->getCoordinatesProvider();
 		if (class_exists($coordinatesProviderClassName) === FALSE) {
-			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889105);
+			throw new Tx_AdGoogleMaps_MapManager_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889105);
 		}
 		$this->coordinatesProvider = t3lib_div::makeInstance($coordinatesProviderClassName);
 		$this->coordinatesProvider->injectLayer($this);
@@ -340,7 +340,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * Builds the layer items.
 	 *
 	 * @return void
-	 * @throw Tx_AdGoogleMaps_MapBuilder_Exception
+	 * @throw Tx_AdGoogleMaps_MapManager_Exception
 	 */
 	public function buildItems() {
 		if ($this->useCoordinatesProvider === TRUE) {
@@ -349,7 +349,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 			if ($this->coordinatesProviderIterateProperty !== NULL) {
 				$getterName = 'get' . ucfirst($this->coordinatesProviderIterateProperty);
 				if (is_callable(array($this->coordinatesProvider, $getterName)) === FALSE) {
-					throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given property name to iterate coordinates provider "' . $this->coordinatesProviderIterateProperty . '" doesn\'t exists.', 1297889107);
+					throw new Tx_AdGoogleMaps_MapManager_Exception('Given property name to iterate coordinates provider "' . $this->coordinatesProviderIterateProperty . '" doesn\'t exists.', 1297889107);
 				}
 				$coordinates = call_user_func(array($this->coordinatesProvider, $getterName));
 				foreach ($coordinates as $index => $value) {
@@ -443,9 +443,9 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @return string
 	 */
 	protected function getItemTitle($index, $itemData, $defaultLast = TRUE) {
-		$itemTitles = $this->mapBuilder->layer->getItemTitles();
+		$itemTitles = $this->mapManager->layer->getItemTitles();
 		$itemTitles = ($itemTitles !== '') ? t3lib_div::trimExplode(LF, $itemTitles) : array();
-		$itemTitlesObjectNumber = $this->mapBuilder->layer->getItemTitlesObjectNumber();
+		$itemTitlesObjectNumber = $this->mapManager->layer->getItemTitlesObjectNumber();
 		$itemTitlesObjectNumber = $this->getObjectNumberConf($itemTitlesObjectNumber, $this->getCountCoordinates());
 		return $this->getContentByObjectNumberConf($itemTitles, $itemTitlesObjectNumber, $index, $itemData, $defaultLast, $this->layer->getTitle());
 	}

@@ -37,7 +37,7 @@ class tx_AdGoogleMaps_Service_FlexFormTemplateSelection {
 	 * @return array
 	 */
 	public function getItems($config) {
-		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($config['row']['pid'], 'tx_adgooglemaps')) === FALSE || array_key_exists('flexform', $settings) === FALSE) {
+		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps', $config['row']['pid'])) === FALSE || array_key_exists('flexform', $settings) === FALSE) {
 			if (array_key_exists('form_type', $config['config']) === TRUE) {	// Throws error only once.
 				Tx_AdGoogleMaps_Utility_BackEnd::addFlashMessage(
 					Tx_Extbase_Utility_Localization::translate('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang.xml:Tx_AdGoogleMaps_Controller.error.settingsNotFound', 'ad_google_maps', array('ad: Google Maps'))

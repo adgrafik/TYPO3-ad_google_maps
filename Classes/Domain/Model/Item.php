@@ -69,7 +69,7 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	protected $layerOptions;
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow
+	 * @var Tx_AdGoogleMaps_MapManager_Layer_InfoWindow
 	 */
 	protected $infoWindow;
 
@@ -226,7 +226,7 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	 * Sets this infoWindow
 	 *
 	 * @param array $infoWindow
-	 * @return Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapManager_Layer_InfoWindow
 	 */
 	public function setInfoWindow($infoWindow) {
 		$this->infoWindow = $infoWindow;
@@ -235,7 +235,7 @@ class Tx_AdGoogleMaps_Domain_Model_Item {
 	/**
 	 * Returns this infoWindow
 	 *
-	 * @return Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapManager_Layer_InfoWindow
 	 */
 	public function getInfoWindow() {
 		return $this->infoWindow;

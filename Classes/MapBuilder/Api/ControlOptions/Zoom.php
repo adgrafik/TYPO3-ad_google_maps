@@ -30,21 +30,23 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Scale
+ * @subpackage GoogleMapsAPI\ControlOptions\Zoom
  * @scope prototype
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_ControlOptions_Zoom extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
 
 	/**
-	 * ScaleControlStyle
+	 * ZoomControlStyle
 	 */
-	const STYLE_DEFAULT = 'google.maps.ScaleControlStyle.DEFAULT';
+	const STYLE_DEFAULT = 'google.maps.ZoomControlStyle.DEFAULT';
+	const STYLE_LARGE = 'google.maps.ZoomControlStyle.LARGE';
+	const STYLE_SMALL = 'google.maps.ZoomControlStyle.SMALL';
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $style;
 
@@ -55,7 +57,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_Contr
 	 * @param string $style
 	 */
 	public function __construct($position = NULL, $style = NULL) {
-		$this->setPosition($position === NULL ? self::POSITION_BOTTOM_LEFT : $position);
+		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
 		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
 	}
 
@@ -84,7 +86,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_Contr
 	 * @return string
 	 */
 	public function hasOptions() {
-		return ($this->position !== self::POSITION_BOTTOM_LEFT || $this->style !== self::STYLE_DEFAULT);
+		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
 	}
 
 }

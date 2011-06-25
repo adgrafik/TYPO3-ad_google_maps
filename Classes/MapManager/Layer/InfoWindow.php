@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_MapManager_Layer_InfoWindow extends Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer {
 
 	/**
 	 * @var tslib_cObj
@@ -81,7 +81,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 	public function __construct() {
 		parent::__construct();
 
-		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow');
+		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_MapManager_Layer_InfoWindow');
 
 		$this->contentObject = t3lib_div::makeInstance('tslib_cObj');
 		$this->useCoordinatesProvider = TRUE;
@@ -102,7 +102,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		$this->infoWindowCloseOnClick = $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowCloseOnClick');
 		$this->infoWindowObjectNumber = $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowObjectNumber');
 		$this->infoWindowObjectNumberConf = $this->getObjectNumberConf($this->infoWindowObjectNumber, $this->getCountCoordinates());
-		$this->infoWindowRenderConfiguration = $this->settings['layer']['infoWindowRenderConfiguration'];
+		$this->infoWindowRenderConfiguration = $this->settings['models']['layer']['infoWindowRenderConfiguration'];
 		$this->infoWindowRenderConfigurationTypoScriptNodeValue = $this->infoWindowRenderConfiguration['_typoScriptNodeValue'];
 		$this->infoWindowRenderConfiguration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($this->infoWindowRenderConfiguration);
 

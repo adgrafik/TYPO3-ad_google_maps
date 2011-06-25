@@ -84,11 +84,39 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	}
 
 	/**
+	 * Returns the current page ID in frontend and backend.
+	 *
+	 * @return integer
+	 */
+	public static function getCurrentPageId() {
+		if (TYPO3_MODE === 'FE') {
+			$pageId = $GLOBALS['TSFE']->id;
+		} else {
+			$query = array();
+			if (($returnUrl = t3lib_div::_GP('returnUrl')) !== NULL) {
+				$url = parse_url($returnUrl);
+				if (array_key_exists('query', $url) === TRUE) {
+					parse_str($url['query'], $query);
+				}
+			}
+			$pageId = (array_key_exists('id', $query) === TRUE) ? $query['id'] : 0;
+		}
+
+		return $pageId;
+	}
+
+	/**
 	 * Load settings and check if TypoScript setup is set.
 	 *
-	 * @return mixed Returns the settings, else FALSE if no settings found.
+	 * @return mixed Returns the settings, else NULL if no settings found.
 	 */
-	public static function getTypoScriptSetup($pageId, $extensionKey) {
+	public static function getTypoScriptSetup($extensionKey, $pageId = NULL) {
+		// Get default configuration if no page ID found.
+		if ($pageId === NULL) {
+			$pageId = self::getCurrentPageId();
+		}
+
+		// If cache not set get settings.
 		if (self::$typoScriptCache === NULL || isset(self::$typoScriptCache[$pageId][$extensionKey]) === FALSE) {
 			$pageObj = t3lib_div::makeInstance('t3lib_pageSelect');
 			$rootline = $pageObj->getRootLine($pageId);
@@ -101,7 +129,7 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 			if (array_key_exists($extensionKey . '.', $TSObj->setup['plugin.']) === TRUE && array_key_exists('settings.', $TSObj->setup['plugin.'][$extensionKey . '.']) === TRUE) {
 				self::$typoScriptCache[$pageId][$extensionKey] = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($TSObj->setup['plugin.'][$extensionKey . '.']['settings.']);
 			} else {
-				self::$typoScriptCache[$pageId][$extensionKey] = FALSE;
+				self::$typoScriptCache[$pageId][$extensionKey] = NULL;
 			}
 		}
 

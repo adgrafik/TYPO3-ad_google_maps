@@ -30,24 +30,21 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Navigation
+ * @subpackage GoogleMapsAPI\ControlOptions\Scale
  * @scope prototype
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Navigation extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
 
 	/**
-	 * NavigationControlStyle
+	 * ScaleControlStyle
 	 */
-	const STYLE_DEFAULT = 'google.maps.NavigationControlStyle.DEFAULT';
-	const STYLE_ANDROID = 'google.maps.NavigationControlStyle.ANDROID';
-	const STYLE_SMALL = 'google.maps.NavigationControlStyle.SMALL';
-	const STYLE_ZOOM_PAN = 'google.maps.NavigationControlStyle.ZOOM_PAN';
+	const STYLE_DEFAULT = 'google.maps.ScaleControlStyle.DEFAULT';
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $style;
 
@@ -58,7 +55,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_Navigation extends Tx_AdGoogleMaps_Api_
 	 * @param string $style
 	 */
 	public function __construct($position = NULL, $style = NULL) {
-		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
+		$this->setPosition($position === NULL ? self::POSITION_BOTTOM_LEFT : $position);
 		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
 	}
 
@@ -87,7 +84,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_Navigation extends Tx_AdGoogleMaps_Api_
 	 * @return string
 	 */
 	public function hasOptions() {
-		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
+		return ($this->position !== self::POSITION_BOTTOM_LEFT || $this->style !== self::STYLE_DEFAULT);
 	}
 
 }

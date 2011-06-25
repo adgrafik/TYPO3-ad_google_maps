@@ -32,25 +32,25 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $fitBoundsOnLoad;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE;
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE;
 	 */
 	protected $useMarkerCluster;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_MarkerImage
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $searchMarker;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $infoWindowCloseAllOnMapClick;
 

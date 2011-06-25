@@ -48,7 +48,7 @@ class tx_AdGoogleMaps_MapDrawer_MapDrawerApi {
 	public function tx_draw($currentField, $formObject) {
 		// Load this settings and check if TypoScript setup is set.
 		$pid = current($formObject->getTSCpid($currentField['table'], $currentField['row']['uid'], $currentField['row']['pid']));
-		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($pid, 'tx_adgooglemaps')) === FALSE || array_key_exists('mapDrawer', $settings) === FALSE) {
+		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps', $pid)) === NULL || array_key_exists('mapDrawer', $settings) === FALSE) {
 			return Tx_AdGoogleMaps_Utility_BackEnd::addFlashMessage('Add static template "ad: Google Maps (ad_google_maps)" to your template.');
 		}
 		$this->settings = $settings['mapDrawer'];

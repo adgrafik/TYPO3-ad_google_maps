@@ -36,37 +36,36 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	
 	/**
 	 * @var Tx_AdGoogleMaps_Api_LatLng
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $position;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $content;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $disableAutoPan;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $maxWidth;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_Size
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $pixelOffset;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $zindex;
 
@@ -107,7 +106,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * @return string
 	 */
 	public function getContent() {
-		return addcslashes(str_replace(array(LF, CR, CRLF), '', $this->content), '\'');
+		return $this->content;
 	}
 
 	/**

@@ -39,163 +39,163 @@ class Tx_AdGoogleMaps_Api_Map {
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetValue = TRUE
+	 * @jsonClassEncoder ignoreProperty
 	 */
 	protected $canvas;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $mapTypeId;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $backgroundColor;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_LatLng
-	 * @javaScriptHelper getFunction = __toString
+	 * @jsonClassEncoder useGetterMethod = getPrint
 	 */
 	protected $center;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $zoom;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $minZoom;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $maxZoom;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $noClear;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $disableDefaultUi;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $mapTypeControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_MapType
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $mapTypeControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $navigationControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Navigation
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $navigationControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $scaleControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Scale
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $scaleControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $panControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Pan
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $panControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $zoomControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Pan
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $zoomControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $streetViewControl;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_ControlOptions_StreetView
-	 * @javaScriptHelper dontSetIfValueIs = 'null'
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $streetViewControlOptions;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $disableDoubleClickZoom;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $scrollwheel;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $draggable;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetIfValueIs = ''
+	 * @jsonClassEncoder ignorePropertyIfValueIs = ''
 	 */
 	protected $draggableCursor;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper dontSetIfValueIs = ''
+	 * @jsonClassEncoder ignorePropertyIfValueIs = ''
 	 */
 	protected $draggingCursor;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = TRUE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = TRUE
 	 */
 	protected $keyboardShortcuts;
 

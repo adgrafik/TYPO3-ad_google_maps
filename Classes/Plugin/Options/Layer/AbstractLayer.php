@@ -32,19 +32,16 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $uid;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $drawFunctionName;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_Layer_LayerInterface
-	 * @javaScriptHelper
 	 */
 	protected $options;
 

@@ -25,7 +25,7 @@
 /**
  * Exception
  */
-class Tx_AdGoogleMaps_MapBuilder_Exception extends Tx_AdGoogleMaps_Exception {
+class Tx_AdGoogleMaps_MapManager_Exception extends Tx_AdGoogleMaps_Exception {
 
 }
 

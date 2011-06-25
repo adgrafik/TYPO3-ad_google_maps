@@ -32,25 +32,21 @@ class Tx_AdGoogleMaps_Plugin_Options {
 
 	/**
 	 * @var string
-	 * @javaScriptHelper 
 	 */
 	protected $canvasId;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Api_Map
-	 * @javaScriptHelper
 	 */
 	protected $mapOptions;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Plugin_Options_MapControl
-	 * @javaScriptHelper 
 	 */
 	protected $mapControl;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
-	 * @javaScriptHelper 
 	 */
 	protected $layerOptions;
 

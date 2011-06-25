@@ -28,10 +28,10 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-abstract class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinatesProvider implements Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface {
+abstract class Tx_AdGoogleMaps_MapManager_CoordinatesProvider_AbstractCoordinatesProvider implements Tx_AdGoogleMaps_MapManager_CoordinatesProvider_CoordinatesProviderInterface {
 
 	/**
-	 * @var Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface
+	 * @var Tx_AdGoogleMaps_MapManager_Layer_LayerInterface
 	 */
 	protected $layerBuilder;
 
@@ -54,12 +54,12 @@ abstract class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinate
 	}
 
 	/**
-	 * Injects this mapBuilder.
+	 * Injects this mapManager.
 	 *
-	 * @param Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $mapBuilder
+	 * @param Tx_AdGoogleMaps_MapManager_Layer_LayerInterface $mapManager
 	 * @return void
 	 */
-	public function injectLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder) {
+	public function injectLayer(Tx_AdGoogleMaps_MapManager_Layer_LayerInterface $layerBuilder) {
 		$this->layerBuilder = $layerBuilder;
 	}
 

@@ -12,15 +12,7 @@ $excludeProperties = Tx_AdGoogleMaps_Utility_BackEnd::getExtensionConfigurationV
 $hideNewLocalizations = Tx_AdGoogleMaps_Utility_BackEnd::getExtensionConfigurationValue('hideNewLocalizations');
 
 // Load ad_google_maps settings
-$query = array();
-if (($returnUrl = t3lib_div::_GP('returnUrl')) !== NULL) {
-	$url = parse_url($returnUrl);
-	if (array_key_exists('query', $url) === TRUE) {
-		parse_str($url['query'], $query);
-	}
-}
-$pid = (array_key_exists('id', $query) === TRUE) ? $query['id'] : 0;
-$adgooglemapsapiSettings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($pid, 'tx_adgooglemaps');
+$adgooglemapsapiSettings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps');
 
 $systemColumns = array(
 	't3ver_label' => array (
@@ -234,7 +226,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 				'type' => 'input',
 				'size' => 16,
 				'eval' => 'trim,required',
-				'default' => $adgooglemapsapiSettings['map']['center'],
+				'default' => ($adgooglemapsapiSettings !== NULL ? $adgooglemapsapiSettings['map']['center'] : '48.209206,16.372778'),
 			),
 		),
 		'zoom' => array(
@@ -1078,9 +1070,9 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 			'config' => array (
 				'type' => 'select',
 				'items' => array (
-					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.type.markers', 'Tx_AdGoogleMaps_MapBuilder_Layer_Marker', 'EXT:ad_google_maps/Resources/Public/Icons/TCA/IconMarkers.gif'),
+					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.type.markers', 'Tx_AdGoogleMaps_MapManager_Layer_Marker', 'EXT:ad_google_maps/Resources/Public/Icons/TCA/IconMarkers.gif'),
 				),
-				'default' => 'Tx_AdGoogleMaps_MapBuilder_Layer_Marker',
+				'default' => 'Tx_AdGoogleMaps_MapManager_Layer_Marker',
 				'authMode' => $GLOBALS['TYPO3_CONF_VARS']['BE']['explicitADmode'],
 				'authMode_enforce' => 'strict',
 				'iconsInOptionTags' => 1,
@@ -1113,9 +1105,9 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 			'l10n_mode' => $excludeProperties,
 			'config' => array (
 				'type' => 'select',
-				'default' => 'Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_MapDrawer',
+				'default' => 'Tx_AdGoogleMaps_MapManager_CoordinatesProvider_MapDrawer',
 				'items' => array (
-					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer', 'Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_MapDrawer'),
+					array('LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.coordinatesProvider.mapDrawer', 'Tx_AdGoogleMaps_MapManager_CoordinatesProvider_MapDrawer'),
 				),
 			)
 		),
@@ -1123,7 +1115,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 			'label'   => 'LLL:EXT:ad_google_maps/Resources/Private/Language/MapDrawer/locallang.xml:tx_adgooglemaps_mapdrawer.coordinates',
 			'exclude' => true,
 			'l10n_mode' => $excludeProperties,
-			'displayCond' => 'FIELD:coordinates_provider:=:Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_MapDrawer',
+			'displayCond' => 'FIELD:coordinates_provider:=:Tx_AdGoogleMaps_MapManager_CoordinatesProvider_MapDrawer',
 			'config' => array(
 				'type' => 'user',
 				'userFunc' => 'EXT:ad_google_maps/Classes/MapDrawer/MapDrawerApi.php:tx_AdGoogleMaps_MapDrawer_MapDrawerApi->tx_draw',
@@ -1732,7 +1724,7 @@ $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 		'access' => array('canNotCollapse' => 1, 'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, --linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel'),
 	),
 	'types' => array(
-		'Tx_AdGoogleMaps_MapBuilder_Layer_Marker' => array(
+		'Tx_AdGoogleMaps_MapManager_Layer_Marker' => array(
 			'showitem' => '
 					--palette--;LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_tca.xml:tx_adgooglemaps_domain_model_layer.paletteTitle.system;system, 
 					title, 

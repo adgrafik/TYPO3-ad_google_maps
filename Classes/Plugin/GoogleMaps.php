@@ -70,7 +70,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 	 */
 	public function __construct() {
 		// Get extension settings.
-		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($GLOBALS['TSFE']->id, 'tx_adgooglemaps')) === FALSE) {
+		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) === NULL) {
 			$flashMessages = t3lib_div::makeInstance('t3lib_FlashMessage', 'Add static Template "ad: Google Maps (ad_google_maps)" to your template.', 'tx_adgooglemaps: Invalid extension configuration', t3lib_FlashMessage::ERROR);
 			return t3lib_FlashMessageQueue::addMessage($flashMessages);
 		}

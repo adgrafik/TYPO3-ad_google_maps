@@ -51,7 +51,7 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 	 * @return void
 	 */
 	public static function includeFrontEndResources($configurationKey) {
-		if (array_key_exists($configurationKey, self::$loadedFrontEndResources) === FALSE && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($GLOBALS['TSFE']->id, 'tx_adgooglemaps')) !== FALSE) {
+		if (array_key_exists($configurationKey, self::$loadedFrontEndResources) === FALSE && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
 			if (array_key_exists($configurationKey, $settings['plugin']['includeFrontEndResources']) !== FALSE) {
 				if (self::$compressor === NULL) {
 					self::$compressor = t3lib_div::makeInstance('t3lib_Compressor');
@@ -109,23 +109,23 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 			$quoteValue = TRUE;
 			$quoteArrayValuesRecursively = FALSE;
 			$setNullValue = FALSE;
-			$dontSetIfValueIs = NULL;
-			$getFunction = NULL;
+			$ignorePropertyIfValueIs = NULL;
+			$useGetterMethod = NULL;
 			$wrapValue = NULL;
 			$postFunction = NULL;
-			if ($propertyReflection->isTaggedWith('javaScriptHelper') === TRUE) {
-				$javaScriptHelper = $propertyReflection->getTagValues('javaScriptHelper');
-				$jsonProperties = t3lib_div::trimExplode(';', $javaScriptHelper[0]);
-				foreach ($jsonProperties as $javaScriptHelper) {
-					list($key, $value) = t3lib_div::trimExplode('=', $javaScriptHelper);
+			if ($propertyReflection->isTaggedWith('jsonClassEncoder') === TRUE) {
+				$jsonClassEncoder = $propertyReflection->getTagValues('jsonClassEncoder');
+				$jsonProperties = t3lib_div::trimExplode(';', $jsonClassEncoder[0]);
+				foreach ($jsonProperties as $jsonClassEncoder) {
+					list($key, $value) = t3lib_div::trimExplode('=', $jsonClassEncoder);
 					switch ($key) {
-						case 'dontSetValue':
+						case 'ignoreProperty':
 							if ((boolean) $value === TRUE || strtolower($value) === 'true')
 								continue 3;
 						break;
 
-						case 'dontSetIfValueIs':
-							$dontSetIfValueIs = $value;
+						case 'ignorePropertyIfValueIs':
+							$ignorePropertyIfValueIs = $value;
 						break;
 
 						case 'quoteValue':
@@ -140,8 +140,8 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 							$setNullValue = eval('return (boolean) ' . $value . ';');
 						break;
 
-						case 'getFunction':
-							$getFunction = $value;
+						case 'useGetterMethod':
+							$useGetterMethod = $value;
 						break;
 
 						case 'wrap':
@@ -166,7 +166,7 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 			}
 
 			// Continue with next property if value is NULL and should not set.
-			if ($propertyValue === NULL && $setNullValue === FALSE || $propertyValue == eval('return ' . $dontSetIfValueIs . ';'))
+			if ($propertyValue === NULL && $setNullValue === FALSE || $propertyValue == eval('return ' . $ignorePropertyIfValueIs . ';'))
 				continue;
 
 			// Do special values.
@@ -189,7 +189,7 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 		}
 
 		// Load this settings and get debug mode.
-		if (self::$debugMode === NULL && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($GLOBALS['TSFE']->id, 'tx_adgooglemaps')) !== FALSE) {
+		if (self::$debugMode === NULL && ($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup('tx_adgooglemaps')) !== NULL) {
 			self::$debugMode = (boolean) $settings['plugin']['debugMode'];
 		}
 
