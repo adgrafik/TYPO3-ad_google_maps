@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_IgnoreProperty extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_WrapValue extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
 	 * Render the property value.
@@ -41,8 +41,8 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_IgnoreProperty extends
 	 * @return string
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		$this->setIgnoreProperty($this->getBooleanValue($optionValue));
-		return $propertyValue;
+		$optionValue = array_pad(t3lib_div::trimExplode('|', $optionValue), 2, '');
+		return $optionValue[0] . $propertyValue . $optionValue[1];
 	}
 
 }

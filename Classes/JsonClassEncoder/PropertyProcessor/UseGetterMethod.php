@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_UseGetterMethod extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_UseGetterMethod extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
 	 * Render the property value.

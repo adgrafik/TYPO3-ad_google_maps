@@ -28,22 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_WrapValue extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
-
-	/**
-	 * Render the property value.
-	 *
-	 * @param string $optionValue
-	 * @param mixed $object
-	 * @param string $propertyType
-	 * @param string $propertyName
-	 * @param mixed $propertyValue
-	 * @return string
-	 */
-	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		$optionValue = array_pad(t3lib_div::trimExplode('|', $optionValue), 2, '');
-		return $optionValue[0] . $propertyValue . $optionValue[1];
-	}
+interface Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_PropertyProcessorInterface {
 
 }
 

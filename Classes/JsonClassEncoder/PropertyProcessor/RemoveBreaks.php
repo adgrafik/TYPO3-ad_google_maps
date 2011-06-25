@@ -28,7 +28,25 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_PropertyProcessorInterface {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_RemoveBreaks extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
+
+	/**
+	 * Render the property value.
+	 *
+	 * @param string $optionValue
+	 * @param mixed $object
+	 * @param string $propertyType
+	 * @param string $propertyName
+	 * @param mixed $propertyValue
+	 * @return string
+	 */
+	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
+		if ($this->getBooleanValue($optionValue) === TRUE) {
+			// Remove breaks.
+			$propertyValue = str_replace(array(LF, CR, CRLF), '', $propertyValue);
+		}
+		return $propertyValue;
+	}
 
 }
 

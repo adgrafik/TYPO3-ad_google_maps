@@ -231,7 +231,7 @@ class Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder implements Tx_AdGoogleMaps_Js
 	 */
 	protected function executePropertyProcessors($level, $propertyProcessors, $object, $propertyType, $propertyName, &$propertyValue) {
 		foreach ($propertyProcessors as $optionName => $optionValue) {
-			$processorClassName = 'Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_' . ucfirst($optionName);
+			$processorClassName = 'Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_' . ucfirst($optionName);
 			if (class_exists($processorClassName) === FALSE) {
 				throw new Tx_AdGoogleMaps_JsonClassEncoder_Exception_ResloverNotFound(sprintf('Reslover "%s" not found.', $processorClassName), 1308921991);
 			}

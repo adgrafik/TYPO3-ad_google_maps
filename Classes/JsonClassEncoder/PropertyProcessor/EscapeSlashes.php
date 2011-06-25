@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_IgnoreNullValues extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_EscapeSlashes extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
 	 * Render the property value.
@@ -41,8 +41,9 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_IgnoreNullValues exten
 	 * @return string
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		if ($propertyValue === NULL && $this->getBooleanValue($optionValue) === TRUE) {
-			$this->setIgnoreProperty(TRUE);
+		if ($this->getBooleanValue($optionValue) === TRUE) {
+			// Remove breaks.
+			$propertyValue = addcslashes($propertyValue, '\'');
 		}
 		return $propertyValue;
 	}

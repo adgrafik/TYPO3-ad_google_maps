@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-abstract class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor implements Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_PropertyProcessorInterface {
+abstract class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor implements Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_PropertyProcessorInterface {
 
 	/**
 	 * @var boolean

@@ -31,7 +31,7 @@
  * @package AdGoogleMaps
  * @version $ID:$
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_Exception extends Tx_Extbase_Exception {
+class Tx_AdGoogleMaps_JsonClassEncoder_Exception extends Tx_AdGoogleMaps_Exception {
 }
 
 ?>

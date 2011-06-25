@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_QuoteValue extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_IgnorePropertyIfValueIs extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
 	 * Render the property value.
@@ -41,10 +41,8 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_QuoteValue extends Tx_
 	 * @return string
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		if ($this->getBooleanValue($optionValue) === TRUE) {
-			// Remove breaks and escape slashes at strings.
-			$propertyValue = '\'' . $propertyValue . '\'';
-		}
+		$ignoreProperty = ($propertyValue == eval('return ' . $optionValue . ';'));
+		$this->setIgnoreProperty($ignoreProperty);
 		return $propertyValue;
 	}
 

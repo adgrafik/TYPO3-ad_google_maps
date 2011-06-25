@@ -28,7 +28,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_RemoveBreaks extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_AbstractPropertyProcessor {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_IgnoreProperty extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
 	 * Render the property value.
@@ -41,10 +41,7 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessors_RemoveBreaks extends T
 	 * @return string
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		if ($this->getBooleanValue($optionValue) === TRUE) {
-			// Remove breaks.
-			$propertyValue = str_replace(array(LF, CR, CRLF), '', $propertyValue);
-		}
+		$this->setIgnoreProperty($this->getBooleanValue($optionValue));
 		return $propertyValue;
 	}
 
