@@ -46,7 +46,7 @@ abstract class Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer implements Tx_AdGo
 	protected $mapManager;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Plugin_GoogleMaps
+	 * @var Tx_AdGoogleMaps_MapBuilder_GoogleMaps
 	 */
 	protected $googleMapsPlugin;
 
@@ -131,10 +131,10 @@ abstract class Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer implements Tx_AdGo
 	/**
 	 * Injects this googleMapsPlugin
 	 *
-	 * @param Tx_AdGoogleMaps_Plugin_GoogleMaps $googleMapsPlugin
+	 * @param Tx_AdGoogleMaps_MapBuilder_GoogleMaps $googleMapsPlugin
 	 * @return void
 	 */
-	public function injectGoogleMapsPlugin(Tx_AdGoogleMaps_Plugin_GoogleMaps $googleMapsPlugin) {
+	public function injectGoogleMapsPlugin(Tx_AdGoogleMaps_MapBuilder_GoogleMaps $googleMapsPlugin) {
 		$this->googleMapsPlugin = $googleMapsPlugin;
 	}
 
@@ -199,7 +199,7 @@ abstract class Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer implements Tx_AdGo
 	/**
 	 * Returns this googleMapsPlugin
 	 *
-	 * @return Tx_AdGoogleMaps_MapManager_Plugin_GoogleMaps
+	 * @return Tx_AdGoogleMaps_MapManager_MapBuilder_GoogleMaps
 	 */
 	public function getGoogleMapsPlugin() {
 		return $this->googleMapsPlugin;

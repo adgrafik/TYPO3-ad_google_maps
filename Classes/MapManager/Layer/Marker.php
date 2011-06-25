@@ -320,7 +320,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 	 *
 	 * @param integer $index
 	 * @param string $coordinates
-	 * @return Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Options_Layer_LayerInterface
 	 */
 	public function buildItem($index, $coordinates) {
 		$layerUid = sprintf('Marker_%d_%d', $this->layer->getUid(), $index);
@@ -352,7 +352,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker', $layerOptions);
 
 		// Create option object.
-		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_Layer_Marker');
+		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Options_Layer_Marker');
 		$layerOptionsObject->setUid($layerUid);
 		$layerOptionsObject->setDrawFunctionName('drawMarker');
 		$layerOptionsObject->setOptions($layer);

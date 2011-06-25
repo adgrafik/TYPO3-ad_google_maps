@@ -135,7 +135,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_InfoWindow extends Tx_AdGoogleMaps_MapMan
 	 *
 	 * @param integer $index
 	 * @param string $coordinates
-	 * @return Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Options_Layer_LayerInterface
 	 */
 	public function buildItem($index, $coordinates) {
 		$layerUid = sprintf('InfoWindow_%d_%d', $this->layer->getUid(), $index);
@@ -157,7 +157,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_InfoWindow extends Tx_AdGoogleMaps_MapMan
 		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow', $layerOptions);
 
 		// Create option object.
-		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow');
+		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Options_Layer_InfoWindow');
 		$layerOptionsObject->setUid($layerUid);
 		$layerOptionsObject->setDrawFunctionName('drawInfoWindow');
 		$layerOptionsObject->setOptions($layer);

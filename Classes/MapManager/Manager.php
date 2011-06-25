@@ -41,7 +41,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 	protected $settings;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Plugin_GoogleMaps
+	 * @var Tx_AdGoogleMaps_MapBuilder_GoogleMaps
 	 */
 	protected $googleMapsPlugin;
 
@@ -57,7 +57,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 	/**
 	 * Returns this googleMapsPlugin
 	 *
-	 * @return Tx_AdGoogleMaps_Plugin_GoogleMaps
+	 * @return Tx_AdGoogleMaps_MapBuilder_GoogleMaps
 	 */
 	public function getGoogleMapsPlugin() {
 		return $this->googleMapsPlugin;
@@ -76,14 +76,14 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		$this->settings = $settings;
 
 		// Create Google Maps API plugin.
-		$this->googleMapsPlugin = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_GoogleMaps')
+		$this->googleMapsPlugin = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_GoogleMaps')
 			->setMapId($this->map->getPropertyValue('uid', 'map'))
-			->setWidth($this->settings['flexform']['width'] ? $this->settings['flexform']['width'] : $this->settings['plugin']['width'])
-			->setHeight($this->settings['flexform']['height'] ? $this->settings['flexform']['height'] : $this->settings['plugin']['height']);
+			->setWidth($this->settings['flexform']['width'] ? $this->settings['flexform']['width'] : $this->settings['mapBuilder']['width'])
+			->setHeight($this->settings['flexform']['height'] ? $this->settings['flexform']['height'] : $this->settings['mapBuilder']['height']);
 
 		// Set plugin options.
 		$pluginOptions = $this->googleMapsPlugin->getPluginOptions();
-		$canvas = $this->settings['plugin']['canvas'];
+		$canvas = $this->settings['mapBuilder']['canvas'];
 		$pluginOptions
 			->setCanvasId(str_replace('###UID###', $this->map->getPropertyValue('uid', 'map'), $canvas));
 
@@ -238,7 +238,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['models']['category']['mapControlFunctions']);
 			// @deprecated: ###ITEM_KEYS### is deprecated. Use ###LAYER_UIDS### instead.
 			$mapControlFunctions = str_replace(
-				array('###ITEM_KEYS###', '###LAYER_UIDS###', '###PLUGIN_MAPOBJECT_IDENTIFIER###'),
+				array('###ITEM_KEYS###', '###LAYER_UIDS###', '###MAPOBJECT_IDENTIFIER###'),
 				array($layerUids, $layerUids, $pluginMapObjectIdentifier),
 				$mapControlFunctions
 			);
