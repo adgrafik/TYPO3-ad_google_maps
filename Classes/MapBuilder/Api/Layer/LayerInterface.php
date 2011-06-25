@@ -32,7 +32,7 @@
  * @scope prototype
  * @api
  */
-interface Tx_AdGoogleMaps_Api_Layer_LayerInterface {
+interface Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface {
 
 	/*
 	 * Constructor.

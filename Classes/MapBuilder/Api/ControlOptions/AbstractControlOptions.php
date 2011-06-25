@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-abstract class Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+abstract class Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_AbstractControlOptions {
 
 	/**
 	 * ControlPosition

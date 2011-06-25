@@ -32,7 +32,7 @@
  * @scope prototype
  * @api
  */
-abstract class Tx_AdGoogleMaps_Api_Layer_AbstractLayer implements Tx_AdGoogleMaps_Api_Layer_LayerInterface {
+abstract class Tx_AdGoogleMaps_MapBuilder_Api_Layer_AbstractLayer implements Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface {
 
 	/*
 	 * Constructor.

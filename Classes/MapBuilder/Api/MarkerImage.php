@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_MarkerImage {
+class Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage {
 
 	/**
 	 * @var string
@@ -43,22 +43,22 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	protected $url;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Size
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	protected $size;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Point
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	protected $origin;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Point
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	protected $anchor;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Size
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	protected $scaledSize;
 
@@ -66,12 +66,12 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	 * Constructor.
 	 * 
 	 * @param string $url
-	 * @param Tx_AdGoogleMaps_Api_Size $size
-	 * @param Tx_AdGoogleMaps_Api_Point $origin
-	 * @param Tx_AdGoogleMaps_Api_Point $anchor
-	 * @param Tx_AdGoogleMaps_Api_Size $scaledSize
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Size $size
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Point $origin
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Point $anchor
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Size $scaledSize
 	 */
-	public function __construct($url, Tx_AdGoogleMaps_Api_Size $size = NULL, Tx_AdGoogleMaps_Api_Point $origin = NULL, Tx_AdGoogleMaps_Api_Point $anchor = NULL, Tx_AdGoogleMaps_Api_Size $scaledSize = NULL) {
+	public function __construct($url, Tx_AdGoogleMaps_MapBuilder_Api_Size $size = NULL, Tx_AdGoogleMaps_MapBuilder_Api_Point $origin = NULL, Tx_AdGoogleMaps_MapBuilder_Api_Point $anchor = NULL, Tx_AdGoogleMaps_MapBuilder_Api_Size $scaledSize = NULL) {
 		$this->url = $url;
 		$this->size = $size;
 		$this->origin = $origin;
@@ -101,10 +101,10 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Sets this size.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Size $size
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Size $size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
-	public function setSize(Tx_AdGoogleMaps_Api_Size $size) {
+	public function setSize(Tx_AdGoogleMaps_MapBuilder_Api_Size $size) {
 		$this->size = $size;
 		return $this;
 	}
@@ -121,10 +121,10 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Sets this origin.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Point $origin
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Point $origin
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
-	public function setOrigin(Tx_AdGoogleMaps_Api_Point $origin) {
+	public function setOrigin(Tx_AdGoogleMaps_MapBuilder_Api_Point $origin) {
 		$this->origin = $origin;
 		return $this;
 	}
@@ -132,7 +132,7 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Returns this origin.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Point
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	public function getOrigin() {
 		return $this->origin;
@@ -141,10 +141,10 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Sets this anchor.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Point $anchor
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Point $anchor
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
-	public function setAnchor(Tx_AdGoogleMaps_Api_Point $anchor) {
+	public function setAnchor(Tx_AdGoogleMaps_MapBuilder_Api_Point $anchor) {
 		$this->anchor = $anchor;
 		return $this;
 	}
@@ -152,7 +152,7 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Returns this anchor.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Point
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	public function getAnchor() {
 		return $this->anchor;
@@ -161,8 +161,8 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Sets this scaledSize.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Size $scaledSize
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Size $scaledSize
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
 	public function setScaledSize($scaledSize) {
 		$this->scaledSize = $scaledSize;
@@ -172,7 +172,7 @@ class Tx_AdGoogleMaps_Api_MarkerImage {
 	/**
 	 * Returns this scaledSize.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function getScaledSize() {
 		return $this->scaledSize;

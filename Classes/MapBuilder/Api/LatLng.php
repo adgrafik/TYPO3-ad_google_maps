@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_LatLng {
+class Tx_AdGoogleMaps_MapBuilder_Api_LatLng {
 
 	/**
 	 * Coordinates preg pattern.
@@ -144,11 +144,11 @@ class Tx_AdGoogleMaps_Api_LatLng {
 	public function setLatLng($latitude, $longitude = NULL) {
 		if ($longitude === NULL) {
 			if (self::isValidCoordinate($latitude) === FALSE) {
-				throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_Api_LatLng::setLatLng ("' . $latitude . '") given.', 1294069148);
+				throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_MapBuilder_Api_LatLng::setLatLng ("' . $latitude . '") given.', 1294069148);
 			}
 			@list($latitude, $longitude) = t3lib_div::trimExplode(',', $latitude);
 		} else if (self::isValidPoint($latitude) === FALSE || self::isValidPoint($longitude) === FALSE) {
-			throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_Api_LatLng::setLatLng ("' . $latitude . ', ' . $longitude . '") given.', 1294069149);
+			throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_MapBuilder_Api_LatLng::setLatLng ("' . $latitude . ', ' . $longitude . '") given.', 1294069149);
 		}
 		$this->latitude = (float) $latitude;
 		$this->longitude = (float) $longitude;

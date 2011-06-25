@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_Size {
+class Tx_AdGoogleMaps_MapBuilder_Api_Size {
 
 	/**
 	 * @var integer
@@ -76,7 +76,7 @@ class Tx_AdGoogleMaps_Api_Size {
 	 * Sets this width.
 	 *
 	 * @param integer $width
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function setWidth($width) {
 		$this->width = (integer) $width;
@@ -96,7 +96,7 @@ class Tx_AdGoogleMaps_Api_Size {
 	 * Sets this height.
 	 *
 	 * @param integer $height
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function setHeight($height) {
 		$this->height = (integer) $height;
@@ -116,7 +116,7 @@ class Tx_AdGoogleMaps_Api_Size {
 	 * Sets this widthUnit.
 	 *
 	 * @param string $widthUnit
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function setWidthUnit($widthUnit) {
 		$this->widthUnit = $widthUnit;
@@ -136,7 +136,7 @@ class Tx_AdGoogleMaps_Api_Size {
 	 * Sets this heightUnit.
 	 *
 	 * @param string $heightUnit
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function setHeightUnit($heightUnit) {
 		$this->heightUnit = $heightUnit;

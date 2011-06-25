@@ -248,7 +248,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 			'clickable' => $this->layer->isClickable(),
 			'draggable' => $this->layer->isDraggable(),
 			'raiseOnDrag' => $this->layer->isRaiseOnDrag(),
-			'shape' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_MarkerShape', 
+			'shape' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_MarkerShape', 
 				$this->layer->getShapeType(),
 				json_decode($this->layer->getShapeCoords())
 			),
@@ -270,10 +270,10 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 		// Set all over icon and shadow options.
 		$this->markerIconOptions = array(
 			'url' => NULL,
-			'size' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', $this->layer->getIconWidth(), $this->layer->getIconHeight()),
-			'origin' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Point', $this->layer->getIconOriginX(), $this->layer->getIconOriginY()),
-			'anchor' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Point', $this->layer->getIconAnchorX(), $this->layer->getIconAnchorY()),
-			'scaled' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', $this->layer->getIconScaledWidth(), $this->layer->getIconScaledHeight()),
+			'size' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Size', $this->layer->getIconWidth(), $this->layer->getIconHeight()),
+			'origin' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Point', $this->layer->getIconOriginX(), $this->layer->getIconOriginY()),
+			'anchor' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Point', $this->layer->getIconAnchorX(), $this->layer->getIconAnchorY()),
+			'scaled' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Size', $this->layer->getIconScaledWidth(), $this->layer->getIconScaledHeight()),
 		);
 		$this->markerIcons = explode(',', $this->layer->getIcon());
 		$this->markerIconObjectNumberConf = $this->getObjectNumberConf($this->layer->getIconObjectNumber(), $this->getCountCoordinates());
@@ -291,10 +291,10 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 
 		$this->markerShadowOptions = array(
 			'url' => NULL,
-			'size' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', $this->layer->getShadowWidth(), $this->layer->getShadowHeight()),
-			'origin' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Point', $this->layer->getShadowOriginX(), $this->layer->getShadowOriginY()),
-			'anchor' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Point', $this->layer->getShadowAnchorX(), $this->layer->getShadowAnchorY()),
-			'scaled' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', $this->layer->getShadowScaledWidth(), $this->layer->getShadowScaledHeight()),
+			'size' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Size', $this->layer->getShadowWidth(), $this->layer->getShadowHeight()),
+			'origin' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Point', $this->layer->getShadowOriginX(), $this->layer->getShadowOriginY()),
+			'anchor' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Point', $this->layer->getShadowAnchorX(), $this->layer->getShadowAnchorY()),
+			'scaled' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Size', $this->layer->getShadowScaledWidth(), $this->layer->getShadowScaledHeight()),
 		);
 		$this->markerShadows = explode(',', $this->layer->getShadow());
 		$this->markerShadowObjectNumberConf = $this->getObjectNumberConf($this->layer->getShadowObjectNumber(), $this->getCountCoordinates());
@@ -334,22 +334,22 @@ class Tx_AdGoogleMaps_MapManager_Layer_Marker extends Tx_AdGoogleMaps_MapManager
 		// Get item options.
 		$layerOptions = $this->layerOptions;
 		$layerOptions['title'] = $markerTitle;
-		$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_LatLng', $coordinates);
+		$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_LatLng', $coordinates);
 
 		if (($iconUrl = $this->getContentByObjectNumberConf($this->markerIcons, $this->markerIconObjectNumberConf, $index, NULL, TRUE))) {
 			$iconOptions = $this->markerIconOptions;
 			$iconOptions['url'] = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $iconUrl);
-			$layerOptions['icon'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_MarkerImage', $iconOptions['url'], $iconOptions['size'], $iconOptions['origin'], $iconOptions['anchor'], $iconOptions['scaled']);
+			$layerOptions['icon'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage', $iconOptions['url'], $iconOptions['size'], $iconOptions['origin'], $iconOptions['anchor'], $iconOptions['scaled']);
 		}
 
 		if (($shadowUrl = $this->getContentByObjectNumberConf($this->markerShadows, $this->markerShadowObjectNumberConf, $index, NULL, TRUE))) {
 			$shadowOptions = $this->markerShadowOptions;
 			$shadowOptions['url'] = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'shadowIcons', $shadowUrl);
-			$layerOptions['shadow'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_MarkerImage', $shadowOptions['url'], $shadowOptions['size'], $shadowOptions['origin'], $shadowOptions['anchor'], $shadowOptions['scaled']);
+			$layerOptions['shadow'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage', $shadowOptions['url'], $shadowOptions['size'], $shadowOptions['origin'], $shadowOptions['anchor'], $shadowOptions['scaled']);
 		}
 
 		// Create marker.
-		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Layer_Marker', $layerOptions);
+		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker', $layerOptions);
 
 		// Create option object.
 		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_Layer_Marker');

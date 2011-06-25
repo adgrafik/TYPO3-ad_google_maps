@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_StreetView extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView extends Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_AbstractControlOptions {
 
 	/*
 	 * Constructor.

@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_Map {
+class Tx_AdGoogleMaps_MapBuilder_Api_Map {
 
 	/**
 	 * @var string
@@ -56,7 +56,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $backgroundColor;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 * @jsonClassEncoder useGetterMethod = getPrint
 	 */
 	protected $center;
@@ -98,7 +98,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $mapTypeControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_MapType
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_MapType
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $mapTypeControlOptions;
@@ -110,7 +110,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $navigationControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Navigation
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Navigation
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $navigationControlOptions;
@@ -122,7 +122,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $scaleControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Scale
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Scale
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $scaleControlOptions;
@@ -134,7 +134,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $panControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Pan
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $panControlOptions;
@@ -146,7 +146,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $zoomControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_Pan
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $zoomControlOptions;
@@ -158,7 +158,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	protected $streetViewControl;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_ControlOptions_StreetView
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView
 	 * @jsonClassEncoder ignorePropertyIfValueIs = 'null'
 	 */
 	protected $streetViewControlOptions;
@@ -220,7 +220,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this canvas.
 	 *
 	 * @param string $canvas
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setCanvas($canvas) {
 		$this->canvas = $canvas;
@@ -240,7 +240,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this mapTypeId.
 	 *
 	 * @param string $mapTypeId
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setMapTypeId($mapTypeId) {
 		$this->mapTypeId = $mapTypeId;
@@ -259,9 +259,9 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this center.
 	 x_AdGoogleMapsApi_LatLng $center
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setCenter(Tx_AdGoogleMaps_Api_LatLng $center) {
+	public function setCenter(Tx_AdGoogleMaps_MapBuilder_Api_LatLng $center) {
 		$this->center = $center;
 		return $this;
 	}
@@ -269,7 +269,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this center.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 */
 	public function getCenter() {
 		return $this->center;
@@ -279,7 +279,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this zoom.
 	 *
 	 * @param integer $zoom
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setZoom($zoom) {
 		$this->zoom = (integer) $zoom;
@@ -299,7 +299,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this minZoom.
 	 *
 	 * @param integer $minZoom
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setMinZoom($minZoom) {
 		$this->minZoom = (integer) $minZoom;
@@ -319,7 +319,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this maxZoom.
 	 *
 	 * @param integer $maxZoom
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setMaxZoom($maxZoom) {
 		$this->maxZoom = (integer) $maxZoom;
@@ -339,7 +339,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this backgroundColor.
 	 *
 	 * @param string $backgroundColor
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setBackgroundColor($backgroundColor) {
 		$this->backgroundColor = $backgroundColor;
@@ -359,7 +359,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this noClear.
 	 *
 	 * @param boolean $noClear
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setNoClear($noClear) {
 		$this->noClear = (boolean) $noClear;
@@ -379,7 +379,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this disableDefaultUi.
 	 *
 	 * @param boolean $disableDefaultUi
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setDisableDefaultUi($disableDefaultUi) {
 		$this->disableDefaultUi = (boolean) $disableDefaultUi;
@@ -399,7 +399,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this mapTypeControl.
 	 *
 	 * @param boolean $mapTypeControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setMapTypeControl($mapTypeControl) {
 		$this->mapTypeControl = (boolean) $mapTypeControl;
@@ -418,10 +418,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this mapTypeControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_MapType $mapTypeControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_MapType $mapTypeControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setMapTypeControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_MapType $mapTypeControlOptions) {
+	public function setMapTypeControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_MapType $mapTypeControlOptions) {
 		$this->mapTypeControlOptions = $mapTypeControlOptions;
 		return $this;
 	}
@@ -429,7 +429,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this mapTypeControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_MapType
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_MapType
 	 */
 	public function getMapTypeControlOptions() {
 		return $this->mapTypeControlOptions;
@@ -439,7 +439,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this navigationControl.
 	 *
 	 * @param boolean $navigationControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setNavigationControl($navigationControl) {
 		$this->navigationControl = (boolean) $navigationControl;
@@ -458,10 +458,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this navigationControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_Navigation $navigationControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Navigation $navigationControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setNavigationControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_Navigation $navigationControlOptions) {
+	public function setNavigationControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Navigation $navigationControlOptions) {
 		$this->navigationControlOptions = $navigationControlOptions;
 		return $this;
 	}
@@ -469,7 +469,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this navigationControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_Navigation
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Navigation
 	 */
 	public function getNavigationControlOptions() {
 		return $this->navigationControlOptions;
@@ -479,7 +479,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this scaleControl.
 	 *
 	 * @param boolean $scaleControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setScaleControl($scaleControl) {
 		$this->scaleControl = (boolean) $scaleControl;
@@ -498,10 +498,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this scaleControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_Scale $scaleControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Scale $scaleControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setScaleControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_Scale $scaleControlOptions) {
+	public function setScaleControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Scale $scaleControlOptions) {
 		$this->scaleControlOptions = $scaleControlOptions;
 		return $this;
 	}
@@ -509,7 +509,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this scaleControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_Scale
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Scale
 	 */
 	public function getScaleControlOptions() {
 		return $this->scaleControlOptions;
@@ -519,7 +519,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this panControl.
 	 *
 	 * @param boolean $panControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setPanControl($panControl) {
 		$this->panControl = (boolean) $panControl;
@@ -538,10 +538,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this panControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_Pan $panControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan $panControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setPanControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_Pan $panControlOptions) {
+	public function setPanControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan $panControlOptions) {
 		$this->panControlOptions = $panControlOptions;
 		return $this;
 	}
@@ -549,7 +549,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this panControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_Pan
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan
 	 */
 	public function getPanControlOptions() {
 		return $this->panControlOptions;
@@ -559,7 +559,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this zoomControl.
 	 *
 	 * @param boolean $zoomControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setZoomControl($zoomControl) {
 		$this->zoomControl = (boolean) $zoomControl;
@@ -578,10 +578,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this zoomControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_Zoom $zoomControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Zoom $zoomControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setZoomControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_Zoom $zoomControlOptions) {
+	public function setZoomControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Zoom $zoomControlOptions) {
 		$this->zoomControlOptions = $zoomControlOptions;
 		return $this;
 	}
@@ -589,7 +589,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this zoomControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_Zoom
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Zoom
 	 */
 	public function getZoomControlOptions() {
 		return $this->zoomControlOptions;
@@ -599,7 +599,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this streetViewControl.
 	 *
 	 * @param boolean $streetViewControl
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setStreetViewControl($streetViewControl) {
 		$this->streetViewControl = (boolean) $streetViewControl;
@@ -618,10 +618,10 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Sets this streetViewControlOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_ControlOptions_StreetView $streetViewControlOptions
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView $streetViewControlOptions
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
-	public function setStreetViewControlOptions(Tx_AdGoogleMaps_Api_ControlOptions_StreetView $streetViewControlOptions) {
+	public function setStreetViewControlOptions(Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView $streetViewControlOptions) {
 		$this->streetViewControlOptions = $streetViewControlOptions;
 		return $this;
 	}
@@ -629,7 +629,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	/**
 	 * Returns this streetViewControlOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_ControlOptions_StreetView
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView
 	 */
 	public function getStreetViewControlOptions() {
 		return $this->streetViewControlOptions;
@@ -639,7 +639,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this disableDoubleClickZoom.
 	 *
 	 * @param boolean $disableDoubleClickZoom
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setDisableDoubleClickZoom($disableDoubleClickZoom) {
 		$this->disableDoubleClickZoom = (boolean) $disableDoubleClickZoom;
@@ -659,7 +659,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this scrollwheel.
 	 *
 	 * @param boolean $scrollwheel
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setScrollwheel($scrollwheel) {
 		$this->scrollwheel = (boolean) $scrollwheel;
@@ -679,7 +679,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this draggable.
 	 *
 	 * @param boolean $draggable
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setDraggable($draggable) {
 		$this->draggable = (boolean) $draggable;
@@ -699,7 +699,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this draggableCursor.
 	 *
 	 * @param string $draggableCursor
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setDraggableCursor($draggableCursor) {
 		$this->draggableCursor = $draggableCursor;
@@ -719,7 +719,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this draggingCursor.
 	 *
 	 * @param string $draggingCursor
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setDraggingCursor($draggingCursor) {
 		$this->draggingCursor = $draggingCursor;
@@ -739,7 +739,7 @@ class Tx_AdGoogleMaps_Api_Map {
 	 * Sets this keyboardShortcuts.
 	 *
 	 * @param boolean $keyboardShortcuts
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function setKeyboardShortcuts($keyboardShortcuts) {
 		$this->keyboardShortcuts = (boolean) $keyboardShortcuts;

@@ -313,7 +313,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 	 * Returns the address LatLng object. Returns NULL if no address found.
 	 * 
 	 * @param string $addressQuery
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 */
 	public function getLatLngByAddress($addressQuery) {
 		$latLng = NULL;
@@ -322,7 +322,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 		$geocodeResult = t3lib_div::getURL($geocodeUrl);
 		$geocodeResult = json_decode($geocodeResult);
 		if ($geocodeResult !== NULL && strtolower($geocodeResult->status) === 'ok') {
-			$coordinates = new Tx_AdGoogleMaps_Api_LatLng($geocodeResult->results[0]->geometry->location->lat, $geocodeResult->results[0]->geometry->location->lng);
+			$coordinates = new Tx_AdGoogleMaps_MapBuilder_Api_LatLng($geocodeResult->results[0]->geometry->location->lat, $geocodeResult->results[0]->geometry->location->lng);
 		}
 		return $latLng;
 	}

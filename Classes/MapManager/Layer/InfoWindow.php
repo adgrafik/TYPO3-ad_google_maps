@@ -110,7 +110,7 @@ class Tx_AdGoogleMaps_MapManager_Layer_InfoWindow extends Tx_AdGoogleMaps_MapMan
 		$this->layerOptions = array(
 			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowDisableAutoPan'),
 			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowMaxWidth'),
-			'pixelOffsetWidth' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', 
+			'pixelOffsetWidth' => t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Size', 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetWidth'), 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetHeight')
 			),
@@ -150,11 +150,11 @@ class Tx_AdGoogleMaps_MapManager_Layer_InfoWindow extends Tx_AdGoogleMaps_MapMan
 		$layerOptions['disableAutoPan'] = $this->infoWindowDisableAutoPan;
 		$layerOptions['content'] = $infoWindowContent;
 		if ($coordinates !== NULL) {
-			$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_LatLng', $coordinates);
+			$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_LatLng', $coordinates);
 		}
 
 		// Create marker.
-		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Layer_InfoWindow', $layerOptions);
+		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow', $layerOptions);
 
 		// Create option object.
 		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow');

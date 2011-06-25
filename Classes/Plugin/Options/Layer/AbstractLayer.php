@@ -41,7 +41,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	protected $drawFunctionName;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
 	protected $options;
 
@@ -49,7 +49,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	 * Sets this uid.
 	 *
 	 * @param string $uid
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
 	public function setUid($uid) {
 		$this->uid = $uid;
@@ -69,7 +69,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	 * Sets this drawFunctionName.
 	 *
 	 * @param string $drawFunctionName
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
 	public function setDrawFunctionName($drawFunctionName) {
 		$this->drawFunctionName = $drawFunctionName;
@@ -88,10 +88,10 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	/**
 	 * Sets this options.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Layer_LayerInterface $options
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface $options
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
-	public function setOptions(Tx_AdGoogleMaps_Api_Layer_LayerInterface $options) {
+	public function setOptions(Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface $options) {
 		$this->options = $options;
 		return $this;
 	}
@@ -99,7 +99,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	/**
 	 * Returns this options.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
 	public function getOptions() {
 		return $this->options;

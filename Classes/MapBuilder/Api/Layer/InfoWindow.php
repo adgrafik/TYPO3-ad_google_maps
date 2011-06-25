@@ -32,10 +32,10 @@
  * @scope prototype
  * @api
  */
-class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBuilder_Api_Layer_AbstractLayer {
 	
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $position;
@@ -58,7 +58,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	protected $maxWidth;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Size
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $pixelOffset;
@@ -72,10 +72,10 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Sets this position.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $position
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_LatLng $position
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
-	public function setPosition(Tx_AdGoogleMaps_Api_LatLng $position) {
+	public function setPosition(Tx_AdGoogleMaps_MapBuilder_Api_LatLng $position) {
 		$this->position = $position;
 		return $this;
 	}
@@ -83,7 +83,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Returns this position.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 */
 	public function getPosition() {
 		return $this->position;
@@ -93,7 +93,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this content.
 	 *
 	 * @param string $content
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
 	public function setContent($content) {
 		$this->content = $content;
@@ -113,7 +113,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this disableAutoPan.
 	 *
 	 * @param boolean $disableAutoPan
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
 	public function setDisableAutoPan($disableAutoPan) {
 		$this->disableAutoPan = (boolean) $disableAutoPan;
@@ -133,7 +133,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this maxWidth.
 	 *
 	 * @param integer $maxWidth
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
 	public function setMaxWidth($maxWidth) {
 		$this->maxWidth = (integer) $maxWidth;
@@ -152,10 +152,10 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Sets this pixelOffset.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Size $pixelOffset
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Size $pixelOffset
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
-	public function setPixelOffset(Tx_AdGoogleMaps_Api_Size $pixelOffset) {
+	public function setPixelOffset(Tx_AdGoogleMaps_MapBuilder_Api_Size $pixelOffset) {
 		$this->pixelOffset = $pixelOffset;
 		return $this;
 	}
@@ -163,7 +163,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Returns this pixelOffset.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Size
 	 */
 	public function getPixelOffset() {
 		return $this->pixelOffset;
@@ -173,7 +173,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this zindex.
 	 *
 	 * @param integer $zindex
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_InfoWindow
 	 */
 	public function setZindex($zindex) {
 		$this->zindex = (integer) $zindex;

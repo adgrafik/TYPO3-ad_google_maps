@@ -35,7 +35,7 @@
  * @entity
  * @api
  */
-class Tx_AdGoogleMaps_Api_Point {
+class Tx_AdGoogleMaps_MapBuilder_Api_Point {
 
 	/**
 	 * @var integer
@@ -62,7 +62,7 @@ class Tx_AdGoogleMaps_Api_Point {
 	 * Sets this x.
 	 *
 	 * @param integer $x
-	 * @return Tx_AdGoogleMaps_Api_Point
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	public function setX($x) {
 		$this->x = (integer) $x;
@@ -82,7 +82,7 @@ class Tx_AdGoogleMaps_Api_Point {
 	 * Sets this y.
 	 *
 	 * @param integer $y
-	 * @return Tx_AdGoogleMaps_Api_Point
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Point
 	 */
 	public function setY($y) {
 		$this->y = (integer) $y;

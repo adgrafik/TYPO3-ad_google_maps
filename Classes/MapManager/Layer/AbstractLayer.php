@@ -369,7 +369,7 @@ abstract class Tx_AdGoogleMaps_MapManager_Layer_AbstractLayer implements Tx_AdGo
 	 *
 	 * @param integer $index
 	 * @param mixed $value
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_LayerInterface
 	 */
 	abstract public function buildItem($index, $value);
 

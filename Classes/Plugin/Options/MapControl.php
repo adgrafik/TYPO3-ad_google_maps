@@ -43,7 +43,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	protected $useMarkerCluster;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_MarkerImage
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $searchMarker;
@@ -97,7 +97,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	/**
 	 * Sets this searchMarker
 	 *
-	 * @param Tx_AdGoogleMaps_Api_MarkerImage $searchMarker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage $searchMarker
 	 * @return Tx_AdGoogleMaps_Plugin_Options_MapControl
 	 */
 	public function setSearchMarker($searchMarker) {
@@ -108,7 +108,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	/**
 	 * Returns this searchMarker
 	 *
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
 	public function getSearchMarker() {
 		return $this->searchMarker;

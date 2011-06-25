@@ -36,7 +36,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	protected $canvasId;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Map
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	protected $mapOptions;
 
@@ -54,7 +54,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	 * Constructs this map.
 	 */
 	public function __construct() {
-		$this->mapOptions = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Map', NULL);
+		$this->mapOptions = t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_Map', NULL);
 		$this->mapControl = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_MapControl');
 		$this->layerOptions = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
@@ -82,10 +82,10 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Sets this mapOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Map $mapOptions
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Map $mapOptions
 	 * @return Tx_AdGoogleMaps_Plugin_Options
 	 */
-	public function setMapOptions(Tx_AdGoogleMaps_Api_Map $mapOptions) {
+	public function setMapOptions(Tx_AdGoogleMaps_MapBuilder_Api_Map $mapOptions) {
 		$this->mapOptions = $mapOptions;
 		return $this;
 	}
@@ -93,7 +93,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Returns this mapOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function getMapOptions() {
 		return $this->mapOptions;

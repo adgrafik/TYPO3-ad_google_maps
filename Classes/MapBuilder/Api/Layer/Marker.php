@@ -32,10 +32,10 @@
  * @scope prototype
  * @api
  */
-class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker extends Tx_AdGoogleMaps_MapBuilder_Api_Layer_AbstractLayer {
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Map
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 * @jsonClassEncoder ignoreProperty
 	 */
 	protected $map;
@@ -47,7 +47,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	protected $title;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 * @jsonClassEncoder useGetterMethod = getPrint
 	 */
 	protected $position;
@@ -83,13 +83,13 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	protected $zindex;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_MarkerImage
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $icon;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_MarkerImage
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $shadow;
@@ -101,7 +101,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	protected $flat;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_MarkerShape
+	 * @var Tx_AdGoogleMaps_MapBuilder_Api_MarkerShape
 	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $shape;
@@ -115,8 +115,8 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Sets this map.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Map $map
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_Map $map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setMap($map) {
 		$this->map = $map;
@@ -126,7 +126,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Returns this map.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Map
 	 */
 	public function getMap() {
 		return $this->map;
@@ -136,7 +136,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this title.
 	 *
 	 * @param string $title
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
@@ -155,10 +155,10 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Sets this position.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $position
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_LatLng $position
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
-	public function setPosition(Tx_AdGoogleMaps_Api_LatLng $position) {
+	public function setPosition(Tx_AdGoogleMaps_MapBuilder_Api_LatLng $position) {
 		$this->position = $position;
 		return $this;
 	}
@@ -166,7 +166,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Returns this position.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_LatLng
 	 */
 	public function getPosition() {
 		return $this->position;
@@ -176,7 +176,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this visible.
 	 *
 	 * @param boolean $visible
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setVisible($visible) {
 		$this->visible = (boolean) $visible;
@@ -196,7 +196,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this clickable.
 	 *
 	 * @param boolean $clickable
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setClickable($clickable) {
 		$this->clickable = (boolean) $clickable;
@@ -216,7 +216,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this draggable.
 	 *
 	 * @param boolean $draggable
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setDraggable($draggable) {
 		$this->draggable = (boolean) $draggable;
@@ -236,7 +236,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this raiseOnDrag.
 	 *
 	 * @param boolean $raiseOnDrag
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setRaiseOnDrag($raiseOnDrag) {
 		$this->raiseOnDrag = (boolean) $raiseOnDrag;
@@ -256,7 +256,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this zindex.
 	 *
 	 * @param integer $zindex
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setZindex($zindex) {
 		$this->zindex = (integer) $zindex;
@@ -275,10 +275,10 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Sets this icon.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_MarkerImage $icon
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage $icon
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
-	public function setIcon(Tx_AdGoogleMaps_Api_MarkerImage $icon) {
+	public function setIcon(Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage $icon) {
 		$this->icon = $icon;
 		return $this;
 	}
@@ -286,7 +286,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Returns this icon.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
 	public function getIcon() {
 		return $this->icon;
@@ -295,10 +295,10 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Sets this shadow.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_MarkerImage $shadow
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage $shadow
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
-	public function setShadow(Tx_AdGoogleMaps_Api_MarkerImage $shadow) {
+	public function setShadow(Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage $shadow) {
 		$this->shadow = $shadow;
 		return $this;
 	}
@@ -306,7 +306,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Returns this shadow.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage
 	 */
 	public function getShadow() {
 		return $this->shadow;
@@ -316,7 +316,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this flat.
 	 *
 	 * @param boolean $flat
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setFlat($flat) {
 		$this->flat = (boolean) $flat;
@@ -335,10 +335,10 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Sets this shape.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_MarkerShape $shape
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @param Tx_AdGoogleMaps_MapBuilder_Api_MarkerShape $shape
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
-	public function setShape(Tx_AdGoogleMaps_Api_MarkerShape $shape) {
+	public function setShape(Tx_AdGoogleMaps_MapBuilder_Api_MarkerShape $shape) {
 		$this->shape = $shape;
 		return $this;
 	}
@@ -346,7 +346,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	/**
 	 * Returns this shape.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_MarkerShape
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_MarkerShape
 	 */
 	public function getShape() {
 		return $this->shape;
@@ -356,7 +356,7 @@ class Tx_AdGoogleMaps_Api_Layer_Marker extends Tx_AdGoogleMaps_Api_Layer_Abstrac
 	 * Sets this cursor
 	 *
 	 * @param string $cursor
-	 * @return Tx_AdGoogleMaps_Api_Layer_Marker
+	 * @return Tx_AdGoogleMaps_MapBuilder_Api_Layer_Marker
 	 */
 	public function setCursor($cursor) {
 		$this->cursor = $cursor;

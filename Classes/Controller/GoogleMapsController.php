@@ -87,21 +87,21 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		$mapControl = $googleMapsPlugin->getPluginOptions()->getMapControl();
 
 		// Set search marker.
-		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_MarkerImage',
+		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_Api_MarkerImage',
 			$map->getSearchMarker(),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_Api_Size', 
 				$map->getSearchMarkerWidth(),
 				$map->getSearchMarkerHeight()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_Api_Point', 
 				$map->getSearchMarkerOriginX(),
 				$map->getSearchMarkerOriginY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_Api_Point', 
 				$map->getSearchMarkerAnchorX(),
 				$map->getSearchMarkerAnchorY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_Api_Size', 
 				$map->getSearchMarkerScaledWidth(),
 				$map->getSearchMarkerScaledHeight()
 			)

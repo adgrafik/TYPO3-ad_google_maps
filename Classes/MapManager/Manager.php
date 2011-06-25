@@ -89,8 +89,8 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 
 		// Set initial map options.
 		$mapCenter = $this->map->getCenter();
-		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
-			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($this->settings['models']['map']['center']) === TRUE) {
+		if (Tx_AdGoogleMaps_MapBuilder_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
+			if (Tx_AdGoogleMaps_MapBuilder_Api_LatLng::isValidCoordinate($this->settings['models']['map']['center']) === TRUE) {
 				$mapCenter = $this->settings['models']['map']['center'];
 			} else {
 				$mapCenter = '48.209206,16.372778';
@@ -99,7 +99,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		$pluginMapOption = $pluginOptions->getMapOptions();
 		$pluginMapOption
 			->setMapTypeId($this->map->getMapTypeId())
-			->setCenter(new Tx_AdGoogleMaps_Api_LatLng($mapCenter))
+			->setCenter(new Tx_AdGoogleMaps_MapBuilder_Api_LatLng($mapCenter))
 			->setBackgroundColor($this->map->getBackgroundColor())
 			->setNoClear($this->map->isNoClear())
 			->setDisableDefaultUi($this->map->isDisableDefaultUi())
@@ -110,7 +110,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		if ($this->map->hasMapTypeControl() === TRUE) {
 			$pluginMapOption
 				->setMapTypeControl(TRUE)
-				->setMapTypeControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_MapType', 
+				->setMapTypeControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_MapType', 
 					$this->map->getMapTypeControlOptionsMapTypeIds(),
 					$this->map->getMapTypeControlOptionsPosition(),
 					$this->map->getMapTypeControlOptionsStyle()
@@ -119,7 +119,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		if ($this->map->hasNavigationControl() === TRUE) {
 			$pluginMapOption
 				->setNavigationControl(TRUE)
-				->setNavigationControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Navigation', 
+				->setNavigationControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Navigation', 
 					$this->map->getNavigationControlOptionsPosition(),
 					$this->map->getNavigationControlOptionsStyle()
 				));
@@ -127,7 +127,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		if ($this->map->hasScaleControl() === TRUE) {
 			$pluginMapOption
 				->setScaleControl(TRUE)
-				->setScaleControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Scale', 
+				->setScaleControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Scale', 
 					$this->map->getScaleControlOptionsPosition(),
 					$this->map->getScaleControlOptionsStyle()
 				));
@@ -135,14 +135,14 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		if ($this->map->hasPanControl() === TRUE) {
 			$pluginMapOption
 				->setPanControl(TRUE)
-				->setPanControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Pan', 
+				->setPanControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Pan', 
 					$this->map->getPanControlOptionsPosition()
 				));
 		}
 		if ($this->map->hasZoomControl() === TRUE) {
 			$pluginMapOption
 				->setZoomControl(TRUE)
-				->setZoomControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Zoom', 
+				->setZoomControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_Zoom', 
 					$this->map->getZoomControlOptionsPosition(),
 					$this->map->getZoomControlOptionsStyle()
 				));
@@ -150,7 +150,7 @@ class Tx_AdGoogleMaps_MapManager_Manager {
 		if ($this->map->hasStreetViewControl() === TRUE) {
 			$pluginMapOption
 				->setStreetViewControl(TRUE)
-				->setStreetViewControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_StreetView', 
+				->setStreetViewControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_MapBuilder_Api_ControlOptions_StreetView', 
 					$this->map->getStreetViewControlOptionsPosition()
 				));
 		}
