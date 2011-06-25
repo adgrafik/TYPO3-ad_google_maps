@@ -6,13 +6,13 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="settings.plugin.apiUrl">Google Maps API URL: The URL to the Google Maps API. Required.</label>
-			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL of the Google Maps plugin. Required.</label>
-			<label index="settings.plugin.canvas">The DIV container where the map is shown. Required.</label>
-			<label index="settings.plugin.height">Height: The initial height of the map. Required.</label>
-			<label index="settings.plugin.markerClusterUrl">Google Maps marker cluster URL: URL of the Google Maps marker cluster URL.</label>
-			<label index="settings.plugin.geocodeUrl">Google Maps API geocode-URL: URL of the Google Maps service for getting geocode per JSON. Required.</label>
-			<label index="settings.plugin.disableInsertDataAtHeaders">Disable "insertData" at headers: If set the TypoScript-Setup "lib.stdheader.10" is changed and "insertData" replaced with "dataWrap". If this option is TRUE it'll be able to use Fluid-Syntax in the header of content elements.</label>
+			<label index="settings.mapBuilder.apiUrl">Google Maps API URL: The URL to the Google Maps API. Required.</label>
+			<label index="settings.mapBuilder.mapBuilderFile">Google Maps MapBuilder: URL of the Google Maps MapBuilder. Required.</label>
+			<label index="settings.mapBuilder.canvas">The DIV container where the map is shown. Required.</label>
+			<label index="settings.mapBuilder.height">Height: The initial height of the map. Required.</label>
+			<label index="settings.mapBuilder.markerClusterUrl">Google Maps marker cluster URL: URL of the Google Maps marker cluster URL.</label>
+			<label index="settings.mapBuilder.geocodeUrl">Google Maps API geocode-URL: URL of the Google Maps service for getting geocode per JSON. Required.</label>
+			<label index="settings.mapBuilder.disableInsertDataAtHeaders">Disable "insertData" at headers: If set the TypoScript-Setup "lib.stdheader.10" is changed and "insertData" replaced with "dataWrap". If this option is TRUE it'll be able to use Fluid-Syntax in the header of content elements.</label>
 
 			<label index="settings.models.map.mapTypeId">Map type ID: The default mapTypeId. Required.</label>
 			<label index="settings.models.map.center">Center: The default latitude and longitude where the map should start. Required.</label>
@@ -27,13 +27,13 @@
 			<label index="view.layoutRootPath">Layouts path: Path to the layouts (FE)</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="settings.plugin.apiUrl">Google Maps API URL: Die URL zu der Google Maps API. Erforderlich.</label>
-			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL des Google Maps-Plugin. Erforderlich.</label>
-			<label index="settings.plugin.canvas">Canvas: Der DIV-Container wo die Karte dargestellt wird. Erforderlich.</label>
-			<label index="settings.plugin.height">Höhe: Die Anfängliche Höhe der Karte. Erforderlich.</label>
-			<label index="settings.plugin.markerClusterUrl">Google Maps Markierungs-Cluster URL: URL der Google Maps Markierungs-Cluster Lib.</label>
-			<label index="settings.plugin.geocodeUrl">Google Maps API Geocode-URL: URL des Google Maps-Service um Geodaten per JSON zu erhalten. Erforderlich.</label>
-			<label index="settings.plugin.disableInsertDataAtHeaders">Deaktiviere "insertData" bei Überschriften: Wenn gesetzt, wird TypoScript-Setup "lib.stdheader.10" geändert und insertData durch "dataWrap" ersetzt. Wenn diese Option TRUE ist, dann ist es möglich Fluid-Syntax in Überschriften von Seiteninhalten zu verwenden.</label>
+			<label index="settings.mapBuilder.apiUrl">Google Maps API URL: Die URL zu der Google Maps API. Erforderlich.</label>
+			<label index="settings.mapBuilder.mapBuilderFile">Google Maps MapBuilder: URL des Google Maps-MapBuilder. Erforderlich.</label>
+			<label index="settings.mapBuilder.canvas">Canvas: Der DIV-Container wo die Karte dargestellt wird. Erforderlich.</label>
+			<label index="settings.mapBuilder.height">Höhe: Die Anfängliche Höhe der Karte. Erforderlich.</label>
+			<label index="settings.mapBuilder.markerClusterUrl">Google Maps Markierungs-Cluster URL: URL der Google Maps Markierungs-Cluster Lib.</label>
+			<label index="settings.mapBuilder.geocodeUrl">Google Maps API Geocode-URL: URL des Google Maps-Service um Geodaten per JSON zu erhalten. Erforderlich.</label>
+			<label index="settings.mapBuilder.disableInsertDataAtHeaders">Deaktiviere "insertData" bei Überschriften: Wenn gesetzt, wird TypoScript-Setup "lib.stdheader.10" geändert und insertData durch "dataWrap" ersetzt. Wenn diese Option TRUE ist, dann ist es möglich Fluid-Syntax in Überschriften von Seiteninhalten zu verwenden.</label>
 
 			<label index="settings.models.map.mapTypeId">Kartentyp-ID: Anfängliche Kartentyp-ID. Mögliche Werte: google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN. Erforderlich.</label>
 			<label index="settings.models.map.center">Kartenzentrum: Anfängliches Kartenzentrum. Erforderlich.</label>
