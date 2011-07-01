@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for flexform belonging to extension 'ad_googlemaps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="uploadDirectories.categoryIcons">Category icons: Path to the category icons. Set here an userdefined path for the upload folder. Default is "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.markerIcons">Marker icons: Path to the marker icons. All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.shadowIcons">Marker shadow icons: Path to the marker shadow icons. All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.mouseCursor">Mouse cursor: Path to the mouse cursor. All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.kmlFiles">KML files: Path to the KML files. All uploaded files will be stored in this folder.</label>
+			<label index="uploadDirectories.markerCluster">Marker cluster icons: [Not implemented now] Path to the marker cluster icons. All uploaded files will be stored in this folder.</label>
+
+			<label index="l10n.prependTranslationInfo">Translation information: By default, all text fields (title, description etc.) will be prepended with "[Translate to ...]". If this is not wanted you can disable it here. If "prependTranslationInfo" is disabled the text "(Copy [#])" will be added to the titles of this records unless "prependAtCopy" is disabled (see "prependAtCopy").</label>
+			<label index="l10n.excludeProperties">Hide property fields: Usually if you make a translation record, you mostly have to translate the text fields only. If it's necessary to set other values too, you can set this option. If it is set to "Only text fields" you can only edit the text fields like "title" or "description". If set to "Only text and file fields", the image and file fields can be edited. Or if you set it to "Show all", you can edit all fields.</label>
+			<label index="l10n.excludeProperties.all">Only text fields</label>
+			<label index="l10n.excludeProperties.file">Only text and file fields</label>
+			<label index="l10n.excludeProperties.none">Show all</label>
+			<label index="l10n.hideNewLocalizations">Hide new localizations: Here you choose if new localizations should be hidden or not. By default new localizations are visible.</label>
+
+			<label index="useMapDrawerForAddress">Use MapDrawer for tt_address: If set, you can set the geo position of an address in the MapDrawer, else the geo position will be get directly ba geocoder from the address.</label>
+			<label index="prependAtCopy">Prepend at Copy: Here you can disable adding of the text "(Copy [#])" to titles of copied records.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="uploadDirectories.categoryIcons">Kategorie-Icons: Pfad zu den Kategorie-Icons. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.markerIcons">Markierungs-Icons: Pfad zu den Marker-Icons. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.shadowIcons">Markierungsschatten-Icons: Pfad zu den Markerschatten-Icons. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.mouseCursor">Maus-Cursor: Pfad zu den Maus-Cursor. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.kmlFiles">KML-Dateien: Pfad zu den KML-Dateien. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+			<label index="uploadDirectories.markerCluster">Markierungs-Cluster-Icon: [Not implemented now] Pfad zu den Markierungs-Cluster-Icon. Hier kann ein benutzerdefinierter Pfad für das Hochladeverzeichnis angegeben werden. Standardwert ist "uploads/tx_adgooglemaps/".</label>
+
+			<label index="l10n.prependTranslationInfo">Übersetzungs-Information: Standardmäßig werden allen Textfelder (title, description etc.) "[Translate to ...]" vorangestellt. Wenn das nicht gewünscht ist, kann man das hier deaktivieren. Wenn "prependTranslationInfo" deaktiviert ist, werden bei einer Kopie der Text "(Copy [#])" zum Titel angehängt solange "prependAtCopy" nicht deaktiviert wurde (siehe "prependAtCopy").</label>
+			<label index="l10n.excludeProperties">Eigenschaftsfelder verstecken: Wenn üblicherweise eine Übersetzung eines Datensatz gemacht wird, benötigt man in den meisten Fällen nur die Textfelder. Wenn andere Felder auch bearbeitet werden sollen, kann man hier die Option setzen. Ist der Wert auf "Nur Textfelder" gesetzt, kann man nur Textfelder wie "Titel" oder "Beschreibung" bearbeiten. Wenn der Wert auf "Nur Text- und Dateifelder" gesetzt wird, können zusätzlich die Bilder- und Dateienfelder bearbeitet werden. Ist er auf "Zeige alle" gesetzt, kann man sämtliche Felder bearbeiten.</label>
+			<label index="l10n.excludeProperties.all">Nur Textfelder</label>
+			<label index="l10n.excludeProperties.file">Nur Text- und Dateifelder</label>
+			<label index="l10n.excludeProperties.none">Zeige alle</label>
+			<label index="l10n.hideNewLocalizations">Verstecke neue Lokalisierungen: Hier kann man wählen, ob eine neu angelegte Lokalisierung versteckt sein soll oder nicht. Standardmäßig sind sie sichtbar.</label>
+
+			<label index="useMapDrawerForAddress">MapDrawer für tt_address verwenden: Wenn diese Option gesetzt ist, kann die Position der Adressen mit dem MapDrawer gesetzt werden, ansonsten wird die Position direkt per Geocoder aus der Adresse ermittelt.</label>
+			<label index="prependAtCopy">Beim Kopieren hinzufügen: Hier kann der Text "(Kopie [#])" deaktiviert werden, der beim Kopieren eines Datensatz im Titel hinzugefügt wird.</label>
+		</languageKey>
+	</data>
+</T3locallang>
