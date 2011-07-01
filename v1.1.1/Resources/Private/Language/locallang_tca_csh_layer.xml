@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>CSH</type>
+		<description>CSH labels for FlexForm fields</description>
+		<csh_table>tx_adgooglemaps_pi1</csh_table>
+		<fileId>EXT:ad_google_maps/Resources/Private/Language/locallang_tca_csh_layer.xml</fileId>
+		<labelContext type="array"></labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="type.description">Layer type.</label>
+			<label index="hidden.description">Check this box if you wish to hide the content element from being displayed.</label>
+			<label index="categories.description">Categories of this layer.</label>
+			<label index="title.description">Working title will not used for FrontEnd.</label>
+			<label index="visible.description">Show layer at start up.</label>
+			<label index="clickable.description">If true, the marker receives mouse and touch events. Default value is true.</label>
+			<label index="draggable.description">If true, the marker can be dragged. Default value is false.</label>
+			<label index="raise_on_drag.description">If false, disables raising and lowering the marker on drag. This option is true by default.</label>
+			<label index="zindex.description">All Markers are displayed on the map in order of their zIndex, with higher values displaying in front of Markers with lower values. By default, Markers are displayed according to their latitude, with Markers of lower latitudes appearing in front of Markers at higher latitudes.</label>
+			<label index="coordinates_provider.description">Provider of the coordinates.</label>
+			<label index="coordinates.description">Coordinates. Required.</label>
+
+			<label index="marker_title.description">Rollover text for markers.</label>
+			<label index="marker_title_object_number.description">This option is a optionSplit configuaration.</label>
+			<label index="icon.description">Icon for the foreground. Klick for details.</label>
+			<label index="icon.details">Defines an image to be used as the icon or shadow for a Marker. 'origin' and 'size' are used to select a segment of a sprite image and 'anchor' overrides the position of the anchor point from its default bottom middle position. The anchor of an image is the pixel to which the system refers in tracking the image's position. By default, the anchor is set to the bottom middle of the image (coordinates width/2, height). So when a marker is placed at a given LatLng, the pixel defined as the anchor is positioned at the specified LatLng. To scale the image, whether sprited or not, set the value of scaledSize to the size of the whole image and set size, origin and anchor in scaled values. The MarkerImage cannot be changed once constructed.</label>
+			<label index="icon_object_number.description">This option is a optionSplit configuaration.</label>
+			<label index="shadow.description">Shadow image. Klick for details.</label>
+			<label index="shadow.details">Defines an image to be used as the icon or shadow for a Marker. 'origin' and 'size' are used to select a segment of a sprite image and 'anchor' overrides the position of the anchor point from its default bottom middle position. The anchor of an image is the pixel to which the system refers in tracking the image's position. By default, the anchor is set to the bottom middle of the image (coordinates width/2, height). So when a marker is placed at a given LatLng, the pixel defined as the anchor is positioned at the specified LatLng. To scale the image, whether sprited or not, set the value of scaledSize to the size of the whole image and set size, origin and anchor in scaled values. The MarkerImage cannot be changed once constructed.</label>
+			<label index="shadow_object_number.description">This option is a optionSplit configuaration.</label>
+			<label index="flat.description">If true, the marker shadow will not be displayed.</label>
+			<label index="shape_type.description">Describes the shape's type. Klick for details.</label>
+			<label index="shape_type.details">The format of this attribute depends on the value of the type and follows the w3 AREA coords specification found at http://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords.
+
+				coord is an array of integers that specify the pixel position of the shape relative to the top-left corner of the target image. The coordinates depend on the value of type as follows:
+				- circle: coord is [x1,y1,r] where x1,y2 are the coordinates of the center of the circle, and r is the radius of the circle.
+				- poly: coord is [x1,y1,x2,y2...xn,yn] where each x,y pair contains the coordinates of one vertex of the polygon.
+				- rect: coord is [x1,y1,x2,y2] where x1,y1 are the coordinates of the upper-left corner of the rectangle and x2,y2 are the coordinates of the lower-right coordinates of the rectangle.</label>
+			<label index="mouse_cursor.description">Mouse cursor to show on hover.</label>
+
+			<label index="info_window.description">Content for the info window.</label>
+			<label index="info_window_object_number.description">This option is a optionSplit configuaration. This settings have only effects on layers with the type marker or if "Add marker" is set. To parse more then one object in an info window seperate objects with an comma.</label>
+			<label index="info_window_keep_open.description">If set info windows will not be closed if another layer is clicked.</label>
+			<label index="info_window_close_on_click.description">If set info windows will be closed by clicking the layer again.</label>
+			<label index="info_window_close_all_on_map_click.description">If set all info windows will be closed if map is clicked.</label>
+			<label index="info_window_disable_auto_pan.description">Disable auto-pan on open. By default, the info window will pan the map so that it is fully visible when it opens.</label>
+			<label index="info_window_max_width.description">Maximum width of the infowindow, regardless of content's width. This value is only considered if it is set before a call to open. To change the maximum width when changing content, call close, setOptions, and then open.</label>
+			<label index="info_window_zindex.description">All InfoWindows are displayed on the map in order of their zIndex, with higher values displaying in front of InfoWindows with lower values. By default, InfoWinodws are displayed according to their latitude, with InfoWindows of lower latitudes appearing in front of InfoWindows at higher latitudes. InfoWindows are always displayed in front of markers.</label>
+			<label index="info_window_pixel_offset_width.description">The offset, in pixels, of the tip of the info window from the point on the map at whose geographical coordinates the info window is anchored. If an InfoWindow is opened with an anchor, the pixelOffset will be calculated from the top-center of the anchor's bounds.</label>
+			<label index="info_window_pixel_offset_height.description">The offset, in pixels, of the tip of the info window from the point on the map at whose geographical coordinates the info window is anchored. If an InfoWindow is opened with an anchor, the pixelOffset will be calculated from the top-center of the anchor's bounds.</label>
+
+			<label index="list_title.description">Title for the List view.</label>
+			<label index="list_title_object_number.description">This option is a optionSplit configuaration.</label>
+			<label index="list_icon.description">Icon for the List view.</label>
+			<label index="list_icon_object_number.description">This option is a optionSplit configuaration.</label>
+			<label index="list_icon_width.description">Icon width.</label>
+			<label index="list_icon_height.description">Icon height.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="type.description">Der Typ der Ebene.</label>
+			<label index="hidden.description">Ist diese Option aktiviert, wird das Element nicht auf der Seite angezeigt.</label>
+			<label index="categories.description">Kategorien dieser Ebene.</label>
+			<label index="title.description">Arbeitstitel wird nicht im FrontEnd verwendet.</label>
+			<label index="visible.description">Falls wahr, ist die Markierung sichtbar.</label>
+			<label index="clickable.description">Falls wahr, empfängt das Objekt Maus- und Berührungsereignisse. Der Standardwert ist "true".</label>
+			<label index="draggable.description">Falls wahr, kann die Markierung verschoben werden. Der Standardwert ist "false".</label>
+			<label index="raise_on_drag.description">If false, disables raising and lowering the marker on drag. This option is true by default.</label>
+			<label index="zindex.description">Sämtliche Markierungen werden auf der Karte in der Reihenfolge ihrer zIndex angezeigt, wobei Markierungen mit höheren Werten vor Markierungen mit niedrigeren Werten rangieren. Standardmäßig werden Markierungen entsprechend ihrer geografischen Breite angezeigt, wobei Markierungen mit niedrigeren Breiten vor Markierungen mit höheren Breiten rangieren.</label>
+			<label index="coordinates_provider.description">Daten-Provider der Koordinaten.</label>
+			<label index="coordinates.description">Koordinaten. Required.</label>
+
+			<label index="marker_title.description">Rollover-Text für Markierungen.</label>
+			<label index="marker_title_object_number.description">Diese Option ist eine optionSplit-Konfiguration.</label>
+			<label index="icon.description">Symbol für den Vordergrund. Klicke für Details.</label>
+			<label index="icon.details">Definiert ein Bild, das als Symbol oder Schatten für eine Markierung verwendet werden soll. "origin" und "size" werden verwendet, um ein Segment eines Schattenbildes auszuwählen, "anchor" setzt die Position des Ankerpunktes von seiner Standardposition unten in der Mitte außer Kraft. Der Anker eines Bildes ist das Pixel, auf das sich das System beim Tracking der Bildposition bezieht. Standardmäßig ist der Anker auf die untere Mitte des Bildes festgelegt (Koordinaten Breite/2, Höhe). Wird also eine Markierung bei einer bestimmten LatLng platziert, befindet sich das als Anker definierte Pixel bei der angegebenen LatLng. Wenn Sie das Bild skalieren möchten (egal ob mit oder ohne Sprite), legen Sie als Wert für scaledSize die Größe des gesamten Bildes fest und geben Sie size, origin und anchor in skalierten Werten an. Sobald das MarkerImage einmal konstruiert ist, kann es nicht geändert werden.</label>
+			<label index="icon_object_number.description">Diese Option ist eine optionSplit-Konfiguration.</label>
+			<label index="shadow.description">Schattenbild. Klicke für Details.</label>
+			<label index="shadow.details">Definiert ein Bild, das als Symbol oder Schatten für eine Markierung verwendet werden soll. "origin" und "size" werden verwendet, um ein Segment eines Schattenbildes auszuwählen, "anchor" setzt die Position des Ankerpunktes von seiner Standardposition unten in der Mitte außer Kraft. Der Anker eines Bildes ist das Pixel, auf das sich das System beim Tracking der Bildposition bezieht. Standardmäßig ist der Anker auf die untere Mitte des Bildes festgelegt (Koordinaten Breite/2, Höhe). Wird also eine Markierung bei einer bestimmten LatLng platziert, befindet sich das als Anker definierte Pixel bei der angegebenen LatLng. Wenn Sie das Bild skalieren möchten (egal ob mit oder ohne Sprite), legen Sie als Wert für scaledSize die Größe des gesamten Bildes fest und geben Sie size, origin und anchor in skalierten Werten an. Sobald das MarkerImage einmal konstruiert ist, kann es nicht geändert werden.</label>
+			<label index="shadow_object_number.description">Diese Option ist eine optionSplit-Konfiguration.</label>
+			<label index="flat.description">Falls wahr, wird der Markierungsschatten nicht angezeigt.</label>
+			<label index="shape_type.description">Definition des Kartenbildbereichs, der für Verschieben/Klicken verwendet wird. Klicke für Details.</label>
+			<label index="shape_type.details">Das Format dieses Attributs hängt vom type-Wert ab und befolgt die W3-Spezifikation für AREA-coords, die unter http://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords abrufbar ist.
+
+				coord ist ein Array mit Ganzzahlwerten, mit denen die Pixelposition der Form im Bezug auf die linke obere Ecke des Zielbildes angeben wird. Die Koordinaten hängen wie folgt vom type-Wert ab:
+				- circ oder circle: coord wird in der Form [x1,y1,r] angegeben, wobei x1,y2 die Koordinaten des Kreismittelpunktes sind und r der Radius des Kreises ist.
+				- poly oder polygon: coord wird in der Form [x1,y1,x2,y2...xn,yn] angegeben, wobei jedes x,y-Paar für die Koordinaten eines Scheitelpunkts des Polygons steht.
+				- rect oder rectangle: coord wird in der Form [x1,y1,x2,y2] angegeben, wobei x1,y1 die Koordinaten der linken oberen Ecke des Rechtecks bilden und x2,y2 die Koordinaten der rechten unteren Ecke.</label>
+			<label index="mouse_cursor.description">Mauscursor, der beim Darüberhinwegbewegen angezeigt werden soll.</label>
+
+			<label index="info_window.description">Datensatzsammlung von Seiteninhalte für die Infofenster.</label>
+			<label index="info_window_object_number.description">Diese Option ist eine optionSplit-Konfiguration. Diese Einstellung betrifft nur Ebenen mit dem Typ Markierung oder wenn "Markierung hinzufügen" gesetzt ist. Um mehrere Seiteninhalte in einem Infofenster darzustellen, trenne die Objekte mit einem Komma.</label>
+			<label index="info_window_keep_open.description">Wenn gesetzt, bleiben Infofenster offen sobald man ein anderes öffnet.</label>
+			<label index="info_window_close_on_click.description">Wenn gesetzt wird das Infofenster geschlossen sobald man erneut auf das Objekt klickt.</label>
+			<label index="info_window_close_all_on_map_click.description">Wenn gesetzt werden alle Infofenster geschlossen sobald man auf die Karte klickt.</label>
+			<label index="info_window_disable_auto_pan.description">Deaktiviere Auto-Schwenk beim Öffnen. Standardmäßig wird ein Infofenster auf der Karte so verschoben, sodass es geöffnet voll sichtbar ist.</label>
+			<label index="info_window_max_width.description">Die maximale Breite des Infofensters, ungeachtet der Breite des Inhalts. Dieser Wert wird nur dann berücksichtigt, wenn er vor dem Aufrufen von Öffnen festgelegt wurde. Um die maximale Breite gleichzeitig mit dem Inhalt zu ändern, rufen Sie close, dann setOptions und dann open auf.</label>
+			<label index="info_window_zindex.description">Sämtliche InfoWindow-Elemente werden auf der Karte in der Reihenfolge ihrer zIndex angezeigt, wobei InfoWindow-Elemente mit höheren Werten vor InfoWindow-Elementen mit niedrigeren Werten rangieren. Standardmäßig werden InfoWindow-Elemente entsprechend ihrer geografischen Breite angezeigt, wobei InfoWindow-Elemente mit niedrigeren Breiten vor InfoWindow-Elementen mit höheren Breiten rangieren. InfoWindows-Elemente werden immer vor Markierungen angezeigt.</label>
+			<label index="info_window_pixel_offset_width.description">Der Abstand in Pixeln zwischen der Spitze des Infofensters und dem Punkt auf der Karte, an dessen geografischen Koordinaten das Infofenster verankert ist. Wenn ein InfoWindow mit einem Anker geöffnet wird, wird pixelOffset anhand des oberen Zentrums der Ankergrenzen berechnet.</label>
+			<label index="info_window_pixel_offset_height.description">Der Abstand in Pixeln zwischen der Spitze des Infofensters und dem Punkt auf der Karte, an dessen geografischen Koordinaten das Infofenster verankert ist. Wenn ein InfoWindow mit einem Anker geöffnet wird, wird pixelOffset anhand des oberen Zentrums der Ankergrenzen berechnet.</label>
+
+			<label index="list_title.description">Titel für die Listenansicht.</label>
+			<label index="list_title_object_number.description">Diese Option ist eine optionSplit-Konfiguration.</label>
+			<label index="list_icon.description">Icon für die Listenansicht.</label>
+			<label index="list_icon_object_number.description">Diese Option ist eine optionSplit-Konfiguration.</label>
+			<label index="list_icon_width.description">Breite des Icons.</label>
+			<label index="list_icon_height.description">Höhe des Icons.</label>
+		</languageKey>
+	</data>
+</T3locallang>

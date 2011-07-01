@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for flexform belonging to extension 'ad_google_maps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="settings.map.height">Height: The initial height of the map. Required.</label>
+
+			<label index="settings.api.canvas">The DIV container where the map is shown. Required.</label>
+			<label index="settings.api.mapTypeId">Map type ID: The default mapTypeId. Required.</label>
+			<label index="settings.api.center">Center: The default latitude and longitude where the map should start. Required.</label>
+			<label index="settings.api.zoom">Zoom: The default zoom. Required.</label>
+			<label index="settings.api.maxZoom">Max. zoom: The max. zoom.</label>
+			<label index="settings.api.minZoom">Min. zoom: The min. zoom.</label>
+
+			<label index="settings.plugin.apiUrl">Google Maps API URL: The URL to the Google Maps API. Required.</label>
+			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL of the Google Maps plugin. Required.</label>
+			<label index="settings.plugin.markerClusterUrl">Google Maps marker cluster URL: URL of the Google Maps marker cluster URL.</label>
+			<label index="settings.plugin.geocodeUrl">Google Maps API geocode-URL : URL of the Google Maps service for getting geocode per JSON. Required.</label>
+
+			<label index="persistence.storagePid">Storage PID: Default storage PID</label>
+
+			<label index="view.templateRootPath">Template path: Path to the templates (FE)</label>
+			<label index="view.partialRootPath">Partials path: Path to the partials (FE)</label>
+			<label index="view.layoutRootPath">Layouts path: Path to the layouts (FE)</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="settings.map.height">Höhe: Die Anfängliche Höhe der Karte. Erforderlich.</label>
+
+			<label index="settings.api.canvas">Canvas: Der DIV-Container wo die Karte dargestellt wird. Erforderlich.</label>
+			<label index="settings.api.mapTypeId">Kartentyp-ID: Anfängliche Kartentyp-ID. Mögliche Werte: google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.TERRAIN. Erforderlich.</label>
+			<label index="settings.api.center">Kartenzentrum: Anfängliches Kartenzentrum. Erforderlich.</label>
+			<label index="settings.api.zoom">Zoomstufe: Anfängliche Zoomstufe der Karte. Erforderlich.</label>
+			<label index="settings.api.maxZoom">Max. Zoomstufe: Max. Zoomstufe der Karte.</label>
+			<label index="settings.api.minZoom">Min. Zoomstufe: Min. Zoomstufe der Karte.</label>
+
+			<label index="settings.plugin.apiUrl">Google Maps API URL: Die URL zu der Google Maps API. Erforderlich.</label>
+			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL des Google Maps-Plugin. Erforderlich.</label>
+			<label index="settings.plugin.markerClusterUrl">Google Maps Markierungs-Cluster URL: URL der Google Maps Markierungs-Cluster Lib.</label>
+			<label index="settings.plugin.geocodeUrl">Google Maps API Geocode-URL: URL des Google Maps-Service um Geodaten per JSON zu erhalten. Erforderlich.</label>
+
+			<label index="persistence.storagePid">Datensatzsammlungs-PID: Standard Datensatzsammlungs-PID</label>
+
+			<label index="view.templateRootPath">Template-Verzeichnis: Pfad zu den Templates (FE)</label>
+			<label index="view.partialRootPath">Partials-Verzeichnis: Pfad zu den Partials (FE)</label>
+			<label index="view.layoutRootPath">Layouts-Verzeichnis: Pfad zu den Layouts (FE)</label>
+		</languageKey>
+	</data>
+</T3locallang>
