@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "ad_google_maps".
 #
-# Auto generated 01-07-2011 14:53
+# Auto generated 01-07-2011 14:57
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Google Maps for TYPO3. Lego-based and powerful extension with all configurable options of Google Maps API V3. Including a MapDrawer to set markers, polylines and polygons and a plugin to integrate on a page. Based on extbase and fluid v1.2.1. Please test and response ;)',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.1.1',
+	'version' => '1.1.2',
 	'dependencies' => 'extbase,fluid',
 	'conflicts' => 'dbal',
 	'priority' => '',
