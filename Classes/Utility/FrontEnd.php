@@ -172,7 +172,7 @@ class Tx_AdGoogleMaps_Utility_FrontEnd extends Tx_AdGoogleMaps_Utility_BackEnd {
 			// Do special values.
 			switch ($propertyType) {
 				case 'string':
-					$propertyValue = ($quoteValue === TRUE ? '\'' . $propertyValue . '\'' : $propertyValue);
+					$propertyValue = str_replace(array(LF, CR, CRLF), '', ($quoteValue === TRUE ? '\'' . addcslashes($propertyValue, '\'') . '\'' : $propertyValue));
 				break;
 
 				case 'boolean':

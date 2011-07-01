@@ -123,41 +123,70 @@ Tx_AdGoogleMaps_Plugin.prototype = {
 	},
 
 	panTo: function(layerUids){
-		// Use center of bounds cause if layerUids is a single marker "panToBounds" place the marker not in the center of the map.
-		if (typeof layerUids === 'string'){
-			var bounds = this.getLayer(layerUids).getBounds();
-		} else {
-			var bounds = new google.maps.LatLngBounds();
-			for (layerUid in layerUids){
-				var bound = this.getLayer(layerUids[layerUid]).getBounds();
-				if (bound !== null){
-					bounds.union(bound);
-				}
-			}
-		}
+		var bounds = this.getBoundsByLayerUid(layerUids);
 		if (bounds !== null){
-			this.map.panTo(bounds.getCenter());
+			this.map.panTo(bounds.getCenter()); // Use center of bounds cause if layerUids is a single marker "panToBounds" place the marker not in the center of the map.
 		}
 	},
 
 	fitBounds: function(layerUids){
-		if (typeof layerUids === 'string'){
-			var bounds = this.getLayer(layerUids).getBounds();
-		} else {
-			var bounds = new google.maps.LatLngBounds();
-			for (layerUid in layerUids){
-				var bound = this.getLayer(layerUids[layerUid]).getBounds();
-				if (bound !== null){
-					bounds.union(bound);
-				}
-			}
-		}
+		var bounds = this.getBoundsByLayerUid(layerUids);
 		if (bounds !== null){
 			this.map.fitBounds(bounds);
 		}
 	},
+	
+	show: function(layerUids){
+		this.setVisible(layerUids, true);
+	},
+	
+	hide: function(layerUids){
+		this.setVisible(layerUids, false);
+	},
+	
+	toggle: function(layerUids){
+		this.setVisible(layerUids, 'toggle');
+	},
+	
+	setVisible: function(layerUids, visible){
+		this.closeAllInfoWindows();
+		if (typeof layerUids === 'string'){
+			layerUids = new Array(layerUids);
+		}
+		switch (visible){
+			case 'show':
+				visible = true;
+			break;
+			case 'hide':
+				visible = false;
+			break;
+		}
+		for (layerUid in layerUids){
+			var layer = this.getLayer(layerUids[layerUid]).layer;
+			if (layer instanceof google.maps.InfoWindow === true)
+				continue;
+			switch (visible){
+				case true:
+				case false:
+					if (layer.setVisible !== undefined){
+						layer.setVisible(visible);
+					} else if (layer.setMap !== undefined){
+						layer.setMap(visible === true ? this.map : null);
+					}
+				break;
 
-	getCenterOfLatLngArray: function(latLngs){
+				case 'toggle':
+					if (layer.setVisible !== undefined){
+						layer.setVisible(layer.getVisible() === true ? false : true);
+					} else if (layer.setMap !== undefined){
+						layer.setMap(layer.getMap() === null ? this.map : null);
+					}
+				break;
+			}
+		}
+	},
+	
+	getCenterByLatLngArray: function(latLngs){
 		var bounds = new google.maps.LatLngBounds();
 		latLngs.forEach(function(element, index){
 			bounds.extend(element);
@@ -165,11 +194,28 @@ Tx_AdGoogleMaps_Plugin.prototype = {
 		return bounds.getCenter();
 	},
 
-	getBoundsOfLatLngArray: function(latLngArray){
+	getBoundsByLatLngArray: function(latLngArray){
 		var bounds = new google.maps.LatLngBounds();
 		latLngArray.forEach(function(element, index){
 			bounds.extend(element);
 		});
+		return bounds;
+	},
+
+	getBoundsByLayerUid: function(layerUids){
+		if (typeof layerUids === 'string'){
+			var bounds = this.getLayer(layerUids).getBounds();
+		} else {
+			var bounds = new google.maps.LatLngBounds();
+			for (layerUid in layerUids){
+				if (this.getLayer(layerUids[layerUid]).getBounds !== undefined){
+					var bound = this.getLayer(layerUids[layerUid]).getBounds();
+					if (bound !== null){
+						bounds.union(bound);
+					}
+				}
+			}
+		}
 		return bounds;
 	}
 };

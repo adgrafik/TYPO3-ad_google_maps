@@ -19,6 +19,7 @@
 			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL of the Google Maps plugin. Required.</label>
 			<label index="settings.plugin.markerClusterUrl">Google Maps marker cluster URL: URL of the Google Maps marker cluster URL.</label>
 			<label index="settings.plugin.geocodeUrl">Google Maps API geocode-URL : URL of the Google Maps service for getting geocode per JSON. Required.</label>
+			<label index="settings.plugin.fixStdHeaderForFluidSyntax">Disable "insertData" at headers: If set the default TypoScript-Setup "lib.stdheader.10" is changed and "insertData" replaced with "dataWrap". If this option is TRUE it'll be able to use Fluid-Syntax in the header of content elements.</label>
 
 			<label index="persistence.storagePid">Storage PID: Default storage PID</label>
 
@@ -40,6 +41,7 @@
 			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL des Google Maps-Plugin. Erforderlich.</label>
 			<label index="settings.plugin.markerClusterUrl">Google Maps Markierungs-Cluster URL: URL der Google Maps Markierungs-Cluster Lib.</label>
 			<label index="settings.plugin.geocodeUrl">Google Maps API Geocode-URL: URL des Google Maps-Service um Geodaten per JSON zu erhalten. Erforderlich.</label>
+			<label index="settings.plugin.fixStdHeaderForFluidSyntax">Deaktiviere "insertData" bei Überschriften: Wenn gesetzt, wird das Standard-TypoScript-Setup "lib.stdheader.10" geändert und insertData durch "dataWrap" ersetzt. Wenn diese Option TRUE ist, dann ist es möglich Fluid-Syntax in Überschriften von Seiteninhalten zu verwenden.</label>
 
 			<label index="persistence.storagePid">Datensatzsammlungs-PID: Standard Datensatzsammlungs-PID</label>
 

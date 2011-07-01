@@ -150,7 +150,7 @@ plugin.tx_adgooglemaps {
 
 		category {
 			mapControlFunctions {
-				userFunction = alert('Category Item Keys: ' + ###ITEM_KEYS###)
+				userFunction = alert('Category Item Keys: ' + ###LAYER_UIDS###)
 			}
 		}
 
@@ -164,7 +164,7 @@ plugin.tx_adgooglemaps {
 			# with the key in the template as "item.mapControlFunctions.userFunction".
 			# You can also override existing functions like "openInfoWindow", "panTo" or "fitBounds".
 			mapControlFunctions {
-				userFunction = alert('Layer Item Key: ###ITEM_KEY###')
+				userFunction = alert('Layer Item Key: ###LAYER_UID###')
 			}
 
 			# Content rendering for the info window.
@@ -216,6 +216,7 @@ plugin.tx_adgooglemaps {
 ###
 # Replace stdheaders insertData with dataWrap. insertData replace Fluid variables of the info windows for tt_address.
 ##
+[globalVar = LIT:1 = {$plugin.tx_adgooglemaps.settings.plugin.fixStdHeaderForFluidSyntax}]
 lib.stdheader.10 {
 	1 = TEXT
 	1.current = 1
@@ -231,3 +232,4 @@ lib.stdheader.10 {
 	5 < .1
 	5.dataWrap = <h5{register:headerStyle}{register:headerClass}>|</h5>
 }
+[end]

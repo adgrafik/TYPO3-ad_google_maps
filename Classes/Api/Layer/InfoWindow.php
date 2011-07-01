@@ -107,7 +107,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * @return string
 	 */
 	public function getContent() {
-		return addcslashes(str_replace(array(LF, CR, CRLF), '', $this->content), '\'');
+		return $this->content;
 	}
 
 	/**

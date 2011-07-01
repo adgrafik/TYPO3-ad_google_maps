@@ -363,7 +363,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 		);
 		if (array_key_exists('mapControlFunctions', $this->settings['layer'])) {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['layer']['mapControlFunctions']);
-			$mapControlFunctions = str_replace('###ITEM_KEY###', $layerUid, $mapControlFunctions);
+			$mapControlFunctions = str_replace('###LAYER_UID###', $layerUid, $mapControlFunctions);
 		}
 		return $mapControlFunctions;
 	}

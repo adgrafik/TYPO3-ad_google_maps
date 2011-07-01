@@ -55,3 +55,13 @@
 		[BUGFIX] Fixed error if you create a new record with a MapDrawer and klick on "Save and Create".
 		[TASK] Added getMap to Tx_AdGoogleMaps_Plugin in Tx_AdGoogleMaps_Plugin.js.
 		[TASK] Changed some strings.
+
+1.1.2	[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
+		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?". Thanks to Christoph Volkamer.
+		[BUGFIX] Fixed issue #27509 "API - MAP missig sign". Thanks to soee.
+		[BUGFIX] Fixed issue #27664 "Html special chars for markers title are not escaped". Thanks to Wolfgang Rotschek.
+		[TASK] Changed plugin.tx_adgooglemaps.settings.api.canvas from tx_adgooglemaps_canvas###UID### to Tx_AdGoogleMaps_Canvas_Uid_###UID### for correspond naming.
+		[TASK] Changed getBoundsOfLatLngArray to getBoundsByLatLngArray and getCenterOfLatLngArray to getCenterByLatLngArray.
+		[TASK] Set the replace marker ###ITEM_KEYS### of the category userFunction to deprecated. Use ###LAYER_UIDS### instead.
+		[TASK] Set the replace marker ###ITEM_KEY### of the layer userFunction to deprecated. Use ###LAYER_UID### instead.
+		[TASK] Added TS-constant "fixStdHeaderForFluidSyntax" to allow user to decide if "lib.stdheader" should be changed.

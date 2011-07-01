@@ -88,14 +88,15 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 			->setCanvasId(str_replace('###UID###', $this->map->getPropertyValue('uid', 'map'), $canvas));
 
 		// Set initial map options.
-		$mapCenterType = $this->map->getCenterType();
-		$mapCenter = $this->map->getCenter();
 		$mapZoom = $this->map->getZoom();
 		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom']; 
-		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE && Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($apiSettings['center']) === TRUE) {
-			$mapCenter = $apiSettings['center'];
-		} else {
-			$mapCenter = '48.209206,16.372778';
+		$mapCenter = $this->map->getCenter();
+		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
+			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($this->settings['map']['center']) === TRUE) {
+				$mapCenter = $this->settings['map']['center'];
+			} else {
+				$mapCenter = '48.209206,16.372778';
+			}
 		}
 		$pluginMapOption = $pluginOptions->getMapOptions();
 		$pluginMapOption
@@ -167,7 +168,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		// Set map control options.
 		$pluginMapControl = $pluginOptions->getMapControl();
 		$pluginMapControl
-			->setFitBoundsOnLoad($mapCenterType === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS)
+			->setFitBoundsOnLoad($this->map->getCenterType() === Tx_AdGoogleMaps_Domain_Model_Map::CENTER_TYPE_BOUNDS)
 			->setUseMarkerCluster($this->map->isUseMarkerCluster())
 			->setInfoWindowCloseAllOnMapClick($this->map->isInfoWindowCloseAllOnMapClick());
 
@@ -233,7 +234,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		);
 		if (array_key_exists('mapControlFunctions', $this->settings['category'])) {
 			$mapControlFunctions = t3lib_div::array_merge_recursive_overrule($mapControlFunctions, $this->settings['category']['mapControlFunctions']);
-			$mapControlFunctions = str_replace('###ITEM_KEYS###', $javaScriptArray, $mapControlFunctions);
+			$mapControlFunctions = str_replace('###LAYER_UIDS###', $javaScriptArray, $mapControlFunctions);
 		}
 		return $mapControlFunctions;
 	}
