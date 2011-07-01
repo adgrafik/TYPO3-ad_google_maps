@@ -16,8 +16,12 @@ CREATE TABLE tx_adgooglemaps_domain_model_map (
 	fe_group varchar(100) DEFAULT '' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	templates text,
+	categories int(11) unsigned DEFAULT '0' NOT NULL,
 
 	map_type_id varchar(255) DEFAULT '' NOT NULL,
+	width mediumint(11) unsigned DEFAULT '0' NOT NULL,
+	height mediumint(11) unsigned DEFAULT '0' NOT NULL,
 	background_color varchar(7) DEFAULT '' NOT NULL,
 	min_zoom tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	max_zoom tinyint(4) unsigned DEFAULT '0' NOT NULL,

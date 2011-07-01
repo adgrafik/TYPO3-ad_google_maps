@@ -31,8 +31,5 @@ l10n {
 # cat=ad: Google Maps API/basic/300; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:prependAtCopy
 prependAtCopy = 1
 
-# cat=ad: Google Maps API/basic/400; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:useCpsTcaTree
-useCpsTcaTree = 0
-
 # cat=ad: Google Maps API/basic/310; type=user[EXT:ad_google_maps/class.ext_update.php:ext_update->displayMessage]; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_extconf.xml:update
 update = 0
