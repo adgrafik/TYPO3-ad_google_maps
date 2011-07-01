@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for flexform belonging to extension 'ad_google_maps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="update.warningHeader">Important! Please Read!</label>
+			<label index="update.warningMessage"><![CDATA[The updater manipulates your database and due to the huge amount of configuration variants <br />
+				it is possible that it might not produce the expected results. So backup your database or do a t3d export <br />
+				of your site <strong>BEFORE</strong> you click the "Update" button.]]></label>
+			<label index="update.renameTablesHeader">Rename table</label>
+			<label index="update.renameTable">Rename table from "%s" to "%s".</label>
+			<label index="update.renameTablesOK">All tables are OK.</label>
+			<label index="update.renameFieldsHeader">Rename fields</label>
+			<label index="update.renameField">Rename field from "%s" to "%s".</label>
+			<label index="update.renameFieldsOK">All fields are OK.</label>
+			<label index="update.updateValuesHeader">Update values</label>
+			<label index="update.updateValue">Update field "%s" from "%s" to "%s".</label>
+			<label index="update.updateValuesOK">All values are OK.</label>
+			<label index="update.update">Update</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="update.warningHeader">Wichtig! Bitte lesen!</label>
+			<label index="update.warningMessage"><![CDATA[Die Aktualisierung manipuliert die Datenbank und infolge der vielfältigen Konfigurationsvarianten kann es vorkommen, <br />
+				dass das gewünschte Resultat nicht der Erwatung entspricht. Führen Sie daher ein Datenbank-Backup oder einen t3d export <br />
+				der Website aus <strong>BEVOR</strong> Sie auf den "Update" Button klicken.]]></label>
+			<label index="update.renameTablesHeader">Tabellen umbenennen</label>
+			<label index="update.renameTable">Tabelle Umbennenen von "%s" zu "%s".</label>
+			<label index="update.renameTablesOK">Alle Tables sind OK.</label>
+			<label index="update.renameFieldsHeader">Felder umbenennen</label>
+			<label index="update.renameField">Rename field from "%s" to "%s".</label>
+			<label index="update.renameFieldsOK">Alle Felder sind OK.</label>
+			<label index="update.updateValuesHeader">Inhalte Aktualisieren</label>
+			<label index="update.updateValue">Aktualisiere Feld "%s" von "%s" zu "%s".</label>
+			<label index="update.updateValuesOK">Alle Inhalte sind OK.</label>
+			<label index="update.update">Update</label>
+		</languageKey>
+	</data>
+</T3locallang>
