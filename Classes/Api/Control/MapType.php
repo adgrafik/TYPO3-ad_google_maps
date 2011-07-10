@@ -29,13 +29,9 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\MapType
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_MapType extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_Control_MapType extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/**
 	 * MapTypeId
@@ -54,13 +50,13 @@ class Tx_AdGoogleMaps_Api_ControlOptions_MapType extends Tx_AdGoogleMaps_Api_Con
 
 	/**
 	 * @var array
-	 * @javaScriptHelper quoteValue = FALSE; quoteArrayValuesRecursively = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $mapTypeIds;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $style;
 

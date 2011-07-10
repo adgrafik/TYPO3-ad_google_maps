@@ -29,49 +29,52 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage AdGoogleMapsApi\ControlOptions\AbstractControlOptions
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-abstract class Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_Control_OverviewMap extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/**
-	 * ControlPosition
+	 * @var boolean
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
-	const POSITION_TOP_CENTER = 'google.maps.ControlPosition.TOP_CENTER';
-	const POSITION_TOP_RIGHT = 'google.maps.ControlPosition.TOP_RIGHT';
-	const POSITION_RIGHT_CENTER = 'google.maps.ControlPosition.RIGHT_CENTER';
-	const POSITION_BOTTOM_RIGHT = 'google.maps.ControlPosition.BOTTOM_RIGHT';
-	const POSITION_BOTTOM_CENTER = 'google.maps.ControlPosition.BOTTOM_CENTER';
-	const POSITION_BOTTOM_LEFT = 'google.maps.ControlPosition.BOTTOM_LEFT';
-	const POSITION_LEFT_CENTER = 'google.maps.ControlPosition.LEFT_CENTER';
-	const POSITION_TOP_LEFT = 'google.maps.ControlPosition.TOP_LEFT';
+	protected $opened;
 
-	/**
-	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
-	 */
-	protected $position;
-
-	/**
-	 * Sets this position.
-	 *
+	/*
+	 * Constructor.
+	 * 
 	 * @param string $position
-	 * @return void
+	 * @param string $style
 	 */
-	public function setPosition($position) {
-		$this->position = $position;
+	public function __construct($opened = FALSE) {
+		$this->setOpened($opened);
 	}
 
 	/**
-	 * Returns this position.
+	 * Sets this opened.
+	 *
+	 * @param string $opened
+	 * @return void
+	 */
+	public function setOpened($opened) {
+		$this->opened = $opened;
+	}
+
+	/**
+	 * Returns this opened.
 	 *
 	 * @return string
 	 */
-	public function getPosition() {
-		return $this->position;
+	public function isOpened() {
+		return $this->opened;
+	}
+
+	/**
+	 * Returns TRUE if one of the option have not a default value.
+	 *
+	 * @return string
+	 */
+	public function hasOptions() {
+		return $this->isOpened();
 	}
 
 }

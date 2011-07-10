@@ -76,14 +76,16 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 	protected $layerOptions;
 
 	/**
-	 * Constructor.
+	 * Initialize this objectManager.
+	 *
+	 * @return void
 	 */
-	public function __construct() {
-		parent::__construct();
+	public function initializeObject() {
+		parent::initializeObject();
 
 		Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow');
 
-		$this->contentObject = t3lib_div::makeInstance('tslib_cObj');
+		$this->contentObject = $this->objectManager->create('tslib_cObj');
 		$this->useCoordinatesProvider = TRUE;
 		$this->coordinatesProviderIterateProperty = 'coordinates';
 
@@ -110,7 +112,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		$this->layerOptions = array(
 			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowDisableAutoPan'),
 			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowMaxWidth'),
-			'pixelOffsetWidth' => t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Size', 
+			'pixelOffsetWidth' => $this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetWidth'), 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetHeight')
 			),
@@ -118,7 +120,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		);
 
 		// Get info window data.
-		$loadDB = t3lib_div::makeInstance('FE_loadDBGroup');
+		$loadDB = $this->objectManager->get('FE_loadDBGroup');
 		$loadDB->start($this->layer->getInfoWindow(), 'tt_content', 'tx_adgooglemaps_layer_ttcontent_mm');
 		$loadDB->readMM('tx_adgooglemaps_layer_ttcontent_mm', $this->layer->getUid());
 		$loadDB->getFromDB();
@@ -150,14 +152,14 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		$layerOptions['disableAutoPan'] = $this->infoWindowDisableAutoPan;
 		$layerOptions['content'] = $infoWindowContent;
 		if ($coordinates !== NULL) {
-			$layerOptions['position'] = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_LatLng', $coordinates);
+			$layerOptions['position'] = $this->objectManager->create('Tx_AdGoogleMaps_Api_Base_LatLng', $coordinates);
 		}
 
 		// Create marker.
-		$layer = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Layer_InfoWindow', $layerOptions);
+		$layer = $this->objectManager->create('Tx_AdGoogleMaps_Api_Overlay_InfoWindow', $layerOptions);
 
 		// Create option object.
-		$layerOptionsObject = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow');
+		$layerOptionsObject = $this->objectManager->create('Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow');
 		$layerOptionsObject->setUid($layerUid);
 		$layerOptionsObject->setDrawFunctionName('drawInfoWindow');
 		$layerOptionsObject->setOptions($layer);

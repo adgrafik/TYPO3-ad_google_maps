@@ -31,28 +31,41 @@
 abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface {
 
 	/**
+	 * @var Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface
+	 * @jsonClassEncoder ignoreProperty
+	 */
+	protected $jsonEncoder;
+
+	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $uid;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $drawFunctionName;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Layer_LayerInterface
-	 * @javaScriptHelper
+	 * @var Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
 	protected $options;
+
+	/**
+	 * Injects this jsonEncoder.
+	 *
+	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
+	 * @return void
+	 */
+	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
+		$this->jsonEncoder = $jsonEncoder;
+	}
 
 	/**
 	 * Sets this uid.
 	 *
 	 * @param string $uid
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
 	public function setUid($uid) {
 		$this->uid = $uid;
@@ -72,7 +85,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	 * Sets this drawFunctionName.
 	 *
 	 * @param string $drawFunctionName
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
 	public function setDrawFunctionName($drawFunctionName) {
 		$this->drawFunctionName = $drawFunctionName;
@@ -91,10 +104,10 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	/**
 	 * Sets this options.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Layer_LayerInterface $options
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @param Tx_AdGoogleMaps_Api_Overlay_OverlayInterface $options
+	 * @return Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
-	public function setOptions(Tx_AdGoogleMaps_Api_Layer_LayerInterface $options) {
+	public function setOptions(Tx_AdGoogleMaps_Api_Overlay_OverlayInterface $options) {
 		$this->options = $options;
 		return $this;
 	}
@@ -102,7 +115,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	/**
 	 * Returns this options.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
 	public function getOptions() {
 		return $this->options;
@@ -114,7 +127,7 @@ abstract class Tx_AdGoogleMaps_Plugin_Options_Layer_AbstractLayer implements Tx_
 	 * @return string
 	 */
 	public function __toString() {
-		return Tx_AdGoogleMaps_Utility_FrontEnd::getClassAsJsonObject($this);
+		return $this->jsonEncoder->encode($this);
 	}
 
 }

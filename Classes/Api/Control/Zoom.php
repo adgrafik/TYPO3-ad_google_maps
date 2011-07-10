@@ -31,61 +31,58 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @package AdGoogleMaps
  */
-abstract class Tx_AdGoogleMaps_Api_Layer_AbstractLayer implements Tx_AdGoogleMaps_Api_Layer_LayerInterface {
+class Tx_AdGoogleMaps_Api_Control_Zoom extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/**
-	 * @var Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface
-	 * @jsonClassEncoder ignoreProperty
+	 * ZoomControlStyle
 	 */
-	protected $jsonEncoder;
+	const STYLE_DEFAULT = 'google.maps.ZoomControlStyle.DEFAULT';
+	const STYLE_LARGE = 'google.maps.ZoomControlStyle.LARGE';
+	const STYLE_SMALL = 'google.maps.ZoomControlStyle.SMALL';
+
+	/**
+	 * @var string
+	 * @jsonClassEncoder quoteValue = FALSE
+	 */
+	protected $style;
 
 	/*
 	 * Constructor.
 	 * 
-	 * @param mixed $options
+	 * @param string $position
+	 * @param string $style
 	 */
-	public function __construct($options) {
-		foreach ($options as $propertyName => $propertyValue) {
-			$setterName = 'set' . ucfirst($propertyName);
-			if (method_exists($this, $setterName)) {
-				$this->$setterName($propertyValue);
-			}
-		}
+	public function __construct($position = NULL, $style = NULL) {
+		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
+		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
 	}
 
 	/**
-	 * Injects this jsonEncoder.
+	 * Sets this style.
 	 *
-	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
+	 * @param string $style
 	 * @return void
 	 */
-	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
-		$this->jsonEncoder = $jsonEncoder;
+	public function setStyle($style) {
+		$this->style = $style;
 	}
 
 	/**
-	 * Returns the info window options as JavaScript string.
-	 *
-	 * @return array
-	 */
-	public function getPrintOptions() {
-		return $this->jsonEncoder->encode($this);
-	}
-
-	/**
-	 * Returns the polyline as JavaScript string.
-	 *
-	 * @return array
-	 */
-	abstract public function getPrint();
-
-	/**
-	 * Returns the polyline as JavaScript string.
+	 * Returns this style.
 	 *
 	 * @return string
 	 */
-	public function __toString() {
-		$this->getPrint();
+	public function getStyle() {
+		return $this->style;
+	}
+
+	/**
+	 * Returns TRUE if one of the option have not a default value.
+	 *
+	 * @return string
+	 */
+	public function hasOptions() {
+		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
 	}
 
 }

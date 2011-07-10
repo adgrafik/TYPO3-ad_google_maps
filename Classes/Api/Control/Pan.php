@@ -23,37 +23,32 @@
  ***************************************************************/
 
 /**
- * Coordinates provider for the MapDrawer.
+ * Google Maps API class.
+ * Nearly the same like the Google Maps API
+ * @see http://code.google.com/apis/maps/documentation/javascript/reference.html
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_MapDrawer extends Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinatesProvider {
+class Tx_AdGoogleMaps_Api_Control_Pan extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
+
+	/*
+	 * Constructor.
+	 * 
+	 * @param string $position
+	 */
+	public function __construct($position = NULL) {
+		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
+	}
 
 	/**
-	 * Loads the data and the coordinates.
+	 * Returns TRUE if one of the option have not a default value.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function load() {
-		$settings = $this->layerBuilder->getSettings();
-		$mapBuilder = $this->layerBuilder->getMap();
-		$layer = $this->layerBuilder->getLayer();
-
-		// Get info window data.
-		$loadDB = $this->objectManager->get('FE_loadDBGroup');
-		$loadDB->start($layer->getInfoWindow(), 'tt_content', 'tx_adgooglemaps_layer_ttcontent_mm');
-		$loadDB->readMM('tx_adgooglemaps_layer_ttcontent_mm', $layer->getUid());
-		$loadDB->getFromDB();
-
-		foreach ($loadDB->itemArray as $itemArray) {
-			$contentData = $loadDB->results['tt_content'][$itemArray['id']];
-			$this->data[] = $contentData;
-		}
-
-		// Set coordinates.
-		$coordinates = $layer->getCoordinates();
-		$this->coordinates = t3lib_div::removeArrayEntryByValue(t3lib_div::trimExplode(LF, $coordinates), '');
+	public function hasOptions() {
+		return ($this->position !== self::POSITION_TOP_LEFT);
 	}
 
 }

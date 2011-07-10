@@ -31,9 +31,24 @@
 abstract class Tx_AdGoogleMaps_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
 	 * @var Tx_AdGoogleMaps_MapBuilder_MapBuilder
 	 */
 	protected $mapBuilder;
+
+	/**
+	 * Injects this jsonEncoder.
+	 *
+	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
+	 * @return void
+	 */
+	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
+		$this->jsonEncoder = $jsonEncoder;
+	}
 
 	/**
 	 * @param Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder

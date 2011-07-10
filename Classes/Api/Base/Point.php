@@ -29,65 +29,87 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Navigation
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Navigation extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_Base_Point {
 
 	/**
-	 * NavigationControlStyle
+	 * @var integer
 	 */
-	const STYLE_DEFAULT = 'google.maps.NavigationControlStyle.DEFAULT';
-	const STYLE_ANDROID = 'google.maps.NavigationControlStyle.ANDROID';
-	const STYLE_SMALL = 'google.maps.NavigationControlStyle.SMALL';
-	const STYLE_ZOOM_PAN = 'google.maps.NavigationControlStyle.ZOOM_PAN';
+	protected $x;
 
 	/**
-	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @var integer
 	 */
-	protected $style;
+	protected $y;
 
 	/*
 	 * Constructor.
 	 * 
-	 * @param string $position
-	 * @param string $style
+	 * @param integer $x
+	 * @param integer $y
 	 */
-	public function __construct($position = NULL, $style = NULL) {
-		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
-		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
+	public function __construct($x, $y) {
+		$this->x = (integer) $x;
+		$this->y = (integer) $y;
 	}
 
 	/**
-	 * Sets this style.
+	 * Sets this x.
 	 *
-	 * @param string $style
-	 * @return void
+	 * @param integer $x
+	 * @return Tx_AdGoogleMaps_Api_Base_Point
 	 */
-	public function setStyle($style) {
-		$this->style = $style;
+	public function setX($x) {
+		$this->x = (integer) $x;
+		return $this;
 	}
 
 	/**
-	 * Returns this style.
+	 * Returns this x.
+	 *
+	 * @return integer
+	 */
+	public function getX() {
+		return (integer) $this->x;
+	}
+
+	/**
+	 * Sets this y.
+	 *
+	 * @param integer $y
+	 * @return Tx_AdGoogleMaps_Api_Base_Point
+	 */
+	public function setY($y) {
+		$this->y = (integer) $y;
+		return $this;
+	}
+
+	/**
+	 * Returns this y.
+	 *
+	 * @return integer
+	 */
+	public function getY() {
+		return (integer) $this->y;
+	}
+
+	/**
+	 * Returns the marker image as JavaScript string.
 	 *
 	 * @return string
 	 */
-	public function getStyle() {
-		return $this->style;
+	public function getPrint() {
+		return (($this->x > 0 || $this->y > 0) ? sprintf('new google.maps.Point(%d, %d)', $this->x, $this->y) : 'null');
 	}
 
 	/**
-	 * Returns TRUE if one of the option have not a default value.
+	 * Returns the marker image as JavaScript string.
 	 *
 	 * @return string
 	 */
-	public function hasOptions() {
-		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
+	public function __toString() {
+		return $this->getPrint();
 	}
 
 }

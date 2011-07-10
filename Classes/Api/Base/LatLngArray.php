@@ -29,23 +29,19 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\LatLngArray
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_LatLngArray {
+class Tx_AdGoogleMaps_Api_Base_LatLngArray {
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_Base_LatLng>
 	 */
 	protected $latLngArray;
 
 	/*
 	 * Constructor.
 	 * $latLngArray can be 
-	 * - a Tx_Extbase_Persistence_ObjectStorage of Tx_AdGoogleMaps_Api_LatLng objects, 
+	 * - a Tx_Extbase_Persistence_ObjectStorage of Tx_AdGoogleMaps_Api_Base_LatLng objects, 
 	 * - or an array like "array('48.209206,16.372778', '48.209206,16.372778')". 
 	 * 
 	 * @param mixed $latLngArray
@@ -70,14 +66,14 @@ class Tx_AdGoogleMaps_Api_LatLngArray {
 				$this->addLatLng($latLng);
 			}
 		} else {
-			throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_Api_LatLngArray::setLatLngArray().', 1294069158);
+			throw new Tx_AdGoogleMaps_Exception('Invalid property value for Tx_AdGoogleMaps_Api_Base_LatLngArray::setLatLngArray().', 1294069158);
 		}
 	}
 
 	/**
 	 * Returns this latLngArray.
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_LatLng>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Api_Base_LatLng>
 	 */
 	public function getLatLngArray() {
 		return $this->latLngArray;
@@ -90,16 +86,16 @@ class Tx_AdGoogleMaps_Api_LatLngArray {
 	 * @return void
 	 */
 	public function addLatLng($latLng) {
-		return $this->latLngArray->attach(new Tx_AdGoogleMaps_Api_LatLng($latLng));
+		return $this->latLngArray->attach(new Tx_AdGoogleMaps_Api_Base_LatLng($latLng));
 	}
 
 	/**
 	 * Removes a latLng of this latLngArray.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $latLng
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLng $latLng
 	 * @return void
 	 */
-	public function removeLatLng(Tx_AdGoogleMaps_Api_LatLng $latLng) {
+	public function removeLatLng(Tx_AdGoogleMaps_Api_Base_LatLng $latLng) {
 		return $this->latLngArray->detach($latLng);
 	}
 

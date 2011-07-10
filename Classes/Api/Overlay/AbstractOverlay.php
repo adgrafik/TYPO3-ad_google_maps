@@ -29,64 +29,63 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Zoom
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Zoom extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+abstract class Tx_AdGoogleMaps_Api_Overlay_AbstractOverlay implements Tx_AdGoogleMaps_Api_Overlay_OverlayInterface {
 
 	/**
-	 * ZoomControlStyle
+	 * @var Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface
+	 * @jsonClassEncoder ignoreProperty
 	 */
-	const STYLE_DEFAULT = 'google.maps.ZoomControlStyle.DEFAULT';
-	const STYLE_LARGE = 'google.maps.ZoomControlStyle.LARGE';
-	const STYLE_SMALL = 'google.maps.ZoomControlStyle.SMALL';
-
-	/**
-	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
-	 */
-	protected $style;
+	protected $jsonEncoder;
 
 	/*
 	 * Constructor.
 	 * 
-	 * @param string $position
-	 * @param string $style
+	 * @param mixed $options
 	 */
-	public function __construct($position = NULL, $style = NULL) {
-		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
-		$this->setStyle($style === NULL ? self::STYLE_DEFAULT : $style);
+	public function __construct($options) {
+		foreach ($options as $propertyName => $propertyValue) {
+			$setterName = 'set' . ucfirst($propertyName);
+			if (method_exists($this, $setterName)) {
+				$this->$setterName($propertyValue);
+			}
+		}
 	}
 
 	/**
-	 * Sets this style.
+	 * Injects this jsonEncoder.
 	 *
-	 * @param string $style
+	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
 	 * @return void
 	 */
-	public function setStyle($style) {
-		$this->style = $style;
+	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
+		$this->jsonEncoder = $jsonEncoder;
 	}
 
 	/**
-	 * Returns this style.
+	 * Returns the info window options as JavaScript string.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getStyle() {
-		return $this->style;
+	public function getPrintOptions() {
+		return $this->jsonEncoder->encode($this);
 	}
 
 	/**
-	 * Returns TRUE if one of the option have not a default value.
+	 * Returns the polyline as JavaScript string.
+	 *
+	 * @return array
+	 */
+	abstract public function getPrint();
+
+	/**
+	 * Returns the polyline as JavaScript string.
 	 *
 	 * @return string
 	 */
-	public function hasOptions() {
-		return ($this->position !== self::POSITION_TOP_LEFT || $this->style !== self::STYLE_DEFAULT);
+	public function __toString() {
+		$this->getPrint();
 	}
 
 }

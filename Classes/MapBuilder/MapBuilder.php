@@ -31,6 +31,11 @@
 class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
 	 * @var Tx_AdGoogleMaps_Domain_Model_Map
 	 */
 	protected $map;
@@ -44,6 +49,16 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 * @var Tx_AdGoogleMaps_Plugin_GoogleMaps
 	 */
 	protected $googleMapsPlugin;
+
+	/**
+	 * Injects this objectManager.
+	 *
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @return void
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
 
 	/**
 	 * Returns this map.
@@ -75,7 +90,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		$this->settings = $settings;
 
 		// Create Google Maps API plugin.
-		$this->googleMapsPlugin = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_GoogleMaps')
+		$this->googleMapsPlugin = $this->objectManager->create('Tx_AdGoogleMaps_Plugin_GoogleMaps')
 			->setMapId($this->map->getPropertyValue('uid', 'map'))
 			->setWidth($this->map->getWidth())
 			->setHeight($this->map->getHeight());
@@ -91,8 +106,8 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		$mapZoom = $this->map->getZoom();
 		$mapZoom = $mapZoom > 0 ? $mapZoom : $apiSettings['zoom']; 
 		$mapCenter = $this->map->getCenter();
-		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($mapCenter) === FALSE) {
-			if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($this->settings['map']['center']) === TRUE) {
+		if (Tx_AdGoogleMaps_Api_Base_LatLng::isValidCoordinate($mapCenter) === FALSE) {
+			if (Tx_AdGoogleMaps_Api_Base_LatLng::isValidCoordinate($this->settings['map']['center']) === TRUE) {
 				$mapCenter = $this->settings['map']['center'];
 			} else {
 				$mapCenter = '48.209206,16.372778';
@@ -101,7 +116,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		$pluginMapOption = $pluginOptions->getMapOptions();
 		$pluginMapOption
 			->setMapTypeId($this->map->getMapTypeId())
-			->setCenter(new Tx_AdGoogleMaps_Api_LatLng($mapCenter))
+			->setCenter(new Tx_AdGoogleMaps_Api_Base_LatLng($mapCenter))
 			->setBackgroundColor($this->map->getBackgroundColor())
 			->setNoClear($this->map->isNoClear())
 			->setDisableDefaultUi($this->map->isDisableDefaultUi())
@@ -112,48 +127,54 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 		if ($this->map->hasMapTypeControl() === TRUE) {
 			$pluginMapOption
 				->setMapTypeControl(TRUE)
-				->setMapTypeControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_MapType', 
-					$this->map->getMapTypeControlOptionsMapTypeIds(),
-					$this->map->getMapTypeControlOptionsPosition(),
-					$this->map->getMapTypeControlOptionsStyle()
+				->setMapTypeControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_MapType', 
+					$this->map->getMapTypeControlsMapTypeIds(),
+					$this->map->getMapTypeControlsPosition(),
+					$this->map->getMapTypeControlsStyle()
 				));
 		}
-		if ($this->map->hasNavigationControl() === TRUE) {
+		if ($this->map->hasRotateControl() === TRUE) {
 			$pluginMapOption
-				->setNavigationControl(TRUE)
-				->setNavigationControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Navigation', 
-					$this->map->getNavigationControlOptionsPosition(),
-					$this->map->getNavigationControlOptionsStyle()
+				->setRotateControl(TRUE)
+				->setRotateControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_Rotate', 
+					$this->map->getRotateControlsPosition()
 				));
 		}
 		if ($this->map->hasScaleControl() === TRUE) {
 			$pluginMapOption
 				->setScaleControl(TRUE)
-				->setScaleControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Scale', 
-					$this->map->getScaleControlOptionsPosition(),
-					$this->map->getScaleControlOptionsStyle()
+				->setScaleControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_Scale', 
+					$this->map->getScaleControlsPosition(),
+					$this->map->getScaleControlsStyle()
 				));
 		}
 		if ($this->map->hasPanControl() === TRUE) {
 			$pluginMapOption
 				->setPanControl(TRUE)
-				->setPanControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Pan', 
-					$this->map->getPanControlOptionsPosition()
+				->setPanControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_Pan', 
+					$this->map->getPanControlsPosition()
 				));
 		}
 		if ($this->map->hasZoomControl() === TRUE) {
 			$pluginMapOption
 				->setZoomControl(TRUE)
-				->setZoomControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_Zoom', 
-					$this->map->getZoomControlOptionsPosition(),
-					$this->map->getZoomControlOptionsStyle()
+				->setZoomControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_Zoom', 
+					$this->map->getZoomControlsPosition(),
+					$this->map->getZoomControlsStyle()
+				));
+		}
+		if ($this->map->hasOverviewMapControl() === TRUE) {
+			$pluginMapOption
+				->setOverviewMapControl(TRUE)
+				->setOverviewMapControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_OverviewMap', 
+					$this->map->getOverviewMapControlsIsOpened()
 				));
 		}
 		if ($this->map->hasStreetViewControl() === TRUE) {
 			$pluginMapOption
 				->setStreetViewControl(TRUE)
-				->setStreetViewControlOptions(t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_ControlOptions_StreetView', 
-					$this->map->getStreetViewControlOptionsPosition()
+				->setStreetViewControls($this->objectManager->create('Tx_AdGoogleMaps_Api_Control_StreetView', 
+					$this->map->getStreetViewControlsPosition()
 				));
 		}
 		// Set interaction options.
@@ -181,7 +202,7 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 	 * Returns the Google Maps API object.
 	 *
 	 * @param mixed $categories
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_Api_Map_Map
 	 * @throw Tx_AdGoogleMaps_MapBuilder_Exception
 	 */
 	protected function buildLayers($categories) {
@@ -194,16 +215,19 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 				// the same layers, than duplicates are added to the layer items.
 				if ($layer->getItems()->count() === 0) {
 					$layerBuilderClassName = $layer->getType();
-					if (class_exists($layerBuilderClassName) === FALSE) {
-						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889103);
+					if (strpos($layerBuilderClassName, 'Tx_AdGoogleMaps') === FALSE) {
+						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" must begin with "Tx_AdGoogleMaps".', 1297889110);
 					}
-					$layerBuilder = t3lib_div::makeInstance($layerBuilderClassName);
-					$layerBuilder->injectSettings($this->settings);
-					$layerBuilder->injectMapBuilder($this);
-					$layerBuilder->injectGoogleMapsPlugin($this->googleMapsPlugin);
-					$layerBuilder->injectMap($this->map);
-					$layerBuilder->injectCategory($category);
-					$layerBuilder->injectLayer($layer);
+					if (class_exists($layerBuilderClassName) === FALSE) {
+						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889111);
+					}
+					$layerBuilder = $this->objectManager->create($layerBuilderClassName);
+					$layerBuilder->setSettings($this->settings);
+					$layerBuilder->setMapBuilder($this);
+					$layerBuilder->setGoogleMapsPlugin($this->googleMapsPlugin);
+					$layerBuilder->setMap($this->map);
+					$layerBuilder->setCategory($category);
+					$layerBuilder->setLayer($layer);
 
 					$layerBuilder->buildItems();
 

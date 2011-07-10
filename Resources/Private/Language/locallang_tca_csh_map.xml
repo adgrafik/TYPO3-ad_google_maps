@@ -20,6 +20,8 @@
 			<label index="background_color.description">Color used for the background of the Map div. This color will be visible when tiles have not yet loaded as the user pans. This option can only be set when the map is initialized.</label>
 			<label index="min_zoom.description">The minimum zoom level which will be displayed on the map. If omitted, or set to null, the minimum zoom from the current map type is used instead.</label>
 			<label index="max_zoom.description">The maximum zoom level which will be displayed on the map. If omitted, or set to null, the maximum zoom from the current map type is used instead.</label>
+			<label index="heading.description">The heading for aerial imagery in degrees measured clockwise from cardinal direction North. Headings are snapped to the nearest available angle for which imagery is available.</label>
+			<label index="tilt.description">The angle of incidence of the map as measured in degrees from the viewport plane to the map plane. The only currently supported values are 0, indicating no angle of incidence (no tilt), and 45, indicating a tilt of 45deg;. 45deg; imagery is only available for SATELLITE and HYBRID map types, within some locations, and at some zoom levels.</label>
 			<label index="no_clear.description">If true, do not clear the contents of the Map div.</label>
 			<label index="center_type.description">The initial map center.</label>
 			<label index="center.description">Coordinate of the map center.</label>
@@ -31,19 +33,20 @@
 			<label index="map_type_control_options_map_type_ids.description">IDs of map types to show in the control.</label>
 			<label index="map_type_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_RIGHT.</label>
 			<label index="map_type_control_options_style.description">Style id. Used to select what style of map type control to display.</label>
-			<label index="navigation_control.description">The initial enabled/disabled state of the navigation control.</label>
-			<label index="navigation_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_LEFT.</label>
-			<label index="navigation_control_options_style.description">Style id. Used to select what style of navigation control to display.</label>
-			<label index="scale_control.description">The initial enabled/disabled state of the scale control.</label>
+			<label index="rotate_control.description">The initial enabled/disabled state of the rotate control.</label>
+			<label index="rotate_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_LEFT.</label>
+			<label index="scale_control.description">The enabled/disabled state of the Rotate control.</label>
 			<label index="scale_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is BOTTOM_LEFT.</label>
 			<label index="pan_control.description">The enabled/disabled state of the pan control.</label>
 			<label index="pan_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_LEFT.</label>
 			<label index="zoom_control.description">The enabled/disabled state of the zoom control.</label>
 			<label index="zoom_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_LEFT.</label>
 			<label index="zoom_control_options_style.description">Style id. Used to select what style of zoom control to display.</label>
+			<label index="overview_map_control.description">The display options for the Overview Map control.</label>
+			<label index="overview_map_control_options_is_opened.description">Whether the control should display in opened mode or collapsed (minimized) mode. By default, the control is closed.</label>
 			<label index="street_view_control.description">The initial enabled/disabled state of the Street View pegman control. The Street View pegman control is enabled by default.</label>
 			<label index="street_view_control_options_position.description">Position id. Used to specify the position of the control on the map. Klick for details.</label>
-			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControlOptions, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
+			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControls, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
 			<label index="search_control.description">Activates the simple map search.</label>
 			<label index="search_marker.description">If user search is used you can define an own marker here. At default the search marker of the MapDrawer is used.</label>
 
@@ -76,6 +79,8 @@
 			<label index="background_color.description">Für den Hintergrund der Karten-div verwendete Farbe. Diese Farbe wird angezeigt, wenn noch keine Kacheln geladen wurden und der Nutzer die Karte schwenkt. Diese Option kann nur festgelegt werden, wenn die Karte initiiert ist.</label>
 			<label index="min_zoom.description">Die min. Zoomstufe welche auf der Karte dargestellt werden soll. Wenn der Wert nicht gesetzt ist, wird die min. Zoomstufe des aktuellen Kartentyps verwendet.</label>
 			<label index="max_zoom.description">Die max. Zoomstufe welche auf der Karte dargestellt werden soll. Wenn der Wert nicht gesetzt ist, wird die max. Zoomstufe des aktuellen Kartentyps verwendet.</label>
+			<label index="heading.description">Die Kamerarichtung in Grad bezogen auf den geografischen Nordpol. Der geografische Norden liegt bei 0°, der Osten bei 90°, der Süden bei 180° und der Westen bei 270°.</label>
+			<label index="tilt.description">The angle of incidence of the map as measured in degrees from the viewport plane to the map plane. The only currently supported values are 0, indicating no angle of incidence (no tilt), and 45, indicating a tilt of 45deg;. 45deg; imagery is only available for SATELLITE and HYBRID map types, within some locations, and at some zoom levels.</label>
 			<label index="no_clear.description">Falls wahr, den Inhalt der Karten-div nicht löschen.</label>
 			<label index="center_type.description">Anfängliches Kartenzentrum. Erforderlich.</label>
 			<label index="center.description">Koordinaten des Kartenzentrum.</label>
@@ -87,9 +92,8 @@
 			<label index="map_type_control_options_map_type_ids.description">IDs von Kartentypen, die im Steuerelement angezeigt werden sollen.</label>
 			<label index="map_type_control_options_position.description">Positions-ID. Hiermit wird die Position des Steuerelements auf der Karte festgelegt. Die Standardposition ist TOP_RIGHT.</label>
 			<label index="map_type_control_options_style.description">Stil-ID. Wird verwendet, um auszuwählen, welcher Stil der Kartentypsteuerung angezeigt werden soll.</label>
-			<label index="navigation_control.description">Anfänglicher Aktivierungs-/Inaktivierungsstatus der Navigationssteuerung.</label>
-			<label index="navigation_control_options_position.description">Positions-ID. Hiermit wird die Position des Steuerelements auf der Karte festgelegt. Die Standardposition ist TOP_LEFT.</label>
-			<label index="navigation_control_options_style.description">Stil-ID. Wird verwendet, um auszuwählen, welcher Stil der Navigationstypsteuerung angezeigt werden soll.</label>
+			<label index="rotate_control.description">Anfänglicher Aktivierungs-/Inaktivierungsstatus der Rotationssteuerung.</label>
+			<label index="rotate_control_options_position.description">Positions-ID. Hiermit wird die Position des Steuerelements auf der Karte festgelegt. Die Standardposition ist TOP_LEFT.</label>
 			<label index="scale_control.description">Anfänglicher Aktivierungs-/Inaktivierungsstatus der Maßstabssteuerung.</label>
 			<label index="scale_control_options_position.description">Positions-ID. Hiermit wird die Position des Steuerelements auf der Karte festgelegt. Die Standardposition ist BOTTOM_LEFT.</label>
 			<label index="scale_control_options_style.description">Stil-ID. Wird verwendet, um auszuwählen, welcher Stil der Maßstabssteuerung angezeigt werden soll.</label>
@@ -98,9 +102,11 @@
 			<label index="zoom_control.description">The enabled/disabled state of the zoom control.</label>
 			<label index="zoom_control_options_position.description">Position id. Used to specify the position of the control on the map. The default position is TOP_LEFT.</label>
 			<label index="zoom_control_options_style.description">Style id. Used to select what style of zoom control to display.</label>
+			<label index="overview_map_control.description">The display options for the Overview Map control.</label>
+			<label index="overview_map_control_options_is_opened.description">Whether the control should display in opened mode or collapsed (minimized) mode. By default, the control is closed.</label>
 			<label index="street_view_control.description">Der anfängliche Status (aktiviert/deaktiviert) des Street View-Männchen-Steuerelements.</label>
 			<label index="street_view_control_options_position.description">Position id. Used to specify the position of the control on the map. Klick for details.</label>
-			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControlOptions, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
+			<label index="street_view_control_options_position.details">The default position is embedded within the navigation control. If this position is empty or the same as that specified in the navigationControls, the Street View control will be displayed as part of the navigation control. Otherwise, it will be displayed separately.</label>
 			<label index="search_control.description">Aktivier die einfache Kartensuche.</label>
 			<label index="search_marker.description">Wenn die Benutzersuche verwendet wird, kann hier eine eigene Markierung definieren werden. Standardmäßig wird die Markierung des MapDrawer verwendet.</label>
 

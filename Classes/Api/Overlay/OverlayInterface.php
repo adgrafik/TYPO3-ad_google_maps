@@ -29,31 +29,30 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\StreetView
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_StreetView extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+interface Tx_AdGoogleMaps_Api_Overlay_OverlayInterface {
 
 	/*
 	 * Constructor.
 	 * 
-	 * @param string $position
+	 * @param mixed $options
 	 */
-	public function __construct($position = NULL) {
-		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
-	}
+	public function __construct($options);
 
 	/**
-	 * Returns TRUE if one of the option have not a default value.
+	 * Returns the info window options as JavaScript string.
+	 *
+	 * @return array
+	 */
+	public function getPrintOptions();
+
+	/**
+	 * Returns the polyline as JavaScript string.
 	 *
 	 * @return string
 	 */
-	public function hasOptions() {
-		return ($this->position !== self::POSITION_TOP_LEFT);
-	}
+	public function __toString();
 
 }
 

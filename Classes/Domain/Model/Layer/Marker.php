@@ -56,6 +56,16 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	protected $raiseOnDrag;
 
 	/**
+	 * @var boolean
+	 */
+	protected $optimized;
+
+	/**
+	 * @var string
+	 */
+	protected $animation;
+
+	/**
 	 * @var integer
 	 */
 	protected $zindex;
@@ -328,6 +338,44 @@ class Tx_AdGoogleMaps_Domain_Model_Layer_Marker extends Tx_AdGoogleMaps_Domain_M
 	 */
 	public function isRaiseOnDrag() {
 		return (boolean) ($this->isDraggable() === TRUE && (boolean) $this->getPropertyValue('raiseOnDrag', 'layer') === TRUE);
+	}
+
+	/**
+	 * Sets this optimized
+	 *
+	 * @param boolean $optimized
+	 * @return void
+	 */
+	public function setOptimized($optimized) {
+		$this->optimized = (boolean) $optimized;
+	}
+
+	/**
+	 * Returns this optimized
+	 *
+	 * @return boolean
+	 */
+	public function isOptimized() {
+		return (boolean) $this->getPropertyValue('optimized', 'layer');
+	}
+
+	/**
+	 * Sets this animation.
+	 *
+	 * @param string $animation
+	 * @return void
+	 */
+	public function setAnimation($animation) {
+		$this->animation = $animation;
+	}
+
+	/**
+	 * Returns this animation.
+	 *
+	 * @return string
+	 */
+	public function getAnimation() {
+		return $this->getPropertyValue('animation', 'layer');
 	}
 
 	/**

@@ -65,3 +65,19 @@
 		[TASK] Set the replace marker ###ITEM_KEYS### of the category userFunction to deprecated. Use ###LAYER_UIDS### instead.
 		[TASK] Set the replace marker ###ITEM_KEY### of the layer userFunction to deprecated. Use ###LAYER_UID### instead.
 		[TASK] Added TS-constant "fixStdHeaderForFluidSyntax" to allow user to decide if "lib.stdheader" should be changed.
+
+1.2.0	[TASK] Changed t3lib_div::makeInstance to the extbase $this->objectManager->create/get.
+		[TASK] Changed function Tx_AdGoogleMaps_Utility_FrontEnd::jsonClassEncoder to extendable object Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder.
+		[TASK] Changed some TCA settings.
+		[TASK] ## Change naming of API directories corresponding to the Google Maps API structure.
+		[TASK] Changed naming of Classes\Api\Map to Classes\Api\Map\Map.
+		[TASK] Changed naming of Classes\Api\ControlOptions\* to Classes\Api\Control\*.
+		[TASK] Changed naming of Classes\Api\Layer\* to Classes\Api\Overlay\*.
+		[TASK] Changed naming of MarkerImage and MarkerShape to Classes\Api\Overlay\*.
+		[TASK] Added Classes\Api\Layer\* (for KML-layer for example).
+		[TASK] Changed naming of Bounds, LatLng, LatLngArray, Point and Size to Classes\Api\Base\*.
+
+		[TASK] Deleted navigationControl. Zoom and pan controls have been separated (no more navigation control). These can be configured separately.
+		[TASK] Added new options for map: heading, tilt, rotateControl, overviewMapControl.
+		[TASK] Added new options for marker: animation, optimized.
+		[TASK] Added naming convention for coordinates provider and layer builder classes. Now they must begin with "Tx_AdGoogleMaps". All plugin-extensions must now start with ad_google_maps like ad_google_maps_plugin_feuser for a better belonging to ad_google_maps.

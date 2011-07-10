@@ -31,6 +31,12 @@
 class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @jsonClassEncoder ignoreProperty
+	 */
+	protected $objectManager;
+
+	/**
 	 * @var array
 	 */
 	protected $settings;
@@ -65,18 +71,28 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 	 */
 	protected $searchControl;
 
+	/**
+	 * Injects this objectManager.
+	 *
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @return void
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
 	/*
 	 * Constructs this map.
 	 */
-	public function __construct() {
+	public function initializeObject() {
 		// Get extension settings.
 		if (($settings = Tx_AdGoogleMaps_Utility_BackEnd::getTypoScriptSetup($GLOBALS['TSFE']->id, 'tx_adgooglemaps')) === FALSE) {
-			$flashMessages = t3lib_div::makeInstance('t3lib_FlashMessage', 'Add static Template "ad: Google Maps (ad_google_maps)" to your template.', 'tx_adgooglemaps: Invalid extension configuration', t3lib_FlashMessage::ERROR);
+			$flashMessages = $this->objectManager->create('t3lib_FlashMessage', 'Add static Template "ad: Google Maps (ad_google_maps)" to your template.', 'tx_adgooglemaps: Invalid extension configuration', t3lib_FlashMessage::ERROR);
 			return t3lib_FlashMessageQueue::addMessage($flashMessages);
 		}
 		$this->settings = $settings['plugin'];
 
-		$this->pluginOptions = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options');
+		$this->pluginOptions = $this->objectManager->create('Tx_AdGoogleMaps_Plugin_Options');
 
 		// Set required plugin settings.
 		$this->geocodeUrl = $this->settings['geocodeUrl'];
@@ -313,7 +329,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 	 * Returns the address LatLng object. Returns NULL if no address found.
 	 * 
 	 * @param string $addressQuery
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	public function getLatLngByAddress($addressQuery) {
 		$latLng = NULL;
@@ -322,7 +338,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 		$geocodeResult = t3lib_div::getURL($geocodeUrl);
 		$geocodeResult = json_decode($geocodeResult);
 		if ($geocodeResult !== NULL && strtolower($geocodeResult->status) === 'ok') {
-			$coordinates = new Tx_AdGoogleMaps_Api_LatLng($geocodeResult->results[0]->geometry->location->lat, $geocodeResult->results[0]->geometry->location->lng);
+			$coordinates = new Tx_AdGoogleMaps_Api_Base_LatLng($geocodeResult->results[0]->geometry->location->lat, $geocodeResult->results[0]->geometry->location->lng);
 		}
 		return $latLng;
 	}

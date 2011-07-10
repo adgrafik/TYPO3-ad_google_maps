@@ -29,21 +29,17 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\Bounds
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_Bounds {
+class Tx_AdGoogleMaps_Api_Base_Bounds {
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
+	 * @var Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	protected $southWest;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
+	 * @var Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	protected $northEast;
 
@@ -61,17 +57,17 @@ class Tx_AdGoogleMaps_Api_Bounds {
 	/**
 	 * Sets this southWest.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $southWest
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLng $southWest
 	 * @return void
 	 */
-	public function setSouthWest(Tx_AdGoogleMaps_Api_LatLng $southWest) {
+	public function setSouthWest(Tx_AdGoogleMaps_Api_Base_LatLng $southWest) {
 		$this->southWest = $southWest;
 	}
 
 	/**
 	 * Returns this southWest.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	public function getSouthWest() {
 		return $this->southWest;
@@ -80,17 +76,17 @@ class Tx_AdGoogleMaps_Api_Bounds {
 	/**
 	 * Sets this northEast.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $northEast
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLng $northEast
 	 * @return void
 	 */
-	public function setNorthEast(Tx_AdGoogleMaps_Api_LatLng $northEast) {
+	public function setNorthEast(Tx_AdGoogleMaps_Api_Base_LatLng $northEast) {
 		$this->northEast = $northEast;
 	}
 
 	/**
 	 * Returns this northEast.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	public function getNorthEast() {
 		return $this->northEast;
@@ -99,10 +95,10 @@ class Tx_AdGoogleMaps_Api_Bounds {
 	/**
 	 * Extend google maps bound with given lat lng.
 	 * 
-	 * @param Tx_AdGoogleMaps_Api_LatLng $latLng
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLng $latLng
 	 * @return void
 	 */
-	public function extend(Tx_AdGoogleMaps_Api_LatLng $latLng) {
+	public function extend(Tx_AdGoogleMaps_Api_Base_LatLng $latLng) {
 		if ($this->southWest === NULL) {
 			$this->southWest = clone $latLng;
 			$this->northEast = clone $latLng;
@@ -116,10 +112,10 @@ class Tx_AdGoogleMaps_Api_Bounds {
 	/**
 	 * Extend google maps bound with given lat lng array.
 	 * 
-	 * @param Tx_AdGoogleMaps_Api_LatLngArray $latLngArray
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLngArray $latLngArray
 	 * @return void
 	 */
-	public function extendArray(Tx_AdGoogleMaps_Api_LatLngArray $latLngArray) {
+	public function extendArray(Tx_AdGoogleMaps_Api_Base_LatLngArray $latLngArray) {
 		foreach ($latLngArray->getLatLngArray() as $latLng) {
 			$this->extend($latLng);
 		}

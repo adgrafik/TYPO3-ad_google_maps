@@ -29,13 +29,9 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Scale
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_Control_Scale extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/**
 	 * ScaleControlStyle
@@ -44,7 +40,7 @@ class Tx_AdGoogleMaps_Api_ControlOptions_Scale extends Tx_AdGoogleMaps_Api_Contr
 
 	/**
 	 * @var string
-	 * @javaScriptHelper quoteValue = FALSE
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
 	protected $style;
 

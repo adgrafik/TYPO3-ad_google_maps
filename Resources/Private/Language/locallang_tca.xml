@@ -9,8 +9,8 @@
 			<label index="extension.title">Google Maps</label>
 			<label index="tx_adgooglemaps_domain_model_map.label">Map</label>
 
+			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.recordSettings">Record settings</label>
 			<label index="tx_adgooglemaps_domain_model_map.title">Title:</label>
-			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">System settings</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates">Templates:</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates.googleMaps">Google Maps</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates.listView">List view</label>
@@ -29,6 +29,8 @@
 			<label index="tx_adgooglemaps_domain_model_map.backgroundColor">Background color:</label>
 			<label index="tx_adgooglemaps_domain_model_map.minZoom">Min. zoom:</label>
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. zoom:</label>
+			<label index="tx_adgooglemaps_domain_model_map.heading">Heading:</label>
+			<label index="tx_adgooglemaps_domain_model_map.tilt">Tilt:</label>
 			<label index="tx_adgooglemaps_domain_model_map.noClear">No clear:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType">Center:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType.default">By coordinates</label>
@@ -40,34 +42,31 @@
 			<label index="tx_adgooglemaps_domain_model_map.sheetControllers">Controllers</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDefaultUi">Disable default UI:</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeControl">Map type control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions">Map type control options:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.mapTypeIds">Map types:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style">Style:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.default">Default</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.dropdownMenu">Dropdown menu</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.horizontalBar">Horizontal bar</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControl">Navigation control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style">Style:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.default">Default</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.android">Android</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.small">Small</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.zoomPan">Zoom Pan</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls">Map type control options:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.mapTypeIds">Map types:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style">Style:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.default">Default</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.dropdownMenu">Dropdown menu</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.horizontalBar">Horizontal bar</label>
+			<label index="tx_adgooglemaps_domain_model_map.rotateControl">Rotate control:</label>
+			<label index="tx_adgooglemaps_domain_model_map.rotateControls.position">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.scaleControl">Scale control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.style">Style:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.style.default">Default</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.style">Style:</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.style.default">Default</label>
 			<label index="tx_adgooglemaps_domain_model_map.panControl">Pan control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.panControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.panControls.position">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.zoomControl">Zoom control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style">Style:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.default">Default</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.small">Small</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.large">Large</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style">Style:</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.default">Default</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.small">Small</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.large">Large</label>
+			<label index="tx_adgooglemaps_domain_model_map.overviewMapControl">Overview control:</label>
+			<label index="tx_adgooglemaps_domain_model_map.overviewMapControls.isOpened">Open</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControl">Street view control:</label>
-			<label index="tx_adgooglemaps_domain_model_map.streetViewControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.streetViewControls.position">Position:</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.sheetInteraction">Interaction</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDoubleClickZoom">Disable double click zoom:</label>
@@ -122,8 +121,8 @@
 
 			<label index="tx_adgooglemaps_domain_model_category.label">Category</label>
 
+			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.recordSettings">Record settings</label>
 			<label index="tx_adgooglemaps_domain_model_category.title">Title:</label>
-			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">System settings</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon.none">None</label>
 			<label index="tx_adgooglemaps_domain_model_category.iconWidth">Width:</label>
@@ -136,9 +135,9 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.label">Layer</label>
 
+			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.recordSettings">Record settings</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type">Layer type:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markers</label>
-			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">System settings</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Title:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Coordinates provider:</label>
@@ -154,6 +153,11 @@
 			<label index="tx_adgooglemaps_domain_model_layer.clickable">Clickable:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.draggable">Draggable:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.raiseOnDrag">Raise on drag:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.optimized">Optimized:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation">Animation:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.none">None</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.bounce">Bounce</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.drop">Drop</label>
 			<label index="tx_adgooglemaps_domain_model_layer.zindex">Z-Index:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.iconArrangement">Arrangement</label>
@@ -218,8 +222,8 @@
 		<languageKey index="de" type="array">
 			<label index="tx_adgooglemaps_domain_model_map.label">Karte</label>
 
+			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.recordSettings">Datensatzeinstellungen</label>
 			<label index="tx_adgooglemaps_domain_model_map.title">Titel:</label>
-			<label index="tx_adgooglemaps_domain_model_map.paletteTitle.system">Systemeinstellungen</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates">Vorlagen:</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates.googleMaps">Google Maps</label>
 			<label index="tx_adgooglemaps_domain_model_map.templates.listView">Listenansicht</label>
@@ -238,6 +242,8 @@
 			<label index="tx_adgooglemaps_domain_model_map.backgroundColor">Hintergrundfarbe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.minZoom">Min. Zoomstufe:</label>
 			<label index="tx_adgooglemaps_domain_model_map.maxZoom">Max. Zoomstufe:</label>
+			<label index="tx_adgooglemaps_domain_model_map.heading">Ausrichtung:</label>
+			<label index="tx_adgooglemaps_domain_model_map.tilt">Neigung:</label>
 			<label index="tx_adgooglemaps_domain_model_map.noClear">Nicht löschen:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType">Kartenzentrum:</label>
 			<label index="tx_adgooglemaps_domain_model_map.centerType.default">Koordinaten</label>
@@ -249,34 +255,31 @@
 			<label index="tx_adgooglemaps_domain_model_map.sheetControllers">Steuerungen</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDefaultUi">Deaktiviere Standard-UI:</label>
 			<label index="tx_adgooglemaps_domain_model_map.mapTypeControl">Kartentyp-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions">Kartentyp-Steuerungsoptionen:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.mapTypeIds">Kartentypen:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style">Stil:</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.default">Standard</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.dropdownMenu">Dropdown-Menu</label>
-			<label index="tx_adgooglemaps_domain_model_map.mapTypeControlOptions.style.horizontalBar">Horizontaler Balken</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControl">Navigation-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style">Stil:</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.default">Standard</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.android">Android</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.small">Small</label>
-			<label index="tx_adgooglemaps_domain_model_map.navigationControlOptions.style.zoomPan">Zoom Pan</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls">Kartentyp-Steuerungsoptionen:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.mapTypeIds">Kartentypen:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style">Stil:</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.default">Standard</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.dropdownMenu">Dropdown-Menu</label>
+			<label index="tx_adgooglemaps_domain_model_map.mapTypeControls.style.horizontalBar">Horizontaler Balken</label>
+			<label index="tx_adgooglemaps_domain_model_map.rotateControl">Rotations-Steuerung:</label>
+			<label index="tx_adgooglemaps_domain_model_map.rotateControls.position">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.scaleControl">Maßstab-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.style">Stil:</label>
-			<label index="tx_adgooglemaps_domain_model_map.scaleControlOptions.style.default">Standard</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.style">Stil:</label>
+			<label index="tx_adgooglemaps_domain_model_map.scaleControls.style.default">Standard</label>
 			<label index="tx_adgooglemaps_domain_model_map.panControl">Schwenk-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.panControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.panControls.position">Position:</label>
 			<label index="tx_adgooglemaps_domain_model_map.zoomControl">Zoom-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.position">Position:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style">Stil:</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.default">Standard</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.small">Klein</label>
-			<label index="tx_adgooglemaps_domain_model_map.zoomControlOptions.style.large">Groß</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style">Stil:</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.default">Standard</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.small">Klein</label>
+			<label index="tx_adgooglemaps_domain_model_map.zoomControls.style.large">Groß</label>
+			<label index="tx_adgooglemaps_domain_model_map.overviewMapControl">Übersichts-Steuerung:</label>
+			<label index="tx_adgooglemaps_domain_model_map.overviewMapControls.isOpened">Zeigen</label>
 			<label index="tx_adgooglemaps_domain_model_map.streetViewControl">Street View-Steuerung:</label>
-			<label index="tx_adgooglemaps_domain_model_map.streetViewControlOptions.position">Position:</label>
+			<label index="tx_adgooglemaps_domain_model_map.streetViewControls.position">Position:</label>
 
 			<label index="tx_adgooglemaps_domain_model_map.sheetInteraction">Interaktion</label>
 			<label index="tx_adgooglemaps_domain_model_map.disableDoubleClickZoom">Deaktiviere Zoomen durch Doppelklick:</label>
@@ -331,8 +334,8 @@
 
 			<label index="tx_adgooglemaps_domain_model_category.label">Kategorie</label>
 
+			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.recordSettings">Datensatzeinstellungen</label>
 			<label index="tx_adgooglemaps_domain_model_category.title">Titel:</label>
-			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.system">Systemeinstellungen</label>
 			<label index="tx_adgooglemaps_domain_model_category.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_category.paletteTitle.iconDimensions">Dimensionen</label>
 			<label index="tx_adgooglemaps_domain_model_category.iconWidth">Breite:</label>
@@ -344,9 +347,9 @@
 
 			<label index="tx_adgooglemaps_domain_model_layer.label">Ebene</label>
 
+			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.recordSettings">Datensatzeinstellungen</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type">Ebenentyp:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.type.markers">Markierung</label>
-			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.system">Systemeinstellungen</label>
 
 			<label index="tx_adgooglemaps_domain_model_layer.title">Titel:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.coordinatesProvider">Koordinaten-Provider:</label>
@@ -362,6 +365,11 @@
 			<label index="tx_adgooglemaps_domain_model_layer.clickable">Kickbar:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.draggable">Verschiebbar:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.raiseOnDrag">Heben beim Verschieben:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.optimized">Optimieren:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation">Animation:</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.none">Keine</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.bounce">Bounce</label>
+			<label index="tx_adgooglemaps_domain_model_layer.animation.drop">Drop</label>
 			<label index="tx_adgooglemaps_domain_model_layer.zindex">Z-Index:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.icon">Icon:</label>
 			<label index="tx_adgooglemaps_domain_model_layer.paletteTitle.iconArrangement">Anordnung</label>

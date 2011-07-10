@@ -29,54 +29,53 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @scope prototype
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_Api_Overlay_InfoWindow extends Tx_AdGoogleMaps_Api_Overlay_AbstractOverlay {
 	
 	/**
-	 * @var Tx_AdGoogleMaps_Api_LatLng
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @var Tx_AdGoogleMaps_Api_Base_LatLng
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $position;
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
+	 * @jsonClassEncoder
 	 */
 	protected $content;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $disableAutoPan;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $maxWidth;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Size
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @var Tx_AdGoogleMaps_Api_Base_Size
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $pixelOffset;
 
 	/**
 	 * @var integer
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = 0
 	 */
 	protected $zindex;
 
 	/**
 	 * Sets this position.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_LatLng $position
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @param Tx_AdGoogleMaps_Api_Base_LatLng $position
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
-	public function setPosition(Tx_AdGoogleMaps_Api_LatLng $position) {
+	public function setPosition(Tx_AdGoogleMaps_Api_Base_LatLng $position) {
 		$this->position = $position;
 		return $this;
 	}
@@ -84,7 +83,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Returns this position.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_LatLng
+	 * @return Tx_AdGoogleMaps_Api_Base_LatLng
 	 */
 	public function getPosition() {
 		return $this->position;
@@ -94,7 +93,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this content.
 	 *
 	 * @param string $content
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
 	public function setContent($content) {
 		$this->content = $content;
@@ -114,7 +113,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this disableAutoPan.
 	 *
 	 * @param boolean $disableAutoPan
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
 	public function setDisableAutoPan($disableAutoPan) {
 		$this->disableAutoPan = (boolean) $disableAutoPan;
@@ -134,7 +133,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this maxWidth.
 	 *
 	 * @param integer $maxWidth
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
 	public function setMaxWidth($maxWidth) {
 		$this->maxWidth = (integer) $maxWidth;
@@ -153,10 +152,10 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Sets this pixelOffset.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Size $pixelOffset
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @param Tx_AdGoogleMaps_Api_Base_Size $pixelOffset
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
-	public function setPixelOffset(Tx_AdGoogleMaps_Api_Size $pixelOffset) {
+	public function setPixelOffset(Tx_AdGoogleMaps_Api_Base_Size $pixelOffset) {
 		$this->pixelOffset = $pixelOffset;
 		return $this;
 	}
@@ -164,7 +163,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	/**
 	 * Returns this pixelOffset.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Size
+	 * @return Tx_AdGoogleMaps_Api_Base_Size
 	 */
 	public function getPixelOffset() {
 		return $this->pixelOffset;
@@ -174,7 +173,7 @@ class Tx_AdGoogleMaps_Api_Layer_InfoWindow extends Tx_AdGoogleMaps_Api_Layer_Abs
 	 * Sets this zindex.
 	 *
 	 * @param integer $zindex
-	 * @return Tx_AdGoogleMaps_Api_Layer_InfoWindow
+	 * @return Tx_AdGoogleMaps_Api_Overlay_InfoWindow
 	 */
 	public function setZindex($zindex) {
 		$this->zindex = (integer) $zindex;

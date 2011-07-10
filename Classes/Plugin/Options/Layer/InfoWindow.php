@@ -32,19 +32,18 @@ class Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow extends Tx_AdGoogleMaps_Pl
 
 	/**
 	 * @var string
-	 * @javaScriptHelper
 	 */
 	protected $linkToLayerUid;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $infoWindowKeepOpen;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $infoWindowCloseOnClick;
 
@@ -52,7 +51,7 @@ class Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow extends Tx_AdGoogleMaps_Pl
 	 * Sets this linkToLayerUid.
 	 *
 	 * @param string $linkToLayerUid
-	 * @return Tx_AdGoogleMaps_Plugin_Options_Marker
+	 * @return Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow
 	 */
 	public function setLinkToLayerUid($linkToLayerUid) {
 		$this->linkToLayerUid = $linkToLayerUid;
@@ -71,7 +70,7 @@ class Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow extends Tx_AdGoogleMaps_Pl
 	 * Sets this infoWindowKeepOpen.
 	 *
 	 * @param boolean $infoWindowKeepOpen
-	 * @return Tx_AdGoogleMaps_Plugin_Options_Marker
+	 * @return Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow
 	 */
 	public function setInfoWindowKeepOpen($infoWindowKeepOpen) {
 		$this->infoWindowKeepOpen = (boolean) $infoWindowKeepOpen;
@@ -91,7 +90,7 @@ class Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow extends Tx_AdGoogleMaps_Pl
 	 * Sets this infoWindowCloseOnClick.
 	 *
 	 * @param boolean $infoWindowCloseOnClick
-	 * @return Tx_AdGoogleMaps_Plugin_Options_MapControl
+	 * @return Tx_AdGoogleMaps_Plugin_Options_Layer_InfoWindow
 	 */
 	public function setInfoWindowCloseOnClick($infoWindowCloseOnClick) {
 		$this->infoWindowCloseOnClick = (boolean) $infoWindowCloseOnClick;

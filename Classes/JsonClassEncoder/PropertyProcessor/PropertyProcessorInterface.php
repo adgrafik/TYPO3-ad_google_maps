@@ -23,25 +23,12 @@
  ***************************************************************/
 
 /**
- * The TCA service MapDrawer. 
+ * Class for backend tools. 
  *
- * @package AdGoogleMaps
- * @subpackage GoogleMaps\MapDrawer
- * @scope prototype
- * @entity
- * @api
+ * @version $Id:$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapDrawer_Layer_Marker extends Tx_AdGoogleMaps_MapDrawer_Layer_AbstractLayer {
-
-	/**
-	 * User function for Google Maps database fields. 
-	 *
-	 * @return void
-	 */
-	public function draw() {
-		$this->mapDrawerOptions['onlyOneMarker'] = 'onlyOneMarker: ' . ((array_key_exists('onlyOneMarker', $this->recordTypeConfiguration) === TRUE && (boolean) $this->recordTypeConfiguration['onlyOneMarker'] === TRUE) ? 'true' : 'false');
-		$this->mapDrawerOptions['fitBoundsOnLoad'] = 'fitBoundsOnLoad: ' . ((array_key_exists('fitBoundsOnLoad', $this->recordTypeConfiguration) === TRUE && (boolean) $this->recordTypeConfiguration['fitBoundsOnLoad'] === TRUE) ? 'true' : 'false');
-	}
+interface Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_PropertyProcessorInterface {
 
 }
 

@@ -31,28 +31,44 @@
 class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 
 	/**
+	 * @var Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface
+	 * @jsonClassEncoder ignoreProperty
+	 */
+	protected $jsonEncoder;
+
+	/**
 	 * @var boolean
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = FALSE
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $fitBoundsOnLoad;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = FALSE;
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $useMarkerCluster;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_MarkerImage
-	 * @javaScriptHelper getFunction = __toString; dontSetIfValueIs = 'null'
+	 * @var Tx_AdGoogleMaps_Api_Overlay_MarkerImage
+	 * @jsonClassEncoder useGetterMethod = getPrint; ignorePropertyIfValueIs = 'null'
 	 */
 	protected $searchMarker;
 
 	/**
 	 * @var boolean
-	 * @javaScriptHelper dontSetIfValueIs = 0
+	 * @jsonClassEncoder ignorePropertyIfValueIs = FALSE
 	 */
 	protected $infoWindowCloseAllOnMapClick;
+
+	/**
+	 * Injects this jsonEncoder.
+	 *
+	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
+	 * @return void
+	 */
+	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
+		$this->jsonEncoder = $jsonEncoder;
+	}
 
 	/**
 	 * Sets this fitBoundsOnLoad.
@@ -97,7 +113,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	/**
 	 * Sets this searchMarker
 	 *
-	 * @param Tx_AdGoogleMaps_Api_MarkerImage $searchMarker
+	 * @param Tx_AdGoogleMaps_Api_Overlay_MarkerImage $searchMarker
 	 * @return Tx_AdGoogleMaps_Plugin_Options_MapControl
 	 */
 	public function setSearchMarker($searchMarker) {
@@ -108,7 +124,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	/**
 	 * Returns this searchMarker
 	 *
-	 * @return Tx_AdGoogleMaps_Api_MarkerImage
+	 * @return Tx_AdGoogleMaps_Api_Overlay_MarkerImage
 	 */
 	public function getSearchMarker() {
 		return $this->searchMarker;
@@ -140,7 +156,7 @@ class Tx_AdGoogleMaps_Plugin_Options_MapControl {
 	 * @return string
 	 */
 	public function __toString() {
-		return Tx_AdGoogleMaps_Utility_FrontEnd::getClassAsJsonObject($this);
+		return $this->jsonEncoder->encode($this);
 	}
 
 }

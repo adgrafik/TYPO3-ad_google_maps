@@ -25,7 +25,7 @@
 /**
  * The TCA service MapDrawer. 
  *
- * @package Extbase
+ * @package AdGoogleMaps
  * @subpackage GoogleMaps\MapDrawer
  * @scope prototype
  * @entity

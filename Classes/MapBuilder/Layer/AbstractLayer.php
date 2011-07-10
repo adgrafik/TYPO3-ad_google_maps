@@ -31,6 +31,11 @@
 abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
 	 * @var tslib_cObj
 	 */
 	protected $contentObject;
@@ -99,9 +104,21 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	protected $coordinatesProvider;
 
 	/**
-	 * Constructor.
+	 * Injects this objectManager.
+	 *
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @return void
 	 */
-	public function __construct() {
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+	/**
+	 * Initialize this objectManager.
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
 		$this->useCoordinatesProvider = FALSE;
 		$this->addCountCoordinates = FALSE;
 		$this->preventAddListItems = FALSE;
@@ -114,7 +131,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param array $settings
 	 * @return void
 	 */
-	public function injectSettings($settings) {
+	public function setSettings($settings) {
 		$this->settings = $settings;
 	}
 
@@ -124,7 +141,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder
 	 * @return void
 	 */
-	public function injectMapBuilder(Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder) {
+	public function setMapBuilder(Tx_AdGoogleMaps_MapBuilder_MapBuilder $mapBuilder) {
 		$this->mapBuilder = $mapBuilder;
 	}
 
@@ -134,7 +151,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_Plugin_GoogleMaps $googleMapsPlugin
 	 * @return void
 	 */
-	public function injectGoogleMapsPlugin(Tx_AdGoogleMaps_Plugin_GoogleMaps $googleMapsPlugin) {
+	public function setGoogleMapsPlugin(Tx_AdGoogleMaps_Plugin_GoogleMaps $googleMapsPlugin) {
 		$this->googleMapsPlugin = $googleMapsPlugin;
 	}
 
@@ -144,7 +161,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_Domain_Model_Map $map
 	 * @return void
 	 */
-	public function injectMap(Tx_AdGoogleMaps_Domain_Model_Map $map) {
+	public function setMap(Tx_AdGoogleMaps_Domain_Model_Map $map) {
 		$this->map = $map;
 	}
 
@@ -154,7 +171,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_Domain_Model_Category $category
 	 * @return void
 	 */
-	public function injectCategory(Tx_AdGoogleMaps_Domain_Model_Category $category) {
+	public function setCategory(Tx_AdGoogleMaps_Domain_Model_Category $category) {
 		$this->category = $category;
 	}
 
@@ -164,7 +181,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_Domain_Model_Layer_LayerInterface $layer
 	 * @return void
 	 */
-	public function injectLayer(Tx_AdGoogleMaps_Domain_Model_Layer_LayerInterface $layer) {
+	public function setLayer(Tx_AdGoogleMaps_Domain_Model_Layer_LayerInterface $layer) {
 		$this->layer = $layer;
 	}
 
@@ -174,7 +191,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 * @param Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider
 	 * @return void
 	 */
-	public function injectCoordinatesProvider(Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider) {
+	public function setCoordinatesProvider(Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface $coordinatesProvider) {
 		$this->coordinatesProvider = $coordinatesProvider;
 	}
 
@@ -297,11 +314,14 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 		if ($this->useCoordinatesProvider === FALSE) return;
 
 		$coordinatesProviderClassName = $this->layer->getCoordinatesProvider();
-		if (class_exists($coordinatesProviderClassName) === FALSE) {
-			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889105);
+		if (strpos($coordinatesProviderClassName, 'Tx_AdGoogleMaps') === FALSE) {
+			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" must begin with "Tx_AdGoogleMaps".', 1297889150);
 		}
-		$this->coordinatesProvider = t3lib_div::makeInstance($coordinatesProviderClassName);
-		$this->coordinatesProvider->injectLayer($this);
+		if (class_exists($coordinatesProviderClassName) === FALSE) {
+			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889151);
+		}
+		$this->coordinatesProvider = $this->objectManager->create($coordinatesProviderClassName);
+		$this->coordinatesProvider->setLayer($this);
 		$this->coordinatesProvider->load();
 	}
 
@@ -344,7 +364,7 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 	 *
 	 * @param integer $index
 	 * @param mixed $value
-	 * @return Tx_AdGoogleMaps_Api_Layer_LayerInterface
+	 * @return Tx_AdGoogleMaps_Api_Overlay_LayerInterface
 	 */
 	abstract public function buildItem($index, $value);
 

@@ -29,18 +29,15 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\ControlOptions\Pan
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_ControlOptions_Pan extends Tx_AdGoogleMaps_Api_ControlOptions_AbstractControlOptions {
+class Tx_AdGoogleMaps_Api_Control_Rotate extends Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/*
 	 * Constructor.
 	 * 
 	 * @param string $position
+	 * @param string $style
 	 */
 	public function __construct($position = NULL) {
 		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);

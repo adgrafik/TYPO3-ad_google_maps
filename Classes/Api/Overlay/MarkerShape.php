@@ -29,13 +29,9 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\MarkerImage
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_MarkerShape {
+class Tx_AdGoogleMaps_Api_Overlay_MarkerShape {
 
 	/**
 	 * @var string
@@ -62,12 +58,12 @@ class Tx_AdGoogleMaps_Api_MarkerShape {
 	 * Sets this type.
 	 *
 	 * @param string $type
-	 * @return Tx_AdGoogleMaps_Api_MarkerShape
+	 * @return Tx_AdGoogleMaps_Api_Overlay_MarkerShape
 	 * @throw Tx_AdGoogleMaps_Exception
 	 */
 	public function setType($type) {
 		if (in_array($shape, array('', 'circle', 'poly', 'rect')) === FALSE) {
-			throw new Tx_AdGoogleMaps_Exception('Invalid parameter value for Tx_AdGoogleMaps_Api_MarkerShape::setType(), "' . $type . '" given', 1294069168);
+			throw new Tx_AdGoogleMaps_Exception('Invalid parameter value for Tx_AdGoogleMaps_Api_Overlay_MarkerShape::setType(), "' . $type . '" given', 1294069168);
 		}
 		$this->type = $type;
 		return $this;
@@ -86,7 +82,7 @@ class Tx_AdGoogleMaps_Api_MarkerShape {
 	 * Sets this coords.
 	 *
 	 * @param array $coords
-	 * @return Tx_AdGoogleMaps_Api_MarkerShape
+	 * @return Tx_AdGoogleMaps_Api_Overlay_MarkerShape
 	 */
 	public function setCoords($coords) {
 		$this->coords = $coords;

@@ -17,6 +17,8 @@
 			<label index="clickable.description">If true, the marker receives mouse and touch events. Default value is true.</label>
 			<label index="draggable.description">If true, the marker can be dragged. Default value is false.</label>
 			<label index="raise_on_drag.description">If false, disables raising and lowering the marker on drag. This option is true by default.</label>
+			<label index="optimized.description">Optimization renders many markers as a single static element. Optimized rendering is enabled by default. Disable optimized rendering for animated GIFs or PNGs, or when each marker must be rendered as a separate DOM element (advanced usage only).</label>
+			<label index="animation.description">Which animation to play when marker is added to a map.</label>
 			<label index="zindex.description">All Markers are displayed on the map in order of their zIndex, with higher values displaying in front of Markers with lower values. By default, Markers are displayed according to their latitude, with Markers of lower latitudes appearing in front of Markers at higher latitudes.</label>
 			<label index="coordinates_provider.description">Provider of the coordinates.</label>
 			<label index="coordinates.description">Coordinates. Required.</label>
@@ -66,6 +68,7 @@
 			<label index="clickable.description">Falls wahr, empfängt das Objekt Maus- und Berührungsereignisse. Der Standardwert ist "true".</label>
 			<label index="draggable.description">Falls wahr, kann die Markierung verschoben werden. Der Standardwert ist "false".</label>
 			<label index="raise_on_drag.description">If false, disables raising and lowering the marker on drag. This option is true by default.</label>
+			<label index="optimized.description">Optimization renders many markers as a single static element. Optimized rendering is enabled by default. Disable optimized rendering for animated GIFs or PNGs, or when each marker must be rendered as a separate DOM element (advanced usage only).</label>
 			<label index="zindex.description">Sämtliche Markierungen werden auf der Karte in der Reihenfolge ihrer zIndex angezeigt, wobei Markierungen mit höheren Werten vor Markierungen mit niedrigeren Werten rangieren. Standardmäßig werden Markierungen entsprechend ihrer geografischen Breite angezeigt, wobei Markierungen mit niedrigeren Breiten vor Markierungen mit höheren Breiten rangieren.</label>
 			<label index="coordinates_provider.description">Daten-Provider der Koordinaten.</label>
 			<label index="coordinates.description">Koordinaten. Required.</label>

@@ -29,8 +29,7 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @scope prototype
- * @api
+ * @package AdGoogleMaps
  */
 interface Tx_AdGoogleMaps_Api_Layer_LayerInterface {
 

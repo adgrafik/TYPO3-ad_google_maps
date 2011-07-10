@@ -23,24 +23,33 @@
  ***************************************************************/
 
 /**
- * The TCA service MapDrawer. 
+ * Class for backend tools. 
  *
- * @package AdGoogleMaps
- * @subpackage GoogleMaps\MapDrawer
- * @scope prototype
- * @entity
- * @api
+ * @version $Id:$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_AdGoogleMaps_MapDrawer_Layer_Marker extends Tx_AdGoogleMaps_MapDrawer_Layer_AbstractLayer {
+class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_IgnorePropertyIfValueIn extends Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractPropertyProcessor {
 
 	/**
-	 * User function for Google Maps database fields. 
+	 * Render the property value.
 	 *
-	 * @return void
+	 * @param string $optionValue
+	 * @param mixed $object
+	 * @param string $propertyType
+	 * @param string $propertyName
+	 * @param mixed $propertyValue
+	 * @return string
 	 */
-	public function draw() {
-		$this->mapDrawerOptions['onlyOneMarker'] = 'onlyOneMarker: ' . ((array_key_exists('onlyOneMarker', $this->recordTypeConfiguration) === TRUE && (boolean) $this->recordTypeConfiguration['onlyOneMarker'] === TRUE) ? 'true' : 'false');
-		$this->mapDrawerOptions['fitBoundsOnLoad'] = 'fitBoundsOnLoad: ' . ((array_key_exists('fitBoundsOnLoad', $this->recordTypeConfiguration) === TRUE && (boolean) $this->recordTypeConfiguration['fitBoundsOnLoad'] === TRUE) ? 'true' : 'false');
+	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
+		$values = t3lib_div::trimExplode(',', $optionValue);
+		$ignore = FALSE;
+		foreach ($values as $value) {
+			if (($ignoreProperty = ($propertyValue == eval('return ' . $value . ';'))) === TRUE) {
+				break;
+			}
+		}
+		$this->setIgnoreProperty($ignoreProperty);
+		return $propertyValue;
 	}
 
 }

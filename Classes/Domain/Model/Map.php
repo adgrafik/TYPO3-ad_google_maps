@@ -131,32 +131,27 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $mapTypeControlOptionsMapTypeIds;
+	protected $mapTypeControlsMapTypeIds;
 
 	/**
 	 * @var string
 	 */
-	protected $mapTypeControlOptionsPosition;
+	protected $mapTypeControlsPosition;
 
 	/**
 	 * @var string
 	 */
-	protected $mapTypeControlOptionsStyle;
+	protected $mapTypeControlsStyle;
 
 	/**
 	 * @var boolean
 	 */
-	protected $navigationControl;
+	protected $rotateControl;
 
 	/**
 	 * @var string
 	 */
-	protected $navigationControlOptionsPosition;
-
-	/**
-	 * @var string
-	 */
-	protected $navigationControlOptionsStyle;
+	protected $rotateControlsPosition;
 
 	/**
 	 * @var boolean
@@ -166,12 +161,12 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $scaleControlOptionsPosition;
+	protected $scaleControlsPosition;
 
 	/**
 	 * @var string
 	 */
-	protected $scaleControlOptionsStyle;
+	protected $scaleControlsStyle;
 
 	/**
 	 * @var boolean
@@ -181,7 +176,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $panControlOptionsPosition;
+	protected $panControlsPosition;
 
 	/**
 	 * @var boolean
@@ -191,12 +186,22 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $zoomControlOptionsPosition;
+	protected $zoomControlsPosition;
 
 	/**
 	 * @var string
 	 */
-	protected $zoomControlOptionsStyle;
+	protected $zoomControlsStyle;
+
+	/**
+	 * @var boolean
+	 */
+	protected $overviewMapControl;
+
+	/**
+	 * @var boolean
+	 */
+	protected $overviewMapControlsIsOpened;
 
 	/**
 	 * @var boolean
@@ -206,7 +211,7 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	/**
 	 * @var string
 	 */
-	protected $streetViewControlOptionsPosition;
+	protected $streetViewControlsPosition;
 
 	/**
 	 * @var boolean
@@ -657,117 +662,98 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this mapTypeControlOptionsMapTypeIds
+	 * Sets this mapTypeControlsMapTypeIds
 	 *
-	 * @param string $mapTypeControlOptionsMapTypeIds
+	 * @param string $mapTypeControlsMapTypeIds
 	 * @return void
 	 */
-	public function setMapTypeControlOptionsMapTypeIds($mapTypeControlOptionsMapTypeIds) {
-		$this->mapTypeControlOptionsMapTypeIds = $mapTypeControlOptionsMapTypeIds;
+	public function setMapTypeControlsMapTypeIds($mapTypeControlsMapTypeIds) {
+		$this->mapTypeControlsMapTypeIds = $mapTypeControlsMapTypeIds;
 	}
 
 	/**
-	 * Returns this mapTypeControlOptionsMapTypeIds
+	 * Returns this mapTypeControlsMapTypeIds
 	 *
 	 * @return string
 	 */
-	public function getMapTypeControlOptionsMapTypeIds() {
-		return $this->getPropertyValue('mapTypeControlOptionsMapTypeIds', 'map');
+	public function getMapTypeControlsMapTypeIds() {
+		return $this->getPropertyValue('mapTypeControlsMapTypeIds', 'map');
 	}
 
 	/**
-	 * Sets this mapTypeControlOptionsPosition
+	 * Sets this mapTypeControlsPosition
 	 *
-	 * @param string $mapTypeControlOptionsPosition
+	 * @param string $mapTypeControlsPosition
 	 * @return void
 	 */
-	public function setMapTypeControlOptionsPosition($mapTypeControlOptionsPosition) {
-		$this->mapTypeControlOptionsPosition = $mapTypeControlOptionsPosition;
+	public function setMapTypeControlsPosition($mapTypeControlsPosition) {
+		$this->mapTypeControlsPosition = $mapTypeControlsPosition;
 	}
 
 	/**
-	 * Returns this mapTypeControlOptionsPosition
+	 * Returns this mapTypeControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getMapTypeControlOptionsPosition() {
-		return $this->getPropertyValue('mapTypeControlOptionsPosition', 'map');
+	public function getMapTypeControlsPosition() {
+		return $this->getPropertyValue('mapTypeControlsPosition', 'map');
 	}
 
 	/**
-	 * Sets this mapTypeControlOptionsStyle
+	 * Sets this mapTypeControlsStyle
 	 *
-	 * @param string $mapTypeControlOptionsStyle
+	 * @param string $mapTypeControlsStyle
 	 * @return void
 	 */
-	public function setMapTypeControlOptionsStyle($mapTypeControlOptionsStyle) {
-		$this->mapTypeControlOptionsStyle = $mapTypeControlOptionsStyle;
+	public function setMapTypeControlsStyle($mapTypeControlsStyle) {
+		$this->mapTypeControlsStyle = $mapTypeControlsStyle;
 	}
 
 	/**
-	 * Returns this mapTypeControlOptionsStyle
+	 * Returns this mapTypeControlsStyle
 	 *
 	 * @return string
 	 */
-	public function getMapTypeControlOptionsStyle() {
-		return $this->getPropertyValue('mapTypeControlOptionsStyle', 'map');
+	public function getMapTypeControlsStyle() {
+		return $this->getPropertyValue('mapTypeControlsStyle', 'map');
 	}
 
 	/**
-	 * Sets this navigationControl
+	 * Sets this rotateControl
 	 *
-	 * @param boolean $navigationControl
+	 * @param boolean $rotateControl
 	 * @return void
 	 */
-	public function setNavigationControl($navigationControl) {
-		$this->navigationControl = (boolean) $navigationControl;
+	public function setRotateControl($rotateControl) {
+		$this->rotateControl = (boolean) $rotateControl;
 	}
 
 	/**
-	 * Returns this navigationControl
+	 * Returns this rotateControl
 	 *
 	 * @return boolean
 	 */
-	public function hasNavigationControl() {
-		return (boolean) $this->getPropertyValue('navigationControl', 'map');
+	public function hasRotateControl() {
+		return (boolean) $this->getPropertyValue('rotateControl', 'map');
 	}
 
 	/**
-	 * Sets this navigationControlOptionsPosition
+	 * Sets this rotateControlsPosition
 	 *
-	 * @param string $navigationControlOptionsPosition
+	 * @param string $rotateControlsPosition
 	 * @return void
 	 */
-	public function setNavigationControlOptionsPosition($navigationControlOptionsPosition) {
-		$this->navigationControlOptionsPosition = $navigationControlOptionsPosition;
+	public function setRotateControlsPosition($rotateControlsPosition) {
+		$this->rotateControlsPosition = $rotateControlsPosition;
 	}
 
 	/**
-	 * Returns this navigationControlOptionsPosition
+	 * Returns this rotateControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getNavigationControlOptionsPosition() {
-		return $this->getPropertyValue('navigationControlOptionsPosition', 'map');
-	}
-
-	/**
-	 * Sets this navigationControlOptionsStyle
-	 *
-	 * @param string $navigationControlOptionsStyle
-	 * @return void
-	 */
-	public function setNavigationControlOptionsStyle($navigationControlOptionsStyle) {
-		$this->navigationControlOptionsStyle = $navigationControlOptionsStyle;
-	}
-
-	/**
-	 * Returns this navigationControlOptionsStyle
-	 *
-	 * @return string
-	 */
-	public function getNavigationControlOptionsStyle() {
-		return $this->getPropertyValue('navigationControlOptionsStyle', 'map');
+	public function getRotateControlsPosition() {
+		return $this->getPropertyValue('rotateControlsPosition', 'map');
 	}
 
 	/**
@@ -790,41 +776,41 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this scaleControlOptionsPosition
+	 * Sets this scaleControlsPosition
 	 *
-	 * @param string $scaleControlOptionsPosition
+	 * @param string $scaleControlsPosition
 	 * @return void
 	 */
-	public function setScaleControlOptionsPosition($scaleControlOptionsPosition) {
-		$this->scaleControlOptionsPosition = $scaleControlOptionsPosition;
+	public function setScaleControlsPosition($scaleControlsPosition) {
+		$this->scaleControlsPosition = $scaleControlsPosition;
 	}
 
 	/**
-	 * Returns this scaleControlOptionsPosition
+	 * Returns this scaleControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getScaleControlOptionsPosition() {
-		return $this->getPropertyValue('scaleControlOptionsPosition', 'map');
+	public function getScaleControlsPosition() {
+		return $this->getPropertyValue('scaleControlsPosition', 'map');
 	}
 
 	/**
-	 * Sets this scaleControlOptionsStyle
+	 * Sets this scaleControlsStyle
 	 *
-	 * @param string $scaleControlOptionsStyle
+	 * @param string $scaleControlsStyle
 	 * @return void
 	 */
-	public function setScaleControlOptionsStyle($scaleControlOptionsStyle) {
-		$this->scaleControlOptionsStyle = $scaleControlOptionsStyle;
+	public function setScaleControlsStyle($scaleControlsStyle) {
+		$this->scaleControlsStyle = $scaleControlsStyle;
 	}
 
 	/**
-	 * Returns this scaleControlOptionsStyle
+	 * Returns this scaleControlsStyle
 	 *
 	 * @return string
 	 */
-	public function getScaleControlOptionsStyle() {
-		return $this->getPropertyValue('scaleControlOptionsStyle', 'map');
+	public function getScaleControlsStyle() {
+		return $this->getPropertyValue('scaleControlsStyle', 'map');
 	}
 
 	/**
@@ -847,22 +833,22 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this panControlOptionsPosition
+	 * Sets this panControlsPosition
 	 *
-	 * @param string $panControlOptionsPosition
+	 * @param string $panControlsPosition
 	 * @return void
 	 */
-	public function setPanControlOptionsPosition($panControlOptionsPosition) {
-		$this->panControlOptionsPosition = $panControlOptionsPosition;
+	public function setPanControlsPosition($panControlsPosition) {
+		$this->panControlsPosition = $panControlsPosition;
 	}
 
 	/**
-	 * Returns this panControlOptionsPosition
+	 * Returns this panControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getPanControlOptionsPosition() {
-		return $this->getPropertyValue('panControlOptionsPosition', 'map');
+	public function getPanControlsPosition() {
+		return $this->getPropertyValue('panControlsPosition', 'map');
 	}
 
 	/**
@@ -885,41 +871,79 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this zoomControlOptionsPosition
+	 * Sets this zoomControlsPosition
 	 *
-	 * @param string $zoomControlOptionsPosition
+	 * @param string $zoomControlsPosition
 	 * @return void
 	 */
-	public function setZoomControlOptionsPosition($zoomControlOptionsPosition) {
-		$this->zoomControlOptionsPosition = $zoomControlOptionsPosition;
+	public function setZoomControlsPosition($zoomControlsPosition) {
+		$this->zoomControlsPosition = $zoomControlsPosition;
 	}
 
 	/**
-	 * Returns this zoomControlOptionsPosition
+	 * Returns this zoomControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getZoomControlOptionsPosition() {
-		return $this->getPropertyValue('zoomControlOptionsPosition', 'map');
+	public function getZoomControlsPosition() {
+		return $this->getPropertyValue('zoomControlsPosition', 'map');
 	}
 
 	/**
-	 * Sets this zoomControlOptionsStyle
+	 * Sets this zoomControlsStyle
 	 *
-	 * @param string $zoomControlOptionsStyle
+	 * @param string $zoomControlsStyle
 	 * @return void
 	 */
-	public function setZoomControlOptionsStyle($zoomControlOptionsStyle) {
-		$this->zoomControlOptionsStyle = $zoomControlOptionsStyle;
+	public function setZoomControlsStyle($zoomControlsStyle) {
+		$this->zoomControlsStyle = $zoomControlsStyle;
 	}
 
 	/**
-	 * Returns this zoomControlOptionsStyle
+	 * Returns this zoomControlsStyle
 	 *
 	 * @return string
 	 */
-	public function getZoomControlOptionsStyle() {
-		return $this->getPropertyValue('zoomControlOptionsStyle', 'map');
+	public function getZoomControlsStyle() {
+		return $this->getPropertyValue('zoomControlsStyle', 'map');
+	}
+
+	/**
+	 * Sets this overviewMapControl
+	 *
+	 * @param boolean $overviewMapControl
+	 * @return void
+	 */
+	public function setOverviewMapControl($overviewMapControl) {
+		$this->overviewMapControl = (boolean) $overviewMapControl;
+	}
+
+	/**
+	 * Returns this overviewMapControl
+	 *
+	 * @return boolean
+	 */
+	public function hasOverviewMapControl() {
+		return (boolean) $this->getPropertyValue('overviewMapControl', 'map');
+	}
+
+	/**
+	 * Sets this overviewMapControlsIsOpened
+	 *
+	 * @param string $overviewMapControlsIsOpened
+	 * @return void
+	 */
+	public function setOverviewMapControlsIsOpened($overviewMapControlsIsOpened) {
+		$this->overviewMapControlsIsOpened = $overviewMapControlsIsOpened;
+	}
+
+	/**
+	 * Returns this overviewMapControlsIsOpened
+	 *
+	 * @return string
+	 */
+	public function getOverviewMapControlsIsOpened() {
+		return $this->getPropertyValue('overviewMapControlsIsOpened', 'map');
 	}
 
 	/**
@@ -942,22 +966,22 @@ class Tx_AdGoogleMaps_Domain_Model_Map extends Tx_AdGoogleMaps_Domain_Model_Abst
 	}
 
 	/**
-	 * Sets this streetViewControlOptionsPosition
+	 * Sets this streetViewControlsPosition
 	 *
-	 * @param string $streetViewControlOptionsPosition
+	 * @param string $streetViewControlsPosition
 	 * @return void
 	 */
-	public function setStreetViewControlOptionsPosition($streetViewControlOptionsPosition) {
-		$this->streetViewControlOptionsPosition = $streetViewControlOptionsPosition;
+	public function setStreetViewControlsPosition($streetViewControlsPosition) {
+		$this->streetViewControlsPosition = $streetViewControlsPosition;
 	}
 
 	/**
-	 * Returns this scaleControlOptionsPosition
+	 * Returns this scaleControlsPosition
 	 *
 	 * @return string
 	 */
-	public function getStreetViewControlOptionsPosition() {
-		return $this->getPropertyValue('streetViewControlOptionsPosition', 'map');
+	public function getStreetViewControlsPosition() {
+		return $this->getPropertyValue('streetViewControlsPosition', 'map');
 	}
 
 	/**

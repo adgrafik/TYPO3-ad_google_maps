@@ -29,91 +29,45 @@
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @package Extbase
- * @subpackage GoogleMapsAPI\MarkerImage
- * @scope prototype
- * @entity
- * @api
+ * @package AdGoogleMaps
  */
-class Tx_AdGoogleMaps_Api_Point {
+abstract class Tx_AdGoogleMaps_Api_Control_AbstractControl {
 
 	/**
-	 * @var integer
+	 * ControlPosition
 	 */
-	protected $x;
+	const POSITION_TOP_CENTER = 'google.maps.ControlPosition.TOP_CENTER';
+	const POSITION_TOP_RIGHT = 'google.maps.ControlPosition.TOP_RIGHT';
+	const POSITION_RIGHT_CENTER = 'google.maps.ControlPosition.RIGHT_CENTER';
+	const POSITION_BOTTOM_RIGHT = 'google.maps.ControlPosition.BOTTOM_RIGHT';
+	const POSITION_BOTTOM_CENTER = 'google.maps.ControlPosition.BOTTOM_CENTER';
+	const POSITION_BOTTOM_LEFT = 'google.maps.ControlPosition.BOTTOM_LEFT';
+	const POSITION_LEFT_CENTER = 'google.maps.ControlPosition.LEFT_CENTER';
+	const POSITION_TOP_LEFT = 'google.maps.ControlPosition.TOP_LEFT';
 
 	/**
-	 * @var integer
+	 * @var string
+	 * @jsonClassEncoder quoteValue = FALSE
 	 */
-	protected $y;
-
-	/*
-	 * Constructor.
-	 * 
-	 * @param integer $x
-	 * @param integer $y
-	 */
-	public function __construct($x, $y) {
-		$this->x = (integer) $x;
-		$this->y = (integer) $y;
-	}
+	protected $position;
 
 	/**
-	 * Sets this x.
+	 * Sets this position.
 	 *
-	 * @param integer $x
-	 * @return Tx_AdGoogleMaps_Api_Point
+	 * @param string $position
+	 * @return void
 	 */
-	public function setX($x) {
-		$this->x = (integer) $x;
-		return $this;
+	public function setPosition($position) {
+		$this->position = $position;
 	}
 
 	/**
-	 * Returns this x.
-	 *
-	 * @return integer
-	 */
-	public function getX() {
-		return (integer) $this->x;
-	}
-
-	/**
-	 * Sets this y.
-	 *
-	 * @param integer $y
-	 * @return Tx_AdGoogleMaps_Api_Point
-	 */
-	public function setY($y) {
-		$this->y = (integer) $y;
-		return $this;
-	}
-
-	/**
-	 * Returns this y.
-	 *
-	 * @return integer
-	 */
-	public function getY() {
-		return (integer) $this->y;
-	}
-
-	/**
-	 * Returns the marker image as JavaScript string.
+	 * Returns this position.
 	 *
 	 * @return string
 	 */
-	public function getPrint() {
-		return (($this->x > 0 || $this->y > 0) ? sprintf('new google.maps.Point(%d, %d)', $this->x, $this->y) : 'null');
-	}
-
-	/**
-	 * Returns the marker image as JavaScript string.
-	 *
-	 * @return string
-	 */
-	public function __toString() {
-		return $this->getPrint();
+	public function getPosition() {
+		return $this->position;
 	}
 
 }

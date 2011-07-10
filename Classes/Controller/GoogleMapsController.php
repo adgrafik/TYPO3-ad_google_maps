@@ -58,6 +58,7 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 
 		// Build map plugin.
 		$mapBuilder = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_MapBuilder');
+		$this->jsonEncoder->setDebug($this->settings['plugin']['debugMode']);
 		$mapBuilder->build(clone $map, $this->settings);
 
 		// Execute template controllers.
@@ -114,21 +115,21 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		if (($searchMarkerUrl = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $map->getSearchMarker())) === NULL) {
 			$searchMarkerUrl = 'typo3conf/ext/ad_google_maps/Resources/Public/Icons/MapDrawer/searchMarker.gif';
 		}
-		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_MarkerImage',
+		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_Overlay_MarkerImage',
 			$searchMarkerUrl,
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
 				$map->getSearchMarkerWidth(),
 				$map->getSearchMarkerHeight()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Point', 
 				$map->getSearchMarkerOriginX(),
 				$map->getSearchMarkerOriginY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Point', 
 				$map->getSearchMarkerAnchorX(),
 				$map->getSearchMarkerAnchorY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
 				$map->getSearchMarkerScaledWidth(),
 				$map->getSearchMarkerScaledHeight()
 			)

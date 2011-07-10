@@ -31,36 +31,66 @@
 class Tx_AdGoogleMaps_Plugin_Options {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @jsonClassEncoder ignoreProperty
+	 */
+	protected $objectManager;
+
+	/**
+	 * @var Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface
+	 * @jsonClassEncoder ignoreProperty
+	 */
+	protected $jsonEncoder;
+
+	/**
 	 * @var string
-	 * @javaScriptHelper 
 	 */
 	protected $canvasId;
 
 	/**
-	 * @var Tx_AdGoogleMaps_Api_Map
-	 * @javaScriptHelper
+	 * @var Tx_AdGoogleMaps_Api_Map_Map
 	 */
 	protected $mapOptions;
 
 	/**
 	 * @var Tx_AdGoogleMaps_Plugin_Options_MapControl
-	 * @javaScriptHelper 
 	 */
 	protected $mapControl;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_AdGoogleMaps_Plugin_Options_Layer_LayerInterface>
-	 * @javaScriptHelper 
 	 */
 	protected $layerOptions;
 
-	/*
-	 * Constructs this map.
+	/**
+	 * Injects this objectManager.
+	 *
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @return void
 	 */
-	public function __construct() {
-		$this->mapOptions = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Map', NULL);
-		$this->mapControl = t3lib_div::makeInstance('Tx_AdGoogleMaps_Plugin_Options_MapControl');
-		$this->layerOptions = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+	/**
+	 * Injects this jsonEncoder.
+	 *
+	 * @param Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder
+	 * @return void
+	 */
+	public function injectJsonEncoder(Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoderInterface $jsonEncoder) {
+		$this->jsonEncoder = $jsonEncoder;
+	}
+
+	/*
+	 * Initialize this objectManager.
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
+		$this->mapOptions = $this->objectManager->create('Tx_AdGoogleMaps_Api_Map_Map', NULL);
+		$this->mapControl = $this->objectManager->create('Tx_AdGoogleMaps_Plugin_Options_MapControl');
+		$this->layerOptions = $this->objectManager->create('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -86,10 +116,10 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Sets this mapOptions.
 	 *
-	 * @param Tx_AdGoogleMaps_Api_Map $mapOptions
+	 * @param Tx_AdGoogleMaps_Api_Map_Map $mapOptions
 	 * @return Tx_AdGoogleMaps_Plugin_Options
 	 */
-	public function setMapOptions(Tx_AdGoogleMaps_Api_Map $mapOptions) {
+	public function setMapOptions(Tx_AdGoogleMaps_Api_Map_Map $mapOptions) {
 		$this->mapOptions = $mapOptions;
 		return $this;
 	}
@@ -97,7 +127,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 	/**
 	 * Returns this mapOptions.
 	 *
-	 * @return Tx_AdGoogleMaps_Api_Map
+	 * @return Tx_AdGoogleMaps_Api_Map_Map
 	 */
 	public function getMapOptions() {
 		return $this->mapOptions;
@@ -163,7 +193,7 @@ class Tx_AdGoogleMaps_Plugin_Options {
 		if ($this->mapControl->isUseMarkerCluster() === TRUE) {
 			Tx_AdGoogleMaps_Utility_FrontEnd::includeFrontEndResources('Tx_AdGoogleMaps_Plugin_Options');
 		}
-		return Tx_AdGoogleMaps_Utility_FrontEnd::getClassAsJsonObject($this);
+		return $this->jsonEncoder->encode($this);
 	}
 
 	/**

@@ -25,7 +25,7 @@
 /**
  * The TCA service MapDrawer. 
  *
- * @package Extbase
+ * @package AdGoogleMaps
  * @subpackage GoogleMaps\MapDrawer
  * @scope prototype
  * @entity
@@ -115,10 +115,10 @@ abstract class Tx_AdGoogleMaps_MapDrawer_Layer_AbstractLayer {
 
 		// Check map center.
 		$center = (array_key_exists('center', $this->recordTypeConfiguration) === TRUE && $this->recordTypeConfiguration['center'] !== '') ? $this->recordTypeConfiguration['center'] : '48.209206,16.372778';
-		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($center) === FALSE) {
+		if (Tx_AdGoogleMaps_Api_Base_LatLng::isValidCoordinate($center) === FALSE) {
 			throw new Tx_AdGoogleMaps_MapDrawer_Exception('Given map center "' . $center . '" is invalid. The format must be like "48.209206,16.372778".<br />See: plugin.tx_adgooglemaps.settings.api.center', 1299154340);
 		} else {
-			$center = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_LatLng', $center);
+			$center = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Base_LatLng', $center);
 		}
 
 		// Set map options.

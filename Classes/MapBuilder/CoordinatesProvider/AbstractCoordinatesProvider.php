@@ -31,6 +31,11 @@
 abstract class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinatesProvider implements Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInterface {
 
 	/**
+	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
 	 * @var Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface
 	 */
 	protected $layerBuilder;
@@ -54,12 +59,22 @@ abstract class Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_AbstractCoordinate
 	}
 
 	/**
+	 * Injects this objectManager.
+	 *
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @return void
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+	/**
 	 * Injects this mapBuilder.
 	 *
 	 * @param Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $mapBuilder
 	 * @return void
 	 */
-	public function injectLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder) {
+	public function setLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder) {
 		$this->layerBuilder = $layerBuilder;
 	}
 

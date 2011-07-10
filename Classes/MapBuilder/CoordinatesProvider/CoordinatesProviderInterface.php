@@ -36,7 +36,7 @@ interface Tx_AdGoogleMaps_MapBuilder_CoordinatesProvider_CoordinatesProviderInte
 	 * @param Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $mapBuilder
 	 * @return void
 	 */
-	public function injectLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder);
+	public function setLayer(Tx_AdGoogleMaps_MapBuilder_Layer_LayerInterface $layerBuilder);
 
 	/**
 	 * Loads the data and the coordinates.
