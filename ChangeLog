@@ -75,9 +75,10 @@
 		[TASK] Changed naming of Classes\Api\Layer\* to Classes\Api\Overlay\*.
 		[TASK] Changed naming of MarkerImage and MarkerShape to Classes\Api\Overlay\*.
 		[TASK] Added Classes\Api\Layer\* (for KML-layer for example).
+		[TASK] Added Classes\Api\Service\* (for direction service for example).
 		[TASK] Changed naming of Bounds, LatLng, LatLngArray, Point and Size to Classes\Api\Base\*.
 
 		[TASK] Deleted navigationControl. Zoom and pan controls have been separated (no more navigation control). These can be configured separately.
 		[TASK] Added new options for map: heading, tilt, rotateControl, overviewMapControl.
 		[TASK] Added new options for marker: animation, optimized.
-		[TASK] Added naming convention for coordinates provider and layer builder classes. Now they must begin with "Tx_AdGoogleMaps". All plugin-extensions must now start with ad_google_maps like ad_google_maps_plugin_feuser for a better belonging to ad_google_maps.
+		[TASK] Added naming convention for coordinates provider and layer builder classes. Now they must begin with "Tx_AdGoogleMaps". All plugin-extensions must now start with ad_google_maps_* like ad_google_maps_plugin_feuser for a better belonging to ad_google_maps.

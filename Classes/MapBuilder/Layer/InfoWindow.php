@@ -111,7 +111,7 @@ class Tx_AdGoogleMaps_MapBuilder_Layer_InfoWindow extends Tx_AdGoogleMaps_MapBui
 		// Set info window options.
 		$this->layerOptions = array(
 			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowDisableAutoPan'),
-			'disableAutoPan' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowMaxWidth'),
+			'maxWidth' => $this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowMaxWidth'),
 			'pixelOffsetWidth' => $this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetWidth'), 
 				$this->getInfoWindowOptionValueByInfoWindowBehaviour('infoWindowPixelOffsetHeight')
