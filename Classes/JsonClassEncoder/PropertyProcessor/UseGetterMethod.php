@@ -38,7 +38,7 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_UseGetterMethod extends
 	 * @param string $propertyType
 	 * @param string $propertyName
 	 * @param mixed $propertyValue
-	 * @return string
+	 * @return mixed
 	 * @throws Tx_AdGoogleMaps_JsonClassEncoder_Exception_InvalidPropertyValue
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {

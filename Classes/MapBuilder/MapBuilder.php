@@ -215,9 +215,6 @@ class Tx_AdGoogleMaps_MapBuilder_MapBuilder {
 				// the same layers, than duplicates are added to the layer items.
 				if ($layer->getItems()->count() === 0) {
 					$layerBuilderClassName = $layer->getType();
-					if (strpos($layerBuilderClassName, 'Tx_AdGoogleMaps') === FALSE) {
-						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" must begin with "Tx_AdGoogleMaps".', 1297889110);
-					}
 					if (class_exists($layerBuilderClassName) === FALSE) {
 						throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given layer builder class "' . $layerBuilderClassName . '" doesn\'t exists.', 1297889111);
 					}

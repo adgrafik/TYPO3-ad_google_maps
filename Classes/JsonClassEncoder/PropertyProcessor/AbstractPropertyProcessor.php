@@ -52,7 +52,7 @@ abstract class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_AbstractProper
 	 * @param string $propertyType
 	 * @param string $propertyName
 	 * @param mixed $propertyValue
-	 * @return string
+	 * @return mixed
 	 */
 	abstract public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue);
 

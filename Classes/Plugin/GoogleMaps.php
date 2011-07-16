@@ -295,7 +295,7 @@ class Tx_AdGoogleMaps_Plugin_GoogleMaps {
 	 * @return string
 	 */
 	public function getPrintOptions() {
-		return $this->pluginOptions;
+		return $this->pluginOptions->getPrint();
 	}
 
 	/**

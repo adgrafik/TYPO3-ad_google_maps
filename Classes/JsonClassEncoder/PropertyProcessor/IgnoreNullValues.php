@@ -38,10 +38,10 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_IgnoreNullValues extend
 	 * @param string $propertyType
 	 * @param string $propertyName
 	 * @param mixed $propertyValue
-	 * @return string
+	 * @return mixed
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
-		if ($propertyValue === NULL && $this->getBooleanValue($optionValue) === TRUE) {
+		if ($this->getBooleanValue($optionValue) === TRUE && $propertyValue === NULL) {
 			$this->setIgnoreProperty(TRUE);
 		}
 		return $propertyValue;

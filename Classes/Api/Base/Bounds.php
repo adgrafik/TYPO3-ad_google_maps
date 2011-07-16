@@ -110,18 +110,6 @@ class Tx_AdGoogleMaps_Api_Base_Bounds {
 	}
 
 	/**
-	 * Extend google maps bound with given lat lng array.
-	 * 
-	 * @param Tx_AdGoogleMaps_Api_Base_LatLngArray $latLngArray
-	 * @return void
-	 */
-	public function extendArray(Tx_AdGoogleMaps_Api_Base_LatLngArray $latLngArray) {
-		foreach ($latLngArray->getLatLngArray() as $latLng) {
-			$this->extend($latLng);
-		}
-	}
-
-	/**
 	 * Returns the LatLngBounds as JavaScript string.
 	 *
 	 * @return string

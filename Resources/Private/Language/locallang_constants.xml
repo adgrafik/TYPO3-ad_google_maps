@@ -19,7 +19,7 @@
 			<label index="settings.plugin.pluginFile">Google Maps Plugin: URL of the Google Maps plugin. Required.</label>
 			<label index="settings.plugin.markerClusterUrl">Google Maps marker cluster URL: URL of the Google Maps marker cluster URL.</label>
 			<label index="settings.plugin.geocodeUrl">Google Maps API geocode-URL : URL of the Google Maps service for getting geocode per JSON. Required.</label>
-			<label index="settings.plugin.fixStdHeaderForFluidSyntax">Disable "insertData" at headers: If set the default TypoScript-Setup "lib.stdheader.10" is changed and "insertData" replaced with "dataWrap". If this option is TRUE it'll be able to use Fluid-Syntax in the header of content elements.</label>
+			<label index="settings.plugin.fixStdHeaderForFluidSyntax">Fix stdheader: If set the default TypoScript-Setup "lib.stdheader.10" is changed and "insertData" replaced with "dataWrap". If this option is TRUE it'll be able to use Fluid-Syntax in the header of content elements.</label>
 
 			<label index="persistence.storagePid">Storage PID: Default storage PID</label>
 

@@ -122,6 +122,7 @@ class Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder implements Tx_AdGoogleMaps_Js
 	public function encode($object, $propertyProcessors = array(), $level = 0) {
 		$json = array();
 		$classReflection = $this->objectManager->create('Tx_Extbase_Reflection_ClassReflection', $object);
+
 		foreach ($classReflection->getProperties() as $propertyReflection) {
 			$propertyName = $propertyReflection->getName();
 			$propertyValue = $this->getPropertyValue($object, $propertyName);
@@ -161,14 +162,8 @@ class Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder implements Tx_AdGoogleMaps_Js
 	public function encodeArray($array, $propertyProcessors, $level = 0) {
 		$json = array();
 		foreach ($array as $key => $value) {
-			switch (TRUE) {
-				case (is_array($value) === TRUE || $value instanceof ArrayAccess === TRUE):
-					$value = $this->encodeArray($value, $propertyProcessors, $level + 1);
-				break;
-
-				case (is_object($value) === TRUE):
-					$value = $this->encode($value, $propertyProcessors, $level + 1);
-				break;
+			if (is_array($value) === TRUE || $value instanceof ArrayAccess === TRUE) {
+				$value = $this->encodeArray($value, $propertyProcessors, $level + 1);
 			}
 
 			// Process property value resolvers.
@@ -252,7 +247,6 @@ class Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder implements Tx_AdGoogleMaps_Js
 			// Parse recursive if property value is an object.
 			$propertyValue = $this->encode($propertyValue, $propertyProcessors, $level + 1);
 		}
-
 		// Post process values.
 		switch ($propertyType) {
 			case 'boolean':

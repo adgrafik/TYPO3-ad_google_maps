@@ -38,7 +38,7 @@ class Tx_AdGoogleMaps_JsonClassEncoder_PropertyProcessor_IgnorePropertyIfValueIs
 	 * @param string $propertyType
 	 * @param string $propertyName
 	 * @param mixed $propertyValue
-	 * @return string
+	 * @return mixed
 	 */
 	public function getPropertyValue($optionValue, $object, $propertyType, $propertyName, $propertyValue) {
 		$ignoreProperty = ($propertyValue == eval('return ' . $optionValue . ';'));

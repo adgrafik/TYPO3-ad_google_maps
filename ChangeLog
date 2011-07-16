@@ -77,6 +77,7 @@
 		[TASK] Added Classes\Api\Layer\* (for KML-layer for example).
 		[TASK] Added Classes\Api\Service\* (for direction service for example).
 		[TASK] Changed naming of Bounds, LatLng, LatLngArray, Point and Size to Classes\Api\Base\*.
+		[TASK] Changed class Tx_AdGoogleMaps_Api_LatLngArray to Tx_AdGoogleMaps_Api_MVC_MVCArray.
 
 		[TASK] Deleted navigationControl. Zoom and pan controls have been separated (no more navigation control). These can be configured separately.
 		[TASK] Added new options for map: heading, tilt, rotateControl, overviewMapControl.

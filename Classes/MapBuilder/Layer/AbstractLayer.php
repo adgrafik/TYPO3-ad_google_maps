@@ -314,9 +314,6 @@ abstract class Tx_AdGoogleMaps_MapBuilder_Layer_AbstractLayer implements Tx_AdGo
 		if ($this->useCoordinatesProvider === FALSE) return;
 
 		$coordinatesProviderClassName = $this->layer->getCoordinatesProvider();
-		if (strpos($coordinatesProviderClassName, 'Tx_AdGoogleMaps') === FALSE) {
-			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" must begin with "Tx_AdGoogleMaps".', 1297889150);
-		}
 		if (class_exists($coordinatesProviderClassName) === FALSE) {
 			throw new Tx_AdGoogleMaps_MapBuilder_Exception('Given coordinates provider class "' . $coordinatesProviderClassName . '" doesn\'t exists.', 1297889151);
 		}
