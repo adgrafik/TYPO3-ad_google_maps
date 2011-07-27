@@ -188,7 +188,7 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 */
 	public static function getRelativeUploadPathAndFileName($extensionKey, $uploadDirectory, $fileName) {
 		if (!$fileName) return NULL; // Nothing to do if file name is empty or NULL.
-		return self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . $fileName;
+		return self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . '/' . $fileName;
 	}
 
 	/**
@@ -206,7 +206,7 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 			$path = $extensionConfiguration['uploadDirectories'][$uploadDirectory];
 		}
 		$path = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($path));
-		return $path . ((strrpos($path, '/') === strlen($path) - 1) ? '' : '/');
+		return rtrim($path, '/');
 	}
 
 }
