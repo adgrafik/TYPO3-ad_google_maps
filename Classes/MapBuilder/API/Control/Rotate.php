@@ -35,9 +35,9 @@ class Tx_AdGoogleMaps_MapBuilder_API_Control_Rotate extends Tx_AdGoogleMaps_MapB
 	/**
 	 * Constructor.
 	 * 
-	 * @param Tx_AdGoogleMaps_MapBuilder_API_Control_Rotate $position
+	 * @param string $position
 	 */
-	public function __construct(Tx_AdGoogleMaps_MapBuilder_API_Control_Rotate $position = NULL) {
+	public function __construct($position = NULL) {
 		$this->setPosition($position === NULL ? self::POSITION_TOP_LEFT : $position);
 	}
 
