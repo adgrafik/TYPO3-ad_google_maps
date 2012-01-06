@@ -6,16 +6,18 @@ plugin.tx_adgooglemaps {
 	settings {
 
 		# Default configuration for map record. Values will be overridden by record fields. 
-		map {
+		controllers {
+			googleMaps {
 
-			# cat=ad: Google Maps/enable/100; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.map.height
-			height = 400
+				# cat=ad: Google Maps/enable/100; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.templateController.googleMaps.height
+				height = 400
+			}
 		}
 
 		api {
 
 			# cat=ad: Google Maps/enable/200; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.canvas
-			canvas = Tx_AdGoogleMaps_Canvas_Uid_###UID###
+			canvas = Tx_AdGoogleMaps_Canvas###UID###
 
 			# cat=ad: Google Maps/enable/210; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.api.mapTypeId
 			mapTypeId = google.maps.MapTypeId.ROADMAP
@@ -33,21 +35,24 @@ plugin.tx_adgooglemaps {
 			maxZoom = 17
 		}
 
-		plugin {
+		mapBuilder {
 
-			# cat=ad: Google Maps/enable/310; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.apiUrl
+			# cat=ad: Google Maps/enable/310; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.mapBuilder.apiUrl
 			apiUrl = http://maps.google.com/maps/api/js?sensor=false
 
-			# cat=ad: Google Maps/enable/350; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.pluginFile
-			pluginFile = EXT:ad_google_maps/Resources/Public/JavaScript/Plugin/Tx_AdGoogleMaps_Plugin.js
+			# cat=ad: Google Maps/enable/350; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.mapBuilder.mapBuilderFile
+			mapBuilderFile = EXT:ad_google_maps/Resources/Public/JavaScript/MapBuilder/Tx_AdGoogleMaps_MapBuilder.js
 
-			# cat=ad: Google Maps/enable/360; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.markerClusterUrl
+			# cat=ad: Google Maps/enable/360; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.mapBuilder.markerClusterUrl
 			markerClusterUrl = http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer_compiled.js
 
-			# cat=ad: Google Maps/enable/340; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.geocodeUrl
+			# cat=ad: Google Maps/enable/340; type=string; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.mapBuilder.geocodeUrl
 			geocodeUrl = http://maps.google.com/maps/api/geocode/json
+		}
 
-			# cat=ad: Google Maps/enable/160; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.plugin.fixStdHeaderForFluidSyntax
+		mapManager {
+
+			# cat=ad: Google Maps/enable/160; type=boolean; label=LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_constants.xml:settings.mapManager.fixStdHeaderForFluidSyntax
 			fixStdHeaderForFluidSyntax = 0
 		}
 	}
