@@ -1,0 +1,47 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+		<langChildren>1</langChildren>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:sheetMapManager</sheetTitle>
+					<cshFile>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform_csh.xml</cshFile>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.default.index.mapUid>
+						<TCEforms>
+							<label>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:settings.flexform.default.index.mapUid</label>
+							<config>
+								<type>select</type>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<suppress_icons>1</suppress_icons>
+								<foreign_table>tx_adgooglemaps_domain_model_map</foreign_table>
+								<foreign_table_where>AND (tx_adgooglemaps_domain_model_map.sys_language_uid = 0 OR tx_adgooglemaps_domain_model_map.l18n_parent = 0)</foreign_table_where>
+							</config>
+						</TCEforms>
+					</settings.flexform.default.index.mapUid>
+					<settings.flexform.default.index.templates>
+						<TCEforms>
+							<label>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:settings.flexform.default.index.templates</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>Tx_AdGoogleMaps_Hooks_ItemsProcessFunctions->getFlexFormTemplateControllerItems</itemsProcFunc>
+								<size>3</size>
+								<autoSizeMax>10</autoSizeMax>
+								<minitems>0</minitems>
+								<maxitems>99</maxitems>
+							</config>
+						</TCEforms>
+					</settings.flexform.default.index.templates>
+				</el>
+			</ROOT>
+		</sDEF>
+		<!-- ###templateSheets### -->
+	</sheets>
+</T3DataStructure>

@@ -1,0 +1,31 @@
+<templateSheetGoogleMaps>
+	<ROOT>
+		<TCEforms>
+			<sheetTitle>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:sheetGoogleMaps</sheetTitle>
+			<cshFile>EXT:ad_google_maps/Resources/Private/Language/locallang_flexform_csh.xml</cshFile>
+		</TCEforms>
+		<type>array</type>
+		<el>
+			<settings.flexform.googleMaps.index.width>
+				<TCEforms>
+					<label>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:settings.flexform.googleMaps.index.width</label>
+					<config>
+						<type>input</type>
+						<size>2</size>
+						<eval>int</eval>
+					</config>
+				</TCEforms>
+			</settings.flexform.googleMaps.index.width>
+			<settings.flexform.googleMaps.index.height>
+				<TCEforms>
+					<label>LLL:EXT:ad_google_maps/Resources/Private/Language/locallang_flexform.xml:settings.flexform.googleMaps.index.height</label>
+					<config>
+						<type>input</type>
+						<size>2</size>
+						<eval>int</eval>
+					</config>
+				</TCEforms>
+			</settings.flexform.googleMaps.index.height>
+		</el>
+	</ROOT>
+</templateSheetGoogleMaps>
