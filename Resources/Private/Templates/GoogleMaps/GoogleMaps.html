@@ -1,7 +1,8 @@
+{namespace tx=Tx_AdGoogleMaps_ViewHelpers}
 <!--
-	Use f:escape to prevent HTML formatting. 
+	Use tx:format.raw to prevent HTML formatting. 
 -->
-<f:escape type="" value="{googleMapsPlugin.printCanvas}" />
+<tx:format.raw value="{googleMapsPlugin.printCanvas}" />
 <script type="text/javascript"><!--
-<f:escape type="" value="{googleMapsPlugin}" />
+<tx:format.raw value="{googleMapsPlugin}" />
 --></script>

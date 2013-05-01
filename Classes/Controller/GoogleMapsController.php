@@ -58,12 +58,12 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 
 		// Build map plugin.
 		$mapBuilder = $this->objectManager->create('Tx_AdGoogleMaps_MapBuilder_MapBuilder');
-		$this->jsonEncoder->setDebug($this->settings['plugin']['debugMode']);
 		$mapBuilder->build(clone $map, $this->settings);
 
 		// Execute template controllers.
 		$templateControllerClassNames = t3lib_div::removeArrayEntryByValue(explode(',', $map->getTemplates()), '');
 		foreach ($templateControllerClassNames as $templateControllerClassName) {
+
 			// Get class and action name
 			@list($templateControllerClassName, $templateControllerActionName) = explode('::', $templateControllerClassName);
 			if (class_exists($templateControllerClassName) === FALSE) {
@@ -115,21 +115,21 @@ class Tx_AdGoogleMaps_Controller_GoogleMapsController extends Tx_AdGoogleMaps_Co
 		if (($searchMarkerUrl = Tx_AdGoogleMaps_Utility_BackEnd::getRelativeUploadPathAndFileName('ad_google_maps', 'markerIcons', $map->getSearchMarker())) === NULL) {
 			$searchMarkerUrl = 'typo3conf/ext/ad_google_maps/Resources/Public/Icons/MapDrawer/searchMarker.gif';
 		}
-		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_Overlay_MarkerImage',
+		$searchMarker = $this->objectManager->create('Tx_AdGoogleMaps_Api_MarkerImage',
 			$searchMarkerUrl,
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
 				$map->getSearchMarkerWidth(),
 				$map->getSearchMarkerHeight()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
 				$map->getSearchMarkerOriginX(),
 				$map->getSearchMarkerOriginY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Point', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Point', 
 				$map->getSearchMarkerAnchorX(),
 				$map->getSearchMarkerAnchorY()
 			),
-			$this->objectManager->create('Tx_AdGoogleMaps_Api_Base_Size', 
+			$this->objectManager->create('Tx_AdGoogleMaps_Api_Size', 
 				$map->getSearchMarkerScaledWidth(),
 				$map->getSearchMarkerScaledHeight()
 			)

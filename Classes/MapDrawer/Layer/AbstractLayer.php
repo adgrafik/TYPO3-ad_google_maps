@@ -25,7 +25,7 @@
 /**
  * The TCA service MapDrawer. 
  *
- * @package AdGoogleMaps
+ * @package Extbase
  * @subpackage GoogleMaps\MapDrawer
  * @scope prototype
  * @entity
@@ -115,10 +115,10 @@ abstract class Tx_AdGoogleMaps_MapDrawer_Layer_AbstractLayer {
 
 		// Check map center.
 		$center = (array_key_exists('center', $this->recordTypeConfiguration) === TRUE && $this->recordTypeConfiguration['center'] !== '') ? $this->recordTypeConfiguration['center'] : '48.209206,16.372778';
-		if (Tx_AdGoogleMaps_Api_Base_LatLng::isValidCoordinate($center) === FALSE) {
+		if (Tx_AdGoogleMaps_Api_LatLng::isValidCoordinate($center) === FALSE) {
 			throw new Tx_AdGoogleMaps_MapDrawer_Exception('Given map center "' . $center . '" is invalid. The format must be like "48.209206,16.372778".<br />See: plugin.tx_adgooglemaps.settings.api.center', 1299154340);
 		} else {
-			$center = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_Base_LatLng', $center);
+			$center = t3lib_div::makeInstance('Tx_AdGoogleMaps_Api_LatLng', $center);
 		}
 
 		// Set map options.
@@ -192,13 +192,28 @@ abstract class Tx_AdGoogleMaps_MapDrawer_Layer_AbstractLayer {
 	 * @return string
 	 */
 	protected function InitializeView() {
+
 		if (array_key_exists('templateFile', $this->recordTypeConfiguration) === TRUE && $this->recordTypeConfiguration['templateFile'] !== '') {
+
 			$templateFile = t3lib_div::getFileAbsFileName($this->recordTypeConfiguration['templateFile']);
-			$controllerContext = t3lib_div::makeInstance('Tx_Extbase_MVC_Controller_ControllerContext');
-			$controllerContext->setRequest(t3lib_div::makeInstance('Tx_Extbase_MVC_Request'));
-			$this->view = t3lib_div::makeInstance('Tx_Fluid_View_TemplateView');
-			$this->view->setControllerContext($controllerContext);
-			$this->view->setTemplatePathAndFilename($templateFile);
+
+			// extbase version 1.3.x
+			if (Tx_AdGoogleMaps_Utility_BackEnd::getExtbaseVersion() >= 1003000) {
+
+				$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+				$this->view = $objectManager->create('Tx_Fluid_View_StandaloneView');
+				$this->view->setFormat('html');
+				$this->view->setTemplatePathAndFilename($templateFile);
+
+			} else {
+
+				$controllerContext = t3lib_div::makeInstance('Tx_Extbase_MVC_Controller_ControllerContext');
+				$controllerContext->setRequest(t3lib_div::makeInstance('Tx_Extbase_MVC_Request'));
+
+				$this->view = t3lib_div::makeInstance('Tx_Fluid_View_TemplateView');
+				$this->view->setControllerContext($controllerContext);
+				$this->view->setTemplatePathAndFilename($templateFile);
+			}
 		}
 	}
 

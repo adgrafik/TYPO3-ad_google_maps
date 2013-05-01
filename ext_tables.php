@@ -16,7 +16,6 @@ Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Pi1', 'Google Maps');
 
 // TCA configuration for tx_adgooglemaps_domain_model_map.
 t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_map', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_tca_csh_map.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_map', 'EXT:context_help/locallang_csh_ttcontent.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_adgooglemaps_domain_model_map');
 $TCA['tx_adgooglemaps_domain_model_map'] = array(
 	'ctrl' => array(
@@ -36,7 +35,7 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 		// Using mixed-ins hack from Franz Koch to make map table extendable.
 		// @see http://lists.typo3.org/pipermail/typo3-project-typo3v4mvc/2010-September/006497.html
 		'type' => 'deleted',
-		'requestUpdate' => 'center_type,map_type_control,rotate_control,scale_control,pan_control,zoom_control,overview_map_control,street_view_control,search_control,draggable,info_window_behaviour',
+		'requestUpdate' => 'center_type,map_type_control,navigation_control,scale_control,pan_control,zoom_control,street_view_control,search_control,draggable,info_window_behaviour',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/TCA/iconMap.gif',
 		'dividers2tabs' => 2,
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
@@ -54,7 +53,6 @@ $TCA['tx_adgooglemaps_domain_model_map'] = array(
 
 // TCA configuration for tx_adgooglemaps_domain_model_category.
 t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_tca_csh_category.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_category', 'EXT:context_help/locallang_csh_ttcontent.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_adgooglemaps_domain_model_category');
 $TCA['tx_adgooglemaps_domain_model_category'] = array(
 	'ctrl' => array(
@@ -89,7 +87,6 @@ $TCA['tx_adgooglemaps_domain_model_category'] = array(
 
 // TCA configuration for tx_adgooglemaps_domain_model_layer.
 t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_layer', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_tca_csh_layer.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_adgooglemaps_domain_model_layer', 'EXT:context_help/locallang_csh_ttcontent.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_adgooglemaps_domain_model_layer');
 $TCA['tx_adgooglemaps_domain_model_layer'] = array(
 	'ctrl' => array(
@@ -136,6 +133,5 @@ $pluginSignature = strtolower(t3lib_div::underscoredToUpperCamelCase($_EXTKEY)) 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages,recursive';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.' . $pluginSignature . '.list', 'EXT:ad_google_maps/Resources/Private/Language/locallang_flexform_csh.xml');
 
 ?>

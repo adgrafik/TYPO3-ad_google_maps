@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>fe</type>
+		<description>Language labels for FE belonging to extension 'ad_google_maps'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="searchLegend">Search</label>
+			<label index="searchLabel">Search for Address</label>
+			<label index="searchButton">Search</label>
+			<label index="panTo">pan to</label>
+			<label index="fitBounds">fit bounds</label>
+			<label index="userFunction">user function</label>
+		</languageKey>
+	</data>
+</T3locallang>

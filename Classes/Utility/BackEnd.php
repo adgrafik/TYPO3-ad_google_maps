@@ -56,7 +56,9 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 		if (is_array(self::$extensionConfiguration) === FALSE || array_key_exists($extensionKey, self::$extensionConfiguration) === FALSE) {
 			self::$extensionConfiguration[$extensionKey] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$extensionKey]);
 			if (self::$extensionConfiguration[$extensionKey] !== FALSE) {
-				self::$extensionConfiguration[$extensionKey] = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray(self::$extensionConfiguration[$extensionKey]);
+				self::$extensionConfiguration[$extensionKey] = class_exists('Tx_Extbase_Service_TypoScriptService')
+					? t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray(self::$extensionConfiguration[$extensionKey])
+					: Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray(self::$extensionConfiguration[$extensionKey]);
 			}
 		}
 		return self::$extensionConfiguration[$extensionKey];
@@ -99,7 +101,9 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 			$TSObj->generateConfig();
 
 			if (array_key_exists($extensionKey . '.', $TSObj->setup['plugin.']) === TRUE && array_key_exists('settings.', $TSObj->setup['plugin.'][$extensionKey . '.']) === TRUE) {
-				self::$typoScriptCache[$pageId][$extensionKey] = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($TSObj->setup['plugin.'][$extensionKey . '.']['settings.']);
+				self::$typoScriptCache[$pageId][$extensionKey] = class_exists('Tx_Extbase_Service_TypoScriptService')
+					? t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($TSObj->setup['plugin.'][$extensionKey . '.']['settings.'])
+					: Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($TSObj->setup['plugin.'][$extensionKey . '.']['settings.']);
 			} else {
 				self::$typoScriptCache[$pageId][$extensionKey] = FALSE;
 			}
@@ -154,17 +158,33 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 * @return string
 	 */
 	public static function renderTemplate($templateSource, array $templateData) {
-		$templateParser = Tx_Fluid_Compatibility_TemplateParserBuilder::build();
 
-		if ($templateSource) {
-			$content = $templateParser->parse($templateSource);
-			$variableContainer = t3lib_div::makeInstance('Tx_Fluid_Core_ViewHelper_TemplateVariableContainer', $templateData);
-			$renderingContext = t3lib_div::makeInstance('Tx_Fluid_Core_Rendering_RenderingContext');
-			$renderingContext->setTemplateVariableContainer($variableContainer);
-			$viewHelperVariableContainer = t3lib_div::makeInstance('Tx_Fluid_Core_ViewHelper_ViewHelperVariableContainer');
-			$renderingContext->setViewHelperVariableContainer($viewHelperVariableContainer);
+		// extbase version 1.3.x
+		if (self::getExtbaseVersion() >= 1003000) {
 
-			return $content->render($renderingContext);
+			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+			$content = $objectManager->create('Tx_Fluid_View_StandaloneView');
+			$content->setFormat('html');
+
+			$content->setTemplateSource($templateSource);
+			$content->assignMultiple($templateData);
+
+			return $content->render();
+
+		} else {
+
+			$templateParser = Tx_Fluid_Compatibility_TemplateParserBuilder::build();
+
+			if ($templateSource) {
+				$content = $templateParser->parse($templateSource);
+				$variableContainer = t3lib_div::makeInstance('Tx_Fluid_Core_ViewHelper_TemplateVariableContainer', $templateData);
+				$renderingContext = t3lib_div::makeInstance('Tx_Fluid_Core_Rendering_RenderingContext');
+				$renderingContext->setTemplateVariableContainer($variableContainer);
+				$viewHelperVariableContainer = t3lib_div::makeInstance('Tx_Fluid_Core_ViewHelper_ViewHelperVariableContainer');
+				$renderingContext->setViewHelperVariableContainer($viewHelperVariableContainer);
+
+				return $content->render($renderingContext);
+			}
 		}
 	}
 
@@ -188,7 +208,7 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 	 */
 	public static function getRelativeUploadPathAndFileName($extensionKey, $uploadDirectory, $fileName) {
 		if (!$fileName) return NULL; // Nothing to do if file name is empty or NULL.
-		return self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . '/' . $fileName;
+		return self::getAbsoluteUploadPath($extensionKey, $uploadDirectory) . $fileName;
 	}
 
 	/**
@@ -206,7 +226,18 @@ class Tx_AdGoogleMaps_Utility_BackEnd {
 			$path = $extensionConfiguration['uploadDirectories'][$uploadDirectory];
 		}
 		$path = str_replace(PATH_site, '', t3lib_div::getFileAbsFileName($path));
-		return rtrim($path, '/');
+		return $path . ((strrpos($path, '/') === strlen($path) - 1) ? '' : '/');
+	}
+
+	/**
+	 * Returns the version of extbase.
+	 *
+	 * @return string
+	 */
+	public static function getExtbaseVersion() {
+		return class_exists('t3lib_utility_VersionNumber')
+	        ? t3lib_utility_VersionNumber::convertVersionNumberToInteger(t3lib_extMgm::getExtensionVersion('extbase'))
+	        : t3lib_div::int_from_ver(t3lib_extMgm::getExtensionVersion('extbase'));
 	}
 
 }

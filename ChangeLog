@@ -1,36 +1,29 @@
-2009-09-14 Arno Dudek  <webmaster@adgrafik.at>
+2013-04-10 Arno Dudek  <webmaster@adgrafik.at>
 
-1.0.0	First release
+1.1.3	[BUGFIX] Fixed property maxWidth of info windows.
+		[BUGFIX] Removed plugin.tx_adgooglemaps._LOCAL_LANG and use locallang.xml instead.
+		[BUGFIX] Fixed error "Call to a member function has() on a non-object" in BE
+		[TASK] Added support for extbase 1.3.x stand alone template rendering.
+		[TASK] Fixed deprecation: TCA contains a deprecated definition using "newRecordLinkPosition"
+		[TASK] Fixed deprecation: added condition for f:renderFlashMessages to f:flashMessages in Resources/Private/Templates/GoogleMaps/index.html
+		[TASK] Fixed deprecation: added condition for Tx_Extbase_Utility_TypoScript::* to t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->*
+		[TASK] Fixed deprecation: changed f:escape to own raw view helper
 
-1.0.1	[BUGFIX] Some bugfixes in tca.php
-		[BUGFIX] Fix wrong sorting of InfoWindows in MapBuilder.php
+1.1.2	[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
+		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?". Thanks to Christoph Volkamer.
+		[BUGFIX] Fixed issue #27509 "API - MAP missig sign". Thanks to soee.
+		[BUGFIX] Fixed issue #27664 "Html special chars for markers title are not escaped". Thanks to Wolfgang Rotschek.
+		[TASK] Changed plugin.tx_adgooglemaps.settings.api.canvas from tx_adgooglemaps_canvas###UID### to Tx_AdGoogleMaps_Canvas_Uid_###UID### for correspond naming.
+		[TASK] Changed getBoundsOfLatLngArray to getBoundsByLatLngArray and getCenterOfLatLngArray to getCenterByLatLngArray.
+		[TASK] Set the replace marker ###ITEM_KEYS### of the category userFunction to deprecated. Use ###LAYER_UIDS### instead.
+		[TASK] Set the replace marker ###ITEM_KEY### of the layer userFunction to deprecated. Use ###LAYER_UID### instead.
+		[TASK] Added TS-constant "fixStdHeaderForFluidSyntax" to allow user to decide if "lib.stdheader" should be changed.
 
-1.0.2	[BUGFIX] Added post process function to clear the coordinates field when useMapDrawerForAddress is FALSE and address changed.
-		[BUGFIX] Added missing database field force_listing in ext_tables.sql.
-		[BUGFIX] Fixed getContentByObjectNumberConf in MapBuilder.php.
-		[TASK] Language behaviour for flexform changed.
-		[TASK] Behaviour for Tx_AdGoogleMaps_MapBuilder->getPropertyValue changed to accept overriding by database field.
-		[TASK] Complete documentation.
-		[TASK] Tx_AdGoogleMaps_Domain_Model_Category->getSubCategories changed.
-		[TASK] Changed upload directory to default uploads/tx_adgooglemaps/.
-		[TASK] Changed control position constants name in tca.php.
-
-1.0.3	[FEATURE] Added MarkerClusterer option to the map.
-		[BUGFIX] Fixed some issues in the TCA.
-		[TASK] Language improvments in the TCA.
-		[TASK] Added support for icons on shape layers in list view.
-		[TASK] Optimized category tree view for T3 4.5.
-		[TASK] Added german language.
-		[TASK] Documentation updated.
-
-1.0.4	[FEATURE] Added map control functions to category.
-		[BUGFIX] Fixed some issue #12772.
-
-1.0.5	[TASK] Changed function name Tx_AdGoogleMaps_Utility_BackEnd::getFileRelativeFileName to getRelativeUploadPathAndFileName.
-		[TASK] Optimized TCA.
-		[TASK] Renamed property pluginUrl to pluginFile (hope for the last time).
-		[TASK] Documentation updated.
-		[TASK] Added correction of lib.stdheader.
+1.1.1	[BUGFIX] Changed SplObjectStorage to Tx_Extbase_Persistence_ObjectStorage to work also with PHP 5.2.x.
+		[BUGFIX] Fixed info windows content in JavaScript. Removes LF and CR and escapes single quotes.
+		[BUGFIX] Fixed error if you create a new record with a MapDrawer and klick on "Save and Create".
+		[TASK] Added getMap to Tx_AdGoogleMaps_Plugin in Tx_AdGoogleMaps_Plugin.js.
+		[TASK] Changed some strings.
 
 1.1.0	[FEATURE] Added map search.
 		[FEATURE] Made more OOP, fexible and extendable. Now it's possible to extend this extension with own extensions. Every layer got its own model-class resloving per record type (defined in TypoScript).
@@ -50,36 +43,34 @@
 		[TASK] Moved MapDrawer to ad_google_maps.
 		[TASK] Moved ad_google_maps_api completly to ad_google_maps.
 
-1.1.1	[BUGFIX] Changed SplObjectStorage to Tx_Extbase_Persistence_ObjectStorage to work also with PHP 5.2.x.
-		[BUGFIX] Fixed info windows content in JavaScript. Removes LF and CR and escapes single quotes.
-		[BUGFIX] Fixed error if you create a new record with a MapDrawer and klick on "Save and Create".
-		[TASK] Added getMap to Tx_AdGoogleMaps_Plugin in Tx_AdGoogleMaps_Plugin.js.
-		[TASK] Changed some strings.
+1.0.5	[TASK] Changed function name Tx_AdGoogleMaps_Utility_BackEnd::getFileRelativeFileName to getRelativeUploadPathAndFileName.
+		[TASK] Optimized TCA.
+		[TASK] Renamed property pluginUrl to pluginFile (hope for the last time).
+		[TASK] Documentation updated.
+		[TASK] Added correction of lib.stdheader.
 
-1.1.2	[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
-		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?". Thanks to Christoph Volkamer.
-		[BUGFIX] Fixed issue #27509 "API - MAP missig sign". Thanks to soee.
-		[BUGFIX] Fixed issue #27664 "Html special chars for markers title are not escaped". Thanks to Wolfgang Rotschek.
-		[TASK] Changed plugin.tx_adgooglemaps.settings.api.canvas from tx_adgooglemaps_canvas###UID### to Tx_AdGoogleMaps_Canvas_Uid_###UID### for correspond naming.
-		[TASK] Changed getBoundsOfLatLngArray to getBoundsByLatLngArray and getCenterOfLatLngArray to getCenterByLatLngArray.
-		[TASK] Set the replace marker ###ITEM_KEYS### of the category userFunction to deprecated. Use ###LAYER_UIDS### instead.
-		[TASK] Set the replace marker ###ITEM_KEY### of the layer userFunction to deprecated. Use ###LAYER_UID### instead.
-		[TASK] Added TS-constant "fixStdHeaderForFluidSyntax" to allow user to decide if "lib.stdheader" should be changed.
+1.0.4	[FEATURE] Added map control functions to category.
+		[BUGFIX] Fixed some issue #12772.
 
-1.2.0	[TASK] Changed t3lib_div::makeInstance to the extbase $this->objectManager->create/get.
-		[TASK] Changed function Tx_AdGoogleMaps_Utility_FrontEnd::jsonClassEncoder to extendable object Tx_AdGoogleMaps_JsonClassEncoder_JsonEncoder.
-		[TASK] Changed some TCA settings.
-		[TASK] ## Change naming of API directories corresponding to the Google Maps API structure.
-		[TASK] Changed naming of Classes\Api\Map to Classes\Api\Map\Map.
-		[TASK] Changed naming of Classes\Api\ControlOptions\* to Classes\Api\Control\*.
-		[TASK] Changed naming of Classes\Api\Layer\* to Classes\Api\Overlay\*.
-		[TASK] Changed naming of MarkerImage and MarkerShape to Classes\Api\Overlay\*.
-		[TASK] Added Classes\Api\Layer\* (for KML-layer for example).
-		[TASK] Added Classes\Api\Service\* (for direction service for example).
-		[TASK] Changed naming of Bounds, LatLng, LatLngArray, Point and Size to Classes\Api\Base\*.
-		[TASK] Changed class Tx_AdGoogleMaps_Api_LatLngArray to Tx_AdGoogleMaps_Api_MVC_MVCArray.
+1.0.3	[FEATURE] Added MarkerClusterer option to the map.
+		[BUGFIX] Fixed some issues in the TCA.
+		[TASK] Language improvments in the TCA.
+		[TASK] Added support for icons on shape layers in list view.
+		[TASK] Optimized category tree view for T3 4.5.
+		[TASK] Added german language.
+		[TASK] Documentation updated.
 
-		[TASK] Deleted navigationControl. Zoom and pan controls have been separated (no more navigation control). These can be configured separately.
-		[TASK] Added new options for map: heading, tilt, rotateControl, overviewMapControl.
-		[TASK] Added new options for marker: animation, optimized.
-		[TASK] Added naming convention for coordinates provider and layer builder classes. Now they must begin with "Tx_AdGoogleMaps". All plugin-extensions must now start with ad_google_maps_* like ad_google_maps_plugin_feuser for a better belonging to ad_google_maps.
+1.0.2	[BUGFIX] Added post process function to clear the coordinates field when useMapDrawerForAddress is FALSE and address changed.
+		[BUGFIX] Added missing database field force_listing in ext_tables.sql.
+		[BUGFIX] Fixed getContentByObjectNumberConf in MapBuilder.php.
+		[TASK] Language behaviour for flexform changed.
+		[TASK] Behaviour for Tx_AdGoogleMaps_MapBuilder->getPropertyValue changed to accept overriding by database field.
+		[TASK] Complete documentation.
+		[TASK] Tx_AdGoogleMaps_Domain_Model_Category->getSubCategories changed.
+		[TASK] Changed upload directory to default uploads/tx_adgooglemaps/.
+		[TASK] Changed control position constants name in tca.php.
+
+1.0.1	[BUGFIX] Some bugfixes in tca.php
+		[BUGFIX] Fix wrong sorting of InfoWindows in MapBuilder.php
+
+1.0.0	First release
