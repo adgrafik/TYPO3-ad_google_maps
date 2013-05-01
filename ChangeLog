@@ -8,6 +8,8 @@
 		[TASK] Fixed deprecation: added condition for f:renderFlashMessages to f:flashMessages in Resources/Private/Templates/GoogleMaps/index.html
 		[TASK] Fixed deprecation: added condition for Tx_Extbase_Utility_TypoScript::* to t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->*
 		[TASK] Fixed deprecation: changed f:escape to own raw view helper
+		[TASK] Adapted emconf depends
+		[TASK] Set state to stable
 
 1.1.2	[BUGFIX] Fixed issue #26838 "Clicking on panTo or fitBounds at the category have no effects.".
 		[BUGFIX] Fixed issue #26992 "Centering of map with coords" broken?". Thanks to Christoph Volkamer.
